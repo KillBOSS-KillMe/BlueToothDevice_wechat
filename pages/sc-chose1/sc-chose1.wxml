@@ -1,0 +1,31 @@
+<view class="xz-groups">
+  <view class='xz-group-con'>
+    <view class="xz-group xz-group1">
+      <view class='xz-group-left'>A组</view>
+      <view class='xz-group-right'>
+        <icon class='iconfont icon-weixuanze xz-xuanze'></icon>
+        <icon class='iconfont icon-xuanze xz-xuanze xz-xuanze1'></icon>
+      </view>
+    </view>
+    <view class="xz-group xz-group1">
+      <view class='xz-group-left'>B组</view>
+      <view class='xz-group-right'>
+        <icon class='iconfont icon-weixuanze xz-xuanze'></icon>
+        <icon class='iconfont icon-xuanze xz-xuanze xz-xuanze1'></icon>
+      </view>
+    </view>
+    <view class='xianjian'>
+      <button class='xinjianzu'>新建组</button>
+    </view>
+  </view>
+</view>
+<!-- 中间文字 -->
+<view class='xz-mid'>
+  将文件保存在这里
+</view>
+<!-- 底部 -->
+<view class='xz-bot'>
+  <view class='xz-bot-cen'>
+    <button class='xz-bot-btn'>确认上传</button>
+  </view>
+</view>

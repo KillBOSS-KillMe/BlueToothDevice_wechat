@@ -1,0 +1,72 @@
+<!-- 内容部分 -->
+<scroll-view scroll-y="{{true}}" bindscrolltolower="lower" lower-threshold="50" class="pull-down-load">
+  <block wx:for="{{luntanTxt}}" class="luntanTxt" wx:key="{{item}}">
+    <navigator url='../tiezi-detail/tiezi-detail'>
+      <view class='luntanCon'>
+        <view class='luntanCon-con'>
+          <view class='luntan-from'>
+            <view class='luntan-from-left'>
+              <navigator url='../quanxian/quanxian'>
+                <image src='{{item.luntanLaiziImg}}'></image>
+              </navigator>
+            </view>
+            <view class='luntan-from-right'>
+              <navigator class='yours' url='../quanxian/quanxian'>
+                <text>{{item.luntanFromcon}}</text>
+              </navigator>
+              <view class='luntan-from-data'>
+                <text class='data'>{{item.luntanData}}</text>
+                <text class='data'>{{item.luntanDay}}</text>
+              </view>
+            </view>
+          </view>
+          <view class='luntanCon-tit'>
+            <text class='luntanConTit-left'>{{item.luntanTit}}</text>
+            <text class='luntanConTit-right'>{{item.luntanLeibie}}</text>
+          </view>
+          <view class='luntanCon-txt'>
+            <text class='luntan-txt'>
+       {{item.luntanTxtCon}}\n
+       {{item.luntanTxtCon1}}\n
+       {{item.luntanTxtCon2}}\n
+       {{item.luntanTxtCon3}}\n
+       {{item.luntanTxtCon4}}
+     </text>
+            <view class='luntan-img'>
+              <view class='luntan-imgCon'>
+                <image src='{{item.luntanImg1}}'></image>
+
+              </view>
+              <view class='luntan-imgCon'>
+                <image src='{{item.luntanImg2}}'></image>
+
+              </view>
+              <view class='luntan-imgCon'>
+                <image src='{{item.luntanImg3}}'></image>
+
+              </view>
+              <view class='luntan-imgCon'>
+                <image src='{{item.luntanImg4}}'></image>
+
+              </view>
+            </view>
+            <view class='luntanCon-bot'>
+              <view class='luntanConBot-left'>
+                <icon class='iconfont icon-chakan'></icon>
+                <text>{{item.luntanLiulan}}</text>
+              </view>
+              <view class='luntanConBot-con'>
+                <icon class='iconfont icon-pinglun'></icon>
+                <text>{{item.luntanPingLun}}</text>
+              </view>
+              <view class='luntanConBot-right'>
+                <icon class='iconfont icon-shoucang'></icon>
+                <text>{{item.shoucang}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </block>
+</scroll-view>

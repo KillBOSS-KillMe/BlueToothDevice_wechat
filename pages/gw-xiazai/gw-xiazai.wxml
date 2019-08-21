@@ -1,0 +1,23 @@
+<view class="yx-cen">
+  <view class='yx-cen-con'>
+    <!-- <view class='yx-ul'> -->
+    <block wx:for="{{gameList}}" class="gameList" wx:key="{{item}}">
+      <view class='yx-li' data-id="{{item.id}}">
+        <view class='yx-li-img'>
+          <image src='{{item.file}}'></image>
+        </view>
+        <view class='yx-li-txt'>{{item.name}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+<!-- 底部 -->
+<view class='yx-bot'>
+  <view class='hr'></view>
+  <view class='yx-bot-cen'>
+    <view class='yx-log'>
+      <text class='yx-log-text'>下载</text>
+      <text class='yx-log-text'>{{item.d_num}}</text>
+    </view>
+  </view>
+</view>

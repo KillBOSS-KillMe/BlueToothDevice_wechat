@@ -1,0 +1,116 @@
+page{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+}
+.navbar{
+  flex: none;
+  display: flex;
+  background: #fff;
+}
+.navbar .item{
+  position: relative;
+  flex: auto;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: #424242;
+}
+.navbar .item.active:after{
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background:  rgba(51, 147, 255, 1);
+}
+.gz-con{
+  padding: 0 26rpx;
+}
+/* 关注的人 */
+.gz-top-cen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ededed;
+}
+
+.gz-top-cen-chengjiu {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 42rpx 0;
+}
+
+.gz-top-cen-cen {
+  margin-left: 32rpx;
+}
+
+.gz-top-img image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.gz-top-cen-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gz-tit {
+  font-size: 34rpx;
+  font-weight: 700;
+  margin-right: 20rpx;
+  color: #424242;
+}
+
+.gz-chengjiu {
+  font-size: 34rpx;
+  color: #424242;
+}
+
+.gz-top-cen-bot {
+  font-size: 28rpx;
+  color: #8e8e8e;
+  margin-top: 17rpx;
+}
+
+.gz-top-bot {
+  display: flex;
+  height: 96rpx;
+  margin-top: 39rpx;
+  border-top: 1px solid #ededed;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.gz-top-right {
+  width: 129rpx;
+  height: 48rpx;
+  position: relative;
+}
+
+
+.gz-top-right view {
+  width: 120rpx;
+  text-align: center;
+  height: 48rpx;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  line-height: 48rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.gz-guanzhu {
+  background:#EEF6FF;
+  color: #3393FF;
+}
+.gz-guanzhued {
+  background: #3393FF;
+  color: #fff;
+}

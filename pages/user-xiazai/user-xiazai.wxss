@@ -1,0 +1,151 @@
+page{
+  background: #fff;
+}
+/* 项目栏部分 */
+.aiHua{
+  width:100%;
+  background:#fff;
+  overflow: hidden;
+}
+.aiYou{
+  padding:0 26rpx; 
+}
+.aiYou-li{
+  padding:34rpx 0;
+  border-top: 2rpx solid #EDEDED;
+  display: flex;
+  justify-content: space-between;
+}
+.in-count{
+  font-size:30rpx;
+  float: left;
+  color: #FF33BE;
+  margin-top:15rpx;
+}
+.aihua-con{
+  font-size:30rpx;
+  float: left;
+  font-weight:800;
+  margin-bottom:5rpx;
+  color:#424242;
+}
+.aihua01-left image{
+width:66rpx;
+height:69rpx;
+  float:left;
+  
+  margin-left:26rpx;
+   margin-right:26rpx
+}
+.aihua01-size{
+  font-size:24rpx;
+  float:right;
+  margin-right:26rpx;
+}
+.wjj-icon{
+  color:#3594FF;
+  float:left;
+  height:57rpx;
+  width:67rpx;
+  font-size:60rpx;
+    margin-left:26rpx;
+   margin-right:26rpx
+} 
+.aihua-date{
+  font-size:20rpx;
+  color:#B6B6B6;
+  float:left;
+}
+.aihua-time{
+  font-size:20rpx;
+  color:#B6B6B6;
+  float:left;
+  margin-left:10rpx;
+}
+.aihua01{
+ display: flex;
+ flex-direction: column;
+
+}
+.aihua01-left{
+  width:70%;
+}
+.aihua01-right{
+  width:30%;
+  margin-top:8rpx;
+}
+.icon-weixuanze1{
+  font-size:28rpx;
+}
+.icon-xuanze{
+  font-size:28rpx;
+  position: absolute;
+
+}
+.in-xuanzhong{
+  width:20rpx;
+  height:20rpx;
+  border-radius: 50%;
+  position:relative;
+  float:right;
+
+}
+.icon-weixuanze1{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.icon-xuanze{
+  position: absolute;
+  left: 0;
+  top: 0;
+  color:#ff33be;
+  display: none;
+}
+.wjj-icon{
+  color:#3594FF;
+  float:left;
+  height:57rpx;
+  width:67rpx;
+  font-size:60rpx;
+  margin-left:26rpx; 
+  margin-right:26rpx
+}
+.in-xuanzhong01{
+  width: 20rpx;
+  height:20rpx;
+  border:1px solid #AAAAAA;
+  border-radius: 50%;
+  display: block;
+  position:absolute;
+  left:0;
+  top:0;
+  margin-top:4rpx;
+}
+.topNav{
+  border: 1px solid gray;
+  padding: 1px 0px;
+  /* display: none; */
+  
+}
+.topNav text:nth-child(1){
+ margin-left: 60rpx;
+}
+.topNav text:nth-child(2){
+  padding-right: 60rpx;
+ float: right;
+ color: green;
+}
+.foNav{
+  border: 1px solid gray;
+  padding: 15px 0px;
+  /* display: none; */
+  
+}
+.foNav text:nth-child(1){
+ margin-left: 180rpx;
+}
+.foNav text:nth-child(2){
+  padding-right: 180rpx;
+ float: right;
+}

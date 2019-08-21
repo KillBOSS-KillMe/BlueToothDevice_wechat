@@ -1,0 +1,88 @@
+page{
+  background: #fff;
+}
+.yx-cen{
+  width: 750rpx;
+  margin-bottom: 170rpx;
+  background: #fff;
+  overflow: hidden;
+}
+.yx-cen-con{
+  width: 690rpx;
+  /* height: auto; */
+  height: 50hv;
+  padding: 30rpx;
+  display: inline-flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  overflow-y: auto
+}
+/* .yx-ul{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-height: 1000rpx;
+} */
+.yx-li{
+  width: 25%;
+  margin-bottom: 40rpx;
+  /* display: flex;
+  flex-direction: column; */
+}
+.yx-li-img{
+ width:98rpx;
+height:98rpx;
+border-radius:10rpx;
+margin: 0 auto;
+position: relative;
+}
+.yx-li-img image{
+ width:98rpx;
+height:98rpx;
+border-radius:10rpx;
+margin: 0 auto;
+}
+.yx-li-img-border{
+  width:20rpx;
+height:20rpx;
+background:rgba(255,255,255,1);
+border:1px solid rgba(170,170,170,1);
+border-radius:50%;
+position: absolute;
+  top: 5rpx;
+  right: 5rpx;
+}
+.yx-li-img-border1{
+  /* box-sizing: border-box; */
+  border:4px solid rgba(255,51,190,1);
+}
+.yx-li-txt{
+  font-size: 26rpx;
+  color:#424242;
+  text-align: center;
+  margin-top: 20rpx;
+}
+/* 底部 */
+.yx-bot{
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+.yx-bot-cen{
+  padding: 25rpx 26rpx;
+}
+.yx-log{
+  width:698rpx;
+height:80rpx;
+background:rgba(53,148,255,1);
+border-radius:10rpx;
+color: #fff;
+font-size: 32rpx;
+}
+.hr{
+  width: 750rpx;
+  height: 20rpx;
+  background-color:#f6f6f6;
+}

@@ -1,0 +1,11 @@
+<view class='talk-item-zan'>
+  
+  <view bindtap='favorclick' data-id='{{item.id}}' data-islike="{{item.is_like}}" data-dex="{{index}}" data-userid="{{item.user_id}}" class="like_box">
+    
+    <image src='/image/guanwang1.png' class="zan_img" wx:if="{{item.is_like == 1}}"></image>
+    
+    <image src='/image/guanwang2.png' class="zan_img" wx:else></image>
+    
+    <view class='zan_num'>{{item.like_num}}</view>
+    </view>
+   </view>

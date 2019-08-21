@@ -1,0 +1,15 @@
+<view class="sr-top">
+  <view class='sr-top-cen'>
+    <view class='sr-textarea'>
+      <textarea placeholder='请输入...' class='sr-textarea-con' maxlength="1" maxlength="3000"></textarea>
+    </view>
+  </view>
+</view>
+
+<!-- 底部 -->
+<view class='yx-bot'>
+  <view class='hr'></view>
+  <view class='yx-bot-cen'>
+    <button class='yx-log'>提交</button>
+  </view>
+</view>

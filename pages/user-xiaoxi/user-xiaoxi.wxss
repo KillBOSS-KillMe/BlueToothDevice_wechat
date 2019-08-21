@@ -1,0 +1,80 @@
+page {
+  background: #fff;
+}
+
+.de-li {
+  padding: 40rpx 26rpx;
+  border-bottom: 1rpx solid #EDEDED;
+}
+
+.de-li-top {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.de-li-laizi image {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+}
+.laixiTxt{
+  font-size: 32rpx;
+  color: #3393FF;
+  font-weight: bold;
+  margin-left: 12rpx;
+}
+.fabuTxt{
+}
+.zhuangtai,.fabu{
+  font-size: 32rpx;
+  color: #424242;
+  font-weight: bold;
+}
+.zhuangtaiData{
+  font-size: 20rpx;
+  color: #8E8E8E;
+  margin-left: 303rpx;
+}
+.de-li-cen{
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 31rpx;
+}
+.from image{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+}
+.from-name{
+  font-size: 24rpx;
+  color: #3393FF;
+  margin: 0 12rpx;
+  border-bottom: 1rpx solid #3393FF;
+}
+.fabuDay,.fabuHour{
+  font-size: 20rpx;
+  color: #8E8E8E;
+}
+.fabuHour{
+  margin-left: 8rpx;
+}
+.de-li-bot{
+  margin-top: 21rpx;
+  margin-left: 32rpx;
+}
+.fabu-tit{
+  font-size: 35rpx;
+  color: #424242;
+  font-weight: bold;
+}
+.fabu-type{
+  width:auto;
+height:38rpx;
+background:rgba(51,147,255,1);
+border-radius:10rpx;
+font-size: 20rpx;
+color: #FFFEFE;
+padding: 0 13rpx;
+margin-left: 20rpx;
+}

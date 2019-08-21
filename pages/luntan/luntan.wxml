@@ -1,0 +1,86 @@
+<!-- 搜索栏部分 -->
+<view class='in-sec'>
+  <view class='in-sec-con'>
+    <view class='in-sec-left'>
+      <view class='in-sec-input'>
+        <icon class='iconfont icon-sousuo'></icon>
+        <input class='in-input' placeholder='请输入文件名或备注信息'></input>
+      </view>
+    </view>
+    <view class='in-sec-right'>
+      <view class='luntan-sec'>
+        <navigator url='../sc-chose/sc-chose'>
+          <icon class='iconfont icon-Release'></icon>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 内容部分 -->
+<scroll-view scroll-y="{{true}}" bindscrolltolower="lower" lower-threshold="50" class="pull-down-load">
+  <block wx:for="{{luntanTxt}}" class="luntanTxt" wx:key="{{item}}">
+      <view class='luntanCon' bindtap='goDetail' data-id="{{item.id}}">
+        <view class='luntanCon-con'>
+          <view class='luntanCon-tit'>
+            <text class='luntanConTit-left'>{{item.title}}</text>
+            <text class='luntanConTit-right'>{{item.label}}</text>
+          </view>
+          <view class='luntanCon-txt'>
+            <text class='luntan-txt'>
+       {{item.content}}
+     </text>
+            <view class='luntan-img'>
+              <view class='luntan-imgCon'>
+                <image src='{{item.file.file}}'></image>
+
+              </view>
+              <view class='luntan-imgCon'>
+                <image src='{{item.file.file}}'></image>
+
+              </view>
+              <view class='luntan-imgCon'>
+                <image src='{{item.file.file}}'></image>
+
+              </view>
+              <view class='luntan-imgCon'>
+                <image src='{{item.file.file}}'></image>
+
+              </view>
+            </view>
+            <view class='luntan-from'>
+              <text class='form-con'>来自</text>
+              <view bindtap='goQuanxian' data-userid="{{item.uid}}" data-id="{{item.id}}">
+                <image src='{{item.avatarUrl}}'></image>
+              </view>
+              <view class='yours' bindtap='goQuanxian' data-id="{{item.id}}">
+                <text>{{item.nickname}}</text>
+              </view>
+              <text class='data'>{{item.createTime}}</text>
+            </view>
+            <view class='luntanCon-bot'>
+              <view class='luntanConBot-left'>
+                <icon class='iconfont icon-chakan'></icon>
+                <text>{{item.see}}</text>
+                <text>次</text>
+              </view>
+              <view class='luntanConBot-con'>
+                <icon class='iconfont icon-pinglun'></icon>
+                <text>{{item.comment}}</text>
+                <text>条</text>
+              </view>
+              <view class='luntanConBot-right'>
+                <icon class='iconfont icon-shoucang'></icon>
+                <text>{{item.follow}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+  </block>
+</scroll-view>
+
+<!-- 刷新 -->
+<view class='lt-shuxin'>
+  <icon class='iconfont icon-shuaxin'></icon>
+  <text class='lt-sl'>上拉刷新</text>
+</view>

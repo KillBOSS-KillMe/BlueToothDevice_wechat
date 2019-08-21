@@ -1,0 +1,62 @@
+.gw-cen{
+  width:100%;
+  background:#fff;
+}
+.gw-cen-con{
+  padding:0 26rpx;
+}
+.gw-li{
+  display:flex;
+  width: 100%;
+  height: 152rpx;
+  align-items: center;
+  justify-content: space-between;
+}
+.gw-li-left{
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 10rpx;
+}
+.gw-li-left image{
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 10rpx;
+}
+.gw-li-right{
+  width: 560rpx;
+  display: flex;
+  height: 150rpx;
+  border-bottom: 1px solid #D8D8D8;
+  align-items: center;
+  justify-content: space-between;
+}
+.gw-li-cen{
+  display: flex;
+  flex-direction: column;
+}
+.gw-li-tit{
+  font-size: 32rpx;
+  color: #424242;
+  margin-left: 3rpx;
+  font-weight: 600;
+}
+.gw-li-tit-eng{
+  font-family: PingFang-SC-Medium;
+  font-size: 24rpx;
+  color: #8E8E8E;
+  margin-top: 11rpx;
+}
+.gw-icon-right{
+  font-size: 26rpx;
+  color: #3393FF;
+}
+.gw-li-count{
+  font-size:28rpx;
+font-weight:bold;
+color: #3393FF;
+  margin-left: 9rpx;
+}
+.gw-li-nav{
+  display: flex;
+  justify-content: space-between;
+  }

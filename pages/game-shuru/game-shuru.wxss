@@ -1,0 +1,51 @@
+page{
+  background: #fff;
+}
+.sr-top{
+  width: 100%;
+  background: #fff;
+}
+.sr-top-cen{
+  padding:30rpx 26rpx;
+  text-align: center;
+  margin-bottom: 170rpx;
+  overflow: hidden;
+  overflow-y: auto;
+  background: #fff;
+}
+.sr-textarea{
+  padding: 29rpx 21rpx;
+  font-size: 28rpx;
+  text-align: left;
+  color: #8E8E8E; 
+  border: 1px solid #CDCDCD;
+}
+.sr-textarea-con{
+  width: 100%;
+   height: 400rpx;
+}
+
+/* 底部 */
+.yx-bot{
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+.yx-bot-cen{
+  padding: 25rpx 26rpx;
+}
+.yx-log{
+  width:698rpx;
+height:80rpx;
+background:rgba(53,148,255,1);
+border-radius:10rpx;
+color: #fff;
+font-size: 32rpx;
+}
+.hr{
+  width: 750rpx;
+  height: 20rpx;
+  background-color:#f6f6f6;
+}

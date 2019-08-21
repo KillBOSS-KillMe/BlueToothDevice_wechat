@@ -1,0 +1,29 @@
+<view class='zhuti'>
+  <view class='row title-row' style='height: {{pageInfo.rowHeight}}px;'>
+    <view class="col1">信息</view>
+        <view class="col2">详情</view>
+        <view class="col3">排序</view>
+  </view>
+
+  <scroll-view scroll-y='{{pageInfo.scrollY}}' style='height: {{pageInfo.scrollHeight}}%'>
+    <block wx:for='{{optionList}}'>
+      <view class='row list-row {{pageInfo.readyPlaceIndex == index ? "ready-place" : ""}}' style='height: {{pageInfo.rowHeight}}px;'>
+                <view class='col1 content' >{{item}}</view>
+                <view class="col2" >
+          <icon type='info' color='Gray' size='22'
+                data-index='{{index}}' 
+                bindtap='showDetail' 
+          />
+        </view>
+                <view class="col3" >
+          <icon type='download' color='Gray' size='25' 
+                data-index='{{index}}'
+                bindtouchstart='dragStart' 
+                bindtouchmove='dragMove'
+                bindtouchend='dragEnd'
+          />
+        </view>
+            </view>
+    </block>
+  </scroll-view>
+</view>

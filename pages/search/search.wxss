@@ -1,0 +1,63 @@
+.in-sec{
+  background:#fff;
+ padding:14rpx 14rpx 14rpx 20rpx;
+
+}
+.in-sec-con{
+ display:flex;
+ justify-content: space-between;
+}
+.in-sec-left{
+  width: 624rpx;
+}
+
+.icon-sousuo{
+  font-size:30rpx;
+  color:rgba(66,66,66,1);
+}
+.in-sec-input{
+  width: 100%;
+  height: 60rpx;
+  padding-left:20rpx;
+  line-height: 60rpx;
+   border-radius: 10rpx;
+  background:#F2F2F2;
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+}
+
+.in-input{
+  height: 60rpx;
+  font-size: 26rpx;
+  color: rgba(178, 178, 178, 1);
+  float: left;
+  margin-left:14rpx;
+   border-radius: 10rpx;
+}
+.in-sec-right{
+  /* width: 13%; */
+  height: 55rpx;
+}
+.sec-sousuo{
+ font-size: 28rpx;
+ color: rgba(66, 66, 66, 1);
+ margin-right: 8rpx;
+ /* text-align: center; */
+ line-height: 55rpx;
+}
+.TwoSou{
+  width: 641rpx;
+  margin-left:21rpx;
+  background: #fff;
+}
+.souList{
+  font-size: 28rpx;
+  line-height: 62rpx;
+  padding-left: 35rpx;
+  color: rgba(66, 66, 66, 1);
+}
+.btnhover {
+background-color: rgba(240,243,255,1);
+/* border-radius: 10rpx; */
+}

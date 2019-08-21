@@ -1,0 +1,89 @@
+<block data-id="{{luntanTxt.id}}" class="luntanTxt" data-id="{{item.id}}">
+  <view class='luntanCon'>
+    <view class='luntanCon-con'>
+      <view class='Administrator'>
+        <view class='admin-left'>
+          <image src='{{item.avatarUrl}}'></image>
+          <view class='admin-con'>
+            <view class='admin-name'>{{item.nickname}}</view>
+            <view class='admin-date'>{{item.createTime}}</view>
+          </view>
+        </view>
+        <view class='admin-right' bindtap="jinyanBtn">
+          <icon class='iconfont icon-jinyan admin-icon'></icon>
+          <text class='admin-jinyan'>禁言</text>
+        </view>
+      </view>
+      <view class='luntanCon-tit'>
+        <text class='luntanConTit-left'>{{item.title}}</text>
+        <text class='luntanConTit-right'>{{item.label}}</text>
+      </view>
+      <view class='luntanCon-txt'>
+        <text class='luntan-txt'>
+       {{item.content}}
+     </text>
+        <view class='luntan-img'>
+          <view class='luntan-imgCon'>
+            <image src='{{item.file.file}}'></image>
+
+          </view>
+          <view class='luntan-imgCon'>
+            <image src='{{item.file.file}}'></image>
+
+          </view>
+          <view class='luntan-imgCon'>
+            <image src='{{item.file.file}}'></image>
+
+          </view>
+          <view class='luntan-imgCon'>
+            <image src='{{item.file.file}}'></image>
+
+          </view>
+        </view>
+        <view class='luntan-from'>
+          <text class='form-con'>来自</text>
+          <navigator url='pages/yh-quanxian/yh-quanxian'>
+            <image src='{{item.avatarUrl}}'></image>
+          </navigator>
+          <navigator class='yours'>
+            <text>{{item.nickname}}</text>
+          </navigator>
+          <text class='data'>{{item.createTime}}</text>
+        </view>
+        <view class='luntanCon-bot'>
+          <view class='luntanConBot-left'>
+            <icon class='iconfont icon-chakan'></icon>
+            <text>{{item.see}}</text>
+            <text>次</text>
+          </view>
+          <view class='luntanConBot-con'>
+            <icon class='iconfont icon-pinglun'></icon>
+            <text>{{item.comment}}</text>
+            <text>条</text>
+          </view>
+          <view class='luntanConBot-right'>
+            <icon class='iconfont icon-shoucang'></icon>
+            <text>{{item.follow}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+<!-- 底部 -->
+<view class="tiezi-bot-bot">
+  <view class="tiezi-bot-con">
+    <view class='tiezi-bot-li' bindtap='adminDelete'>
+      <icon class='iconfont icon-delete tiezi-bot-icon'></icon>
+      <text class='tiezi-bot-txt'>删除</text>
+    </view>
+    <view class='tiezi-bot-li' bindtap='adminTop'>
+      <icon class='iconfont icon-zhiding tiezi-bot-icon'></icon>
+      <text class='tiezi-bot-txt'>置顶</text>
+    </view>
+    <view class='tiezi-bot-li' bindtap='adminJiajing'>
+      <icon class='iconfont icon-jiajing tiezi-bot-icon'></icon>
+      <text class='tiezi-bot-txt'>加精</text>
+    </view>
+  </view>
+</view>

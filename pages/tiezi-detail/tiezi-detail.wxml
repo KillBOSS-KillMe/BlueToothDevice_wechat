@@ -1,0 +1,71 @@
+  <block class="luntanTxt" data-id="{{luntanTxt.id}}">
+      <view class='luntanCon'>
+        <view class='luntanCon-con'>
+          <view class='luntanCon-tit'>
+            <text class='luntanConTit-left'>{{luntanTxt.title}}</text>
+            <text class='luntanConTit-right'>{{luntanTxt.label}}</text>
+          </view>
+          <view class='luntanCon-txt'>
+            <text class='luntan-txt'>
+       {{luntanTxt.content}}
+     </text>
+            <view class='luntan-img'>
+              <view class='luntan-imgCon'>
+                <image src='{{luntanTxt.file.file}}'></image>
+
+              </view>
+              <view class='luntan-imgCon'>
+                <image src='{{luntanTxt.file.file}}'></image>
+
+              </view>
+              <view class='luntan-imgCon'>
+                <image src='{{luntanTxt.file.file}}'></image>
+
+              </view>
+              <view class='luntan-imgCon'>
+                <image src='{{luntanTxt.file.file}}'></image>
+
+              </view>
+            </view>
+            <view class='luntan-from'>
+              <text class='form-con'>来自</text>
+              <navigator url='pages/yh-quanxian/yh-quanxian'>
+                <image src='{{luntanTxt.avatarUrl}}'></image>
+              </navigator>
+              <navigator class='yours'>
+                <text>{{luntanTxt.nickname}}</text>
+              </navigator>
+              <text class='data'>{{createTime}}</text>
+            </view>
+            <view class='luntanCon-bot'>
+              <view class='luntanConBot-left'>
+                <icon class='iconfont icon-chakan'></icon>
+                <text>{{luntanTxt.see}}</text>
+                <text>次</text>
+              </view>
+              <view class='luntanConBot-con'>
+                <icon class='iconfont icon-pinglun'></icon>
+                <text>{{luntanTxt.comment}}</text>
+                <text>条</text>
+              </view>
+              <view class='luntanConBot-right'>
+                <icon class='iconfont icon-shoucang'></icon>
+                <text>{{luntanTxt.follow}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+  </block>
+<!-- 底部 -->
+<view class="tiezi-bot">
+  <view class="tiezi-bot-con">
+    <view class='tit-bot-bot'>
+      <view class='tit-bot-left'>
+        <input placeholder='请输入发表内容...' class='tit-bot-input'></input>
+        <icon class='iconfont icon-tianjia1 liuyan-add'></icon>
+      </view>
+      <button class='tit-bot-btn'>发送</button>
+    </view>
+  </view>
+</view>

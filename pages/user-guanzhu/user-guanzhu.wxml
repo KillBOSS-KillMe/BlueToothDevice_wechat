@@ -1,0 +1,87 @@
+<!--导航条-->
+<view class="navbar">
+  <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+</view>
+
+<!-- 关注的人 -->
+<view hidden="{{currentTab!==0}}">
+  <view class='gz-con gz-person'>
+    <block class="guanzhurenList" wx:for="{{guanzhurenList}}" wx:key="{{index}}">
+      <view class='gz-con-li'>
+        <view class='gz-top-cen'>
+          <view class='gz-top-cen-chengjiu'>
+            <view class='gz-top-img'>
+              <image src="{{item.avatarUrl}}"></image>
+            </view>
+            <view class='gz-top-cen-cen'>
+              <view class='gz-top-cen-top'>
+                <text class='gz-tit'>{{item.nickname}}</text>
+              </view>
+            </view>
+          </view>
+          <view class='gz-top-right'>
+            <view data-index="{{index}}" data-id="{{item.id}}" class="{{item.str=='0'?'gz-guanzhu':'gz-guanzhued'}}" catchtap="focusTap">
+              <span wx:if="{{item.str == '0'}}">已关注</span>
+              <span wx:if="{{item.str == '1'}}">关注</span>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+
+<!-- 关注的帖子 -->
+<view class='gz-con gz-tiezi'>
+  <view hidden='{{currentTab!==1}}'>
+    <block class="guanzhutieziList" wx:for="{{guanzhutieziLists}}" wx:key="{{item}}">
+      <view class='gz-tiezi-li'>
+        <view class='gz-li-top'>
+          <navigator url='' class='gz-tiezi-li-img'>
+            <image src='{{item.avatarUrl}}'></image>
+          </navigator>
+          <!-- <view class='gz-tiezi-li-right'> -->
+            <navigator url='' class='gz-tiezi-li-yonghu'>{{item.nickname}}</navigator>
+            <text class='gz-li-date'>{{item.createTime}}</text>
+          <!-- </view> -->
+        </view>
+        <view class='gz-li-right-bot'>
+          <text class='gz-li-bot-txt'>{{item.title}}</text>
+          <span class='gz-li-bot-span'>{{item.label}}</span>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!--我-->
+<view hidden="{{currentTab!==2}}">
+  <!-- 粉丝 -->
+  <view class='gz-con gz-fensi'>
+    <block class="fensiList" wx:for="{{fensiList}}" wx:key="{{item}}">
+      <view class='gz-con-ul' id='gz-con-ul-id'>
+        <view class='gz-con-li'>
+          <view class='gz-top-cen'>
+            <view class='gz-top-cen-chengjiu'>
+              <view class='gz-top-img'>
+                <image src="{{item.avatarUrl}}"></image>
+              </view>
+              <view class='gz-top-cen-cen'>
+                <view class='gz-top-cen-top'>
+                  <text class='gz-tit'>{{item.nickname}}</text>
+                </view>
+              </view>
+            </view>
+            <view class='gz-top-right'>
+              <view data-index="{{index}}" data-id="{{item.id}}" class="{{item.str=='0'?'gz-guanzhu':'gz-guanzhued'}}" catchtap="focusTaps">
+                <span wx:if="{{item.str == '0'}}">关注</span>
+                <span wx:if="{{item.str == '1'}}">已关注</span>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

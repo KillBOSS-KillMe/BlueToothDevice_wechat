@@ -1,0 +1,68 @@
+.chengjiu-tit{
+  margin: 0 auto;
+  padding: 62rpx 0;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.chengjiu-line1{
+width:37rpx;
+height:5rpx;
+background:linear-gradient(270deg,rgba(53,148,255,1) 0%,rgba(53,148,255,0) 100%);
+border-radius:3rpx;
+}
+.chengjiu-line2{
+  width:37rpx;
+height:5rpx;
+  background:linear-gradient(270deg,rgba(53,148,255,0) 0%,rgba(53,148,255,1) 100%);
+border-radius:3rpx;
+}
+.chengjiu-tit-txt{
+  font-size: 32rpx;
+  color: #424242;
+  font-weight: bold;
+  margin: 0 21rpx;
+}
+/* 成就牌展示 */
+.chengjiu-bot{
+  padding: 0 26rpx;
+  display: flex;
+  justify-content:flex-start;
+  flex-wrap: wrap;
+}
+.chengjiu--li{
+  width: 33.3%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 70rpx;
+}
+.chengjiu-icon1{
+  font-size: 137rpx;
+  color: #BE9452;
+}
+.chengjiu-icon2{
+  font-size: 137rpx;
+  color: #0CEBF9;
+}
+.chengjiu-icon3{
+  font-size: 137rpx;
+  color: #FFB135;
+}
+.chengjiu-icon4{
+  font-size: 137rpx;
+  color: #A235FF;
+}
+.chengjiu-icon5{
+  font-size: 137rpx;
+  color: #8EC910;
+}
+.chengjiu-icon6{
+  font-size: 137rpx;
+  color: #989898;
+}
+.chengjiutxt{
+  font-size: 28rpx;
+  color: #424242;
+  margin-top:11rpx;
+}

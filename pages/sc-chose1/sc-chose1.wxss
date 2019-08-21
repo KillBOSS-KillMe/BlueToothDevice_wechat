@@ -1,0 +1,76 @@
+.xz-groups{
+  width: 750rpx;
+  background: #fff;
+}
+.xz-group-con{
+  padding: 0 26rpx;
+}
+.xz-group{
+  line-height: 96rpx;
+  border-bottom: 1px solid #EDEDED;
+  display: flex;
+  justify-content: space-between;
+}
+.xz-group-left{
+  font-size: 32rpx;
+  color: #1D0E04;
+}
+.xz-group-right{
+  position: relative;
+}
+.xz-xuanze{
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20rpx;
+}
+.icon-weixuanze{
+  color: #AAAAAA;
+}
+.icon-xuanze:nth-child(2){
+  color: #FF33BE;
+  display: none;
+  z-index: 1;
+}
+.xianjian{
+  text-align: center;
+  height:70rpxrpx;
+  padding: 30rpx 0;
+}
+.xinjianzu{
+  width: 214rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border: 1px solid #3594FF;
+  border-radius: 10rpx;
+  color: #3594FF;
+  font-size: 32rpx;
+  background: #fff;
+}
+/* 中间文字部分 */
+.xz-mid{
+  font-size: 26rpx;
+  color: #B6B6B6;
+  position: fixed;
+  bottom: 503rpx;
+  left: 264rpx;
+}
+/* 底部 */
+.xz-bot{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 60rpx;
+}
+.xz-bot-cen{
+  padding: 0 26rpx;
+}
+.xz-bot-btn{
+  border: 0;
+  background: #3594FF;
+  color: #fff;
+  font-size: 32rpx;
+  line-height: 88rpx;
+  border-radius: 10rpx;
+}

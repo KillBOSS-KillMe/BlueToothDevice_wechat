@@ -1,0 +1,32 @@
+<view class="shangchuan">
+  <view class="shangchuanCon">
+    <view class="shangchuanLeft">
+      <view class="choseLable">请选择标签</view>
+      <view class="lables">
+        <view class="lableli {{form.state==item.id?'active-tag':''}}" bindtap="select_use" wx:for="{{lableLists}}" wx:key='{{index}}' data-id="{{item.id}}">
+          <view class="lableList">{{item.lable}}</view>
+        </view>
+      </view>
+      <view class="titInput">
+        <input class="question-title" placeholder="请输入标题" maxlength="40" placeholder-style="color:#b3b3b3;font-size:18px;" bindblur="handleTitleblur"></input>
+      </view>
+      <view class="weui-cell__bd">
+        <!-- 多行输入框 -->
+        <textarea class="weui-textarea" placeholder="请输入发表内容..." maxlength="500" placeholder-style="color:#b3b3b3;font-size:14px;" style="height: 12rem" bindblur="handleContentblur" />
+        <view class="uploads">
+          <view class="upload" bindtap="chooseImage">上传图片</view>
+          <view class="upload" bindtap="chooseImage">上传文件</view>
+        </view>
+      </view>
+      <!-- 图片 -->
+      <view class="question-images">
+        <block wx:for="{{tempFilePaths}}" wx:key="{{index}}">
+          <!-- 图片缩略图 -->
+          <image class="q-image" src="{{item}}" data-index="{{index}}" bindtap="listenerButtonPreviewImage"></image>
+        </block>
+      </view>
+    </view>
+    <!-- 右边发送按钮 -->
+    <button class="shangchuanRight" data-id="{{item.id}}" bindtap="submitForm">发送</button>
+  </view>
+</view>

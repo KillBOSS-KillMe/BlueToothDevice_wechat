@@ -1,0 +1,56 @@
+/* pages/delete-jilu/delete-jilu.wxss */
+page{
+  background: #fff;
+}
+/* 关注的帖子 */
+.gz-tiezi-li{
+  padding: 49rpx 0;
+  border-bottom:1rpx solid #EDEDED; 
+}
+.gz-li-top{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.gz-tiezi-li-img image{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+}
+.gz-tiezi-li-yonghu{
+  font-size: 24rpx;
+  color: #3393FF;
+  margin: 0 12rpx;
+}
+.gz-li-date{
+  font-size: 20rpx;
+  color: #8E8E8E;
+}
+.gz-li-bot-txt{
+  font-size: 32rpx;
+  font-weight:bold;
+  color: #424242;
+  margin-left: 46rpx;
+}
+.gz-li-bot-span{
+  width:auto;
+  padding:0 14rpx;
+  line-height: 38rpx;
+height:38rpx;
+background:#3393FF;
+color: #FFFEFE;
+border-radius:10rpx;
+font-size:20rpx; 
+margin-left:18rpx;
+}
+.de-li-btn{
+  width: auto;
+  line-height: 42rpx;
+  height: 42rpx;
+  padding: 0 24rpx;
+  font-size: 20rpx;
+  color: #3393FF;
+  font-weight: bold;
+  background:rgba(255,255,255,1);
+  margin-left: 275rpx;
+}

@@ -1,0 +1,133 @@
+<button open-type="getUserInfo" wx:if="{{hasUserInfo}}" id='getUserInfo' lang="zh_CN" bindgetuserinfo="getUserInfo"></button>
+<!-- 搜索栏部分 -->
+<view class='in-sec'>
+  <view class='in-sec-con'>
+    <view class='in-sec-left'>
+      <image src='../../image/in-zhiding.jpg'></image>
+    </view>
+    <view class='in-sec-input'>
+      <!-- <image src='../../image/in-sec.jpg'></image> -->
+      <icon class='iconfont icon-sousuo'></icon>
+      <navigator url='../search/search'>
+        <input class='in-input' placeholder='请输入文件名或备注信息'></input>
+      </navigator>
+    </view>
+  </view>
+</view>
+<!-- 分割线 -->
+<view class='in-fenge'></view>
+<!-- 导航栏部分 -->
+<view class='in-con'>
+  <!-- <view class='in-chosnse' wx:if="{{testShowStr}}">
+    <view class='in-chose'>
+      <text>取消</text>
+      <text>全选</text>
+    </view>
+  </view>
+  <view class='in-chosnse-buttom' wx:if="{{testShowStr}}">
+    <view class='in-chose'>
+      <text>取消</text>
+      <text>全选</text>
+    </view>
+  </view> -->
+  <view class='in-con-con'>
+    <block class="groupList" wx:for="{{groupList}}" wx:key="{{item}}">
+      <navigator class='in-con-nav'>
+        <view class='in-con-icon'>
+          <image src='{{item.groupImg}}' class='xitongzu'></image>
+        </view>
+        <text class='in-group'>{{item.groupName}}</text>
+      </navigator>
+    </block>
+    <navigator class='in-con-nav' bindtap="newGroup">
+      <view class='in-con-icon'>
+        <icon class='iconfont icon-wenjianjia02'></icon>
+      </view>
+      <text class='in-group'>添加组</text>
+    </navigator>
+  </view>
+</view>
+<!-- 项目栏部分 -->
+<view class='aiHua'>
+  <!-- <view  class='aiYou'> -->
+  <scroll-view  class='aiYou' scroll-y='{{pageInfo.scrollY}}' style='height: {{pageInfo.scrollHeight}}%'>
+    <block class="item" wx:for="{{flieList}}" wx:key="{{item}}">
+      <view class="aiYou-li {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}"
+      bindlongtap='' data-index='{{index}}'
+      bindtouchstart='dragStart' 
+      bindtouchmove='dragMove'
+      bindtouchend='dragEnd'>
+      <!-- <view class="aiYou-li"
+      bindlongtap='' data-index='{{index}}'> -->
+        <view class='aihua01-left'>
+          <text class='in-count'>{{index + 1}}</text>
+          <icon wx:if="{{item.type == '1'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
+          <icon wx:if="{{item.type == '2'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
+          <icon wx:if="{{item.type == '3'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
+          <icon wx:if="{{item.type == '4'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
+          <view class='aihua01'>
+            <text class='aihua-con'>{{item.name}}</text>
+            <view style='display:flex;justify-content:start;'>
+              <text class='aihua-date'>
+                {{item.time}}
+              </text>
+            </view>
+          </view>
+        </view>
+        <view class='aihua01-right'>
+          <text class='aihua01-size'>{{item.max}}</text>
+          <view class='in-xuanzhong'>
+            <icon class="iconfont  {{item.str=='0'?'icon-weixuanze':'icon-xuanze'}} icon-weixuanze1" bindtap='clickTest' data-index="{{index}}"></icon>
+          </view>
+          
+        </view>
+      </view>
+    </block>
+  <!-- </view> -->
+  </scroll-view >
+</view>
+<!-- 新建组弹框 -->
+<view class="floating {{floatingStr?'':'hide'}}">
+  <view class="con">
+    <view class="content">
+      <view class="name">新建组</view>
+      <view class="content-con">
+        <input type="text" placeholder="新建组" bindinput="newGroupName" />
+      </view>
+    </view>
+    <view class="button">
+      <view class="item" bindtap="newGroup">取消</view>
+      <view class="item" bindtap="submitData">创建</view>
+    </view>
+  </view>
+</view>
+<!-- footer -->
+<!-- <view class="foNav">
+  <text>删除</text>
+  <text>移动</text>
+</view> -->
+<!-- 底部 -->
+<!-- <view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="toggleDialog" />
+  <view class="zan-dialog__container">
+    <view style='padding:100rpx;'> -->
+<!-- 弹窗1 -->
+<!-- <view class='orLanYa-opc'></view>
+      <view class='orLanYa'>
+        <view class='orLanYa-con'>
+          <view class='orLanYa-tit'>是否打开蓝牙</view>
+          <view class='close'>
+            <view class='close-icon'>
+              <icon class='iconfont icon-weixuanze icon-weixuanze2'></icon>
+            </view>
+            <text>永久关闭</text>
+          </view>
+          <view class='Yes-No'>
+            <navigator class='No'>否</navigator>
+            <navigator class='No Yes'>是</navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>   -->

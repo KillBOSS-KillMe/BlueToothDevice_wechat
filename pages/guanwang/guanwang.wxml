@@ -1,0 +1,23 @@
+<view class="gw-cen">
+  <view class='gw-cen-con'>
+    <block class="gwList" wx:for="{{gwList}}" wx:key="{{item}}">
+      <view data-id="{{item.id}}" class='gw-li-nav' bindtap='goGamedan'>
+        <view class='gw-li gw-li1'>
+          <view class='gw-li-left'>
+            <image src='{{requestImgUrl + item.img}}'></image>
+          </view>
+          <view class='gw-li-right'>
+            <view class='gw-li-cen'>
+              <text class='gw-li-tit'>{{item.type}}</text>
+              <text class='gw-li-tit-eng'>{{item.introduce}}</text>
+            </view>
+            <view class='gw-li-nav'>
+              <icon class='iconfont icon-fujian gw-icon-right'></icon>
+              <text class='gw-li-count'>{{item.num}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

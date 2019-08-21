@@ -1,0 +1,139 @@
+<view class="user-top">
+  <view class='user-top-cen'>
+    <view class='user-top-cen-chengjiu'>
+      <view class='user-top-img'>
+        <image src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <view class='user-top-cen-cen'>
+        <view class='user-top-cen-top'>
+          <text class='user-tit'>{{userInfo.nickName}}</text>
+          <navigator url='../user-chengjiu/user-chengjiu' class='user-chengjiu-li'>
+            <icon class='iconfont icon-cgengjiu user-chengjiu'></icon>
+            <icon class='iconfont icon-chengjiu1 user-chengjiu'></icon>
+            <icon class='iconfont icon-chengjiu2 user-chengjiu'></icon>
+            <icon class='iconfont icon-chengjiu3 user-chengjiu'></icon>
+            <icon class='iconfont icon-chengjiu4 user-chengjiu'></icon>
+          </navigator>
+        </view>
+        <view class='user-top-cen-bot' bindtap="newGroup">
+          <text class='userIdTit'>SW-</text>
+          <view class='userIdindex' wx:for="{{userIdindex}}">
+            <text class='userId'></text>
+            <!-- <text class='userId'></text>
+            <text class='userId'></text>
+            <text class='userId'></text>
+            <text class='userId'></text>
+            <text class='userId'></text>
+            <text class='userId'></text>
+            <text class='userId'></text>
+            <text class='userId'></text>
+            <text class='userId'></text>
+            <text class='userId'></text>
+            <text class='userId'></text> -->
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='user-top-right' id="{{item.id}}" wx:for="{{item}}" wx:key="unique" bindtap='viewDetails' data-buildId="{{item.buildId}}" data-status="{{item.status}}">
+      <navigator url='../user-xiaoxi/user-xiaoxi'>
+        <icon class='iconfont icon-xiaoxi user-xiaoxi'></icon>
+        <!-- <text class='userred-xiaoxi'></text> -->
+        <view wx:if="{{item.status == 1}}" class="dian_hide"></view>
+        <view wx:else="{{item.status == 0}}" class="dian_show"></view>
+      </navigator>
+    </view>
+  </view>
+</view>
+<!-- 中间部分 -->
+<view class='user-cen'>
+  <view class='user-cen-con'>
+    <view class='user-nav-li'>
+      <navigator url='../user-guanzhu/user-guanzhu' class='user-nav-li-li'>
+        <text class='user-count'>{{follow_num}}</text>
+        <text class='user-nav-con'>关注</text>
+      </navigator>
+    </view>
+    <view class='user-nav-li'>
+      <navigator url='../user-xiazai/user-xiazai' class='user-nav-li-li'>
+        <text class='user-count'>{{download_num}}</text>
+        <text class='user-nav-con'>下载</text>
+      </navigator>
+    </view>
+    <view class='user-nav-li' bindtap="tieziTap">
+      <view class='user-nav-li-li'>
+        <text class='user-count'>{{release_num}}</text>
+        <text class='user-nav-con'>帖子</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 下面 -->
+<view class='user-bot'>
+  <view class="user-bot-cen">
+    <view class='user-bot-tit'>应用功能</view>
+    <view class='user-bot-jilu'>
+      <view class='user-jilu-li'>
+        <navigator url='../user-shanchu/user-shanchu'>
+          <view class='user-li-icon'>
+            <icon class='iconfont icon-delete user-li-icon-con'></icon>
+          </view>
+          <view class='user-li-txt'>删除记录</view>
+        </navigator>
+      </view>
+      <view class='user-jilu-li'>
+        <navigator url='../user-zhiding/user-zhiding'>
+          <view class='user-li-icon'>
+            <icon class='iconfont icon-zhiding user-li-icon-con'></icon>
+          </view>
+          <view class='user-li-txt'>置顶记录</view>
+        </navigator>
+      </view>
+      <view class='user-jilu-li'>
+        <navigator url='../user-jinyan/user-jinyan'>
+          <view class='user-li-icon'>
+            <icon class='iconfont icon-jinyan user-li-icon-con'></icon>
+          </view>
+          <view class='user-li-txt'>禁言记录</view>
+        </navigator>
+      </view>
+      <view class='user-jilu-li' bindtap='lanya'>
+        <navigator url='../user-jiajing/user-jiajing'>
+          <view class='user-li-icon'>
+            <icon class='iconfont icon-jiajing user-li-icon-con'></icon>
+          </view>
+          <view class='user-li-txt'>加精记录</view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 新建组弹框 -->
+<view class="floating {{floatingStr?'':'hide'}}">
+  <view class="con">
+    <view class="content">
+      <view class="name">请输入ID码</view>
+      <view class="content-con">
+        <!-- <input type="text" placeholder="新建组" bindinput="newGroupName" /> -->
+        <text class='yonghuIDLine'>SW-</text>
+        <input class='yonghuID'></input>
+        <input class='yonghuID'></input>
+        <input class='yonghuID'></input>
+        <input class='yonghuID'></input>
+        <text class='yonghuIDLine'>-</text>
+        <input class='yonghuID'></input>
+        <input class='yonghuID'></input>
+        <input class='yonghuID'></input>
+        <input class='yonghuID'></input>
+        <text class='yonghuIDLine'>-</text>
+        <input class='yonghuID'></input>
+        <input class='yonghuID'></input>
+        <input class='yonghuID'></input>
+        <input class='yonghuID'></input>
+      </view>
+    </view>
+    <view class="button">
+      <view class="item" bindtap="newGroup">取消</view>
+      <view class="item" bindtap="submitData">创建</view>
+    </view>
+  </view>
+</view>

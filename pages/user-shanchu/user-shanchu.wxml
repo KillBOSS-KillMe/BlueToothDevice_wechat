@@ -1,0 +1,21 @@
+
+<!-- 关注的帖子 -->
+<view class='gz-con gz-tiezi'>
+    <block class="shanchuList" wx:for="{{shanchuList}}" wx:key="{{item}}">
+      <view class='gz-tiezi-li'>
+        <view class='gz-li-top'>
+          <navigator url='' class='gz-tiezi-li-img'>
+            <image src='{{item.avatarUrl}}'></image>
+          </navigator>
+          <!-- <view class='gz-tiezi-li-right'> -->
+            <navigator url='' class='gz-tiezi-li-yonghu'>{{item.nickname}}</navigator>
+            <text class='gz-li-date'>{{item.createTime}}</text>
+        <button class='de-li-btn' bindtap='jyQuxiaos'>取消</button>
+        </view>
+        <view class='gz-li-right-bot'>
+          <text class='gz-li-bot-txt'>{{item.title}}</text>
+          <span class='gz-li-bot-span'>{{item.label}}</span>
+        </view>
+      </view>
+    </block>
+</view>

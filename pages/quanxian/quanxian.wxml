@@ -1,0 +1,33 @@
+<view class="qx-top">
+  <view class='qx-top-cen'>
+    <view class='qx-top-cen-chengjiu'>
+      <view class='qx-top-img'>
+        <image src="../../image/luntan5.jpg"></image>
+      </view>
+      <view class='qx-top-cen-cen'>
+        <view class='qx-top-cen-top'>
+          <text class='qx-tit'>西瓜头</text>
+          <icon class='iconfont icon-chengjiu qx-chengjiu'></icon>
+          <icon class='iconfont icon-chengjiu1 qx-chengjiu'></icon>
+          <icon class='iconfont icon-chengjiu2 qx-chengjiu'></icon>
+          <icon class='iconfont icon-chengjiu3 qx-chengjiu'></icon>
+          <icon class='iconfont icon-chengjiu4 qx-chengjiu'></icon>
+        </view>
+        <view class='qx-top-cen-bot'>
+          1234-5678-9865
+        </view>
+      </view>
+    </view>
+<view class='qx-top-bot'>
+  <view class='qx-nav qx-nav1'>
+    <icon class='iconfont icon-delete icon-nav-con'></icon>
+    <text class='qx-icon-con'>查看全部</text>
+  </view>
+  <view class='qx-nav qx-nav2'>
+    <icon class='iconfont icon-zhiding icon-nav-con'></icon>
+    <text class='qx-icon-con'>置顶</text>
+  </view>
+</view>
+
+  </view>
+</view>

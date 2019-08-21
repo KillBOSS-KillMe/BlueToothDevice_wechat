@@ -1,0 +1,34 @@
+
+  <view class='chengjiu-tit'>
+    <view class='chengjiu-line1'></view>
+    <view class='chengjiu-tit-txt'>成就展示</view>
+    <view class='chengjiu-line2'></view>
+  </view>
+
+  <!-- 成就牌展示 -->
+  <view class='chengjiu-bot'>
+    <view class='chengjiu--li'>
+      <icon class='iconfont icon-chengjiu4 chengjiu-icon1'></icon>
+      <text class='chengjiutxt'>管理员</text>
+    </view>
+    <view class='chengjiu--li'>
+      <icon class='iconfont icon-chengjiu4 chengjiu-icon2'></icon>
+      <text class='chengjiutxt'>成就1</text>
+    </view>
+    <view class='chengjiu--li'>
+      <icon class='iconfont icon-chengjiu4 chengjiu-icon3'></icon>
+      <text class='chengjiutxt'>管理员</text>
+    </view>
+    <view class='chengjiu--li'>
+      <icon class='iconfont icon-chengjiu4 chengjiu-icon4'></icon>
+      <text class='chengjiutxt'>管理员</text>
+    </view>
+    <view class='chengjiu--li'>
+      <icon class='iconfont icon-chengjiu4 chengjiu-icon5'></icon>
+      <text class='chengjiutxt'>管理员</text>
+    </view>
+    <view class='chengjiu--li'>
+      <icon class='iconfont icon-chengjiu4 chengjiu-icon6'></icon>
+      <text class='chengjiutxt'>待解锁</text>
+    </view>
+  </view>

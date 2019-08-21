@@ -1,0 +1,21 @@
+<view class='gz-con gz-person'>
+    <block class="jinyanList" wx:for="{{jinyanList}}" wx:key="{{index}}" wx:for-item="item">
+      <view class='gz-con-li'>
+        <view class='gz-top-cen'>
+          <view class='gz-top-cen-chengjiu'>
+            <view class='gz-top-img'>
+              <image src="{{item.avataUrl}}"></image>
+            </view>
+            <view class='gz-top-cen-cen'>
+              <view class='gz-top-cen-top'>
+                <text class='gz-tit'>{{item.nickname}}</text>
+              </view>
+            </view>
+          </view>
+          <view class='gz-top-right'>
+              <button class="jy-quxiao-btn" bindtap='jyQuxiaos'>取消</button>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>

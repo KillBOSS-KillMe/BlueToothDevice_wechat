@@ -1,0 +1,32 @@
+
+<!-- 项目栏部分 -->
+<view class='aiHua'>
+  <view class='aiYou'>
+    <block class='item' wx:for="{{flieList}}" wx:key="item">
+      <view class='aiYou-li'>
+        <view class='aihua01-left' data-id="{{item.id}}">
+          <text class='in-count'>{{index + 1}}</text>
+          <icon wx:if="{{item.type == '1'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
+          <icon wx:if="{{item.type == '2'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
+          <icon wx:if="{{item.type == '3'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
+          <icon wx:if="{{item.type == '4'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
+          <view class='aihua01'>
+            <text class='aihua-con'>{{item.name}}</text>
+            <view style='display:flex;justify-content:start;'>
+              <text class='aihua-date'>
+                {{item.createTime}}
+              </text>
+            </view>
+          </view>
+        </view>
+        <view class='aihua01-right'>
+          <view class='in-xuanzhong'>
+            <icon class='iconfont icon-weixuanze icon-weixuanze1' bindtap='clickTest' data-index="0" data-str="0"></icon>
+            <icon class='iconfont icon-xuanze'></icon>
+          </view>
+          <text class='aihua01-size'>{{item.size}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,24 @@
+<view class="yx-cen">
+  <view class='yx-cen-con'>
+    <block class="gameList" wx:for="{{gameList}}" wx:key="item">
+      <view class='yx-li' data-id="{{item.id}}" bindtap='goPinglun'>
+        <navigator url='../game-pinglun/game-pinglun'>
+          <view class='yx-li-img'>
+            <image src='{{item.file}}'></image>
+            <view class='yx-li-img-border yx-li-img-border1'></view>
+          </view>
+          <view class='yx-li-txt'>{{item.name}}</view>
+        </navigator>
+      </view>
+    </block>
+  </view>
+</view>
+<!-- 底部 -->
+<view class='yx-bot'>
+  <view class='hr'></view>
+  <view class='yx-bot-cen'>
+    <navigator url='../gw-xiazai/gw-xiazai'>
+      <button class='yx-log'>下载</button>
+    </navigator>
+  </view>
+</view>
