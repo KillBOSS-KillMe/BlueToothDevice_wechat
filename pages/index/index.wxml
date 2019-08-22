@@ -8,8 +8,8 @@
     <view class='in-sec-input'>
       <!-- <image src='../../image/in-sec.jpg'></image> -->
       <icon class='iconfont icon-sousuo'></icon>
-      <navigator url='../search/search'>
-        <input class='in-input' placeholder='请输入文件名或备注信息'></input>
+      <navigator url='../search/search' hover-class="none">
+        <input class='in-input' placeholder='请输入文件名或备注信息' disabled></input>
       </navigator>
     </view>
   </view>

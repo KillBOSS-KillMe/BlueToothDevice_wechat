@@ -19,63 +19,95 @@
 <!-- 内容部分 -->
 <scroll-view scroll-y="{{true}}" bindscrolltolower="lower" lower-threshold="50" class="pull-down-load">
   <block wx:for="{{luntanTxt}}" class="luntanTxt" wx:key="{{item}}">
-      <view class='luntanCon' bindtap='goDetail' data-id="{{item.id}}">
-        <view class='luntanCon-con'>
-          <view class='luntanCon-tit'>
-            <text class='luntanConTit-left'>{{item.title}}</text>
-            <text class='luntanConTit-right'>{{item.label}}</text>
-          </view>
-          <view class='luntanCon-txt'>
-            <text class='luntan-txt'>
-       {{item.content}}
-     </text>
-            <view class='luntan-img'>
-              <view class='luntan-imgCon'>
-                <image src='{{item.file.file}}'></image>
-
-              </view>
-              <view class='luntan-imgCon'>
-                <image src='{{item.file.file}}'></image>
-
-              </view>
-              <view class='luntan-imgCon'>
-                <image src='{{item.file.file}}'></image>
-
-              </view>
-              <view class='luntan-imgCon'>
-                <image src='{{item.file.file}}'></image>
-
-              </view>
-            </view>
-            <view class='luntan-from'>
-              <text class='form-con'>来自</text>
-              <view bindtap='goQuanxian' data-userid="{{item.uid}}" data-id="{{item.id}}">
-                <image src='{{item.avatarUrl}}'></image>
-              </view>
-              <view class='yours' bindtap='goQuanxian' data-id="{{item.id}}">
-                <text>{{item.nickname}}</text>
-              </view>
-              <text class='data'>{{item.createTime}}</text>
-            </view>
-            <view class='luntanCon-bot'>
-              <view class='luntanConBot-left'>
-                <icon class='iconfont icon-chakan'></icon>
-                <text>{{item.see}}</text>
-                <text>次</text>
-              </view>
-              <view class='luntanConBot-con'>
-                <icon class='iconfont icon-pinglun'></icon>
-                <text>{{item.comment}}</text>
-                <text>条</text>
-              </view>
-              <view class='luntanConBot-right'>
-                <icon class='iconfont icon-shoucang'></icon>
-                <text>{{item.follow}}</text>
-              </view>
+    <view class='luntanCon' bindtap='goDetail' data-id="{{item.id}}">
+      <view class='luntanCon-con'>
+        <view class='luntanCon-tit'>
+          <text class='luntanConTit-left'>{{item.title}}</text>
+          <text class='luntanConTit-right'>{{item.label}}</text>
+        </view>
+        <view class='luntanCon-txt'>
+          <text class='luntan-txt'>
+            {{item.content}}
+          </text>
+          <view class='luntan-img'>
+            <view class='luntan-imgCon' wx:if="{{idx <= 3}}" wx:for="{{item.file}}" wx:for-index="idx" wx:key="{{idx}}" wx:for-item="img">
+              <image src='{{img.file}}'></image>
             </view>
           </view>
+
+          <view class="file">
+            <view wx:for="{{5}}" wx:if="{{index < 4}}" class="file-item">
+              <icon class="iconfont icon-jiaoben file-item-icon"></icon>
+              <view class="file-h overflow-one">项目计划书项目计划书</view>
+              <view class="file-t overflow-one">下载102次下载102次</view>
+            </view>
+          </view>
+
+          <view class='luntan-from'>
+            <text class='form-con'>来自</text>
+            <image src='{{item.avatarUrl}}' catchtap="goQuanxian" data-userid="{{item.uid}}" data-id="{{item.id}}"></image>
+            <view class='yours' data-id="{{item.id}}">
+              {{item.nickname}}
+            </view>
+            <view class='data'>
+              {{item.createTime}}
+            </view>
+          </view>
+          <view class='luntanCon-bot'>
+            <view class='luntanConBot-left'>
+              <icon class='iconfont icon-chakan'></icon>
+              <text>{{item.see}}</text>
+              <text>次</text>
+            </view>
+            <view class='luntanConBot-con'>
+              <icon class='iconfont icon-pinglun'></icon>
+              <text>{{item.comment}}</text>
+              <text>条</text>
+            </view>
+            <view class='luntanConBot-right'>
+              <icon class='iconfont icon-shoucang'></icon>
+              <text>{{item.follow}}</text>
+            </view>
+          </view>
+
+          <!-- 评论 -->
+          <view class="comment">
+            <view class="comment-i" wx:for="{{1}}" wx:key="{{index}}">
+              <image src="/image/luntan1.jpg" style="width: 56rpx; height: 56rpx;"></image>
+              <view class="comment-right">
+                <view class="comment-current">
+                  <view class="comment-text">
+                    <view class="name">韩君：
+                      <text class="text">非常棒的分享，谢谢！非常棒的分享，谢谢！</text>
+                      <icon class="iconfont icon-fujian"></icon>
+                      <text class="file">捕鱼大战游戏</text>
+                    </view>
+                  </view>
+                  <view class="time">2019-12-21</view>
+                </view>
+                <view class="comment-two">
+                  <view class="comment-two-i">
+                    <image src="/image/luntan1.jpg" style="width: 56rpx; height: 56rpx;"></image>
+                    <view class="comment-right">
+                      <view class="comment-text">
+                        <view class="name">冬瓜头：
+                          <text class="text">回复</text> 西瓜头
+                          <text class="text">非常棒的分享，谢谢！非常棒的分享，谢谢！</text>
+                          <icon class="iconfont icon-tupian"></icon>
+                          <text class="file tupian">查看图片</text>
+                        </view>
+                      </view>
+                      <view class="time">2019-12-21</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          
         </view>
       </view>
+    </view>
   </block>
 </scroll-view>
 

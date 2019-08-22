@@ -4,39 +4,70 @@ const app = getApp()
 Page({
   data: {
     logs: [],
-    luntanTxt: [],
+    luntanTxt: [{
+      title: '双马尾成为了最佳减龄利器？',
+      label: '时尚',
+      content: '除了小朋友，为什么日常生活中很少有人扎双马尾？ 很村？装嫩？有病？ 请快抛开你对它的偏见吧！低位双马尾高位双马尾编发双马尾...',
+      avatarUrl: '/image/luntan1.jpg',
+      nickname: '你的我的',
+      createTime: '2019-12-21 12:00',
+      see: 200,
+      comment: 100,
+      follow: 10,
+      file: [
+        {
+          file: '/image/luntan1.jpg'
+        },
+        {
+          file: '/image/luntan1.jpg'
+        },
+        {
+          file: '/image/luntan1.jpg'
+        },
+        {
+          file: '/image/luntan1.jpg'
+        },
+        {
+          file: '/image/luntan1.jpg'
+        },
+        {
+          file: '/image/luntan1.jpg'
+        }
+      ]
+      
+    }],
   },
-  onLoad: function () {
+  onLoad: function() {
     // this.setData({
     //   logs: (wx.getStorageSync('logs') || []).map(log => {
     //     return util.formatTime(new Date(log))
     //   })
     // })
-    wx.request({
-      url: `http://192.168.1.168/Forum/forum`,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: {
-        page: '1'
-      },
-      method: "POST",
-      success: res => {
-        res = app.null2str(res.data)
-        if (res.code == '1') {
-          this.setData({
-            luntanTxt: res.data
-          })
-        } else {
-          wx.showModal({
-            title: '',
-            content: res.msg,
-            showCancel: false
-          })
-        }
-        console.log(res.data);
-      }
-    })
+    // wx.request({
+    //   url: `http://192.168.1.168/Forum/forum`,
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   data: {
+    //     page: '1'
+    //   },
+    //   method: "POST",
+    //   success: res => {
+    //     res = app.null2str(res.data)
+    //     if (res.code == '1') {
+    //       this.setData({
+    //         luntanTxt: res.data
+    //       })
+    //     } else {
+    //       wx.showModal({
+    //         title: '',
+    //         content: res.msg,
+    //         showCancel: false
+    //       })
+    //     }
+    //     console.log(res.data);
+    //   }
+    // })
 
 
   },
@@ -44,7 +75,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     // var that = this;
     // // 显示加载图标
     // wx.showLoading({
@@ -76,16 +107,16 @@ Page({
   goQuanxian(e) {
     wx.navigateTo({
       url: `/pages/yh-quanxian/yh-quanxian?id=${e.currentTarget.dataset.id}`,
-      success: function (res) { },
+      success: function(res) {},
     })
   },
   goDetail(e) {
     wx.navigateTo({
       url: `/pages/tiezi-detail/tiezi-detail?id=${e.currentTarget.dataset.id}`,
-      success: function (res) { },
+      success: function(res) {},
     })
   },
-  goQuanxian(e){
+  goQuanxian(e) {
     // var userid = e.currentTarget.dataset.userid;
     // if (type==1){
     //   wx.navigateTo({
@@ -95,12 +126,12 @@ Page({
     //     complete: function(res) {},
     //   })
     // }else if (type==2){
-      wx.navigateTo({
-        url: '/pages/yh-quanxian/yh-quanxian',
-        success: function (res) { },
-        fail: function (res) { },
-        complete: function (res) { },
-      })
+    wx.navigateTo({
+      url: '/pages/yh-quanxian/yh-quanxian',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
     // }
   }
 })

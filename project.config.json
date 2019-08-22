@@ -13,9 +13,9 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
-	"appid": "wxab92484da871e3a3",
-	"projectname": "xy-test-1",
+	"libVersion": "2.8.0",
+	"appid": "wxd57d8ed0c22dc367",
+	"projectname": "%E8%93%9D%E7%89%99",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -31,13 +31,45 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 3,
+			"list": [
+				{
+					"id": -1,
+					"name": "pages/sc-chose/sc-chose",
+					"pathName": "pages/sc-chose/sc-chose",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/luntan/luntan",
+					"pathName": "pages/luntan/luntan",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/yh-quanxian/yh-quanxian",
+					"pathName": "pages/yh-quanxian/yh-quanxian",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "上传",
+					"pathName": "pages/sc-chose/sc-chose",
+					"scene": null
+				}
+			]
 		}
 	}
 }

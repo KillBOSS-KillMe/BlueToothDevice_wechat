@@ -53,12 +53,6 @@
 }
 
 /* 内容部分 */
-.luntan-from {
-  width: 37%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .form-con {
   font-size: 24rpx;
@@ -72,10 +66,12 @@
 }
 
 .luntan-from {
-  width: 58%;
-  margin-top: 20rpx;
+  padding-top: 20rpx;
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  height: 40rpx;
+  line-height: 40rpx;
 }
 
 .form-con {
@@ -87,6 +83,7 @@
   width: 40rpx;
   height: 40rpx;
   border-radius: 50%;
+  margin: 0 20rpx;
 }
 
 .xiangmu {
@@ -121,14 +118,18 @@
   
 } */
 
-.yours text {
+.yours{
   font-size: 24rpx;
   color: #3393ff;
+  display: block;
+  height: 40rpx;
 }
 
 .data {
   font-size: 20rpx;
   color: #424242;
+  height: 40rpx;
+  line-height: 40rpx;
 }
 .xiangmu {
   display: flex;
@@ -158,15 +159,12 @@
   color: #8e8e8e;
 }
 
-.yours {
-  font-size: 32rpx;
-  color: #424242;
-  font-weight: bold;
-}
 
 .data {
   font-size: 20rpx;
   color: #8E8E8E;
+  display: block;
+  margin-left: 20rpx;
 }
 .day{
   font-size: 20rpx;
@@ -354,3 +352,81 @@
   color: #8e8e8e;
   margin-left: 11rpx;
 }
+
+.file {
+  display: flex;
+}
+.file-item {
+  width: 25%;
+  text-align: center;
+  padding-top: 20rpx;
+}
+.file-item-icon {
+  width: 121rpx;
+  height: 128rpx;
+  font-size: 128rpx;
+  margin: 0 auto;
+}
+.file-h{
+  color: #424242;
+  font-size: 26rpx;
+  padding-top: 10rpx;
+}
+.file-t{
+  color: #8E8E8E;
+  font-size: 20rpx;
+}
+
+.comment {
+  padding: 30rpx  0rpx 30rpx 25rpx;
+}
+.comment-i {
+  display: flex;
+}
+.comment-i > image,
+.comment-two-i > image {
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+.comment-right {
+  max-width: 600rpx;
+}
+
+.comment-text .name{ 
+  color:#3393FF;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+ }
+ .comment-text .name text {
+   display: inline;
+ }
+  .comment-text .name icon {
+    display: inline;
+    font-size: 30rpx;
+  }
+ .comment-text .text {
+   color: #424242;
+   font-size: 28rpx;
+ }
+.comment-text .file {
+  color: #3393FF;
+  font-size: 30rpx;
+  margin-left: 6rpx;
+}
+.comment-text .tupian {
+  border-bottom: 1px solid #3393ff;
+}
+.comment-right .time {
+  font-size: 20rpx;
+  color: #8E8E8E;
+}
+.comment-two-i  {
+  background: #F6F6F6;
+  display: flex;
+  padding: 30rpx 20rpx;
+  box-sizing: border-box;
+}
+.comment-two-i .comment-right {
+  max-width: 430rpx;
+}
+
