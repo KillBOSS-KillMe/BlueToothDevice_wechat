@@ -3,9 +3,11 @@
     <view class="shangchuanLeft">
       <view class="choseLable">请选择标签</view>
       <view class="lables">
-        <view class="lableli {{form.state==item.id?'active-tag':''}}" bindtap="select_use" wx:for="{{lableLists}}" wx:key='{{index}}' data-id="{{item.id}}">
-          <view class="lableList">{{item.lable}}</view>
-        </view>
+        <block class="groupList" wx:for="{{lableLists}}" wx:key="{{item}}">
+          <view bindtap="select_use" data-id="{{item.id}}" class="lableli {{form.id==item.id?'':'active-tag'}}">
+            <view class="lableList">{{item.label}}</view>
+          </view>
+        </block>
       </view>
       <view class="titInput">
         <input class="question-title" placeholder="请输入标题" maxlength="40" placeholder-style="color:#b3b3b3;font-size:18px;" bindblur="handleTitleblur"></input>
@@ -16,7 +18,7 @@
         <view class="img-wrap">
           <view wx:for="{{tempFilePaths}}" class="img-item">
             <image src="{{item}}"></image>
-            <image  class="close-img" bindtap="deleImg" data-idx="{{index}}" src="/image/guanbi.png"></image>
+            <image class="close-img" bindtap="deleImg" data-idx="{{index}}" src="/image/guanbi.png"></image>
           </view>
         </view>
         <view class="uploads">
@@ -29,22 +31,19 @@
     <button class="shangchuanRight" data-id="{{item.id}}" bindtap="submitForm">发送</button>
   </view>
 </view>
-
-
-
 <view class="{{equipmentflag ? 'dele-block-wrap' : ''}}">
   <view class="tips" catchtouchmove="move" bindtap="hideDeleBlock"></view>
   <view class="dele-block" catchtouchmove="move">
     <view class="title">
       <view>
-          <icon wx:if="{{xuanzeidx == 0 }}" class='iconfont icon-weixuanze weixuanze'></icon>
-          <icon wx:else class='iconfont icon-xuanze xuanze'></icon>
-          <text>从本机上传</text>
+        <icon wx:if="{{xuanzeidx == 0 }}" class='iconfont icon-weixuanze weixuanze'></icon>
+        <icon wx:else class='iconfont icon-xuanze xuanze'></icon>
+        <text>从本机上传</text>
       </view>
       <view>
-          <icon wx:if="{{xuanzeidx == 1 }}" class='iconfont icon-weixuanze weixuanze'></icon>
-          <icon wx:else class='iconfont icon-xuanze xuanze'></icon>
-          <text>从蓝牙连接设备上传</text>
+        <icon wx:if="{{xuanzeidx == 1 }}" class='iconfont icon-weixuanze weixuanze'></icon>
+        <icon wx:else class='iconfont icon-xuanze xuanze'></icon>
+        <text>从蓝牙连接设备上传</text>
       </view>
     </view>
     <view class="fot">
@@ -53,7 +52,6 @@
     </view>
   </view>
 </view>
-
 <view class="{{fileflag ? 'dele-block-wrap' : ''}}">
   <view class="tips" catchtouchmove="move" bindtap="hideDeleBlock"></view>
   <view class="dele-block" catchtouchmove="move">
@@ -73,4 +71,3 @@
     </view>
   </view>
 </view>
-

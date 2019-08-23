@@ -38,37 +38,10 @@ Page({
     }],
   },
   onLoad: function() {
-    // this.setData({
-    //   logs: (wx.getStorageSync('logs') || []).map(log => {
-    //     return util.formatTime(new Date(log))
-    //   })
-    // })
-    // wx.request({
-    //   url: `http://192.168.1.168/Forum/forum`,
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   data: {
-    //     page: '1'
-    //   },
-    //   method: "POST",
-    //   success: res => {
-    //     res = app.null2str(res.data)
-    //     if (res.code == '1') {
-    //       this.setData({
-    //         luntanTxt: res.data
-    //       })
-    //     } else {
-    //       wx.showModal({
-    //         title: '',
-    //         content: res.msg,
-    //         showCancel: false
-    //       })
-    //     }
-    //     console.log(res.data);
-    //   }
-    // })
-
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
+    this.getArticleList()
 
   },
 
@@ -104,6 +77,31 @@ Page({
     // })
 
   },
+  getArticleList() {
+    
+    wx.request({
+      url: `${app.globalData.requestUrl}/Forum/forum`,
+      method: 'POST',
+      data: {
+        uid: this.data.userInfo.id,
+        page: 0
+      },
+      success: data => {
+        console.log(data)
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          // this.setData({
+      //         luntanTxt: res.data
+      //       })
+        } else {
+          wx.showModal({
+            title: '',
+            content: data.data.msg
+          })
+        }
+      }
+    })
+  },
   goQuanxian(e) {
     wx.navigateTo({
       url: `/pages/yh-quanxian/yh-quanxian?id=${e.currentTarget.dataset.id}`,
@@ -128,9 +126,6 @@ Page({
     // }else if (type==2){
     wx.navigateTo({
       url: '/pages/yh-quanxian/yh-quanxian',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
     })
     // }
   }
