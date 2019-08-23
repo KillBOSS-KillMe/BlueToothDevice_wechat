@@ -9,19 +9,25 @@ Page({
     xuanzeidx: 1,  // 1本机 0蓝牙
     equipmentflag: false, // 选择设备
     fileflag: false, // 选择文件
-    userInfo: "",
+    userInfo: {},
     title: '', //标题内容
     content: '',//正文内容
     images: [],
-    tempFilePaths: [],
     lableLists: [],
-    form: {}
+    label: {},
+    imgList: [],
+    requestImgUrl: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.setData({
+      userInfo: app.globalData.userInfo,
+      requestImgUrl: app.globalData.requestImgUrl,
+      originalImgUrl: app.globalData.originalImgUrl
+    })
     // 获取标签列表
     this.getLabelList()
   },
@@ -39,10 +45,11 @@ Page({
           this.setData({
             lableLists: data.data.data
           })
-          if (this.lableLists.length > 0) {
+          if (this.data.lableLists.length > 0) {
             this.setData({
-              form: this.lableLists[0]
+              label: this.data.lableLists[0]
             })
+            console.log(this.data.label)
           }
         } else {
           // wx.showModal({
@@ -60,47 +67,39 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: res => {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        let tempFilePaths = res.tempFilePaths
-        console.log(tempFilePaths[0])
-        this.uploadimg(imgurl)
-        this.setData({
-          tempFilePaths: this.data.tempFilePaths.concat(tempFilePaths)
-        })
+        let imgurlNode = res.tempFiles
+        this.uploadimg(res.tempFiles)
       }
     })
   },
-  uploadimg(imgurl) {
+  uploadimg(imgurlNode) {
     //上传图片
-    wx.request({
-      url: `${this.$parent.globalData.requestUrl}/Forum/upload_img`,
-      method: 'POST',
-      data: {
-        img: imgurl
-      },
-      success: data => {
-        data = app.null2str(data)
-        if (data.data.code == 1) {
-          var resdata = JSON.parse(data.data);
-          // this.data.img_arr[i],
-          //   this.setData({
-          //     'img.url': resdata.data.url
-          //   })
-        } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
+    let i = 0
+    for (i in imgurlNode) {
+      wx.uploadFile({
+        url: `${app.globalData.requestUrl}/Forum/upload_img`,
+        filePath: imgurlNode[i].path,
+        name: 'image',
+        formData: {},
+        success: data => {
+          data = app.null2str(data)
+          let imgList = this.data.imgList
+          imgList.push(data.data)
+          console.log(imgList)
+          this.setData({
+            imgList: imgList
           })
         }
-      }
-    })
+      });
+    }
+
   },
   deleImg(e) {
-    var idx = e.currentTarget.dataset.idx
-    var tempFilePaths = this.data.tempFilePaths
-    tempFilePaths.splice(idx, 1)
+    var index = e.currentTarget.dataset.index
+    var imgList = this.data.imgList
+    imgList.splice(index, 1)
     this.setData({
-      tempFilePaths
+      imgList: imgList
     })
   },
 
@@ -123,8 +122,9 @@ Page({
 
   //选择用途后加样式
   select_use: function (e) {
+    let index = e.currentTarget.dataset.index
     this.setData({
-      'form.state': e.currentTarget.dataset.id,
+      label: this.lableLists[index],
     });
   },
   handleTitleblur(e) {
@@ -137,9 +137,11 @@ Page({
       'form.content': e.detail.value
     })
   },
-
-
+  // 发布帖子
   submitForm(e) {
+    console.log(this.data.form)
+    console.log(this.data.label)
+    // return false
     if (this.data.form.title == "") {
       wx.showToast({
         title: '请输入标题',
@@ -158,19 +160,27 @@ Page({
       url: `${app.globalData.requestUrl}/Forum/insert_post`,
       method: 'POST',
       data: {
-        uid: this.data.userInfo.uid,
-        lable: this.data.form.label,
+        uid: this.data.userInfo.id,
+        label: this.data.label.id,
         title: this.data.form.title,
         content: this.data.form.content,
         file: '',
-        img: ''
+        img: this.data.imgList
       },
       success(data) {
         data = app.null2str(data)
-        if (data.code == 1) {
-          wx.navigateBack({
-            delta: 1,
-          })
+        if (data.data.code == 1) {
+          wx.showToast({
+            title: "发布成功！",
+            icon: 'success',
+            duration: 2000,
+            mask: true
+          });
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1,
+            })
+          }, 2000)
         }
       }
     })

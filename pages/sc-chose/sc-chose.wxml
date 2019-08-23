@@ -4,8 +4,8 @@
       <view class="choseLable">请选择标签</view>
       <view class="lables">
         <block class="groupList" wx:for="{{lableLists}}" wx:key="{{item}}">
-          <view bindtap="select_use" data-id="{{item.id}}" class="lableli {{form.id==item.id?'':'active-tag'}}">
-            <view class="lableList">{{item.label}}</view>
+          <view class="lableli {{label.id==item.id?'active-tag':''}}">
+            <view bindtap="select_use" data-index="{{index}}" class="lableList">{{item.label}}</view>
           </view>
         </block>
       </view>
@@ -16,9 +16,9 @@
         <!-- 多行输入框 -->
         <textarea class="weui-textarea" placeholder="请输入发表内容..." maxlength="500" placeholder-style="color:#b3b3b3;font-size:14px;" bindblur="handleContentblur" />
         <view class="img-wrap">
-          <view wx:for="{{tempFilePaths}}" class="img-item">
-            <image src="{{item}}"></image>
-            <image class="close-img" bindtap="deleImg" data-idx="{{index}}" src="/image/guanbi.png"></image>
+          <view wx:for="{{imgList}}" class="img-item">
+            <image src="{{originalImgUrl + item}}"></image>
+            <image class="close-img" bindtap="deleImg" data-index="{{index}}" src="/image/guanbi.png"></image>
           </view>
         </view>
         <view class="uploads">
