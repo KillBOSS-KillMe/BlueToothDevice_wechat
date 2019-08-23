@@ -25,24 +25,7 @@ Page({
     showModalStatus: false,
     floatingStr: false,
     newGroupNameData: '',
-    groupList:[
-      {
-        groupImg:"/image/xitongzu.png",
-        groupName:"A组"
-      }, {
-        groupImg: "/image/xitongzu.png",
-        groupName: "B组"
-      }, {
-        groupImg: "/image/xitongzu.png",
-        groupName: "全部"
-      }, {
-        groupImg: "/image/zu.png",
-        groupName: "视频"
-      }, {
-        groupImg: "/image/zu.png",
-        groupName: "音频"
-      },
-    ],
+    groupList:[],
     state: '',
     pageInfo: {
       rowHeight: 47,
@@ -65,24 +48,15 @@ Page({
 
   onLoad: function () {
     let userInfo = app.globalData.userInfo
-    this.getFlieList()
     // 获取用户信息
     if (Object.keys(userInfo).length == 0) {
       this.getUserInfo()
+    } else {
+      this.getGroupList()
     }
   },
-  getFlieList() {
-    var listData = [
-      { "name": "小程序.bat", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' },
-      { "name": "大程序，bat", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' },
-      { "name": "小程序小程序", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' },
-      { "name": "小程序小程序小程序", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' },
-      { "name": "小程序小程序", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' }
-    ]
-    this.setData({
-      flieList: listData
-    }) 
-  },
+
+  
   // groupList(){
   //   var group = [
   //     {"name":"图片"},
@@ -132,8 +106,9 @@ Page({
                 this.setData({
                   userInfo: data
                 })
-                app.globalData.openid = data.openid
                 app.globalData.userInfo = data
+                // 获取分组
+                this.getGroupList()
               } else {
                 wx.showModal({
                   title: '',
@@ -183,7 +158,8 @@ Page({
   newGroup() {
     if (this.data.floatingStr) {
       this.setData({
-        floatingStr: false
+        floatingStr: false,
+        newGroupNameData: ''
       })
     } else {
       this.setData({
@@ -197,18 +173,20 @@ Page({
       newGroupNameData: e.detail.value
     })
   },
-  submitData() {
-    console.log(this.data.newGroupNameData)
-    return ''
+  addGroup() {
     wx.request({
-      url: `${app.globalData.requestUrl}/login`,
+      url: `${app.globalData.requestUrl}/FileGroup/addGroup`,
       method: 'POST',
       data: {
-        newGroupNameData: this.data.newGroupNameData
+        uid: this.data.userInfo.id,
+        group: this.data.newGroupNameData
       },
       success: data => {
+        data = app.null2str(data)
         if (data.data.code == 1) {
-
+          this.newGroup()
+          // 获取分组
+          this.getGroupList()
         } else {
           wx.showModal({
             title: '',
@@ -218,7 +196,72 @@ Page({
       }
     })
   },
-
+  // 获取分组
+  getGroupList() {
+    wx.request({
+      url: `${app.globalData.requestUrl}/FileGroup/queryGroup`,
+      method: 'POST',
+      data: {
+        id: this.data.userInfo.id
+      },
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == '1') {
+          data = data.data.data
+          this.setData({
+            groupList: data
+          })
+          if (data.length > 0) {
+            this.getFlieList(data[0].id)
+          }
+        } else {
+          // wx.showModal({
+          //   title: '',
+          //   content: data.data.msg
+          // })
+        }
+      }
+    })
+  },
+  setGroup(e) {
+    this.getFlieList(e.currentTarget.dataset.id)
+  },
+  // 通过分组ID获取分组下数据包列表
+  getFlieList(id) {
+    // let id = e.disabled.id
+    console.log(id)
+    wx.request({
+      url: `${app.globalData.requestUrl}/FileGroup/queryData`,
+      method: 'POST',
+      data: {
+        gid: id
+      },
+      success: data => {
+        data = app.null2str(data)
+        console.log(data)
+        if (data.data.code == '1') {
+          this.setData({
+            flieList: data.data.data
+          })
+        } else {
+          // wx.showModal({
+          //   title: '',
+          //   content: data.data.msg
+          // })
+        }
+      }
+    })
+    var flieList = [
+      { "name": "小程序.bat", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' },
+      { "name": "大程序，bat", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' },
+      { "name": "小程序小程序", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' },
+      { "name": "小程序小程序小程序", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' },
+      { "name": "小程序小程序", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' }
+    ]
+    this.setData({
+      flieList: flieList
+    }) 
+  },
   dragStart(event) {
     // event.currentTarget.dataset.index
     var startIndex = event.currentTarget.dataset.index

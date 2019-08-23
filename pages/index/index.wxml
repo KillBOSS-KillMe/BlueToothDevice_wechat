@@ -31,19 +31,21 @@
   </view> -->
   <view class='in-con-con'>
     <block class="groupList" wx:for="{{groupList}}" wx:key="{{item}}">
-      <navigator class='in-con-nav'>
+      <view class='in-con-nav' data-id="{{item.id}}" bindtap="setGroup">
         <view class='in-con-icon'>
-          <image src='{{item.groupImg}}' class='xitongzu'></image>
+          <image src='/image/xitongzu.png' class='xitongzu'></image>
+          <!-- // 分组：groupImg:"/image/xitongzu.png",
+          // 视频，音频：    groupImg: "/image/zu.png", -->
         </view>
-        <text class='in-group'>{{item.groupName}}</text>
-      </navigator>
+        <text class='in-group'>{{item.group}}</text>
+      </view>
     </block>
-    <navigator class='in-con-nav' bindtap="newGroup">
+    <view class='in-con-nav' bindtap="newGroup">
       <view class='in-con-icon'>
         <icon class='iconfont icon-wenjianjia02'></icon>
       </view>
       <text class='in-group'>添加组</text>
-    </navigator>
+    </view>
   </view>
 </view>
 <!-- 项目栏部分 -->
@@ -91,12 +93,12 @@
     <view class="content">
       <view class="name">新建组</view>
       <view class="content-con">
-        <input type="text" placeholder="新建组" bindinput="newGroupName" />
+        <input type="text" value="{{newGroupNameData}}" placeholder="新建组" bindinput="newGroupName" />
       </view>
     </view>
     <view class="button">
       <view class="item" bindtap="newGroup">取消</view>
-      <view class="item" bindtap="submitData">创建</view>
+      <view class="item" bindtap="addGroup">创建</view>
     </view>
   </view>
 </view>
