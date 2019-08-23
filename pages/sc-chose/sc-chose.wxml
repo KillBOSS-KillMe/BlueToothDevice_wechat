@@ -12,21 +12,65 @@
       </view>
       <view class="weui-cell__bd">
         <!-- 多行输入框 -->
-        <textarea class="weui-textarea" placeholder="请输入发表内容..." maxlength="500" placeholder-style="color:#b3b3b3;font-size:14px;" style="height: 12rem" bindblur="handleContentblur" />
+        <textarea class="weui-textarea" placeholder="请输入发表内容..." maxlength="500" placeholder-style="color:#b3b3b3;font-size:14px;" bindblur="handleContentblur" />
+        <view class="img-wrap">
+          <view wx:for="{{tempFilePaths}}" class="img-item">
+            <image src="{{item}}"></image>
+            <image  class="close-img" bindtap="deleImg" data-idx="{{index}}" src="/image/guanbi.png"></image>
+          </view>
+        </view>
         <view class="uploads">
           <view class="upload" bindtap="chooseImage">上传图片</view>
           <view class="upload" bindtap="chooseImage">上传文件</view>
         </view>
-      </view>
-      <!-- 图片 -->
-      <view class="question-images">
-        <block wx:for="{{tempFilePaths}}" wx:key="{{index}}">
-          <!-- 图片缩略图 -->
-          <image class="q-image" src="{{item}}" data-index="{{index}}" bindtap="listenerButtonPreviewImage"></image>
-        </block>
       </view>
     </view>
     <!-- 右边发送按钮 -->
     <button class="shangchuanRight" data-id="{{item.id}}" bindtap="submitForm">发送</button>
   </view>
 </view>
+
+
+
+<view class="{{equipmentflag ? 'dele-block-wrap' : ''}}">
+  <view class="tips" catchtouchmove="move" bindtap="hideDeleBlock"></view>
+  <view class="dele-block" catchtouchmove="move">
+    <view class="title">
+      <view>
+          <icon wx:if="{{xuanzeidx == 0 }}" class='iconfont icon-weixuanze weixuanze'></icon>
+          <icon wx:else class='iconfont icon-xuanze xuanze'></icon>
+          <text>从本机上传</text>
+      </view>
+      <view>
+          <icon wx:if="{{xuanzeidx == 1 }}" class='iconfont icon-weixuanze weixuanze'></icon>
+          <icon wx:else class='iconfont icon-xuanze xuanze'></icon>
+          <text>从蓝牙连接设备上传</text>
+      </view>
+    </view>
+    <view class="fot">
+      <view class="no" bindtap="hideDeleBlock">否</view>
+      <view class="yes" bindtap="deleBlock">是</view>
+    </view>
+  </view>
+</view>
+
+<view class="{{fileflag ? 'dele-block-wrap' : ''}}">
+  <view class="tips" catchtouchmove="move" bindtap="hideDeleBlock"></view>
+  <view class="dele-block" catchtouchmove="move">
+    <view class="file-content">
+      <view class="t">请选择上传文件</view>
+      <view class="file-list">
+        <view wx:for="{{6}}" class="file-i">
+          <icon wx:if="{{index == 0}}" class="iconfont icon-wenjianjia1"></icon>
+          <icon wx:else class="iconfont icon-jiaoben wjj-icon"></icon>
+          <text>文件1</text>
+        </view>
+      </view>
+    </view>
+    <view class="fot">
+      <view class="no" bindtap="hideDeleBlock">取消</view>
+      <view class="yes" bindtap="deleBlock">确定</view>
+    </view>
+  </view>
+</view>
+

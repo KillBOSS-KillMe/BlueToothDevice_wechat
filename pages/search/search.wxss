@@ -53,11 +53,11 @@
 }
 .souList{
   font-size: 28rpx;
-  line-height: 62rpx;
+  line-height: 88rpx;
+  height: 88rpx;
   padding-left: 35rpx;
   color: rgba(66, 66, 66, 1);
 }
 .btnhover {
-background-color: rgba(240,243,255,1);
-/* border-radius: 10rpx; */
+  background-color: rgba(240,243,255,1);
 }

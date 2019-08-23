@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "上传",
-  "usingComponents": {}
+  "usingComponents": {
+    "mask": "/components/mask/mask"
+  }
 }

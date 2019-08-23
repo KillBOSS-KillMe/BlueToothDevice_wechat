@@ -1,0 +1,5 @@
+
+<view class="{{flag ? 'block':''}} mask-wrap"  catchtouchmove="move">
+  <view class="mask" bindtap="hideMask" >11</view>
+  <slot></slot>
+</view>

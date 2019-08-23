@@ -208,7 +208,7 @@ border-radius:50%;
 .luntan-img {
   margin-top: 33rpx;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .luntan-imgCon {
@@ -216,6 +216,10 @@ border-radius:50%;
   height: 166rpx;
   display: flex;
   flex-direction: column;
+  margin: 0 11rpx 11rpx 0;
+}
+.luntan-imgCon:nth-of-type(4n) {
+  margin-right: 0;
 }
 
 .luntan-imgCon image {
@@ -328,7 +332,8 @@ border-radius:50%;
   bottom: 0;
   left: 0;
   width: 100%;
-z-index: 2;
+  z-index: 999;
+  background: #fff;
 }
 
 .tiezi-bot-con{
@@ -350,3 +355,85 @@ z-index: 2;
   color: #424242;
   margin-left: 11rpx;
 }
+
+.file {
+  display: flex;
+  flex-wrap: wrap;
+}
+.file-item {
+  width: 25%;
+  text-align: center;
+  padding-top: 20rpx;
+}
+.file-item-icon {
+  width: 121rpx;
+  height: 128rpx;
+  font-size: 128rpx;
+  margin: 0 auto;
+}
+.file-h{
+  color: #424242;
+  font-size: 26rpx;
+  padding-top: 10rpx;
+}
+.file-t{
+  color: #8E8E8E;
+  font-size: 20rpx;
+}
+.comment {
+  padding: 30rpx  0rpx 30rpx 25rpx;
+}
+.comment-i {
+  display: flex;
+}
+.comment-i > image,
+.comment-two-i > image {
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+.comment-right {
+  max-width: 600rpx;
+}
+
+.comment-text .name{ 
+  color:#3393FF;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+ }
+ .comment-text .name text {
+   display: inline;
+ }
+  .comment-text .name icon {
+    display: inline;
+  }
+ .comment-text .text {
+   color: #424242;
+   font-size: 28rpx;
+ }
+.comment-text .file {
+  color: #3393FF;
+  font-size: 30rpx;
+}
+.comment-right .time {
+  font-size: 20rpx;
+  color: #8E8E8E;
+}
+.comment-two-i  {
+  background: #F6F6F6;
+  display: flex;
+  padding: 30rpx 20rpx;
+  box-sizing: border-box;
+}
+.comment-two-i .comment-right {
+  max-width: 430rpx;
+}
+
+/* ---------------------------------弹框 */
+.tips {display: none;position: fixed;background: #000;opacity: 0.5; top: 0;left: 0;right: 0;bottom: 0;z-index: 999;}
+.dele-block {visibility: collapse; opacity: 0;  position: fixed;bottom: 28rpx; background: #fff; width: 698rpx; left: 26rpx; height: 338rpx;border-radius: 10rpx;z-index: 999;  text-align: center; color: #424242;font-size: 34rpx; transition: all .3s ease-in-out;}
+.dele-block .title {height: 257rpx; line-height: 257rpx;font-weight: bold;}
+.dele-block .fot {display: flex; border-top: 1px solid #EDEDED;}
+.dele-block .fot view {flex: 1;line-height: 80rpx; height: 80rpx;}
+.dele-block .fot view:nth-of-type(1) {border-right: 1px solid #EDEDED;}
+.dele-block-wrap .dele-block {  visibility: visible; opacity: 1;}
+.dele-block-wrap .tips { display: block;}

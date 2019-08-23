@@ -7,7 +7,39 @@ Page({
    */
   data: {
     id: "",
-    luntanTxt: {}
+    item: {
+      title: '双马尾成为了最佳减龄利器？',
+      label: '时尚',
+      content: '除了小朋友，为什么日常生活中很少有人扎双马尾？ 很村？装嫩？有病？ 请快抛开你对它的偏见吧！低位双马尾高位双马尾编发双马尾...',
+      avatarUrl: '/image/luntan1.jpg',
+      nickname: '你的我的',
+      createTime: '2019-12-21 12:00',
+      see: 200,
+      comment: 100,
+      follow: 10,
+      file: [
+        {
+          file: '/image/luntan1.jpg'
+        },
+        {
+          file: '/image/luntan1.jpg'
+        },
+        {
+          file: '/image/luntan1.jpg'
+        },
+        {
+          file: '/image/luntan1.jpg'
+        },
+        {
+          file: '/image/luntan1.jpg'
+        },
+        {
+          file: '/image/luntan1.jpg'
+        }
+      ]
+
+    },
+    flag: false,//控制弹框
   },
 
   /**
@@ -44,6 +76,17 @@ Page({
         }
 
       }
+    })
+  },
+  // 长按删除评论
+  deleComment(){
+    this.setData({
+      flag: true
+    })
+  },
+  hideDeleBlock() {
+    this.setData({
+      flag: false
     })
   },
   /**

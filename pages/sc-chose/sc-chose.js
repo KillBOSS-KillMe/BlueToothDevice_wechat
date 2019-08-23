@@ -6,6 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    xuanzeidx: 1,  // 1本机 0蓝牙
+    equipmentflag: false, // 选择设备
+    fileflag: false, // 选择文件
     userInfo: "",
     title: '', //标题内容
     content: '',//正文内容
@@ -23,12 +26,16 @@ Page({
       {
         id: 3,
         lable: "健康"
+      },
+      {
+        id: 4,
+        lable: "娱乐"
       }
     ],
     form: {
-      state: "",
-      title: "",
-      content: "",
+      state: "1",
+      title: "标题",
+      content: "内容",
       img: "",
       file: ""
     }
@@ -40,17 +47,14 @@ Page({
   chooseImage: function () {
     let that = this;
     wx.chooseImage({
-      count: 1, // 默认9
+      count: 6, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: res => {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths
-        console.log(tempFilePaths)
-
-
         that.setData({
-          tempFilePaths: tempFilePaths
+          tempFilePaths: that.data.tempFilePaths.concat(tempFilePaths)
         })
       }
     })
@@ -105,6 +109,15 @@ Page({
     //   }
     // });
   },
+  deleImg(e) {
+    var idx = e.currentTarget.dataset.idx
+    var tempFilePaths = this.data.tempFilePaths
+    tempFilePaths.splice(idx, 1)
+    this.setData({
+      tempFilePaths
+    })
+  },
+
 
   /**
    * 预览图片方法
@@ -116,10 +129,8 @@ Page({
       current: that.data.tempFilePaths[index],
       urls: that.data.tempFilePaths,
       success: function (res) {
-        //console.log(res);
       },
       fail: function () {
-        //console.log('fail')
       }
     })
   },
@@ -129,19 +140,16 @@ Page({
     this.setData({
       'form.state': e.currentTarget.dataset.id,
     });
-    console.log(this.data.form)
   },
   handleTitleblur(e) {
     this.setData({
       'form.title': e.detail.value
     })
-    console.log(this.data.form)
   },
   handleContentblur(e) {
     this.setData({
       'form.content': e.detail.value
     })
-    console.log(this.data.form)
   },
 
   /**
@@ -205,10 +213,8 @@ Page({
   //     content: '确定要删除此图片吗？',
   //     success: function (res) {
   //       if (res.confirm) {
-  //         console.log('点击确定了');
   //         images.splice(index, 1);
   //       } else if (res.cancel) {
-  //         console.log('点击取消了');
   //         return false;
   //       }
   //       that.setData({
@@ -231,8 +237,6 @@ Page({
         icon: "none"
       })
     } else if (this.data.form.tite != "" && this.data.form.content != "") {
-      console.log('===============================================================')
-      console.log(this.data.userInfo)
       // wx.getStorage({
       //   var that = this,
       //   key: 'usermation',
@@ -252,7 +256,6 @@ Page({
             'content-type': 'application/json' // 默认值
           },
           success(res) {
-            console.log(res)
             if (res.code == 1) {
               wx.navigateBack({
                 delta: 1,
