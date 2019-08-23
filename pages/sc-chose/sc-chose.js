@@ -159,7 +159,7 @@ Page({
         title: this.data.article.title,
         content: this.data.article.content,
         file: '',
-        img: this.data.imgList
+        image: this.data.imgList
       },
       success(data) {
         data = app.null2str(data)
