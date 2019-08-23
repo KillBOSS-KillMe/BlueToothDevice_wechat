@@ -16,10 +16,13 @@
         <!-- 多行输入框 -->
         <textarea class="weui-textarea" placeholder="请输入发表内容..." maxlength="500" placeholder-style="color:#b3b3b3;font-size:14px;" bindblur="handleContentblur" />
         <view class="img-wrap">
-          <view wx:for="{{imgList}}" class="img-item">
-            <image src="{{originalImgUrl + item}}"></image>
-            <image class="close-img" bindtap="deleImg" data-index="{{index}}" src="/image/guanbi.png"></image>
-          </view>
+          <block class="groupList" wx:for="{{imgList}}" wx:key="{{item}}">
+            <view class="img-item">
+              <image bindtap="previewImage" data-index="{{index}}" src="{{originalImgUrl + item}}"></image>
+              <image class="close-img" bindtap="deleImg" data-index="{{index}}" src="/image/guanbi.png"></image>
+            </view>
+          </block>
+          
         </view>
         <view class="uploads">
           <view class="upload" bindtap="chooseImage">上传图片</view>

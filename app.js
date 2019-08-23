@@ -30,9 +30,9 @@ App({
     groupList: [],
     requestUrl: 'http://47.104.91.26',
     // 缩略图
-    requestImgUrl: 'http://47.104.91.26/upload/img/',
+    requestImgUrl: 'http://47.104.91.26/upload/tailor/',
     // 原图
-    originalImgUrl: 'http://47.104.91.26/upload/tailor/',
+    originalImgUrl: 'http://47.104.91.26/upload/img/',
   },
   /**
   * null => ''

@@ -10,13 +10,12 @@ Page({
     equipmentflag: false, // 选择设备
     fileflag: false, // 选择文件
     userInfo: {},
-    title: '', //标题内容
-    content: '',//正文内容
-    images: [],
     lableLists: [],
     label: {},
     imgList: [],
-    requestImgUrl: ''
+    article: {},
+    requestImgUrl: '',
+    originalImgUrl: ''
   },
 
   /**
@@ -31,6 +30,7 @@ Page({
     // 获取标签列表
     this.getLabelList()
   },
+  // 获取标签列表
   getLabelList() {
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/label`,
@@ -60,18 +60,18 @@ Page({
       }
     })
   },
-  // 图片上传
+  // 图片选择
   chooseImage: function () {
     wx.chooseImage({
       count: 6, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: res => {
-        let imgurlNode = res.tempFiles
         this.uploadimg(res.tempFiles)
       }
     })
   },
+  // 图片上传
   uploadimg(imgurlNode) {
     //上传图片
     let i = 0
@@ -94,6 +94,7 @@ Page({
     }
 
   },
+  // 图片删除
   deleImg(e) {
     var index = e.currentTarget.dataset.index
     var imgList = this.data.imgList
@@ -104,19 +105,12 @@ Page({
   },
 
 
-  /**
-   * 预览图片方法
-   */
-  listenerButtonPreviewImage: function (e) {
+  // 图片预览
+  previewImage: function (e) {
     let index = e.target.dataset.index;
-    let that = this;
     wx.previewImage({
-      current: that.data.tempFilePaths[index],
-      urls: that.data.tempFilePaths,
-      success: function (res) {
-      },
-      fail: function () {
-      }
+      current: this.data.imgList[index],
+      urls: [this.data.originalImgUrl + this.data.imgList[index]]
     })
   },
 
@@ -129,27 +123,27 @@ Page({
   },
   handleTitleblur(e) {
     this.setData({
-      'form.title': e.detail.value
+      'article.title': e.detail.value
     })
   },
   handleContentblur(e) {
     this.setData({
-      'form.content': e.detail.value
+      'article.content': e.detail.value
     })
   },
   // 发布帖子
   submitForm(e) {
-    console.log(this.data.form)
+    console.log(this.data.article)
     console.log(this.data.label)
     // return false
-    if (this.data.form.title == "") {
+    if (this.data.article.title == "") {
       wx.showToast({
         title: '请输入标题',
         icon: "none"
       })
       return false
     }
-    if (this.data.form.content == "") {
+    if (this.data.article.content == "") {
       wx.showToast({
         title: '请输入帖子内容',
         icon: "none"
@@ -162,8 +156,8 @@ Page({
       data: {
         uid: this.data.userInfo.id,
         label: this.data.label.id,
-        title: this.data.form.title,
-        content: this.data.form.content,
+        title: this.data.article.title,
+        content: this.data.article.content,
         file: '',
         img: this.data.imgList
       },
