@@ -27,6 +27,7 @@ App({
   },
   globalData: {
     userInfo: {},
+    groupList: [],
     requestUrl: 'http://47.104.91.26',
     requestImgUrl: 'http://47.104.91.26',
   },

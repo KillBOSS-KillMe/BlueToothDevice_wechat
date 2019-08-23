@@ -1,11 +1,6 @@
-
-
-
-//index.js
-//获取应用实例
 const app = getApp()
 
-Page({  
+Page({
   data: {
     topNav: false,
     userInfo: {},
@@ -25,7 +20,7 @@ Page({
     showModalStatus: false,
     floatingStr: false,
     newGroupNameData: '',
-    groupList:[],
+    groupList: [],
     state: '',
     pageInfo: {
       rowHeight: 47,
@@ -38,13 +33,7 @@ Page({
       selectedIndex: null,
     }
   },
-  //选择用途后加样式
-  select_use: function (e) {
-    console.log(1111111)
-    this.setData({
-      state: e.currentTarget.dataset.key,
-    });
-  },
+
 
   onLoad: function () {
     let userInfo = app.globalData.userInfo
@@ -52,16 +41,19 @@ Page({
     if (Object.keys(userInfo).length == 0) {
       this.getUserInfo()
     } else {
-      this.getGroupList()
+      // 获取全局分组列表
+      let groupList = app.globalData.groupList
+      if (groupList.length > 0) {
+        this.setData({
+          groupList: groupList
+        })
+      } else {
+        // 获取分组列表
+        this.getGroupList()
+      }
     }
   },
-
-  
-  // groupList(){
-  //   var group = [
-  //     {"name":"图片"},
-  //   ]
-  // },
+  // 获取用户信息
   getUserInfo() {
     // 查看是否授权
     wx.getSetting({
@@ -123,11 +115,16 @@ Page({
       }
     })
   },
+  //选择用途后加样式
+  select_use: function (e) {
+    this.setData({
+      state: e.currentTarget.dataset.key,
+    });
+  },
   toggleDialog() {
     this.setData({
       showDialog: !this.data.showDialog
     });
-
   },
   // 2.点击出现上下两个框
   clickTest(e) {
@@ -141,7 +138,7 @@ Page({
     } else {
       // 由选中=》未选中
       flieList[index]["str"] = "0"
-      
+
     }
     this.setData({
       flieList: flieList
@@ -211,6 +208,7 @@ Page({
           this.setData({
             groupList: data
           })
+          app.globalData.groupList = data
           if (data.length > 0) {
             this.getFlieList(data[0].id)
           }
@@ -241,8 +239,8 @@ Page({
         if (data.data.code == '1') {
           let i = 0
           data = data.data.data
-          for(i in data) {
-            data[i]['size'] = data[i].size/1000
+          for (i in data) {
+            data[i]['size'] = data[i].size / 1000
             data[i]['size'] = data[i].size.toFixed(2)
             data[i]['str'] = '0'
           }
@@ -363,4 +361,3 @@ Page({
   //     cancelText: "否",
   //   })
   // },
- 
