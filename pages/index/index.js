@@ -64,31 +64,12 @@ Page({
   },
 
   onLoad: function () {
-    var that = this;
-    // if (app.globalData.userInfo != null) {
-    //   that.setUserInfo(app.globalData.userInfo);
-    // // } else if (that.data.canIUse) {
-    // //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    // //   // 所以此处加入 callback 以防止这种情况
-    // //   app.userInfoReadyCallback = res => {
-    // //     that.setUserInfo(res.userInfo);
-    // //   }
-    // } else {
-      // console.log(1111111)
-      wx.getSetting({
-        success: res => {
-          if (res.authSetting['scope.userInfo']) {
-            // 已经授权，可以直接调用 getUserInfo 获取头像昵称 
-            that.getUserInfo()
-          }
-        }
-      })
-      
-    // }
+    let userInfo = app.globalData.userInfo
     this.getFlieList()
-  },
-  setUserInfo(userInfo) {
-    console.log(userInfo)
+    // 获取用户信息
+    if (Object.keys(userInfo).length == 0) {
+      this.getUserInfo()
+    }
   },
   getFlieList() {
     var listData = [
@@ -107,39 +88,66 @@ Page({
   //     {"name":"图片"},
   //   ]
   // },
-
-
-  getUserInfo: function () {
-    // wx.getUserInfo({
-      
-      wx.login({
-        success(res) {
-          if (res.code) {
-            wx.request({
-              url: '${this.$parent.globalData.requestUrl}/Login/wxLogin',
-              data: {
-                code: res.code
+  getUserInfo() {
+    // 查看是否授权
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          this.setData({
+            hasUserInfo: false
+          })
+          wx.getUserInfo({
+            success: res => {
+              console.log(res)
+              this.setData({
+                userInfo: res.userInfo
+              })
+              if (res.userInfo) {
+                // 提交用户信息
+                this.setUserInfo(res.userInfo)
               }
-            })
-
-            console.log(res.code)
-          } else {
-            console.log('登录失败！' + res.errMsg)
-          }
+            }
+          })
         }
-      })
-
-
-        // success: res => {
-        //   app.globalData.userInfo = res.userInfo
-        //   this.setData({
-        //     userInfo: res.userInfo,
-        //     hasUserInfo: false
-        //   })
-        // }
-    // })
+      }
+    })
   },
-
+  // 提交用户信息
+  setUserInfo(userInfo) {
+    wx.login({
+      success: res => {
+        if (res.code) {
+          this.code = res.code
+          wx.request({
+            url: `${app.globalData.requestUrl}/Login/wxLogin`,
+            method: 'POST',
+            data: {
+              code: res.code,
+              avatarUrl: userInfo.avatarUrl,
+              nickname: userInfo.nickName
+            },
+            success: data => {
+              if (data.data.code == 1) {
+                data = app.null2str(data.data.data)
+                this.setData({
+                  userInfo: data
+                })
+                app.globalData.openid = data.openid
+                app.globalData.userInfo = data
+              } else {
+                wx.showModal({
+                  title: '',
+                  content: data.data.errmsg
+                })
+              }
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
+  },
   toggleDialog() {
     this.setData({
       showDialog: !this.data.showDialog
@@ -193,7 +201,7 @@ Page({
     console.log(this.data.newGroupNameData)
     return ''
     wx.request({
-      url: `${this.$parent.globalData.requestUrl}/login`,
+      url: `${app.globalData.requestUrl}/login`,
       method: 'POST',
       data: {
         newGroupNameData: this.data.newGroupNameData

@@ -1,4 +1,3 @@
-<button open-type="getUserInfo" wx:if="{{hasUserInfo}}" id='getUserInfo' lang="zh_CN" bindgetuserinfo="getUserInfo"></button>
 <!-- 搜索栏部分 -->
 <view class='in-sec'>
   <view class='in-sec-con'>
@@ -101,6 +100,7 @@
     </view>
   </view>
 </view>
+<button open-type="getUserInfo" wx:if="{{hasUserInfo}}" id='getUserInfo' lang="zh_CN" bindgetuserinfo="getUserInfo"></button>
 <!-- footer -->
 <!-- <view class="foNav">
   <text>删除</text>
