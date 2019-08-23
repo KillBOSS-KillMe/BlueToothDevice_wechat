@@ -238,10 +238,16 @@ Page({
       },
       success: data => {
         data = app.null2str(data)
-        console.log(data)
         if (data.data.code == '1') {
+          let i = 0
+          data = data.data.data
+          for(i in data) {
+            data[i]['size'] = data[i].size/1000
+            data[i]['size'] = data[i].size.toFixed(2)
+            data[i]['str'] = '0'
+          }
           this.setData({
-            flieList: data.data.data
+            flieList: data
           })
         } else {
           // wx.showModal({
@@ -251,16 +257,6 @@ Page({
         }
       }
     })
-    var flieList = [
-      { "name": "小程序.bat", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' },
-      { "name": "大程序，bat", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' },
-      { "name": "小程序小程序", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' },
-      { "name": "小程序小程序小程序", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' },
-      { "name": "小程序小程序", "max": "2.0M", "time": "2019-06-11 12:00", "type": "1", "id": "1", "str": '0' }
-    ]
-    this.setData({
-      flieList: flieList
-    }) 
   },
   dragStart(event) {
     // event.currentTarget.dataset.index
