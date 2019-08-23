@@ -1,4 +1,25 @@
 /**app.wxss**/
+/* // 水平垂直居中
+// display: flex;
+// align-items: center;
+// justify-content: center;
+
+// 居右
+// flex-direction:row;
+// justify-content:flex-end
+
+// vertical-align:middle;
+
+// overflow:hidden;
+// text-overflow:ellipsis;
+// white-space:nowrap;
+
+// 自动换行
+// word-break:break-all;
+
+// overflow:hidden;
+// text-overflow:ellipsis;
+// white-space:nowrap; */
 @font-face {
   font-family: 'iconfont';  /* project id 1214305 */
   src: url('//at.alicdn.com/t/font_1214305_ascz5o5fdbi.eot');

@@ -8,26 +8,16 @@
       </view>
     </view>
     <view class='in-sec-right'>
-        <navigator class='sec-sousuo'>搜索</navigator>
+      <navigator class='sec-sousuo'>搜索</navigator>
     </view>
   </view>
 </view>
 <!-- 搜索内容部分 -->
-<view>
-
-</view>
-
-<!-- <view class='sec-top'>
-  <view class='sec-top-con'>
-   <view class='sec-top-left'>
-     <icon class='iconfont icon-sousuo'></icon>
-     <input class='in-input' placeholder='请输入文件名或备注信息'></input>
-   </view>
-   <view class='sec-top-right'>
-    <button>搜索</button>
-   </view>
-  </view>
-</view> -->
 <view class="TwoSou">
-  <view class="souList" bindtap='jump' style="color:{{color}};" wx:for="{{souList}}"wx:key="{{index}}" hover="true" hover-class="btnhover">{{item.name}}</view>
+  <block wx:for="{{souList}}" wx:key="{{item}}">
+    <view class="souList" bindtap='selFile' data-id="{{item.id}}" data-id="{{item.group_id}}" style="color:{{color}};" hover="true" hover-class="btnhover">
+      {{item.file_name}}
+    </view>
+  </block>
+  
 </view>

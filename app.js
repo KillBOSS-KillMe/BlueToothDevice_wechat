@@ -24,15 +24,6 @@ App({
         }
       }
     })
-// wx.getUserInfo({
-
-  
-
-// })
-
-    
-
-
   },
   globalData: {
     userInfo: {},

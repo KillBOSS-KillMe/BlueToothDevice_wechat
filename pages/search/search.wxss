@@ -50,6 +50,7 @@
   width: 641rpx;
   margin-left:21rpx;
   background: #fff;
+  height: auto;
 }
 .souList{
   font-size: 28rpx;
@@ -57,6 +58,9 @@
   height: 88rpx;
   padding-left: 35rpx;
   color: rgba(66, 66, 66, 1);
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 .btnhover {
   background-color: rgba(240,243,255,1);
