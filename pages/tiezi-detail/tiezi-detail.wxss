@@ -202,7 +202,7 @@ border-radius:50%;
 .luntanCon-txt {
   font-size: 28rpx;
   color: #424242;
-  margin-top: -25rpx;
+  margin-top: 25rpx;
   line-height: 38rpx;
 }
 

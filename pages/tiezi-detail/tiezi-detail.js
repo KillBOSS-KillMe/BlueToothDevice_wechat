@@ -7,46 +7,21 @@ Page({
      * 页面的初始数据
      */
     data: {
-      id: "",
-      createTime:"",
-      item: {
-        title: '双马尾成为了最佳减龄利器？',
-        label: '时尚',
-        content: '除了小朋友，为什么日常生活中很少有人扎双马尾？ 很村？装嫩？有病？ 请快抛开你对它的偏见吧！低位双马尾高位双马尾编发双马尾...',
-        avatarUrl: '/image/luntan1.jpg',
-        nickname: '你的我的',
-        createTime: '2019-12-21 12:00',
-        see: 200,
-        comment: 100,
-        follow: 10,
-        file: [
-          {
-            file: '/image/luntan1.jpg'
-          },
-          {
-            file: '/image/luntan1.jpg'
-          },
-          {
-            file: '/image/luntan1.jpg'
-          },
-          {
-            file: '/image/luntan1.jpg'
-          },
-          {
-            file: '/image/luntan1.jpg'
-          },
-          {
-            file: '/image/luntan1.jpg'
-          }
-        ]
-
-      }
+      userInfo: {},
+      articleDetail: {},
+      requestImgUrl: '',
+      originalImgUrl: ''
     },
   
     /**
      * 生命周期函数--监听页面加载
      */
   onLoad: function (options) {
+    this.setData({
+      userInfo: app.globalData.userInfo,
+      requestImgUrl: app.globalData.requestImgUrl,
+      originalImgUrl: app.globalData.originalImgUrl
+    })
     wx.request({
       url: `${app.globalData.requestUrl}/User/post_info`,
       data: {
@@ -55,9 +30,13 @@ Page({
       method: "POST",
       success: data =>{
         console.log(data)
-        // this.setData({
-        //   luntanTxt:res.data.data
-        // })
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          this.setData({
+            articleDetail: data.data.data[0]
+          })
+        }
+        
 
       }
     })

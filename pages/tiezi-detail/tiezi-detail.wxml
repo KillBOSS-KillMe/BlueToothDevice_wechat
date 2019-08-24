@@ -1,95 +1,94 @@
-
-<block data-id="{{luntanTxt.id}}" class="luntanTxt" data-id="{{item.id}}">
-  <view class='luntanCon'>
-    <view class='luntanCon-con'>
-      <view class='Administrator'>
-        <view class='admin-left'>
-          <image src='{{item.avatarUrl}}'></image>
-          <view class='admin-con'>
-            <view class='admin-name'>{{item.nickname}}</view>
-            <view class='admin-date'>{{item.createTime}}</view>
-          </view>
+<view class='luntanCon'>
+  <view class='luntanCon-con'>
+    <view class='Administrator'>
+      <view class='admin-left'>
+        <image src='{{articleDetail.avatarUrl}}'></image>
+        <view class='admin-con'>
+          <view class='admin-name'>{{articleDetail.nickname}}</view>
+          <view class='admin-date'>{{articleDetail.createTime}}</view>
         </view>
-       
       </view>
-      <view class='luntanCon-tit'>
-        <text class='luntanConTit-left'>{{item.title}}</text>
-        <text class='luntanConTit-right'>{{item.label}}</text>
+    </view>
+    <view class='luntanCon-tit'>
+      <text class='luntanConTit-left'>{{articleDetail.title}}</text>
+      <text class='luntanConTit-right'>{{articleDetail.label}}</text>
+    </view>
+    <view class='luntanCon-txt'>
+      <text class='luntan-txt'>{{articleDetail.content}}</text>
+      <view class='luntan-img'>
+        <!-- <view class='luntan-imgCon' wx:for="{{articleDetail.file}}">
+          <image src='{{articleDetail.file}}'></image>
+        </view> -->
+        <block wx:for="{{articleDetail.file}}" wx:for-item="item" wx:for-index="imgIndex" wx:key="{{imgItem}}">
+          <view class='luntan-imgCon'>
+            <image data-id="{{item.id}}" data-img="{{requestImgUrl + item.file}}" src='{{requestImgUrl + item.file}}'></image>
+          </view>
+        </block>
       </view>
-      <view class='luntanCon-txt'>
-        <text class='luntan-txt'>
-       {{item.content}}
-     </text>
-        <view class='luntan-img'>
-          <view class='luntan-imgCon' wx:for="{{item.file}}">
-            <image src='{{item.file}}'></image>
-          </view>
+      <view class="file">
+        <view wx:for="{{5}}" class="file-item">
+          <icon class="iconfont icon-jiaoben file-item-icon"></icon>
+          <view class="file-h overflow-one">项目计划书项目计划书</view>
+          <view class="file-t overflow-one">下载102次下载102次</view>
         </view>
-
-        <view class="file">
-          <view wx:for="{{5}}" class="file-item">
-            <icon class="iconfont icon-jiaoben file-item-icon"></icon>
-            <view class="file-h overflow-one">项目计划书项目计划书</view>
-            <view class="file-t overflow-one">下载102次下载102次</view>
-          </view>
+      </view>
+      <view class='luntan-from'>
+        <text class='form-con'>来自</text>
+        <navigator url='pages/yh-quanxian/yh-quanxian'>
+          <image src='{{articleDetail.avatarUrl}}'></image>
+        </navigator>
+        <navigator class='yours'>
+          <text>{{articleDetail.nickname}}</text>
+        </navigator>
+        <text class='data'>{{articleDetail.createTime}}</text>
+      </view>
+      <view class='luntanCon-bot'>
+        <view class='luntanConBot-left'>
+          <icon class='iconfont icon-chakan'></icon>
+          <text>{{articleDetail.see}}</text>
+          <text>次</text>
         </view>
-
-        <view class='luntan-from'>
-          <text class='form-con'>来自</text>
-          <navigator url='pages/yh-quanxian/yh-quanxian'>
-            <image src='{{item.avatarUrl}}'></image>
-          </navigator>
-          <navigator class='yours'>
-            <text>{{item.nickname}}</text>
-          </navigator>
-          <text class='data'>{{item.createTime}}</text>
+        <view class='luntanConBot-con'>
+          <icon class='iconfont icon-pinglun'></icon>
+          <text>{{articleDetail.comment}}</text>
+          <text>条</text>
         </view>
-        <view class='luntanCon-bot'>
-          <view class='luntanConBot-left'>
-            <icon class='iconfont icon-chakan'></icon>
-            <text>{{item.see}}</text>
-            <text>次</text>
-          </view>
-          <view class='luntanConBot-con'>
-            <icon class='iconfont icon-pinglun'></icon>
-            <text>{{item.comment}}</text>
-            <text>条</text>
-          </view>
-          <view class='luntanConBot-right'>
-            <icon class='iconfont icon-shoucang'></icon>
-            <text>{{item.follow}}</text>
-          </view>
+        <view class='luntanConBot-right'>
+          <icon class='iconfont icon-shoucang'></icon>
+          <text>{{articleDetail.follow}}</text>
         </view>
-        <!-- 评论 -->
-        <view class="comment">
-          <view class="comment-i" wx:for="{{1}}" wx:key="{{index}}">
-            <image src="/image/luntan1.jpg" style="width: 56rpx; height: 56rpx;"></image>
-            <view class="comment-right">
-              <view class="comment-current">
-                <view class="comment-text">
-                  <view class="name">韩君：
-                    <text class="text">非常棒的分享，谢谢！非常棒的分享，谢谢！</text>
-                    <icon class="iconfont icon-tupian"></icon>
-                    <text class="file">捕鱼大战游戏</text>
-                  </view>
+      </view>
+      <!-- 评论 -->
+      <view class="comment">
+        <view class="comment-i" wx:for="{{1}}" wx:key="{{index}}">
+          <image src="/image/luntan1.jpg" style="width: 56rpx; height: 56rpx;"></image>
+          <view class="comment-right">
+            <view class="comment-current">
+              <view class="comment-text">
+                <view class="name">
+                  韩君：
+                  <text class="text">非常棒的分享，谢谢！非常棒的分享，谢谢！</text>
+                  <icon class="iconfont icon-tupian"></icon>
+                  <text class="file">捕鱼大战游戏</text>
                 </view>
-                <view class="time">2019-12-21</view>
               </view>
-              <view class="comment-two">
-                <view class="comment-two-i">
-                  <image src="/image/luntan1.jpg" style="width: 56rpx; height: 56rpx;"></image>
-                  <view class="comment-right">
-                    <view class="comment-text">
-                      <view class="name">冬瓜头：
-                        <text class="text">回复</text>
-                          西瓜头
-                        <text class="text">非常棒的分享，谢谢！非常棒的分享，谢谢！</text>
-                        <icon class="iconfont icon-tupian"></icon>
-                        <text class="file">查看图片</text>
-                      </view>
+              <view class="time">2019-12-21</view>
+            </view>
+            <view class="comment-two">
+              <view class="comment-two-i">
+                <image src="/image/luntan1.jpg" style="width: 56rpx; height: 56rpx;"></image>
+                <view class="comment-right">
+                  <view class="comment-text">
+                    <view class="name">
+                      冬瓜头：
+                      <text class="text">回复</text>
+                      西瓜头
+                      <text class="text">非常棒的分享，谢谢！非常棒的分享，谢谢！</text>
+                      <icon class="iconfont icon-tupian"></icon>
+                      <text class="file">查看图片</text>
                     </view>
-                    <view class="time">2019-12-21</view>
                   </view>
+                  <view class="time">2019-12-21</view>
                 </view>
               </view>
             </view>
@@ -98,7 +97,7 @@
       </view>
     </view>
   </view>
-</block>
+</view>
 <!-- 底部 -->
 <view class="tiezi-bot">
   <view class="tiezi-bot-con">
