@@ -4,38 +4,8 @@ const app = getApp()
 Page({
   data: {
     logs: [],
-    articleList: [{
-      title: '双马尾成为了最佳减龄利器？',
-      label: '时尚',
-      content: '除了小朋友，为什么日常生活中很少有人扎双马尾？ 很村？装嫩？有病？ 请快抛开你对它的偏见吧！低位双马尾高位双马尾编发双马尾...',
-      avatarUrl: '/image/luntan1.jpg',
-      nickname: '你的我的',
-      createTime: '2019-12-21 12:00',
-      see: 200,
-      comment: 100,
-      follow: 10,
-      file: [
-        {
-          file: '/image/luntan1.jpg'
-        },
-        {
-          file: '/image/luntan1.jpg'
-        },
-        {
-          file: '/image/luntan1.jpg'
-        },
-        {
-          file: '/image/luntan1.jpg'
-        },
-        {
-          file: '/image/luntan1.jpg'
-        },
-        {
-          file: '/image/luntan1.jpg'
-        }
-      ]
-
-    }],
+    articleList: [],
+    articleList: [],
     requestImgUrl: '',
     originalImgUrl: ''
   },
@@ -45,41 +15,15 @@ Page({
       requestImgUrl: app.globalData.requestImgUrl,
       originalImgUrl: app.globalData.originalImgUrl
     })
+    // 获取文章列表
     this.getArticleList()
-
   },
   
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    // var that = this;
-    // // 显示加载图标
-    // wx.showLoading({
-    //   title: '玩命加载中',
-    // })
-    // // 页数+1
-    // page = page + 1;
-    // wx.request({
-    //   url: '.......' + page,
-    //   method: "GET",
-    //   // 请求头部
-    //   header: {
-    //     'content-type': 'application/text'
-    //   },
-    //   success: function (res) {
-    //     // 回调函数
-    //     var moment_list = that.data.moment;
-    //     const oldData = that.data.moment;
-    //     that.setData({
-    //       moment: oldData.concat(res.data.data)
-    //     })
-    //     // 隐藏加载框
-    //     wx.hideLoading();
-    //   },
-
-    // })
-
+    this.getArticleList()
   },
   // 获取文章列表
   getArticleList() {
@@ -91,23 +35,24 @@ Page({
         page: this.data.articleList.length/5
       },
       success: data => {
-        console.log(data)
+        // console.log(data)
         data = app.null2str(data)
         if (data.data.code == 1) {
+          let list = this.articleListAll.concat(data.data.data)
           this.setData({
-            articleListAll: data.data.data,
-            articleList: data.data.data
+            articleListAll: list,
+            articleList: list
           })
-          console.log(this.data.articleList)
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+          // wx.showModal({
+          //   title: '',
+          //   content: data.data.msg
+          // })
         }
       }
     })
   },
+  // 文章搜索，根据标题搜索
   getSearch(e) {
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/search`,
