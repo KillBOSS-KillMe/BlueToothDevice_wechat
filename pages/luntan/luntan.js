@@ -4,7 +4,7 @@ const app = getApp()
 Page({
   data: {
     logs: [],
-    luntanTxt: [{
+    articleList: [{
       title: '双马尾成为了最佳减龄利器？',
       label: '时尚',
       content: '除了小朋友，为什么日常生活中很少有人扎双马尾？ 很村？装嫩？有病？ 请快抛开你对它的偏见吧！低位双马尾高位双马尾编发双马尾...',
@@ -34,21 +34,25 @@ Page({
           file: '/image/luntan1.jpg'
         }
       ]
-      
+
     }],
+    requestImgUrl: '',
+    originalImgUrl: ''
   },
-  onLoad: function() {
+  onLoad: function () {
     this.setData({
-      userInfo: app.globalData.userInfo
+      userInfo: app.globalData.userInfo,
+      requestImgUrl: app.globalData.requestImgUrl,
+      originalImgUrl: app.globalData.originalImgUrl
     })
     this.getArticleList()
 
   },
-
+  
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     // var that = this;
     // // 显示加载图标
     // wx.showLoading({
@@ -77,8 +81,8 @@ Page({
     // })
 
   },
+  // 获取文章列表
   getArticleList() {
-    
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/forum`,
       method: 'POST',
@@ -90,9 +94,37 @@ Page({
         console.log(data)
         data = app.null2str(data)
         if (data.data.code == 1) {
-          // this.setData({
-      //         luntanTxt: res.data
-      //       })
+          this.setData({
+            articleList: data.data.data
+          })
+          console.log(this.data.articleList)
+        } else {
+          wx.showModal({
+            title: '',
+            content: data.data.msg
+          })
+        }
+      }
+    })
+  },
+  // 文章收藏
+  articleCollection(e) {
+    let articleNode = this.data.articleList[e.currentTarget.dataset.index]
+    wx.request({
+      url: `${app.globalData.requestUrl}/Forum/followPost`,
+      method: 'POST',
+      data: {
+        uid: this.data.userInfo.id,
+        pid: articleNode.id
+      },
+      success: data => {
+        console.log(data)
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          this.setData({
+            articleList: data.data.data
+          })
+          console.log(this.data.articleList)
         } else {
           wx.showModal({
             title: '',
@@ -105,13 +137,13 @@ Page({
   goQuanxian(e) {
     wx.navigateTo({
       url: `/pages/yh-quanxian/yh-quanxian?id=${e.currentTarget.dataset.id}`,
-      success: function(res) {},
+      success: function (res) { },
     })
   },
   goDetail(e) {
     wx.navigateTo({
       url: `/pages/tiezi-detail/tiezi-detail?id=${e.currentTarget.dataset.id}`,
-      success: function(res) {},
+      success: function (res) { },
     })
   },
   goQuanxian(e) {

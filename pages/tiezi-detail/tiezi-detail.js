@@ -47,23 +47,17 @@ Page({
      * 生命周期函数--监听页面加载
      */
   onLoad: function (options) {
-    console.log(options)
-    let id = options.id
-    var that = this;
     wx.request({
       url: `${app.globalData.requestUrl}/User/post_info`,
-      headers: {
-        'Content-Type': 'application/json'
-      },
       data: {
-        post_id: id
+        post_id: options.id
       },
       method: "POST",
-      success: res =>{
-        that.setData({
-          luntanTxt:res.data.data,
-          // createTime: until.formatTime(res.data.data.createTime)
-        })
+      success: data =>{
+        console.log(data)
+        // this.setData({
+        //   luntanTxt:res.data.data
+        // })
 
       }
     })

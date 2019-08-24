@@ -18,23 +18,22 @@
 </view>
 <!-- 内容部分 -->
 <scroll-view scroll-y="{{true}}" bindscrolltolower="lower" lower-threshold="50" class="pull-down-load">
-  <block wx:for="{{luntanTxt}}" class="luntanTxt" wx:key="{{item}}">
-    <view class='luntanCon' bindtap='goDetail' data-id="{{item.id}}">
+  <block wx:for="{{articleList}}" class="luntanTxt" wx:for-item="item" wx:key="item">
+    <view class='luntanCon'>
       <view class='luntanCon-con'>
-        <view class='luntanCon-tit'>
+        <view class='luntanCon-tit' bindtap='goDetail' data-id="{{item.id}}">
           <text class='luntanConTit-left'>{{item.title}}</text>
           <text class='luntanConTit-right'>{{item.label}}</text>
         </view>
         <view class='luntanCon-txt'>
-          <text class='luntan-txt'>
-            {{item.content}}
-          </text>
+          <text class='luntan-txt' bindtap='goDetail' data-id="{{item.id}}">{{item.content}}</text>
           <view class='luntan-img'>
-            <view class='luntan-imgCon' wx:if="{{idx <= 3}}" wx:for="{{item.file}}" wx:for-index="idx" wx:key="{{idx}}" wx:for-item="img">
-              <image src='{{img.file}}'></image>
-            </view>
+            <block wx:for="{{item.file}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="{{imgItem}}">
+              <view class='luntan-imgCon' wx:if="{{imgIndex < 4}}">
+                <image data-id="{{imgItem.id}}" data-img="{{requestImgUrl + imgItem.file}}" src='{{requestImgUrl + imgItem.file}}'></image>
+              </view>
+            </block>
           </view>
-
           <view class="file">
             <view wx:for="{{5}}" wx:if="{{index < 4}}" class="file-item">
               <icon class="iconfont icon-jiaoben file-item-icon"></icon>
@@ -42,16 +41,11 @@
               <view class="file-t overflow-one">下载102次下载102次</view>
             </view>
           </view>
-
           <view class='luntan-from'>
             <text class='form-con'>来自</text>
-            <image src='{{item.avatarUrl}}' catchtap="goQuanxian" data-userid="{{item.uid}}" data-id="{{item.id}}"></image>
-            <view class='yours' data-id="{{item.id}}">
-              {{item.nickname}}
-            </view>
-            <view class='data'>
-              {{item.createTime}}
-            </view>
+            <image src='{{item.avatarUrl}}' catchtap="goQuanxian" data-uid="{{item.uid}}"></image>
+            <view class='yours' data-id="{{item.uid}}">{{item.nickname}}</view>
+            <view class='data'>{{item.createTime}}</view>
           </view>
           <view class='luntanCon-bot'>
             <view class='luntanConBot-left'>
@@ -64,12 +58,11 @@
               <text>{{item.comment}}</text>
               <text>条</text>
             </view>
-            <view class='luntanConBot-right'>
-              <icon class='iconfont icon-shoucang'></icon>
+            <view class='luntanConBot-right' bindtap="articleCollection" data-index="{{index}}">
+              <icon class="iconfont icon-shoucang {{item.is_follow == 1?'active':''}}"></icon>
               <text>{{item.follow}}</text>
             </view>
           </view>
-
           <!-- 评论 -->
           <view class="comment">
             <view class="comment-i" wx:for="{{1}}" wx:key="{{index}}">
@@ -77,7 +70,8 @@
               <view class="comment-right">
                 <view class="comment-current">
                   <view class="comment-text">
-                    <view class="name">韩君：
+                    <view class="name">
+                      韩君：
                       <text class="text">非常棒的分享，谢谢！非常棒的分享，谢谢！</text>
                       <icon class="iconfont icon-fujian"></icon>
                       <text class="file">捕鱼大战游戏</text>
@@ -90,8 +84,10 @@
                     <image src="/image/luntan1.jpg" style="width: 56rpx; height: 56rpx;"></image>
                     <view class="comment-right">
                       <view class="comment-text">
-                        <view class="name">冬瓜头：
-                          <text class="text">回复</text> 西瓜头
+                        <view class="name">
+                          冬瓜头：
+                          <text class="text">回复</text>
+                          西瓜头
                           <text class="text">非常棒的分享，谢谢！非常棒的分享，谢谢！</text>
                           <icon class="iconfont icon-tupian"></icon>
                           <text class="file tupian">查看图片</text>
@@ -104,13 +100,11 @@
               </view>
             </view>
           </view>
-          
         </view>
       </view>
     </view>
   </block>
 </scroll-view>
-
 <!-- 刷新 -->
 <view class='lt-shuxin'>
   <icon class='iconfont icon-shuaxin'></icon>

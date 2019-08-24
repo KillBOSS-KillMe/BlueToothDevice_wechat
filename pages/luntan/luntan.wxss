@@ -214,7 +214,7 @@
 .luntanCon-txt {
   font-size: 28rpx;
   color: #424242;
-  margin-top: -25rpx;
+  margin-top: 25rpx;
   line-height: 38rpx;
 }
 
@@ -430,3 +430,7 @@
   max-width: 430rpx;
 }
 
+
+.luntanConBot-right .active{
+  color: #CC3300;
+}
