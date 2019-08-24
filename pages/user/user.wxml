@@ -7,7 +7,7 @@
       <view class='user-top-cen-cen'>
         <view class='user-top-cen-top'>
           <view class='user-tit'>{{userInfo.nickname}}</view>
-          <navigator url='../user-chengjiu/user-chengjiu' class='user-chengjiu-li'>
+          <navigator url='/pages/userAchievement/userAchievement' class='user-chengjiu-li'>
             <icon class='iconfont icon-cgengjiu user-chengjiu'></icon>
             <icon class='iconfont icon-chengjiu1 user-chengjiu'></icon>
             <icon class='iconfont icon-chengjiu2 user-chengjiu'></icon>

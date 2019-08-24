@@ -18,8 +18,8 @@
 // "pages/userAttention/userAttention",       用户 ==>> 关注
 // "pages/userToppingList/userToppingList",   用户==>>置顶
 // "pages/userAddFine/userAddFine",           用户==>>加精
-// "pages/userDownloadList/userDownloadList", 用户==>>下载列表
-// "pages/userAchievement/userAchievement",   用户==>>成就列表
+// "pages/userDownloadList/userDownloadList", 用户==>>下载
+// "pages/userAchievement/userAchievement",   用户==>>成就
 // "pages/userDelete/userDelete",             用户==>>删除
 // "pages/userArticle/userArticle",           用户==>>文章列表
 // "pages/userBanned/userBanned",             用户==>>禁言
