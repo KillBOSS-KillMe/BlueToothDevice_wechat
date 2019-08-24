@@ -8,12 +8,28 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: {},
     navbar: ['关注的人', '关注的帖子', '粉丝'],
     currentTab: 0,
     guanzhurenList:[],
     guanzhutieziList:[],
     fensiList:[]
   },
+
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+    this.setData({
+      userInfo: app.globalData.userInfo,
+      requestImgUrl: app.globalData.requestImgUrl,
+      originalImgUrl: app.globalData.originalImgUrl
+    })
+    // 关注的人
+    this.userFollow()
+  },
+  // 选择显示项
   navbarTap: function (e) {
     let index = e.currentTarget.dataset.idx
     this.setData({
@@ -30,31 +46,21 @@ Page({
       this.fensiList()
     }
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-    this.userFollow()
-  },
   // 关注的人
   userFollow() {
     if (this.data.guanzhurenList.length > 0) {
       return ''
     }
     wx.request({
-      url: `http://192.168.1.168/User/user_follow`,
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      url: `${app.globalData.requestUrl}/User/user_follow`,
       data: {
-        uid: '1'
+        uid: this.data.userInfo.id
       },
       method: "POST",
-      success: res => {
-        res = app.null2str(res.data)
-        if (res.code == '1') {
-          let guanzhurenList = res.data
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == '1') {
+          let guanzhurenList = data.data.data
           let i = 0
           for (i in guanzhurenList) {
             guanzhurenList[i]["str"] = "0"
@@ -65,7 +71,7 @@ Page({
         } else {
           wx.showModal({
             title: '',
-            content: res.msg,
+            content: data.data.msg,
             showCancel: false
           })
         }
@@ -77,26 +83,22 @@ Page({
     if (this.data.guanzhutieziList.length > 0) {
       return ''
     }
-    var that = this;
     wx.request({
-      url: `http://192.168.1.168/User/follow_post`,
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      url: `${app.globalData.requestUrl}/User/follow_post`,
       data: {
-        uid: '1'
+        uid: this.data.userInfo.id
       },
       method: "POST",
-      success: res => {
-        res = app.null2str(res.data)
-        if (res.code == '1') {
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == '1') {
           this.setData({
-            guanzhutieziLists: res.data
+            guanzhutieziLists: data.data.data
           })
         } else {
           wx.showModal({
             title: '',
-            content: res.msg,
+            content: data.data.msg,
             showCancel: false
           })
         }
@@ -109,18 +111,15 @@ Page({
       return ''
     }
     wx.request({
-      url: `http://192.168.1.168/User/user_fans`,
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      url: `${app.globalData.requestUrl}/User/user_fans`,
       data: {
-        uid: '2'
+        uid: this.data.userInfo.id
       },
       method: "POST",
-      success: res => {
-        res = app.null2str(res.data)
-        if (res.code == '1') {
-          let fensiList = res.data
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == '1') {
+          let fensiList = data.data.data
           let i = 0
           for (i in fensiList) {
             fensiList[i]["str"] = "0"
@@ -131,7 +130,7 @@ Page({
         } else {
           wx.showModal({
             title: '',
-            content: res.msg,
+            content: data.data.msg,
             showCancel: false
           })
         }
@@ -148,49 +147,10 @@ Page({
       state: e.currentTarget.dataset.key,
     });
   },
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   },
 

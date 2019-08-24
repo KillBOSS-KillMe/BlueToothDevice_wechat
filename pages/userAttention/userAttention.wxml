@@ -1,6 +1,8 @@
 <!--导航条-->
 <view class="navbar">
-  <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+  <block class="guanzhurenList" wx:for="{{navbar}}" wx:key="{{index}}">
+    <text class="item {{currentTab==index ? 'active' : ''}}" bindtap="navbarTap">{{item}}</text>
+  </block>
 </view>
 
 <!-- 关注的人 -->
