@@ -4,7 +4,7 @@
     <view class='in-sec-left'>
       <view class='in-sec-input'>
         <icon class='iconfont icon-sousuo'></icon>
-        <input class='in-input' placeholder='请输入文件名或备注信息'></input>
+        <input class='in-input' bindinput="getSearch" placeholder='请输入文件名或备注信息'></input>
       </view>
     </view>
     <view class='in-sec-right'>

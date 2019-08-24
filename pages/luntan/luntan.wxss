@@ -39,6 +39,7 @@
 }
 
 .in-input {
+  width: 100%;
   height: 60rpx;
   font-size: 26rpx;
   color: rgba(178, 178, 178, 1);

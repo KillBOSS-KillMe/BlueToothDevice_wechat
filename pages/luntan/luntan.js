@@ -88,13 +88,14 @@ Page({
       method: 'POST',
       data: {
         uid: this.data.userInfo.id,
-        page: 0
+        page: this.data.articleList.length/5
       },
       success: data => {
         console.log(data)
         data = app.null2str(data)
         if (data.data.code == 1) {
           this.setData({
+            articleListAll: data.data.data,
             articleList: data.data.data
           })
           console.log(this.data.articleList)
@@ -102,6 +103,27 @@ Page({
           wx.showModal({
             title: '',
             content: data.data.msg
+          })
+        }
+      }
+    })
+  },
+  getSearch(e) {
+    wx.request({
+      url: `${app.globalData.requestUrl}/Forum/search`,
+      method: 'POST',
+      data: {
+        title: e.detail.value
+      },
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          this.setData({
+            articleList: data.data.data
+          })
+        } else {
+          this.setData({
+            articleList: this.data.articleListAll
           })
         }
       }
