@@ -58,7 +58,7 @@
               <text>{{item.comment}}</text>
               <text>条</text>
             </view>
-            <view class='luntanConBot-right' bindtap="articleCollection" data-index="{{index}}">
+            <view class='luntanConBot-right' bindtap="articleCollection" data-follow="{{item.is_follow}}" data-index="{{index}}">
               <icon class="iconfont icon-shoucang {{item.is_follow == 1?'active':''}}"></icon>
               <text>{{item.follow}}</text>
             </view>

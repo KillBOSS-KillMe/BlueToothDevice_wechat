@@ -109,22 +109,32 @@ Page({
   },
   // 文章收藏
   articleCollection(e) {
-    let articleNode = this.data.articleList[e.currentTarget.dataset.index]
+    let index = e.currentTarget.dataset.index
+    let articleNode = this.data.articleList[index]
+    let follow = e.currentTarget.dataset.follow
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/followPost`,
       method: 'POST',
       data: {
         uid: this.data.userInfo.id,
-        pid: articleNode.id
+        pid: articleNode.id,
+        type: parseInt(follow)
       },
       success: data => {
-        console.log(data)
         data = app.null2str(data)
         if (data.data.code == 1) {
+          if (follow == 0) {
+            articleNode["is_follow"] = 1
+            articleNode["follow"] = articleNode.follow + 1
+          } else {
+            articleNode["is_follow"] = 0
+            articleNode["follow"] = articleNode.follow - 1
+          }
+          let articleList = this.data.articleList
+          articleList[index] = articleNode
           this.setData({
-            articleList: data.data.data
+            articleList: articleList
           })
-          console.log(this.data.articleList)
         } else {
           wx.showModal({
             title: '',
