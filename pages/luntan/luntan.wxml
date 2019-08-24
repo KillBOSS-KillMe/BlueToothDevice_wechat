@@ -64,7 +64,7 @@
             </view>
           </view>
           <!-- 评论 -->
-          <view class="comment">
+          <!-- <view class="comment">
             <view class="comment-i" wx:for="{{1}}" wx:key="{{index}}">
               <image src="/image/luntan1.jpg" style="width: 56rpx; height: 56rpx;"></image>
               <view class="comment-right">
@@ -99,7 +99,7 @@
                 </view>
               </view>
             </view>
-          </view>
+          </view> -->
         </view>
       </view>
     </view>

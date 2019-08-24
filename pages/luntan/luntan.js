@@ -4,7 +4,7 @@ const app = getApp()
 Page({
   data: {
     logs: [],
-    articleList: [],
+    articleListAll: [],
     articleList: [],
     requestImgUrl: '',
     originalImgUrl: ''
@@ -38,7 +38,12 @@ Page({
         // console.log(data)
         data = app.null2str(data)
         if (data.data.code == 1) {
-          let list = this.articleListAll.concat(data.data.data)
+          data = data.data.data
+          let i = 0
+          for (i in data) {
+            data[i]['createTime'] = app.transformTime(data[i].createTime)
+          }
+          let list = this.data.articleListAll.concat(data)
           this.setData({
             articleListAll: list,
             articleList: list

@@ -22,25 +22,31 @@ Page({
       requestImgUrl: app.globalData.requestImgUrl,
       originalImgUrl: app.globalData.originalImgUrl
     })
+    // 获取文章详情
+    this.getArticleList(options.id)
+  },
+  // 获取文章详情
+  getArticleList(id) {
     wx.request({
       url: `${app.globalData.requestUrl}/User/post_info`,
       data: {
-        post_id: options.id
+        post_id: id
       },
       method: "POST",
       success: data => {
-        console.log(data)
+        // console.log(data)
         data = app.null2str(data)
         if (data.data.code == 1) {
+          data = data.data.data[0]
+          data['createTime'] = app.transformTime(data.createTime)
           this.setData({
-            articleDetail: data.data.data[0]
+            articleDetail: data
           })
         }
-
-
       }
     })
   },
+  // 收藏与取消收藏
   articleCollection(e) {
     let articleNode = this.data.articleDetail
     let follow = e.currentTarget.dataset.follow
