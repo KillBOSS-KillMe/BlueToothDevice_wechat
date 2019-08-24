@@ -42,6 +42,8 @@ Page({
         if (data.data.code == 1) {
           data = data.data.data[0]
           data['createTime'] = app.transformTime(data.createTime)
+          // 文章内容存入全局，在评论回复页使用
+          app.globalData.articleDetail = data
           this.setData({
             articleDetail: data
           })
@@ -105,6 +107,12 @@ Page({
           })
         }
       }
+    })
+  },
+  // 进入评论页
+  goComment() {
+    wx.navigateTo({
+      url: '/pages/tiezi-pinglun/tiezi-pinglun',
     })
   },
   /**

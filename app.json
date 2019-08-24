@@ -1,6 +1,7 @@
   {
   "usingComponents": {},
   "pages": [
+    
     "pages/index/index",
     "pages/test1/test1",
     "pages/user-guanzhu/user-guanzhu",

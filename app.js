@@ -28,6 +28,7 @@ App({
   globalData: {
     userInfo: {},
     groupList: [],
+    articleDetail: {},
     requestUrl: 'http://47.104.91.26',
     // 缩略图
     requestImgUrl: 'http://47.104.91.26/upload/tailor/',

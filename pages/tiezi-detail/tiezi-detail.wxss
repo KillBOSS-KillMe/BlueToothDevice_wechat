@@ -43,29 +43,30 @@ border-radius:50%;
   margin-left: 9rpx;
 }
 /* 内容部分 */
-.luntan-from {
+/* .luntan-from {
   width: 37%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+} */
 
 .form-con {
   font-size: 24rpx;
   color: #424242;
 }
 
-.luntan-from image {
+/* .luntan-from image {
   width: 60rpx;
   height: 60rpx;
   border-radius: 50%;
-}
+} */
 
 .luntan-from {
-  width: 58%;
+  width: 100%;
   margin-top: 20rpx;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .form-con {
@@ -76,7 +77,8 @@ border-radius:50%;
 .luntan-from image {
   width: 40rpx;
   height: 40rpx;
-  border-radius: 50%;
+  border-radius: 40rpx;
+  padding: 0 20rpx;
 }
 
 .xiangmu {
