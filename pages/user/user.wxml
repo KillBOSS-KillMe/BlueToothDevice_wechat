@@ -6,7 +6,7 @@
       </view>
       <view class='user-top-cen-cen'>
         <view class='user-top-cen-top'>
-          <text class='user-tit'>{{userInfo.nickName}}</text>
+          <view class='user-tit'>{{userInfo.nickname}}</view>
           <navigator url='../user-chengjiu/user-chengjiu' class='user-chengjiu-li'>
             <icon class='iconfont icon-cgengjiu user-chengjiu'></icon>
             <icon class='iconfont icon-chengjiu1 user-chengjiu'></icon>
@@ -48,22 +48,22 @@
 <view class='user-cen'>
   <view class='user-cen-con'>
     <view class='user-nav-li'>
-      <navigator url='../user-guanzhu/user-guanzhu' class='user-nav-li-li'>
+      <navigator url='/pages/userAttention/userAttention' class='user-nav-li-li'>
         <text class='user-count'>{{follow_num}}</text>
         <text class='user-nav-con'>关注</text>
       </navigator>
     </view>
     <view class='user-nav-li'>
-      <navigator url='../user-xiazai/user-xiazai' class='user-nav-li-li'>
+      <navigator url='/pages/userDownloadList/userDownloadList' class='user-nav-li-li'>
         <text class='user-count'>{{download_num}}</text>
         <text class='user-nav-con'>下载</text>
       </navigator>
     </view>
     <view class='user-nav-li' bindtap="tieziTap">
-      <view class='user-nav-li-li'>
+      <navigator url='/pages/userArticle/userArticle' class='user-nav-li-li'>
         <text class='user-count'>{{release_num}}</text>
         <text class='user-nav-con'>帖子</text>
-      </view>
+      </navigator>
     </view>
   </view>
 </view>
@@ -73,7 +73,7 @@
     <view class='user-bot-tit'>应用功能</view>
     <view class='user-bot-jilu'>
       <view class='user-jilu-li'>
-        <navigator url='../user-shanchu/user-shanchu'>
+        <navigator url='/pages/userDelete/userDelete'>
           <view class='user-li-icon'>
             <icon class='iconfont icon-delete user-li-icon-con'></icon>
           </view>
@@ -81,7 +81,7 @@
         </navigator>
       </view>
       <view class='user-jilu-li'>
-        <navigator url='../user-zhiding/user-zhiding'>
+        <navigator url='/pages/userToppingList/userToppingList'>
           <view class='user-li-icon'>
             <icon class='iconfont icon-zhiding user-li-icon-con'></icon>
           </view>
@@ -89,7 +89,7 @@
         </navigator>
       </view>
       <view class='user-jilu-li'>
-        <navigator url='../user-jinyan/user-jinyan'>
+        <navigator url='/pages/userBanned/userBanned'>
           <view class='user-li-icon'>
             <icon class='iconfont icon-jinyan user-li-icon-con'></icon>
           </view>
@@ -97,7 +97,7 @@
         </navigator>
       </view>
       <view class='user-jilu-li' bindtap='lanya'>
-        <navigator url='../user-jiajing/user-jiajing'>
+        <navigator url='/pages/userAddFine/userAddFine'>
           <view class='user-li-icon'>
             <icon class='iconfont icon-jiajing user-li-icon-con'></icon>
           </view>

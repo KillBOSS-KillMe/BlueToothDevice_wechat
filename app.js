@@ -1,4 +1,28 @@
 //app.js
+// "pages/index/index",                       首页
+
+
+// "pages/newArticle/newArticle",             发布文章
+// "pages/forum/forum",                       论坛
+// "pages/gameList/gameList",                 游戏列表
+// "pages/gameHeatList/gameHeatList",         热门游戏列表
+// "pages/gameComment/gameComment",           游戏评论
+// "pages/articleDetail/articleDetail",       文章详情
+// "pages/bluetooth/bluetooth",               蓝牙
+// "pages/userMessage/userMessage",           消息列表
+
+// "pages/homePage/homePage",                 官网
+// "pages/upData/upData",                     数据上传
+// "pages/search/search",                     搜搜
+// "pages/user/user",                         用户==>>首页
+// "pages/userAttention/userAttention",       用户 ==>> 关注
+// "pages/userToppingList/userToppingList",   用户==>>置顶
+// "pages/userAddFine/userAddFine",           用户==>>加精
+// "pages/userDownloadList/userDownloadList", 用户==>>下载列表
+// "pages/userAchievement/userAchievement",   用户==>>成就列表
+// "pages/userDelete/userDelete",             用户==>>删除
+// "pages/userArticle/userArticle",           用户==>>文章列表
+// "pages/userBanned/userBanned",             用户==>>禁言
 App({
   onLaunch: function () {
     // 展示本地存储能力

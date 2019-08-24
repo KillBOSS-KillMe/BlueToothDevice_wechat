@@ -165,11 +165,5 @@ Page({
         }
       }
     })
-  },
-  tieziTap(e) {
-    wx.switchTab({
-      url: `/pages/luntan/luntan?id=${e.currentTarget.dataset.id}`
-    })
   }
-
 })

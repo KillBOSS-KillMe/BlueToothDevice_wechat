@@ -116,31 +116,30 @@ Page({
       }
     })
   },
-  goQuanxian(e) {
-    wx.navigateTo({
-      url: `/pages/yh-quanxian/yh-quanxian?id=${e.currentTarget.dataset.id}`,
-      success: function (res) { },
-    })
-  },
+  // goQuanxian(e) {
+  //   wx.navigateTo({
+  //     url: `/pages/yh-quanxian/yh-quanxian?id=${e.currentTarget.dataset.id}`,
+  //     success: function (res) { },
+  //   })
+  // },
   goDetail(e) {
     wx.navigateTo({
-      url: `/pages/tiezi-detail/tiezi-detail?id=${e.currentTarget.dataset.id}`,
-      success: function (res) { },
+      url: `/pages/articleDetail/articleDetail?id=${e.currentTarget.dataset.id}`
     })
   },
-  goQuanxian(e) {
-    // var userid = e.currentTarget.dataset.userid;
-    // if (type==1){
-    //   wx.navigateTo({
-    //     url: '/pages/quanxian/quanxian',
-    //     success: function(res) {},
-    //     fail: function(res) {},
-    //     complete: function(res) {},
-    //   })
-    // }else if (type==2){
-    wx.navigateTo({
-      url: '/pages/yh-quanxian/yh-quanxian',
-    })
-    // }
-  }
+  // goQuanxian(e) {
+  //   // var userid = e.currentTarget.dataset.userid;
+  //   // if (type==1){
+  //   //   wx.navigateTo({
+  //   //     url: '/pages/quanxian/quanxian',
+  //   //     success: function(res) {},
+  //   //     fail: function(res) {},
+  //   //     complete: function(res) {},
+  //   //   })
+  //   // }else if (type==2){
+  //   wx.navigateTo({
+  //     url: '/pages/yh-quanxian/yh-quanxian',
+  //   })
+  //   // }
+  // }
 })
