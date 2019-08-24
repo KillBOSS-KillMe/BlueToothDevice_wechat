@@ -1,36 +1,34 @@
   {
   "usingComponents": {},
   "pages": [
-    
     "pages/index/index",
-    "pages/test1/test1",
-    "pages/user-guanzhu/user-guanzhu",
-    "pages/sc-chose/sc-chose",
-    "pages/test/test",
-    "pages/luntan/luntan",
-    "pages/game-pinglun/game-pinglun",
-    "pages/user-jinyan/user-jinyan",
-    "pages/tiezi-detail/tiezi-detail",
-    "pages/lanyatext/lanya",
-    "pages/user-xiaoxi/user-xiaoxi",
+    "pages/userAttention/userAttention",
+    "pages/userBanned/userBanned",
+    "pages/newArticle/newArticle",
+    "pages/forum/forum",
+    "pages/gameList/gameList",
+    "pages/gameHeatList/gameHeatList",
+    "pages/gameComment/gameComment",
+    "pages/articleDetail/articleDetail",
+    "pages/bluetooth/bluetooth",
+    "pages/userMessage/userMessage",
     "pages/user/user",
-    "pages/shangchuan/shangchuan",
-    "pages/game-shuru/game-shuru",
-    "pages/game-chose/game-chose",
-    "pages/guanwang/guanwang",
-    "pages/gamedan/gamedan",
-    "pages/sc-chose1/sc-chose1",
-    "pages/yh-quanxian/yh-quanxian",
-    "pages/quanxian/quanxian",
+    "pages/homePage/homePage",
+    "pages/upData/upData",
     "pages/search/search",
-    "pages/user-zhiding/user-zhiding",
-    "pages/user-jiajing/user-jiajing",
+    "pages/userToppingList/userToppingList",
+    "pages/userAddFine/userAddFine",
+    "pages/userDownloadList/userDownloadList",
+    "pages/userAchievement/userAchievement",
+    "pages/userDelete/userDelete",
+    "pages/userArticle/userArticle",
+    
+    
+    
+    
     "pages/gw-xiazai/gw-xiazai",
-    "pages/user-xiazai/user-xiazai",
-    "pages/user-chengjiu/user-chengjiu",
-    "pages/tiezi-pinglun/tiezi-pinglun",
-    "pages/user-tiezi/user-tiezi",
-    "pages/user-shanchu/user-shanchu"
+    "pages/quanxian/quanxian",
+    "pages/yh-quanxian/yh-quanxian"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -49,7 +47,7 @@
         "text": "设备"
       },
       {
-        "pagePath": "pages/luntan/luntan",
+        "pagePath": "pages/forum/forum",
         "selectedIconPath": "image/luntan1.png",
         "iconPath": "image/luntan2.png",
         "text": "论坛"
@@ -57,7 +55,7 @@
       {
         "iconPath": "image/guanwang2.png",
         "selectedIconPath": "image/guanwang1.png",
-        "pagePath": "pages/guanwang/guanwang",
+        "pagePath": "pages/homePage/homePage",
         "text": "官网"
       },
       {
