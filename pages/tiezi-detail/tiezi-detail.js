@@ -18,12 +18,15 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      options: options,
       userInfo: app.globalData.userInfo,
       requestImgUrl: app.globalData.requestImgUrl,
       originalImgUrl: app.globalData.originalImgUrl
     })
+    
     // 获取文章详情
     this.getArticleList(options.id)
+    this.getCommentList(options.id)
   },
   // 获取文章详情
   getArticleList(id) {
@@ -42,6 +45,30 @@ Page({
           this.setData({
             articleDetail: data
           })
+        }
+      }
+    })
+  },
+  // 获取文章评论
+  getCommentList(id) {
+    console.clear()
+    console.log(123123)
+    wx.request({
+      url: `${app.globalData.requestUrl}/User/post_comment`,
+      data: {
+        post_id: id,
+        page: 0
+      },
+      method: "POST",
+      success: data => {
+        console.log(data)
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          // data = data.data.data[0]
+          // data['createTime'] = app.transformTime(data.createTime)
+          // this.setData({
+          //   articleDetail: data
+          // })
         }
       }
     })
