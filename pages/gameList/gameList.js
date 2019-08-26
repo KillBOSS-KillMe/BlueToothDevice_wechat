@@ -34,7 +34,7 @@ Page({
           data = data.data.data
           let i = 0
           for (i in data) {
-            data[i]['str'] = 0
+            data[i]['str'] = '0'
           }
           this.setData({
             listData: data,
@@ -51,21 +51,34 @@ Page({
   },
   selGame(e) {
     let index = e.currentTarget.dataset.index
-    let gameStr = e.currentTarget.dataset.index
+    let gameStr = this.data.listData[index].str
     let listData = this.data.listData
     let selGameList = this.data.selGameList
-    if (gameStr == '1') {
-      listData[index]['str'] = '0'
-      selGameList.splice(index, 1)
+    if (this.data.downloadStr) {
+      if (gameStr == '1') {
+        listData[index]['str'] = '0'
+        let i = 0
+        for (i in selGameList) {
+          if (listData[index].id == selGameList[i].id) {
+            // 在选中对象数组中删除该项
+            selGameList.splice(i, 1)
+          }
+        }
+      } else {
+        listData[index]['str'] = '1'
+        selGameList.push(listData[index])
+      }
+      this.setData({
+        listData: listData,
+        selGameList: selGameList
+      })
     } else {
-      listData[index]['str'] = '1'
-      selGameList.push(listData[index])
+      // 没有在下载状态下，进入项目详情
+      wx.navigateTo({
+        url: `/pages/gameDetail/gameDetail?id=${this.data.listData[index].id}`
+      })
     }
     
-    this.setData({
-      listData: listData,
-      selGameList: selGameList
-    })
   },
   // 下载按钮点击的事件
   download() {
