@@ -2,19 +2,19 @@
   <view class='pl-top-cen'>
     <view class='pl-top-xx'>
       <view class='pl-top-img'>
-        <image src='/image/luntan1.jpg'></image>
+        <image src='{{imgUrl + options.img}}'></image>
       </view>
       <view class='pl-top-right'>
-        <text class='pl-top-tit'>狐狸的尾巴</text>
+        <text class='pl-top-tit'>{{options.name}}</text>
         <view class='pl-top-txt'>
           <text class='pl-pingfen'>下载</text>
-          <text class='pl-score'>10</text>
+          <text class='pl-score'>{{options.d_num}}</text>
           <text class='pl-score-ci'>次</text>
         </view>
       </view>
     </view>
-    <block class="pinglunList" wx:for="{{pinglunList}}" wx:key="{{index}}" wx:for-item="item">
-      <view class='pl-cen'>
+    <block class="pinglunList" wx:for="{{commentList}}" wx:key="{{index}}" wx:for-item="item">
+      <view class='pl-cen' data-id="{{item.id}}">
         <view class='pl-cen-top'>
           <view class='pl-cen-left'>
             <text class='pl-cen-txt'>{{item.nickname}}</text>

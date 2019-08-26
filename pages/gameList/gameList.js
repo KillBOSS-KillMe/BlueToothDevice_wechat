@@ -75,8 +75,9 @@ Page({
       })
     } else {
       // 没有在下载状态下，进入项目详情
+      let dataNode = this.data.listData[index]
       wx.navigateTo({
-        url: `/pages/gameDetail/gameDetail?id=${this.data.listData[index].id}`
+        url: `/pages/gameDetail/gameDetail?id=${dataNode.id}&name=${dataNode.name}&img=${dataNode.img}&c_num=${dataNode.c_num}&d_num=${dataNode.d_num}`
       })
     }
     

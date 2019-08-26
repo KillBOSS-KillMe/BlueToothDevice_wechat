@@ -7,15 +7,19 @@ Page({
   data: {
     userInfo: {},
     imgUrl: '',
-    pinglunList:[]
+    commentList:[],
+    options: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // gameDetail?id=${dataNode.id}&img=${dataNode.img}
+    // &c_num=${dataNode.c_num}&d_num=${dataNode.d_num}`
+    console.log(options)
     this.setData({
-      gameId: options.id,
+      options: options,
       userInfo: app.globalData.userInfo,
       imgUrl: app.globalData.imgUrl
     })
@@ -24,12 +28,10 @@ Page({
   // 获取游戏详情
   getGameDetali(id) {
     wx.request({
-      url: `${app.globalData.requestUrl}/Official/comment`,
+      url: `${app.globalData.requestUrl}/Official/comment_list`,
       method: "POST",
       data: {
-        game_id: id,
-        uid: this.data.userInfo.id,
-        content: '评论评论评论评论评论评论评论评论'
+        game_id: id
       },
       success: data => {
         console.log(data)
@@ -38,10 +40,10 @@ Page({
           data = data.data.data
           let i = 0
           for (i in data) {
-            data[i]['str'] = '0'
+            data[i]['createTime'] = app.transformTime(data[i].createTime)
           }
           this.setData({
-            listData: data,
+            commentList: data,
           })
         } else {
           wx.showModal({
