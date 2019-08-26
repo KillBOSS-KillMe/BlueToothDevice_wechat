@@ -18,6 +18,9 @@ Page({
     // gameDetail?id=${dataNode.id}&img=${dataNode.img}
     // &c_num=${dataNode.c_num}&d_num=${dataNode.d_num}`
     console.log(options)
+    wx.setNavigationBarTitle({
+      title: options.name
+    })
     this.setData({
       options: options,
       userInfo: app.globalData.userInfo,
