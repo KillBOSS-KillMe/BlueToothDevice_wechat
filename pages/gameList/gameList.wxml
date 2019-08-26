@@ -1,10 +1,10 @@
 <view class="yx-cen">
   <view class='yx-cen-con'>
-    <block class="gameList" wx:for="{{gameList}}" wx:key="item">
+    <block class="gameList" wx:for="{{listData}}" wx:key="item">
       <view class='yx-li' data-id="{{item.id}}">
         <view class='yx-li-img'>
-          <image src='{{item.pic1}}'></image>
-          <view class='yx-li-img-border yx-li-img-border1'></view>
+          <image src='{{imgUrl + item.file}}'></image>
+          <view wx:if="{{downloadStr}}" data-index="{{index}}" bindtap="selGame" class="yx-li-img-border {{item.str == '1'?'yx-li-img-border1':''}}"></view>
         </view>
         <view class='yx-li-txt'>{{item.name}}</view>
       </view>
@@ -15,6 +15,8 @@
 <view class='yx-bot'>
   <view class='hr'></view>
   <view class='yx-bot-cen'>
-    <button class='yx-log'>下载</button>
+    <button class='yx-log' bindtap="download">
+      下载<text wx:if="{{downloadStr}}">({{selList.length}})</text>
+    </button>
   </view>
 </view>
