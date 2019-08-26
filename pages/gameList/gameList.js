@@ -20,6 +20,7 @@ Page({
     })
     this.getList(options.id)
   },
+  // 获取游戏列表
   getList(id) {
     wx.request({
       url: `${app.globalData.requestUrl}/Official/catalog`,

@@ -1,66 +1,70 @@
-// pages/quanxian/quanxian.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userInfo: {},
+    imgUrl: '',
+    con: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      gameId: options.id,
+      userInfo: app.globalData.userInfo
+    })
+    
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  getCommentCon(e) {
+    this.setData({
+      con: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  // 评论提交
+  upComment() {
+    if (this.data.con == '') {
+      wx.showModal({
+        title: '',
+        content: '评论内容不能为空',
+        showCancel: false
+      })
+      return false
+    }
+    wx.request({
+      url: `${app.globalData.requestUrl}/Official/comment`,
+      method: "POST",
+      data: {
+        game_id: this.data.gameId,
+        uid: this.data.userInfo.id,
+        content: this.data.con
+      },
+      success: data => {
+        console.log(data)
+        data = app.null2str(data)
+        if (data.data.code == '1') {
+          setTimeout(function() {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 2000)
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'success',
+            duration: 2000
+          })
+        } else {
+          wx.showModal({
+            title: '',
+            content: data.data.msg,
+            showCancel: false
+          })
+        }
+      }
+    })
   }
 })

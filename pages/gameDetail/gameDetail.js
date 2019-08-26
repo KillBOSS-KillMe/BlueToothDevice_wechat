@@ -1,4 +1,3 @@
-// pages/quanxian/quanxian.js
 const app = getApp();
 Page({
 
@@ -6,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: {},
+    imgUrl: '',
     pinglunList:[]
   },
 
@@ -13,33 +14,42 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    let id = options.id
-    var that = this;
+    this.setData({
+      gameId: options.id,
+      userInfo: app.globalData.userInfo,
+      imgUrl: app.globalData.imgUrl
+    })
+    this.getGameDetali(options.id)
+  },
+  // 获取游戏详情
+  getGameDetali(id) {
     wx.request({
-      url: `${app.globalData.requestUrl}/Official/comment_list`,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: {
-        game_id: '1'
-      },
+      url: `${app.globalData.requestUrl}/Official/comment`,
       method: "POST",
-      success: res => {
-        console.log(res);
-        res = app.null2str(res.data)
-        if (res.code == '1') {
+      data: {
+        game_id: id,
+        uid: this.data.userInfo.id,
+        content: '评论评论评论评论评论评论评论评论'
+      },
+      success: data => {
+        console.log(data)
+        data = app.null2str(data)
+        if (data.data.code == '1') {
+          data = data.data.data
+          let i = 0
+          for (i in data) {
+            data[i]['str'] = '0'
+          }
           this.setData({
-            pinglunList: res.data,
+            listData: data,
           })
         } else {
           wx.showModal({
             title: '',
-            content: res.msg,
+            content: data.data.msg,
             showCancel: false
           })
         }
-        
       }
     })
   },

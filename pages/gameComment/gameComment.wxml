@@ -1,7 +1,7 @@
 <view class="sr-top">
   <view class='sr-top-cen'>
     <view class='sr-textarea'>
-      <textarea placeholder='请输入...' class='sr-textarea-con' maxlength="1" maxlength="3000"></textarea>
+      <textarea bindinput="getCommentCon" placeholder='输入评论' class='sr-textarea-con' maxlength="1" maxlength="3000"></textarea>
     </view>
   </view>
 </view>
@@ -10,6 +10,6 @@
 <view class='yx-bot'>
   <view class='hr'></view>
   <view class='yx-bot-cen'>
-    <button class='yx-log'>提交</button>
+    <button class='yx-log' bindtap="upComment">提交</button>
   </view>
 </view>
