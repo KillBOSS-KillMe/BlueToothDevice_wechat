@@ -12,7 +12,7 @@
               <text class='gw-li-tit-eng'>{{item.introduce}}</text>
             </view>
             <view class='gw-li-nav'>
-              <icon class='iconfont icon-fujian gw-icon-right'></icon>
+              <icon class='iconfont iconfujian1 gw-icon-right'></icon>
               <text class='gw-li-count'>{{item.num}}</text>
             </view>
           </view>

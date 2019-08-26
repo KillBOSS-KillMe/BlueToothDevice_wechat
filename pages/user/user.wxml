@@ -8,11 +8,11 @@
         <view class='user-top-cen-top'>
           <view class='user-tit'>{{userInfo.nickname}}</view>
           <navigator url='/pages/userAchievement/userAchievement' class='user-chengjiu-li'>
-            <icon class='iconfont icon-cgengjiu user-chengjiu'></icon>
-            <icon class='iconfont icon-chengjiu1 user-chengjiu'></icon>
-            <icon class='iconfont icon-chengjiu2 user-chengjiu'></icon>
-            <icon class='iconfont icon-chengjiu3 user-chengjiu'></icon>
-            <icon class='iconfont icon-chengjiu4 user-chengjiu'></icon>
+            <icon class='iconfont iconchengjiupingjia'></icon>
+            <icon class='iconfont iconchengjiupingjia'></icon>
+            <icon class='iconfont iconchengjiupingjia'></icon>
+            <icon class='iconfont iconchengjiupingjia'></icon>
+            <icon class='iconfont iconchengjiupingjia'></icon>
           </navigator>
         </view>
         <view class='user-top-cen-bot' bindtap="newGroup">
@@ -49,19 +49,19 @@
   <view class='user-cen-con'>
     <view class='user-nav-li'>
       <navigator url='/pages/userAttention/userAttention' class='user-nav-li-li'>
-        <text class='user-count'>{{follow_num}}</text>
+        <text class='user-count'>{{follow_num}}111</text>
         <text class='user-nav-con'>关注</text>
       </navigator>
     </view>
     <view class='user-nav-li'>
       <navigator url='/pages/userDownloadList/userDownloadList' class='user-nav-li-li'>
-        <text class='user-count'>{{download_num}}</text>
+        <text class='user-count'>{{download_num}}111</text>
         <text class='user-nav-con'>下载</text>
       </navigator>
     </view>
     <view class='user-nav-li' bindtap="tieziTap">
       <navigator url='/pages/userArticle/userArticle' class='user-nav-li-li'>
-        <text class='user-count'>{{release_num}}</text>
+        <text class='user-count'>{{release_num}}111</text>
         <text class='user-nav-con'>帖子</text>
       </navigator>
     </view>
@@ -75,7 +75,7 @@
       <view class='user-jilu-li'>
         <navigator url='/pages/userDelete/userDelete'>
           <view class='user-li-icon'>
-            <icon class='iconfont icon-delete user-li-icon-con'></icon>
+            <icon class='iconfont iconshanchu'></icon>
           </view>
           <view class='user-li-txt'>删除记录</view>
         </navigator>
@@ -83,7 +83,7 @@
       <view class='user-jilu-li'>
         <navigator url='/pages/userToppingList/userToppingList'>
           <view class='user-li-icon'>
-            <icon class='iconfont icon-zhiding user-li-icon-con'></icon>
+            <icon class='iconfont iconzhiding'></icon>
           </view>
           <view class='user-li-txt'>置顶记录</view>
         </navigator>
@@ -91,7 +91,7 @@
       <view class='user-jilu-li'>
         <navigator url='/pages/userBanned/userBanned'>
           <view class='user-li-icon'>
-            <icon class='iconfont icon-jinyan user-li-icon-con'></icon>
+            <icon class='iconfont iconjinyan'></icon>
           </view>
           <view class='user-li-txt'>禁言记录</view>
         </navigator>
@@ -99,7 +99,7 @@
       <view class='user-jilu-li' bindtap='lanya'>
         <navigator url='/pages/userAddFine/userAddFine'>
           <view class='user-li-icon'>
-            <icon class='iconfont icon-jiajing user-li-icon-con'></icon>
+            <icon class='iconfont iconhuatijiajingicon'></icon>
           </view>
           <view class='user-li-txt'>加精记录</view>
         </navigator>

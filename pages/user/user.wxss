@@ -51,28 +51,48 @@
   justify-content: center;
 }
 
-.user-chengjiu {
+.user-chengjiu-li .iconfont {
   font-size: 28rpx;
 }
-
-.icon-cgengjiu {
-  color: #0cebf9;
+.user-chengjiu-li .iconfont:nth-child(1) {
+  color: #0CEBF9
+}
+.user-chengjiu-li .iconfont:nth-child(2) {
+  color: #FFB135
+}
+.user-chengjiu-li .iconfont:nth-child(3) {
+  color: #A235FF
+}
+.user-chengjiu-li .iconfont:nth-child(4) {
+  color: #8EC910
+}
+.user-chengjiu-li .iconfont:nth-child(5) {
+  color: #E3434A
 }
 
-.icon-chengjiu1 {
-  color: #ffb135;
+.iconhuatijiajingicon {
+  color: #fff;
+  background-color:  #0cebf9;
+}
+
+.iconshanchu {
+  color: #fff;
+  background-color:  #ffb135;
 }
 
 .icon-chengjiu2 {
-  color: #a235ff;
+  color: #fff;
+  background-color:  #a235ff;
 }
 
-.icon-chengjiu3 {
-  color: #8ec910;
+.iconjinyan {
+  color: #fff;
+  background-color:  #8ec910;
 }
 
-.icon-chengjiu4 {
-  color: #e3434a;
+.iconzhiding {
+  color: #fff;
+  background-color:  #e3434a;
 }
 
 .user-top-cen-bot {
@@ -200,7 +220,14 @@
   text-align: center;
   margin-bottom: 74rpx;
 }
-
+.user-jilu-li icon {
+  width: 85rpx;
+  height: 85rpx;
+  border-radius: 43rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .user-li-icon {
   width: 85rpx;
   height: 85rpx;

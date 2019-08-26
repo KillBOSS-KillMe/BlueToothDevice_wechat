@@ -42,7 +42,7 @@
     </block>
     <view class='in-con-nav' bindtap="newGroup">
       <view class='in-con-icon'>
-        <icon class='iconfont icon-wenjianjia02'></icon>
+        <icon class='iconfont icontianjiawenjian'></icon>
       </view>
       <text class='in-group'>添加组</text>
     </view>
@@ -60,7 +60,7 @@
       bindtouchend='dragEnd'>
         <view class='aihua01-left' data-id="{{item.id}}" data-groupid="{{item.group_id}}">
           <text class='in-count'>{{index + 1}}</text>
-          <icon class='iconfont icon-jiaoben wjj-icon'></icon>
+          <icon class='iconfont iconjiaoben wjj-icon'></icon>
           <!-- <icon wx:if="{{item.type == '1'}}" class='iconfont icon-jiaoben wjj-icon'></icon> -->
           <!-- <icon wx:if="{{item.type == '2'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
           <icon wx:if="{{item.type == '3'}}" class='iconfont icon-jiaoben wjj-icon'></icon>

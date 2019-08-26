@@ -116,6 +116,7 @@ display: block;
 }
 .in-con-icon{
   background:#F4F4F4;
+  color: #C7C7C7;
 }
 .icon-wenjianjia02{
   color:#C7C7C7;

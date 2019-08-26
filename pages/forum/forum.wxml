@@ -36,7 +36,7 @@
           </view>
           <view class="file">
             <view wx:for="{{5}}" wx:if="{{index < 4}}" class="file-item">
-              <icon class="iconfont icon-jiaoben file-item-icon"></icon>
+              <icon class="iconfont iconjiaoben file-item-icon"></icon>
               <view class="file-h overflow-one">项目计划书项目计划书</view>
               <view class="file-t overflow-one">下载102次下载102次</view>
             </view>
@@ -49,17 +49,17 @@
           </view>
           <view class='luntanCon-bot'>
             <view class='luntanConBot-left'>
-              <icon class='iconfont icon-chakan'></icon>
+              <icon class='iconfont iconxiaoxi1'></icon>
               <text>{{item.see}}</text>
               <text>次</text>
             </view>
             <view class='luntanConBot-con'>
-              <icon class='iconfont icon-pinglun'></icon>
+              <icon class='iconfont iconxiaoxi'></icon>
               <text>{{item.comment}}</text>
               <text>条</text>
             </view>
             <view class='luntanConBot-right' bindtap="articleCollection" data-follow="{{item.is_follow}}" data-index="{{index}}">
-              <icon class="iconfont icon-shoucang {{item.is_follow == 1?'active':''}}"></icon>
+              <icon class="iconfont icontubiaozhizuomoban {{item.is_follow == 1?'active':''}}"></icon>
               <text>{{item.follow}}</text>
             </view>
           </view>

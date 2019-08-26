@@ -271,7 +271,14 @@
   display: flex;
   justify-content: center;
 }
-
+.luntanConBot-left .iconfont,
+.luntanConBot-con .iconfont,
+.luntanConBot-right .iconfont {
+  font-size: 30rpx !important;
+  padding-right: 10rpx;
+  display: flex;
+  justify-content: center;
+}
 .icon-chakan, .icon-pinglun, .icon-shoucang {
   font-size: 28rpx;
   margin-right: 16rpx;
@@ -367,6 +374,9 @@
   height: 128rpx;
   font-size: 128rpx;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .file-h{
   color: #424242;
