@@ -14,17 +14,18 @@ page{
   background-color: #F1F1F1;
   width: 510rpx;
   height: auto;
-  padding: 30rpx;
+  padding: 20rpx 30rpx;
   border-radius: 5rpx;
 }
 .setTextImg{
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
 }
 textarea{
-  width: 510rpx;
-  height: auto;
+  width: 480rpx;
+  height: 100rpx;
+  /* height: auto; */
 }
 .upCon{
   width: 110rpx;
@@ -36,4 +37,17 @@ textarea{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.imgList{
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.imgList image{
+  width: 150rpx;
+  height: 150rpx;
+  padding: 10rpx;
 }

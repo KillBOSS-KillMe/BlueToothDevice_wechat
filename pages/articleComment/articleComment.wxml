@@ -5,7 +5,17 @@
       <textarea ></textarea>
       <icon class="iconfont iconadd"></icon>
     </view>
-    <view class="imgList"></view>
+    <view class="imgList">
+      <image src="/image/luntan3.jpg" />
+      <image src="/image/luntan3.jpg" />
+      <image src="/image/luntan3.jpg" />
+      <image src="/image/luntan3.jpg" />
+      <image src="/image/luntan3.jpg" />
+      <image src="/image/luntan3.jpg" />
+      <image src="/image/luntan3.jpg" />
+      <image src="/image/luntan3.jpg" />
+      <image src="/image/luntan3.jpg" />
+    </view>
   </view>
   <view class="upCon">发送</view>
 </view>
