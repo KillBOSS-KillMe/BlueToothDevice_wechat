@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    listData:[],
+    listData: [],
     selGameList: [],
     downloadStr: false
   },
@@ -80,13 +80,42 @@ Page({
         url: `/pages/gameDetail/gameDetail?id=${dataNode.id}&name=${dataNode.name}&img=${dataNode.img}&c_num=${dataNode.c_num}&d_num=${dataNode.d_num}`
       })
     }
-    
+
   },
   // 下载按钮点击的事件
   download() {
     // 选中的项目大于0项，执行下载
     if (this.data.selGameList.length > 0) {
       // 此时进行递归下载
+      let selGameList = this.data.selGameList
+      let did = ''
+      let i = 0
+      for (i in selGameList) {
+        did += selGameList[i].id
+        did += ','
+      }
+      did = did.substring(0, did.length - 1)
+      
+
+      // 单条数据下载
+      wx.downloadFile({
+        url: `${app.globalData.requestUrl + selGameList[0].file}`,
+        success: function (data) {
+          console.log(data);
+          var path = data.tempFilePath;
+          wx.saveImageToPhotosAlbum({
+
+            filePath: path,
+            success(data) {
+              wx.showToast({
+                title: '保存成功',
+                icon: 'success',
+                duration: 2000
+              })
+            }
+          })
+        }
+      })
     } else {
       // 等于0项，修改按钮状态
       if (this.data.downloadStr) {

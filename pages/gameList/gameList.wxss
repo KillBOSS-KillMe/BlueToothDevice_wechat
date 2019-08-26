@@ -45,8 +45,8 @@ margin: 0 auto;
 .yx-li-img-border{
   width:20rpx;
 height:20rpx;
-background:rgba(255,255,255,1);
-border:1px solid rgba(170,170,170,1);
+background:#fff;
+border:1px solid #AAAAAA;
 border-radius:50%;
 position: absolute;
   top: 5rpx;
@@ -54,7 +54,9 @@ position: absolute;
 }
 .yx-li-img-border1{
   /* box-sizing: border-box; */
-  border:4px solid rgba(255,51,190,1);
+  /* border:4px solid rgba(255,51,190,1); */
+  background-color: #FF33BE;
+  border-color: #FF33BE !important;
 }
 .yx-li-txt{
   font-size: 26rpx;
