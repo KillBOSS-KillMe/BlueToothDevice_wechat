@@ -5,7 +5,6 @@
 // "pages/newArticle/newArticle",             发布文章
 // "pages/forum/forum",                       论坛
 // "pages/gameList/gameList",                 游戏列表
-// "pages/gameHeatList/gameHeatList",         热门游戏列表
 // "pages/gameComment/gameComment",           游戏评论
 // "pages/articleDetail/articleDetail",       文章详情
 // "pages/bluetooth/bluetooth",               蓝牙
@@ -54,6 +53,10 @@ App({
     groupList: [],
     articleDetail: {},
     requestUrl: 'http://47.104.91.26',
+    // 图片地址
+    imgUrl: 'http://47.104.91.26',
+    // 缩略图
+    requestImgUrl: 'http://47.104.91.26/upload/tailor/',
     // 缩略图
     requestImgUrl: 'http://47.104.91.26/upload/tailor/',
     // 原图

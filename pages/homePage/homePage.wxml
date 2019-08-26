@@ -1,10 +1,10 @@
 <view class="gw-cen">
   <view class='gw-cen-con'>
-    <block class="gwList" wx:for="{{gwList}}" wx:key="{{item}}">
+    <block class="gwList" wx:for="{{listData}}" wx:key="{{item}}">
       <view data-id="{{item.id}}" class='gw-li-nav' bindtap='goGamedan'>
         <view class='gw-li gw-li1'>
           <view class='gw-li-left'>
-            <image src='{{requestImgUrl + item.img}}'></image>
+            <image src='{{imgUrl + item.img}}'></image>
           </view>
           <view class='gw-li-right'>
             <view class='gw-li-cen'>

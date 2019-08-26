@@ -1,0 +1,46 @@
+<view class="pl-top">
+  <view class='pl-top-cen'>
+    <view class='pl-top-xx'>
+      <view class='pl-top-img'>
+        <image src='/image/luntan1.jpg'></image>
+      </view>
+      <view class='pl-top-right'>
+        <text class='pl-top-tit'>狐狸的尾巴</text>
+        <view class='pl-top-txt'>
+          <text class='pl-pingfen'>下载</text>
+          <text class='pl-score'>10</text>
+          <text class='pl-score-ci'>次</text>
+        </view>
+      </view>
+    </view>
+    <block class="pinglunList" wx:for="{{pinglunList}}" wx:key="{{index}}" wx:for-item="item">
+      <view class='pl-cen'>
+        <view class='pl-cen-top'>
+          <view class='pl-cen-left'>
+            <text class='pl-cen-txt'>{{item.nickname}}</text>
+          </view>
+          <view class='pl-cen-right'>
+            <text class='pl-top-year'>{{item.createTime}}</text>
+            <!-- <text class='pl-top-guodu'>-</text>
+            <text class='pl-top-month'>{{item.month}}</text>
+            <text class='pl-top-guodu'>-</text>
+            <text class='pl-top-day'>{{item.day}}</text> -->
+          </view>
+        </view>
+        <view class='pl-cen-bot'>
+          <text class='pl-cen-pinglun'>{{item.content}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- 底部 -->
+<view class='yx-bot'>
+  <view class='hr'></view>
+  <view class='yx-bot-cen'>
+    <navigator url='../game-shuru/game-shuru'>
+      <button class='yx-log'>评论</button>
+    </navigator>
+  </view>
+</view>

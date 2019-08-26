@@ -6,8 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    gwList:[],
-    requestImgUrl: ''
+    listData:[],
+    userInfo: {},
+    imgUrl: ''
   },
 
   /**
@@ -15,33 +16,32 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      requestImgUrl: app.globalData.requestImgUrl
+      userInfo: app.globalData.userInfo,
+      imgUrl: app.globalData.imgUrl
     })
-    var that = this;
+    this.getList()
+  },
+  getList() {
     wx.request({
       url: `${app.globalData.requestUrl}/Official/official_type`,
-      headers: {
-        'Content-Type': 'application/json'
-      },
       method: "POST",
-      success: res => {
-        res = app.null2str(res.data)
-        if (res.code == '1') {
-          that.setData({
-            gwList: res.data,
+      success: data => {
+        console.log(data)
+        data = app.null2str(data)
+        if (data.data.code == '1') {
+          this.setData({
+            listData: data.data.data,
           })
         } else {
           wx.showModal({
             title: '',
-            content: res.msg,
+            content: data.data.msg,
             showCancel: false
           })
         }
-        console.log(res.data);
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -92,7 +92,7 @@ Page({
   },
   goGamedan(e) {
     wx.navigateTo({
-      url: `/pages/gamedan/gamedan?id=${e.currentTarget.dataset.id}`
+      url: `/pages/gameList/gameList?id=${e.currentTarget.dataset.id}`
     })
   }
 })

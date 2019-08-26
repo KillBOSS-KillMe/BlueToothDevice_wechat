@@ -1,35 +1,47 @@
 // pages/quanxian/quanxian.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-   gameList:[
-     {
-       name:"狐狸的尾巴",
-       pic1:"/image/luntan1.jpg"
-     },{
-       name:"和平精英",
-       "pic1":"/image/luntan2.jpg"
-     }, {
-       name: "QQ飞车",
-       "pic1": "/image/luntan3.jpg"
-     }, {
-       name: "冰果消消",
-       "pic1": "/image/luntan3.jpg"
-     }, {
-       name: "和平精英",
-       "pic1": "/image/luntan4.jpg"
-     },
-   ]
+    pinglunList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    let id = options.id
+    var that = this;
+    wx.request({
+      url: `${app.globalData.requestUrl}/Official/comment_list`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: {
+        game_id: '1'
+      },
+      method: "POST",
+      success: res => {
+        console.log(res);
+        res = app.null2str(res.data)
+        if (res.code == '1') {
+          this.setData({
+            pinglunList: res.data,
+          })
+        } else {
+          wx.showModal({
+            title: '',
+            content: res.msg,
+            showCancel: false
+          })
+        }
+        
+      }
+    })
   },
 
   /**
