@@ -9,7 +9,7 @@
     </view>
     <view class='in-sec-right'>
       <view class='luntan-sec'>
-        <navigator url='../sc-chose/sc-chose'>
+        <navigator url='/pages/newArticle/newArticle'>
           <icon class='iconfont icon-Release'></icon>
         </navigator>
       </view>

@@ -15,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // gameDetail?id=${dataNode.id}&img=${dataNode.img}
+    // gameDetail?id=${dataNode.id}&name=${dataNode.name}&img=${dataNode.img}
     // &c_num=${dataNode.c_num}&d_num=${dataNode.d_num}`
     console.log(options)
     wx.setNavigationBarTitle({

@@ -112,7 +112,7 @@ Page({
   // 进入评论页
   goComment() {
     wx.navigateTo({
-      url: '/pages/tiezi-pinglun/tiezi-pinglun',
+      url: '/pages/articleComment/articleComment',
     })
   },
   /**

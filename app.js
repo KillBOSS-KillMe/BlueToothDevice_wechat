@@ -3,10 +3,12 @@
 
 
 // "pages/newArticle/newArticle",             发布文章
+// "pages/articleDetail/articleDetail",       文章详情
+// "pages/articleDetail/articleComment",      文章详情
 // "pages/forum/forum",                       论坛
 // "pages/gameList/gameList",                 游戏列表
 // "pages/gameComment/gameComment",           游戏评论
-// "pages/articleDetail/articleDetail",       文章详情
+
 // "pages/bluetooth/bluetooth",               蓝牙
 // "pages/userMessage/userMessage",           消息列表
 

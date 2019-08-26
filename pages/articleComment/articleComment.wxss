@@ -1,0 +1,39 @@
+/* pages/articleComment/articleComment.wxss */
+page{
+  background-color: #fff;
+}
+.con{
+  width: 690rpx;
+  height: auto;
+  padding: 30rpx;
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+}
+.setcon{
+  background-color: #F1F1F1;
+  width: 510rpx;
+  height: auto;
+  padding: 30rpx;
+  border-radius: 5rpx;
+}
+.setTextImg{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+textarea{
+  width: 510rpx;
+  height: auto;
+}
+.upCon{
+  width: 110rpx;
+  height: 60rpx;
+  color: #fff;
+  font-size: 28rpx;
+  background-color: #489BFE;
+  border-radius: 5rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

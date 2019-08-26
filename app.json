@@ -1,4 +1,4 @@
-  {
+{
   "usingComponents": {},
   "pages": [
     "pages/index/index",
@@ -11,10 +11,10 @@
     "pages/gameDetail/gameDetail",
     "pages/gameComment/gameComment",
     "pages/articleDetail/articleDetail",
+    "pages/articleComment/articleComment",
     "pages/bluetooth/bluetooth",
     "pages/userMessage/userMessage",
     "pages/user/user",
-    
     "pages/upData/upData",
     "pages/search/search",
     "pages/userToppingList/userToppingList",
@@ -23,10 +23,6 @@
     "pages/userAchievement/userAchievement",
     "pages/userDelete/userDelete",
     "pages/userArticle/userArticle",
-    
-    
-    
-    
     "pages/gw-xiazai/gw-xiazai",
     "pages/quanxian/quanxian",
     "pages/yh-quanxian/yh-quanxian"

@@ -1,0 +1,11 @@
+<!--pages/articleComment/articleComment.wxml-->
+<view class="con">
+  <view class="setcon">
+    <view class="setTextImg">
+      <textarea ></textarea>
+      <icon class="iconfont iconadd"></icon>
+    </view>
+    <view class="imgList"></view>
+  </view>
+  <view class="upCon">发送</view>
+</view>
