@@ -10,7 +10,7 @@
     <view class='in-sec-right'>
       <view class='luntan-sec'>
         <navigator url='/pages/newArticle/newArticle'>
-          <icon class='iconfont icon-Release'></icon>
+          <icon class='iconfont iconzhiding'></icon>
         </navigator>
       </view>
     </view>
