@@ -42,8 +42,17 @@ Page({
           let i = 0
           for (i in data) {
             data[i]['createTime'] = app.transformTime(data[i].createTime)
+            // let y = 0
+            // for (y in data[i].file) {
+            //   if (data[i].file[y].type == 1) {
+            //     data[i]['imgList'].push(data[i].file[y])
+            //   } else {
+            //     data[i]['fileList'].push(data[i].file[y])
+            //   }
+            // }
           }
           let list = this.data.articleListAll.concat(data)
+          // console.log(list)
           this.setData({
             articleListAll: list,
             articleList: list

@@ -29,17 +29,19 @@
           <text class='luntan-txt' bindtap='goDetail' data-id="{{item.id}}">{{item.content}}</text>
           <view class='luntan-img'>
             <block wx:for="{{item.file}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="{{imgItem}}">
-              <view class='luntan-imgCon' wx:if="{{imgIndex < 4}}">
+              <view class='luntan-imgCon' wx:if="{{imgIndex < 4 && imgItem.type == 1}}">
                 <image data-id="{{imgItem.id}}" data-img="{{requestImgUrl + imgItem.file}}" src='{{requestImgUrl + imgItem.file}}'></image>
               </view>
             </block>
           </view>
           <view class="file">
-            <view wx:for="{{5}}" wx:if="{{index < 4}}" class="file-item">
-              <icon class="iconfont iconjiaoben file-item-icon"></icon>
-              <view class="file-h overflow-one">项目计划书项目计划书</view>
-              <view class="file-t overflow-one">下载102次下载102次</view>
-            </view>
+            <block wx:for="{{item.file}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="{{imgItem}}">
+              <view wx:if="{{index < 4 && imgItem.type == 2}}" class="file-item">
+                <icon class="iconfont iconjiaoben file-item-icon"></icon>
+                <view class="file-h overflow-one">{{imgItem.file}}</view>
+                <!-- <view class="file-t overflow-one">下载102次下载102次</view> -->
+              </view>
+            </block>
           </view>
           <view class='luntan-from'>
             <text class='form-con'>来自</text>
@@ -49,7 +51,7 @@
           </view>
           <view class='luntanCon-bot'>
             <view class='luntanConBot-left'>
-              <icon class='iconfont iconxiaoxi1'></icon>
+              <icon class='iconfont icon-'></icon>
               <text>{{item.see}}</text>
               <text>次</text>
             </view>

@@ -20,17 +20,19 @@
           <image src='{{articleDetail.file}}'></image>
         </view> -->
         <block wx:for="{{articleDetail.file}}" wx:for-item="item" wx:for-index="imgIndex" wx:key="{{imgItem}}">
-          <view class='luntan-imgCon'>
+          <view class='luntan-imgCon' wx:if="{{item.type == 1}}">
             <image data-id="{{item.id}}" data-img="{{requestImgUrl + item.file}}" src='{{requestImgUrl + item.file}}'></image>
           </view>
         </block>
       </view>
       <view class="file">
-        <view wx:for="{{5}}" class="file-item">
-          <icon class="iconfont iconjiaoben file-item-icon"></icon>
-          <view class="file-h overflow-one">项目计划书项目计划书</view>
-          <view class="file-t overflow-one">下载102次下载102次</view>
-        </view>
+        <block wx:for="{{articleDetail.file}}" wx:for-item="item" wx:for-index="imgIndex" wx:key="{{imgItem}}">
+          <view class="file-item" wx:if="{{item.type == 2}}">
+            <icon class="iconfont iconjiaoben file-item-icon"></icon>
+            <view class="file-h overflow-one">{{item.file}}</view>
+            <!-- <view class="file-t overflow-one">下载102次下载102次</view> -->
+          </view>
+        </block>
       </view>
       <view class='luntan-from'>
         <text class='form-con'>来自</text>
