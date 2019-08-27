@@ -44,6 +44,9 @@ Page({
     if (Object.keys(userInfo).length == 0) {
       this.getUserInfo()
     } else {
+      this.setData({
+        hasUserInfo: false
+      })
       // 获取全局分组列表
       let groupList = app.globalData.groupList
       if (groupList.length > 0) {
