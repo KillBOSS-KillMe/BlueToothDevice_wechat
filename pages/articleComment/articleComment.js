@@ -17,6 +17,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     this.setData({
       options: options,
       userInfo: app.globalData.userInfo,
@@ -76,19 +77,47 @@ Page({
       })
       return false
     }
-    wx.request({
-      url: `${app.globalData.requestUrl}/Forum/comment`,
-      method: 'POST',
-      data: {
-        post_id: this.data.options.post_id,
-        id:  this.data.options.post_id,
-        title: this.data.options.title,
+    let options = this.data.options
+    let url = ''
+    let upData = {}
+    if (options.type == 'comment') {
+      url = 'comment'
+      // 评论数据整合
+      upData = {
+        post_id: options.post_id,
+        id:  options.post_id,
+        title: options.title,
         content: this.data.commentCon,
         uid: this.data.userInfo.id,
         nickname: this.data.userInfo.nickname,
         file: '',
         image: this.data.imgList
-      },
+      }
+    } else {
+      // type=reply&
+      // post_id=${articleDetail.pid}&
+      // comment_id=${commentNode.comment_id}&
+      // id=${commentNode.id}&
+      // reply_id=${commentNode.id}
+      url = 'reply'
+      // 回复数据整合
+      upData = {
+        comment_id: options.commentid,
+        post_id: options.post_id,
+        id:  options.reply_uid,
+        reply_id:  options.reply_uid,
+        comment: options.comment,
+        content: this.data.commentCon,
+        uid: this.data.userInfo.id,
+        nickname: this.data.userInfo.nickname,
+        file: '',
+        image: this.data.imgList
+      }
+    }
+    wx.request({
+      url: `${app.globalData.requestUrl}/Forum/${url}`,
+      method: 'POST',
+      data: upData,
       success(data) {
         data = app.null2str(data)
         if (data.data.code == 1) {

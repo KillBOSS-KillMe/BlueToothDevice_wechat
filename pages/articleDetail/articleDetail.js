@@ -9,6 +9,7 @@ Page({
   data: {
     userInfo: {},
     articleDetail: {},
+    commentList: [],
     requestImgUrl: '',
     originalImgUrl: ''
   },
@@ -53,8 +54,6 @@ Page({
   },
   // 获取文章评论
   getCommentList(id) {
-    console.clear()
-    console.log(123123)
     wx.request({
       url: `${app.globalData.requestUrl}/User/post_comment`,
       data: {
@@ -66,11 +65,14 @@ Page({
         console.log(data)
         data = app.null2str(data)
         if (data.data.code == 1) {
-          // data = data.data.data[0]
-          // data['createTime'] = app.transformTime(data.createTime)
-          // this.setData({
-          //   articleDetail: data
-          // })
+          data = data.data.data
+          let i = 0
+          for (i in data) {
+            data[i]['createTime'] = app.transformTime(data[i].createTime)
+          }
+          this.setData({
+            commentList: data
+          })
         }
       }
     })
@@ -112,7 +114,19 @@ Page({
   // 进入评论页
   goComment() {
     let articleDetail = this.data.articleDetail
-    let urlData = `?post_id=${articleDetail.pid}&id=${articleDetail.uid}&title=${articleDetail.title}`
+    let urlData = `?type=comment&post_id=${articleDetail.pid}
+    &id=${articleDetail.uid}&title=${articleDetail.title}`
+    wx.navigateTo({
+      url: `/pages/articleComment/articleComment${urlData}`,
+    })
+  },
+  // 进入回复页
+  goReply(e) {
+    console.log(e)
+    let commentNode = e.currentTarget.dataset
+    let articleDetail = this.data.articleDetail
+    let urlData = `?type=reply&post_id=${articleDetail.pid}&commentid=${commentNode.commentid}&comment=${commentNode.content}&reply_uid=${commentNode.uid}`
+    console.log(urlData)
     wx.navigateTo({
       url: `/pages/articleComment/articleComment${urlData}`,
     })
