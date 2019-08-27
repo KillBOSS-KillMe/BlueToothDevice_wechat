@@ -1,0 +1,55 @@
+/* pages/gameBuy/gameBuy.wxss */
+page{
+  background-color: #fff;
+}
+.gameImg, .gameName{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20rpx;
+  margin-bottom: 50rpx;
+}
+.gameImg image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 10rpx;
+  margin-top: 50rpx;
+}
+.gameName{
+  font-size: 26rpx;
+  color: #424242;
+  font-weight: 600;
+}
+.buy{
+  width: 690rpx;
+  padding: 30rpx;
+  border-top: 1rpx solid #EAEAEA;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.buy .name{
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #424242;
+}
+.buy .money{
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #FF33BE;
+}
+.runBuy{
+  position: fixed;
+  bottom: 30rpx;
+  right: 30rpx;
+  width: 690rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3594FF;
+}

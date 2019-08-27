@@ -1,0 +1,10 @@
+<!--pages/gameBuy/gameBuy.wxml-->
+<view class="gameImg">
+  <image src="{{imgUrl + options.img}}" />
+</view> 
+<view class="gameName">{{options.name}}</view> 
+<view class="buy">
+  <view class="name">应付金额：</view>
+  <view class="money">￥{{options.price}}</view>
+</view>
+<view class="runBuy" bindtap="runBuy" data-price="{{ptions.price}}">支付</view>

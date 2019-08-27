@@ -54,6 +54,7 @@ Page({
     let index = e.currentTarget.dataset.index
     let gameStr = this.data.listData[index].str
     let listData = this.data.listData
+    let dataNode = this.data.listData[index]
     let selGameList = this.data.selGameList
     if (this.data.downloadStr) {
       if (gameStr == '1') {
@@ -66,6 +67,33 @@ Page({
           }
         }
       } else {
+        let isBuy = e.currentTarget.dataset.isbuy
+        
+        console.log(isBuy)
+        if (isBuy == '0') {
+          wx.showModal({
+            title: '',
+            content: '该项未购买，是否前往购买？',
+            cancelText:'取消',
+            confirmText:'去支付',
+            success(res){
+              if(res.confirm){
+                // 用户点击了确定属性的按钮，对应选择了'去支付'
+                // 跳转
+                wx.navigateTo({
+                  url: `/pages/gameBuy/gameBuy?price=${dataNode.price}&id=${dataNode.id}&name=${dataNode.name}&img=${dataNode.img}&c_num=${dataNode.c_num}&d_num=${dataNode.d_num}`
+                })
+              } 
+              // else if(res.cancel){
+              //   // 用户点击了取消属性的按钮，对应选择了'取消'
+              //   that.setData({
+              //     userSex:2
+              //   })
+              // } 
+            }
+          })
+          return false
+        }
         listData[index]['str'] = '1'
         selGameList.push(listData[index])
       }
@@ -75,7 +103,7 @@ Page({
       })
     } else {
       // 没有在下载状态下，进入项目详情
-      let dataNode = this.data.listData[index]
+      // let dataNode = this.data.listData[index]
       wx.navigateTo({
         url: `/pages/gameDetail/gameDetail?id=${dataNode.id}&name=${dataNode.name}&img=${dataNode.img}&c_num=${dataNode.c_num}&d_num=${dataNode.d_num}`
       })

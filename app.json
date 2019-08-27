@@ -25,7 +25,8 @@
     "pages/userArticle/userArticle",
     "pages/gw-xiazai/gw-xiazai",
     "pages/quanxian/quanxian",
-    "pages/yh-quanxian/yh-quanxian"
+    "pages/yh-quanxian/yh-quanxian",
+    "pages/gameBuy/gameBuy"
   ],
   "window": {
     "backgroundTextStyle": "light",
