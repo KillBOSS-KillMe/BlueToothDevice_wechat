@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    options: {},
     userInfo: {},
     articleDetail: {},
     commentList: [],
@@ -27,7 +28,13 @@ Page({
     
     // 获取文章详情
     this.getArticleList(options.id)
-    this.getCommentList(options.id)
+    // this.getCommentList(options.id)
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.getCommentList(this.data.options.id)
   },
   // 获取文章详情
   getArticleList(id) {
@@ -69,6 +76,10 @@ Page({
           let i = 0
           for (i in data) {
             data[i]['createTime'] = app.transformTime(data[i].createTime)
+            let y = 0
+            for (y in data[i].reply) {
+              data[i].reply[y]['createTime'] = app.transformTime(data[i].reply[y].createTime)
+            }
           }
           this.setData({
             commentList: data
@@ -122,11 +133,9 @@ Page({
   },
   // 进入回复页
   goReply(e) {
-    console.log(e)
     let commentNode = e.currentTarget.dataset
     let articleDetail = this.data.articleDetail
     let urlData = `?type=reply&post_id=${articleDetail.pid}&commentid=${commentNode.commentid}&comment=${commentNode.content}&reply_uid=${commentNode.uid}`
-    console.log(urlData)
     wx.navigateTo({
       url: `/pages/articleComment/articleComment${urlData}`,
     })
@@ -138,12 +147,6 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -179,29 +182,4 @@ Page({
   onShareAppMessage: function () {
 
   },
-  // getluntanTxt() {
-  //   var that = this
-  //   wx.getStorage({
-  //     key: 'token',
-  //     success: function (res) {
-  //       wx.request({
-  //         url: `http://192.168.1.168/User/post_info`,
-  //         data: {
-  //           post_id:"1"
-  //         },
-  //         method: "POST",
-  //         header: {
-  //           'content-type': 'application/json', // 默认值
-  //           'token': res.data
-  //         },
-  //         success(res) {
-  //           console.log(res)
-  //           that.setData({
-  //             luntanTxt: res.data
-  //           })
-  //         }
-  //       })
-  //     },
-  //   })
-  // }
 })

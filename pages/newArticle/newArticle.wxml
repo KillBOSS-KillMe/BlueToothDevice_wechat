@@ -22,11 +22,17 @@
               <image class="close-img" bindtap="deleImg" data-index="{{index}}" src="/image/guanbi.png"></image>
             </view>
           </block>
-          
+          <block class="groupList" wx:for="{{fileList}}" wx:index="index" wx:key="{{item}}">
+            <view class="file-item">
+              <icon class='iconfont iconjiaoben wjj-icon'></icon>
+              <view>{{fileNameList[index]}}</view>
+              <image class="close-img" bindtap="deleFile" data-index="{{index}}" src="/image/guanbi.png"></image>
+            </view>
+          </block>
         </view>
         <view class="uploads">
-          <view class="upload" bindtap="chooseImage">上传图片</view>
-          <view class="upload" bindtap="chooseImage">上传文件</view>
+          <view class="upload" bindtap="chooseImage" data-type="image">上传图片</view>
+          <view class="upload" bindtap="chooseImage" data-type="file">上传文件</view>
         </view>
       </view>
     </view>

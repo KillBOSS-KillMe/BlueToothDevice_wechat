@@ -86,7 +86,7 @@
                   data-content="{{replyItem.content}}"
                 bindtap="goReply">
                 <view class="comment-two-i">
-                  <image src="{{replyItem.avatarUrl}}" style="width: 56rpx; height: 56rpx;"></image>
+                  <image src="{{replyItem.reply_img}}" style="width: 56rpx; height: 56rpx;"></image>
                   <view class="comment-right">
                     <view class="comment-text">
                       <view class="name">

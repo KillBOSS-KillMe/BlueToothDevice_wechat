@@ -12,6 +12,8 @@ Page({
     lableLists: [],
     label: {},
     imgList: [],
+    fileList: [],
+    fileNameList: [],
     article: {},
     requestImgUrl: '',
     originalImgUrl: ''
@@ -60,34 +62,65 @@ Page({
     })
   },
   // 图片选择
-  chooseImage: function () {
-    wx.chooseImage({
-      count: 9, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: res => {
-        this.uploadimg(res.tempFiles)
-      }
-    })
+  chooseImage(e) {
+    let type = e.currentTarget.dataset.type
+    let url = ''
+    if (type == 'image') {
+      url = 'upload_img'
+      wx.chooseImage({
+        count: 9, // 默认9
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        success: res => {
+          this.uploadimg(res.tempFiles, type, url)
+        }
+      })
+    } else {
+      url = 'upload_file'
+      wx.chooseMessageFile({
+        count: 9,
+        type: 'all',
+        success: res => {
+          this.uploadimg(res.tempFiles, type, url)
+        }
+      })
+    }
   },
   // 图片上传
-  uploadimg(imgurlNode) {
+  uploadimg(imgurlNode, type, url) {
     //上传图片
     let i = 0
     for (i in imgurlNode) {
       wx.uploadFile({
-        url: `${app.globalData.requestUrl}/Forum/upload_img`,
+        url: `${app.globalData.requestUrl}/Forum/${url}`,
         filePath: imgurlNode[i].path,
-        name: 'image',
+        name: type,
         formData: {},
         success: data => {
           data = app.null2str(data)
-          let imgList = this.data.imgList
-          imgList.push(data.data)
-          console.log(imgList)
-          this.setData({
-            imgList: imgList
-          })
+          if (type == 'image') {
+            let imgList = this.data.imgList
+            imgList.push(data.data)
+            this.setData({
+              imgList: imgList
+            })
+          } else {
+            console.log(data)
+            data = JSON.parse(data.data)
+            data = data.data
+            let fileList = this.data.fileList
+            let fileNameList = this.data.fileNameList
+            console.log(data)
+            let fileName = data.split('/').pop()
+            console.log(data, fileName)
+            fileList.push(data)
+            fileNameList.push(fileName)
+            this.setData({
+              fileNameList: fileNameList,
+              fileList: fileList
+            })
+          }
+          
         }
       });
     }
@@ -100,6 +133,18 @@ Page({
     imgList.splice(index, 1)
     this.setData({
       imgList: imgList
+    })
+  },
+  // 图片删除
+  deleFile(e) {
+    var index = e.currentTarget.dataset.index
+    var fileNameList = this.data.fileNameList
+    var fileList = this.data.fileList
+    fileNameList.splice(index, 1)
+    fileList.splice(index, 1)
+    this.setData({
+      fileNameList: fileNameList,
+      fileList: fileList
     })
   },
 
@@ -157,7 +202,7 @@ Page({
         label: this.data.label.id,
         title: this.data.article.title,
         content: this.data.article.content,
-        file: '',
+        file: this.data.fileList,
         image: this.data.imgList
       },
       success(data) {
