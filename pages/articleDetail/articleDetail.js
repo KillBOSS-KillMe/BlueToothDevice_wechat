@@ -111,8 +111,10 @@ Page({
   },
   // 进入评论页
   goComment() {
+    let articleDetail = this.data.articleDetail
+    let urlData = `?post_id=${articleDetail.pid}&id=${articleDetail.uid}&title=${articleDetail.title}`
     wx.navigateTo({
-      url: '/pages/articleComment/articleComment',
+      url: `/pages/articleComment/articleComment${urlData}`,
     })
   },
   /**

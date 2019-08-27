@@ -1,4 +1,3 @@
-// pages/quanxian/quanxian.js
 const app = getApp()
 Page({
 
@@ -63,7 +62,7 @@ Page({
   // 图片选择
   chooseImage: function () {
     wx.chooseImage({
-      count: 6, // 默认9
+      count: 9, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: res => {

@@ -51,3 +51,17 @@ textarea{
   height: 150rpx;
   padding: 10rpx;
 }
+.img-item {
+  position: relative;
+}
+.img-item:nth-of-type(3n) {
+  margin-right: 0;
+}
+.img-item .close-img {
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 6rpx;
+}

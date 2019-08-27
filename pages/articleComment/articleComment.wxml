@@ -1,21 +1,18 @@
-<!--pages/articleComment/articleComment.wxml-->
+<!-- pages/articleComment/articleComment.wxml -->
 <view class="con">
   <view class="setcon">
     <view class="setTextImg">
-      <textarea ></textarea>
-      <icon class="iconfont iconadd"></icon>
+      <textarea bindinput="getCommentCon"></textarea>
+      <icon class="iconfont iconadd" bindtap="chooseImage"></icon>
     </view>
     <view class="imgList">
-      <image src="/image/luntan3.jpg" />
-      <image src="/image/luntan3.jpg" />
-      <image src="/image/luntan3.jpg" />
-      <image src="/image/luntan3.jpg" />
-      <image src="/image/luntan3.jpg" />
-      <image src="/image/luntan3.jpg" />
-      <image src="/image/luntan3.jpg" />
-      <image src="/image/luntan3.jpg" />
-      <image src="/image/luntan3.jpg" />
+      <block class="groupList" wx:for="{{imgList}}" wx:key="{{item}}">
+        <view class="img-item">
+          <image bindtap="previewImage" data-index="{{index}}" src="{{originalImgUrl + item}}"></image>
+          <image class="close-img" bindtap="deleImg" data-index="{{index}}" src="/image/guanbi.png"></image>
+        </view>
+      </block>
     </view>
   </view>
-  <view class="upCon">发送</view>
+  <view class="upCon" bindtap="upComment">发送</view>
 </view>
