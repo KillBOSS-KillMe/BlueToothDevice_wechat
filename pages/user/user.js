@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {}
+    userInfo: {},
+    navAction:  ['noActive', 'noActive', 'noActive', 'active']
   },
 
   /**
@@ -15,6 +16,7 @@ Page({
   onLoad(opt) {
     console.log(app.globalData.userInfo)
     this.setData({
+      navAction: app.globalData.navAction,
       userInfo: app.globalData.userInfo
     })
     // console.log(this.data.userInfo)
@@ -38,7 +40,7 @@ Page({
   },
   submitData(){
     console.log(this.data.newGroupNameData)
-    return ''
+    // return ''
     wx.request({
       url: `${this.$parent.globalData.requestUrl}/login`,
       method: 'POST',
@@ -164,6 +166,34 @@ Page({
           console.log(viewDetails)
         }
       }
+    })
+  },
+  // 进入设备页
+  goDevicePage() {
+    app.globalData.navAction = ['active', 'noActive', 'noActive', 'noActive']
+    wx.redirectTo({
+      url: '/pages/index/index'
+    })
+  },
+  // 进入论坛页
+  goForumPage() {
+    app.globalData.navAction = ['noActive', 'active', 'noActive', 'noActive']
+    wx.redirectTo({
+      url: '/pages/forum/forum'
+    })
+  },
+  // 进入官网页
+  goHomePage() {
+    app.globalData.navAction = ['noActive', 'noActive', 'active', 'noActive']
+    wx.redirectTo({
+      url: '/pages/homePage/homePage'
+    })
+  },
+  // 进入用户页
+  goUserPage() {
+    app.globalData.navAction = ['noActive', 'noActive', 'noActive', 'active']
+    wx.redirectTo({
+      url: '/pages/user/user'
     })
   }
 })

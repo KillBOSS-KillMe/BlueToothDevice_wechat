@@ -21,3 +21,30 @@
     </block>
   </view>
 </view>
+<view class="footer">
+  <view class="ft_item {{navAction[0]}}" bindtap="goDevicePage">
+    <!-- <view class="iconfont icon-shouye"></view> -->
+    <image wx:if="{{navAction[0] == 'active'}}" src="/image/shebei1.png" />
+    <image wx:if="{{navAction[0] != 'active'}}" src="/image/shebei2.png" />
+    <!-- <icon class="iconfont icon-xinfang"></icon> -->
+    <view class="view">设备</view>
+  </view>
+  <view class="ft_item {{navAction[1]}}" bindtap="goForumPage">
+    <!-- <view class="iconfont icon-shouye"></view> -->
+    <image wx:if="{{navAction[1] == 'active'}}" src="/image/luntan1.png" />
+    <image wx:if="{{navAction[1] != 'active'}}" src="/image/luntan2.png" />
+    <!-- <icon class="iconfont icon-ershoufang"></icon> -->
+    <view class="view">论坛</view>
+  </view>
+  <view class="ft_item {{navAction[2]}}" bindtap="goHomePage">
+    <!-- <view class="iconfont icon-kehu"></view> -->
+    <image wx:if="{{navAction[2] == 'active'}}" src="/image/guanwang1.png" />
+    <image wx:if="{{navAction[2] != 'active'}}" src="/image/guanwang2.png" />
+    <view class="view">官网</view>
+  </view>
+  <view class="ft_item {{navAction[3]}}" bindtap="goUserPage">
+    <image wx:if="{{navAction[3] == 'active'}}" src="/image/yonghu1.png" />
+    <image wx:if="{{navAction[3] != 'active'}}" src="/image/yonghu2.png" />
+    <view class="view">我的</view>
+  </view>
+</view>

@@ -63,6 +63,7 @@ App({
     requestImgUrl: 'http://47.104.91.26/upload/tailor/',
     // 原图
     originalImgUrl: 'http://47.104.91.26/upload/img/',
+    navAction: ['active', 'noActive', 'noActive', 'noActive']
   },
   /**
   * 时间戳转时间

@@ -7,10 +7,12 @@ Page({
     articleListAll: [],
     articleList: [],
     requestImgUrl: '',
-    originalImgUrl: ''
+    originalImgUrl: '',
+    navAction:  ['noActive', 'active', 'noActive', 'noActive']
   },
   onLoad: function () {
     this.setData({
+      navAction: app.globalData.navAction,
       userInfo: app.globalData.userInfo,
       requestImgUrl: app.globalData.requestImgUrl,
       originalImgUrl: app.globalData.originalImgUrl
@@ -151,4 +153,32 @@ Page({
   //   })
   //   // }
   // }
+  // 进入设备页
+  goDevicePage() {
+    app.globalData.navAction = ['active', 'noActive', 'noActive', 'noActive']
+    wx.redirectTo({
+      url: '/pages/index/index'
+    })
+  },
+  // 进入论坛页
+  goForumPage() {
+    app.globalData.navAction = ['noActive', 'active', 'noActive', 'noActive']
+    wx.redirectTo({
+      url: '/pages/forum/forum'
+    })
+  },
+  // 进入官网页
+  goHomePage() {
+    app.globalData.navAction = ['noActive', 'noActive', 'active', 'noActive']
+    wx.redirectTo({
+      url: '/pages/homePage/homePage'
+    })
+  },
+  // 进入用户页
+  goUserPage() {
+    app.globalData.navAction = ['noActive', 'noActive', 'noActive', 'active']
+    wx.redirectTo({
+      url: '/pages/user/user'
+    })
+  }
 })

@@ -8,7 +8,8 @@ Page({
   data: {
     listData:[],
     userInfo: {},
-    imgUrl: ''
+    imgUrl: '',
+    navAction:  ['noActive', 'noActive', 'active', 'noActive']
   },
 
   /**
@@ -16,6 +17,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      navAction: app.globalData.navAction,
       userInfo: app.globalData.userInfo,
       imgUrl: app.globalData.imgUrl
     })
@@ -46,6 +48,34 @@ Page({
   goGamedan(e) {
     wx.navigateTo({
       url: `/pages/gameList/gameList?id=${e.currentTarget.dataset.id}`
+    })
+  },
+  // 进入设备页
+  goDevicePage() {
+    app.globalData.navAction = ['active', 'noActive', 'noActive', 'noActive']
+    wx.redirectTo({
+      url: '/pages/index/index'
+    })
+  },
+  // 进入论坛页
+  goForumPage() {
+    app.globalData.navAction = ['noActive', 'active', 'noActive', 'noActive']
+    wx.redirectTo({
+      url: '/pages/forum/forum'
+    })
+  },
+  // 进入官网页
+  goHomePage() {
+    app.globalData.navAction = ['noActive', 'noActive', 'active', 'noActive']
+    wx.redirectTo({
+      url: '/pages/homePage/homePage'
+    })
+  },
+  // 进入用户页
+  goUserPage() {
+    app.globalData.navAction = ['noActive', 'noActive', 'noActive', 'active']
+    wx.redirectTo({
+      url: '/pages/user/user'
     })
   }
 })

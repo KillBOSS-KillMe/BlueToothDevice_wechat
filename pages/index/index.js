@@ -1,5 +1,4 @@
 const app = getApp()
-
 Page({
   data: {
     topNav: false,
@@ -31,11 +30,15 @@ Page({
       readyPlaceIndex: null,
       startY: 0,
       selectedIndex: null,
-    }
+    },
+    navAction:  ['active', 'noActive', 'noActive', 'noActive']
   },
 
 
   onLoad: function () {
+    this.setData({
+      navAction: app.globalData.navAction
+    })
     let userInfo = app.globalData.userInfo
     // 获取用户信息
     if (Object.keys(userInfo).length == 0) {
@@ -338,9 +341,34 @@ Page({
     })
   },
 
-
-
-
+  // 进入设备页
+  goDevicePage() {
+    app.globalData.navAction = ['active', 'noActive', 'noActive', 'noActive']
+    wx.redirectTo({
+      url: '/pages/index/index'
+    })
+  },
+  // 进入论坛页
+  goForumPage() {
+    app.globalData.navAction = ['noActive', 'active', 'noActive', 'noActive']
+    wx.redirectTo({
+      url: '/pages/forum/forum'
+    })
+  },
+  // 进入官网页
+  goHomePage() {
+    app.globalData.navAction = ['noActive', 'noActive', 'active', 'noActive']
+    wx.redirectTo({
+      url: '/pages/homePage/homePage'
+    })
+  },
+  // 进入用户页
+  goUserPage() {
+    app.globalData.navAction = ['noActive', 'noActive', 'noActive', 'active']
+    wx.redirectTo({
+      url: '/pages/user/user'
+    })
+  }
 })
 // wx.showModal({
 //   title: '提是否打开蓝牙？',
