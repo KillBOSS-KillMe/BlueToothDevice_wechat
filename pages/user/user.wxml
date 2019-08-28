@@ -16,7 +16,7 @@
               <icon class='iconfont iconchengjiupingjia'></icon>
             </navigator>
           </view>
-          <navigator url='../user-xiaoxi/user-xiaoxi' class="message">
+          <navigator url='/pages/userMessage/userMessage' class="message">
             <icon class='iconfont iconxiaoxi1'></icon>
             <view wx:if="{{messageShow}}"></view>
           </navigator>

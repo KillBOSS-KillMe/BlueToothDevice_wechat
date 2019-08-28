@@ -6,32 +6,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // getFlieList() {
-    shanchuList: []
+    userInfo: {},
+    messageList: []
   },
-  // },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (this.data.shanchuList.length > 0) {
-      return ''
-    }
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
+    this.getMessageList()
+  },
+  getMessageList() {
     wx.request({
-      url: `${app.globalData.requestUrl}/User/del_post`,
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      url: `${app.globalData.requestUrl}/User/user_news`,
       data: {
-        uid: '1'
+        uid: this.data.userInfo.id
       },
       method: "POST",
-      success: res => {
-        res = app.null2str(res.data)
-        if (res.code == '1') {
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == '1') {
+          data = data.data.data
+          let i = 0
+          for (i in data) {
+            data[i]['createTime'] = app.transformTime(data[i].createTime)
+          }
           this.setData({
-            shanchuList: res.data
+            messageList: data
           })
         } else {
           wx.showToast({
@@ -40,11 +44,9 @@ Page({
             duration: 2000
           })
         }
-        console.log(res.data);
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -56,7 +58,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**

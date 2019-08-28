@@ -1,21 +1,20 @@
 
-  <block class="newsList" wx:for="{{newsList}}" wx:key="{{index}}" wx:for-item="item">
+  <block class="newsList" wx:for="{{messageList}}" wx:key="{{index}}" wx:for-item="item">
     <view class='de-li'>
-      <view class='de-li-top'>
+      <!-- <view class='de-li-top'>
         <navigator url="" class="de-li-laizi">
           <image src='/image/luntan1.jpg'></image>
           <text class='laixiTxt'>{{item.name}}</text>
         </navigator>
         <view class='fabuTxt'>
-          <text class="zhuangtai">赞</text>
-          <text class='fabu'>了这条发布</text>
+          {{item.content}}
         </view>
         <view class='zhuangtaiData'>{{item.createTime}}}</view>
-      </view>
+      </view> -->
       <view class='de-li-cen'>
         <navigator class='from'>
-          <image src='/image/luntan2.jpg' class='from-img'></image>
-          <text class='from-name'>{{item.nickname}}</text>
+          <!-- <image src='/image/luntan2.jpg' class='from-img'></image> -->
+          <text class='from-name'>{{item.content}}</text>
         </navigator>
         <view class='fabuTime'>
         <text class='fabuDay'>{{item.createTime}}</text>
