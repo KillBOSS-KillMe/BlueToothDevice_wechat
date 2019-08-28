@@ -48,9 +48,6 @@ Page({
     var that = this;
     wx.request({
       url: `http://192.168.1.168/User/cancel_forbidden`,
-      headers: {
-        'Content-Type': 'application/json'
-      },
       method: "POST",
       success: res => {
         that.setData({
