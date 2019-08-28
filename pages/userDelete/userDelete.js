@@ -21,6 +21,9 @@ Page({
   },
   // 获取删除列表
   getDelList() {
+    this.setData({
+      listData: []
+    })
     wx.request({
       url: `${app.globalData.requestUrl}/User/del_post`,
       data: {
@@ -49,26 +52,29 @@ Page({
       }
     })
   },
-  
-  // // 取消禁言
-  // jyQuxiaos: function (options) {
-  //   var that = this;
-  //   wx.request({
-  //     url: `${app.globalData.requestUrl}/User/cancel_del`,
-  //     data:{
-  //       post_id:"1"
-  //     },
-  //     method: "POST",
-  //     success: res => {
-  //       that.setData({
-  //         jyQuxiao: res.data,
-  //       })
-  //       console.log(res.data);
-  //       this.userForbidden()
-  //     }
-
-  //   })
-  // },
+  // 取消删除
+  cancel(e) {
+    wx.request({
+      url: `${app.globalData.requestUrl}/User/cancel_del`,
+      data: {
+        post_id: e.currentTarget.dataset.id
+      },
+      method: "POST",
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == '1') {
+          this.getDelList()
+        } else {
+          // 无数据时
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
+  },
 
   /**
    * 页面上拉触底事件的处理函数

@@ -9,7 +9,7 @@
             <navigator url='' class='gz-tiezi-li-yonghu'>{{item.nickname}}</navigator>
             <text class='gz-li-date'>{{item.createTime}}</text>
           </navigator>
-          <button class='de-li-btn' bindtap='jyQuxiaos'>取消</button>
+          <button class='de-li-btn' data-id="{{item.id}}" bindtap='cancel'>取消</button>
         </view>
         <view class='gz-li-right-bot'>
           <text class='gz-li-bot-txt'>{{item.title}}</text>

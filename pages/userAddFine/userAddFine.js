@@ -20,6 +20,9 @@ Page({
     this.getFineList()
   },
   getFineList() {
+    this.setData({
+      listData: []
+    })
     wx.request({
       url: `${app.globalData.requestUrl}/User/user_essence`,
       data: {
@@ -37,6 +40,28 @@ Page({
           this.setData({
             listData: data
           })
+        } else {
+          // 无数据时
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
+  },
+  cancel(e) {
+    wx.request({
+      url: `${app.globalData.requestUrl}/User/cancel_essence`,
+      data: {
+        post_id: e.currentTarget.dataset.id
+      },
+      method: "POST",
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == '1') {
+          this.getFineList()
         } else {
           // 无数据时
           wx.showToast({

@@ -20,6 +20,9 @@ Page({
     this.getBannedList()
   },
   getBannedList() {
+    this.setData({
+      listData: []
+    })
     wx.request({
       url: `${app.globalData.requestUrl}/User/user_forbidden`,
       data: {
@@ -44,19 +47,26 @@ Page({
     })
   },
   // 取消禁言
-  jyQuxiaos: function (options) {
-    var that = this;
+  cancel(e) {
     wx.request({
-      url: `http://192.168.1.168/User/cancel_forbidden`,
+      url: `${app.globalData.requestUrl}/User/cancel_forbidden`,
+      data: {
+        uid: e.currentTarget.dataset.id
+      },
       method: "POST",
-      success: res => {
-        that.setData({
-          jyQuxiao: res.data,
-        })
-        console.log(res.data);
-        this.userForbidden()
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == '1') {
+          this.getBannedList()
+        } else {
+          // 无数据时
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          })
+        }
       }
-
     })
   },
   /**

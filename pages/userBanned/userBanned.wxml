@@ -13,7 +13,7 @@
           </view>
         </view>
         <view class='gz-top-right'>
-          <button class="jy-quxiao-btn" bindtap='jyQuxiaos'>取消</button>
+          <button class="jy-quxiao-btn" data-id="{{item.id}}" bindtap='cancel'>取消</button>
         </view>
       </view>
     </view>
