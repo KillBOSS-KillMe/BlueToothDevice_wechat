@@ -10,6 +10,7 @@
     "pages/gameList/gameList",
     "pages/gameDetail/gameDetail",
     "pages/gameComment/gameComment",
+    "pages/gameBuy/gameBuy",
     "pages/articleDetail/articleDetail",
     "pages/articleComment/articleComment",
     "pages/bluetooth/bluetooth",
@@ -22,11 +23,7 @@
     "pages/userDownloadList/userDownloadList",
     "pages/userAchievement/userAchievement",
     "pages/userDelete/userDelete",
-    "pages/userArticle/userArticle",
-    "pages/gw-xiazai/gw-xiazai",
-    "pages/quanxian/quanxian",
-    "pages/yh-quanxian/yh-quanxian",
-    "pages/gameBuy/gameBuy"
+    "pages/userArticle/userArticle"
   ],
   "window": {
     "backgroundTextStyle": "light",
