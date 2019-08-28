@@ -62,6 +62,7 @@ border-radius:3rpx;
   color: #989898;
 }
 .chengjiutxt{
+  
   font-size: 28rpx;
   color: #424242;
   margin-top:11rpx;

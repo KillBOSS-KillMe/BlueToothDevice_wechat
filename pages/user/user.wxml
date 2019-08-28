@@ -6,13 +6,19 @@
       </view>
       <view class='user-top-cen-cen'>
         <view class='user-top-cen-top'>
-          <view class='user-tit'>{{userInfo.nickname}}</view>
-          <navigator url='/pages/userAchievement/userAchievement' class='user-chengjiu-li'>
-            <icon class='iconfont iconchengjiupingjia'></icon>
-            <icon class='iconfont iconchengjiupingjia'></icon>
-            <icon class='iconfont iconchengjiupingjia'></icon>
-            <icon class='iconfont iconchengjiupingjia'></icon>
-            <icon class='iconfont iconchengjiupingjia'></icon>
+          <view class="userInfoDom">
+            <view class='user-tit'>{{userInfo.nickname}}</view>
+            <navigator url='/pages/userAchievement/userAchievement' class='user-chengjiu-li'>
+              <icon class='iconfont iconchengjiupingjia'></icon>
+              <icon class='iconfont iconchengjiupingjia'></icon>
+              <icon class='iconfont iconchengjiupingjia'></icon>
+              <icon class='iconfont iconchengjiupingjia'></icon>
+              <icon class='iconfont iconchengjiupingjia'></icon>
+            </navigator>
+          </view>
+          <navigator url='../user-xiaoxi/user-xiaoxi' class="message">
+            <icon class='iconfont iconxiaoxi1'></icon>
+            <view wx:if="{{messageShow}}"></view>
           </navigator>
         </view>
         <view class='user-top-cen-bot' bindtap="newGroup">

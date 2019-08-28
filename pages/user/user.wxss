@@ -34,11 +34,35 @@
 }
 
 .user-top-cen-top {
+  width: 520rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+.iconxiaoxi1{
+  color: #fff;
+  font-size: 40rpx;
+}
+.message{
+  width: 40rpx;
+  height: 40rpx;
+  position: relative;
+}
+.message view{
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 10rpx;
+  background-color: #FF32BE;
+  width: 10rpx;
+  height: 10rpx;
+}
+.userInfoDom{
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-
 .user-tit {
   font-size: 34rpx;
   font-weight: 700;
