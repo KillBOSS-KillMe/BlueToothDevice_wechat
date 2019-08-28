@@ -45,7 +45,7 @@ Page({
       },
       method: "POST",
       success: data => {
-        // console.log(data)
+        console.log(data)
         data = app.null2str(data)
         if (data.data.code == 1) {
           data = data.data.data[0]
@@ -138,6 +138,124 @@ Page({
     let urlData = `?type=reply&post_id=${articleDetail.pid}&commentid=${commentNode.commentid}&comment=${commentNode.content}&reply_uid=${commentNode.uid}`
     wx.navigateTo({
       url: `/pages/articleComment/articleComment${urlData}`,
+    })
+  },
+  // 禁言
+  runBanned() {
+    wx.request({
+      url: `${app.globalData.requestUrl}/Forum/forbidden`,
+      method: 'POST',
+      data: {
+        aid: this.data.userInfo.id,
+        uid: this.data.articleDetail.uid,
+        time: 1,
+        nickname: this.data.userInfo.nickname
+      },
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          wx.showModal({
+            title: '',
+            content: '禁言成功'
+          })
+        } else {
+          wx.showModal({
+            title: '',
+            content: data.data.msg
+          })
+        }
+      }
+    })
+  },
+  // 删除
+  delArticle() {
+    wx.request({
+      url: `${app.globalData.requestUrl}/Forum/del_post`,
+      method: 'POST',
+      data: {
+        aid: this.data.userInfo.id,
+        uid: this.data.articleDetail.uid,
+        post_id: this.data.articleDetail.pid,
+        title: this.data.articleDetail.title,
+        nickname: this.data.articleDetail.nickname
+      },
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          wx.showToast({
+            title: "删除成功！",
+            icon: 'success',
+            duration: 2000,
+            mask: true
+          });
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1,
+            })
+          }, 2000)
+        } else {
+          wx.showModal({
+            title: '',
+            content: data.data.msg
+          })
+        }
+      }
+    })
+  },
+  // 置顶
+  topping() {
+    wx.request({
+      url: `${app.globalData.requestUrl}/Forum/top`,
+      method: 'POST',
+      data: {
+        aid: this.data.userInfo.id,
+        uid: this.data.articleDetail.uid,
+        post_id: this.data.articleDetail.pid,
+        title: this.data.articleDetail.title,
+        nickname: this.data.userInfo.nickname
+      },
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          wx.showModal({
+            title: '',
+            content: '置顶成功'
+          })
+        } else {
+          wx.showModal({
+            title: '',
+            content: data.data.msg
+          })
+        }
+      }
+    })
+  },
+  // 加精
+  addBoutique() {
+    wx.request({
+      url: `${app.globalData.requestUrl}/Forum/essence`,
+      method: 'POST',
+      data: {
+        aid: this.data.userInfo.id,
+        uid: this.data.articleDetail.uid,
+        post_id: this.data.articleDetail.pid,
+        title: this.data.articleDetail.title,
+        nickname: this.data.userInfo.nickname
+      },
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          wx.showModal({
+            title: '',
+            content: '加精成功'
+          })
+        } else {
+          wx.showModal({
+            title: '',
+            content: data.data.msg
+          })
+        }
+      }
     })
   },
   /**

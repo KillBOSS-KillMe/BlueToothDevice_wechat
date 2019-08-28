@@ -257,7 +257,6 @@ border-radius:50%;
 }
 
 .luntanConBot-left, .luntanConBot-con, .luntanConBot-right {
-  width: 33.3%;
   text-align: center;
   font-size: 26rpx;
   color: #8e8e8e;
@@ -458,4 +457,49 @@ padding: 30rpx  0rpx 30rpx 25rpx;
   padding: 0 28rpx;
   line-height: 60rpx;
   margin: 0 0 0 18rpx;
+}
+
+
+
+.banned{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #424242;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.banned .iconfont{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  color: #8E8E8E;
+  font-weight: 500;
+  margin-right: 10rpx;
+}
+.adminDom{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 690rpx;
+  padding: 30rpx;
+  border-top: 1rpx solid #EDEDED;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30rpx;
+  color: #424242;
+}
+.adminDom view{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.adminDom .iconfont{
+  font-size: 30rpx;
+  margin-right: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
