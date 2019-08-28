@@ -1,7 +1,7 @@
 
 <!-- 关注的帖子 -->
 <view class='gz-con gz-tiezi'>
-    <block class="shanchuList" wx:for="{{shanchuList}}" wx:key="{{item}}">
+    <block class="shanchuList" wx:for="{{listData}}" wx:key="{{item}}">
       <view class='gz-tiezi-li'>
         <view class='gz-li-top'>
           <navigator url='' class='gz-tiezi-li-img'>

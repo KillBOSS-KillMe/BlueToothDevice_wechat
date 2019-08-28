@@ -30,8 +30,13 @@ Page({
       success: data => {
         data = app.null2str(data)
         if (data.data.code == '1') {
+          data = data.data.data
+          let i = 0
+          for (i in data) {
+            data[i]['createTime'] = app.transformTime(data[i].createTime)
+          }
           this.setData({
-            listData: data.data.data
+            listData: data
           })
         } else {
           // 无数据时
