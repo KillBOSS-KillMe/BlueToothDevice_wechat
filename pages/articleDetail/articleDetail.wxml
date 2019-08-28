@@ -74,13 +74,14 @@
                data-commentid="{{item.id}}"
                  data-uid="{{item.uid}}"
                   data-content="{{item.content}}"
-                bindtap="goReply">
+                bindtap="goReply"
+                bindlongtap="delComment">
                 <view class="comment-text">
                   <view class="name">
                     {{item.nickname}}：
                     <text class="text">{{item.content}}</text>
-                    <icon class="iconfont iconpicture"></icon>
-                    <text class="file">查看图片</text>
+                    <icon wx:if="{{item.c_file.length > 0}}" class="iconfont iconpicture"></icon>
+                    <text wx:if="{{item.c_file.length > 0}}" class="file">查看图片</text>
                   </view>
                 </view>
                 <view class="time">{{item.createTime}}</view>
@@ -90,7 +91,8 @@
                data-commentid="{{replyItem.id}}"
                  data-uid="{{replyItem.uid}}"
                   data-content="{{replyItem.content}}"
-                bindtap="goReply">
+                bindtap="goReply"
+                bindlongtap="delReply">
                 <view class="comment-two-i">
                   <image src="{{replyItem.reply_img}}" style="width: 56rpx; height: 56rpx;"></image>
                   <view class="comment-right">
@@ -100,8 +102,8 @@
                         <text class="text">回复</text>
                         {{replyItem.reply_name}}
                         <text class="text">{{replyItem.content}}</text>
-                        <icon class="iconfont iconpicture"></icon>
-                        <text class="file">查看图片</text>
+                        <icon wx:if="{{replyItem.r_file.length > 0}}" class="iconfont iconpicture"></icon>
+                        <text wx:if="{{replyItem.r_file.length > 0}}" class="file">查看图片</text>
                       </view>
                     </view>
                     <view class="time">{{replyItem.createTime}}</view>

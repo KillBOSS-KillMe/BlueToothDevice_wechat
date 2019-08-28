@@ -25,7 +25,7 @@ Page({
       requestImgUrl: app.globalData.requestImgUrl,
       originalImgUrl: app.globalData.originalImgUrl
     })
-    
+
     // 获取文章详情
     this.getArticleList(options.id)
     // this.getCommentList(options.id)
@@ -249,6 +249,82 @@ Page({
             title: '',
             content: '加精成功'
           })
+        } else {
+          wx.showModal({
+            title: '',
+            content: data.data.msg
+          })
+        }
+      }
+    })
+  },
+  // 长按删除评论
+  delComment(e) {
+    wx.showModal({
+      title: '',
+      content: '是否删除当前评论？',
+      cancelText: '取消',
+      confirmText: '删除',
+      success: res => {
+        if (res.confirm) {
+          // 删除评论执行
+          this.runDelComment(e.currentTarget.dataset.commentid)
+        }
+      }
+    })
+  },
+  // 长按删除回复
+  delReply(e) {
+    wx.showModal({
+      title: '',
+      content: '是否删除当前回复？',
+      cancelText: '取消',
+      confirmText: '删除',
+      success: res => {
+        if (res.confirm) {
+          // 删除回复执行
+          this.runDelReply(e.currentTarget.dataset.commentid)
+        }
+      }
+    })
+  },
+  // 删除评论执行
+  runDelComment(id) {
+    console.log(id)
+    wx.request({
+      url: `${app.globalData.requestUrl}/Forum/del_comment`,
+      method: 'POST',
+      data: {
+        id: id
+      },
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          // 刷新评论部分
+          this.getCommentList(this.data.options.id)
+        } else {
+          wx.showModal({
+            title: '',
+            content: data.data.msg
+          })
+        }
+      }
+    })
+  },
+  // 删除回复执行
+  runDelReply(id) {
+    console.log(id)
+    wx.request({
+      url: `${app.globalData.requestUrl}/Forum/del_reply`,
+      method: 'POST',
+      data: {
+        id: id
+      },
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          // 刷新评论部分
+          this.getCommentList(this.data.options.id)
         } else {
           wx.showModal({
             title: '',
