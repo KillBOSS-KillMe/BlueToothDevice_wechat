@@ -30,12 +30,18 @@
     </view>
   </view> -->
   <view class='in-con-con'>
-    <block class="groupList" wx:for="{{groupList}}" wx:key="{{item}}">
+    <block class="groupList" wx:for="{{deviceGroupList}}" wx:key="{{item}}">
       <view class='in-con-nav' data-id="{{item.id}}" bindtap="setGroup">
         <view class='in-con-icon'>
           <image src='/image/xitongzu.png' class='xitongzu'></image>
-          <!-- // 分组：groupImg:"/image/xitongzu.png",
-          // 视频，音频：    groupImg: "/image/zu.png", -->
+        </view>
+        <text class='in-group'>{{item.group}}</text>
+      </view>
+    </block>
+    <block class="groupList" wx:for="{{groupList}}" wx:key="{{item}}">
+      <view class='in-con-nav' data-id="{{item.id}}" bindtap="setGroup">
+        <view class='in-con-icon'>
+          <image src='/image/zu.png' class='xitongzu'></image>
         </view>
         <text class='in-group'>{{item.group}}</text>
       </view>

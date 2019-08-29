@@ -18,9 +18,12 @@ Page({
       originalImgUrl: app.globalData.originalImgUrl
     })
     // 获取文章列表
+    // this.getArticleList()
+  },
+  onShow() {
+    // 获取文章列表
     this.getArticleList()
   },
-  
   /**
    * 页面上拉触底事件的处理函数
    */

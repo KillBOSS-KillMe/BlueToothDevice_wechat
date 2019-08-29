@@ -20,6 +20,11 @@ Page({
     floatingStr: false,
     newGroupNameData: '',
     groupList: [],
+    deviceGroupList: [
+      {'id': 'a', 'group': 'A组'},
+      {'id': 'b', 'group': 'A组'},
+      {'id': 'all', 'group': '全部'}
+    ],
     state: '',
     pageInfo: {
       rowHeight: 47,
@@ -31,7 +36,7 @@ Page({
       startY: 0,
       selectedIndex: null,
     },
-    navAction:  ['active', 'noActive', 'noActive', 'noActive']
+    navAction: ['active', 'noActive', 'noActive', 'noActive']
   },
 
 

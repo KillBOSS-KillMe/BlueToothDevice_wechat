@@ -15,11 +15,19 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      options: options,
       userInfo: app.globalData.userInfo,
       imgUrl: app.globalData.imgUrl
     })
-    this.getList(options.id)
+    
   },
+    /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.getList(this.data.options.id)
+  },
+
   // 获取游戏列表
   getList(id) {
     wx.request({
@@ -166,12 +174,6 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
 
   /**
    * 生命周期函数--监听页面隐藏
