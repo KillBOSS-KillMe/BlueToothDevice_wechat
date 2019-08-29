@@ -1,6 +1,7 @@
 {
   "usingComponents": {},
   "pages": [
+    "pages/deviceLink/deviceLink",
     "pages/index/index",
     "pages/userAttention/userAttention",
     "pages/userBanned/userBanned",
@@ -24,6 +25,7 @@
     "pages/userAchievement/userAchievement",
     "pages/userDelete/userDelete",
     "pages/userArticle/userArticle"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
