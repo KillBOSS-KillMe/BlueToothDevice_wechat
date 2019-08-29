@@ -155,12 +155,7 @@ Page({
         this.getGroupList()
       }
     }
-    // let deviceData = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
-    // deviceData = app.getDiviceDataAnalysis(deviceData)
-    // console.log(deviceData)
-    // this.setData({
-    //   deviceData: deviceData
-    // })
+    
   },
   onShow() {
     if (wx.setKeepScreenOn) {

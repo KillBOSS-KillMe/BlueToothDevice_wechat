@@ -59,10 +59,7 @@
   <scroll-view  class='aiYou' scroll-y='{{pageInfo.scrollY}}' style='height: {{pageInfo.scrollHeight}}%'>
     <block class="item" wx:for="{{flieList}}" wx:key="{{item}}">
       <view class="aiYou-li {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}"
-      bindlongtap='' data-index='{{index}}'
-      bindtouchstart='dragStart' 
-      bindtouchmove='dragMove'
-      bindtouchend='dragEnd'>
+      bindlongtap='' data-index='{{index}}'>
         <view class='aihua01-left' data-id="{{item.id}}" data-groupid="{{item.group_id}}">
           <text class='in-count'>{{index + 1}}</text>
           <icon class='iconfont iconjiaoben wjj-icon'></icon>

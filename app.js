@@ -269,7 +269,7 @@ App({
     return dataNode
   },
   // 反编译deviceDataNode数据,获取可下发设备的数据
-  setDiviceDataAnalysis(deviceDataNode) {
+  setDiviceDataAnalysis(deviceDataNode, type) {
     console.log(deviceDataNode)
     // 初始化==>>默认值为前置码
     let codeValue = deviceDataNode.frontCode
@@ -279,7 +279,7 @@ App({
     let pad = deviceDataNode.pad
     // let len = '00'
     // let pad = '00'
-    let type = '00'
+    // let type = '00'
     // type为类型
     // 00 (type)[8] OPT_ID_GET_SEQ==>>GET方式，数据获取
     // 01 (type)[8] OPT_ID_PUT_SEQ==>>PUT方式，数据修改
@@ -317,6 +317,7 @@ App({
       seqListStr += group11
     }
     codeValue += seqListStr
+    console.log(codeValue)
     return codeValue
   }
 })

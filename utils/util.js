@@ -1,11 +1,12 @@
 // 字符串转byte
 function stringToBytes(str) {
-  var strArray = new Uint8Array(str.length);
-  for (var i = 0; i < str.length; i++) {
-    strArray[i] = str.charCodeAt(i);
-  }
-  const array = new Uint8Array(strArray.length)
-  strArray.forEach((item, index) => array[index] = item)
+  // var strArray = new Uint8Array(str.length);
+  // for (var i = 0; i < str.length; i++) {
+  //   strArray[i] = str.charCodeAt(i);
+  // }
+  // const array = new Uint8Array(strArray.length)
+  // strArray.forEach((item, index) => array[index] = item)
+  let array = new ArrayBuffer(str)
   return array.buffer;
 }
 
