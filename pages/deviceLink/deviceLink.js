@@ -313,20 +313,20 @@ Page({
         console.log(res.services)
         for (let i = 0; i < res.services.length; i++) {
           if (res.services[i].isPrimary) { //该服务是否为主服务
-            var s = res.services[i].uuid;
-            var log = that.data.textLog + "该服务是为主服务:" + res.services[i].uuid + "\n";
-            that.setData({
-              textLog: log
-            });
+            // var s = res.services[i].uuid;
+            // var log = that.data.textLog + "该服务是为主服务:" + res.services[i].uuid + "\n";
+            // that.setData({
+            //   textLog: log
+            // });
             let deviceNode = {
               name: encodeURIComponent(that.data.name) ,
               deviceId: encodeURIComponent(devId),
               serviceId: encodeURIComponent(res.services[i].uuid)
             }
             app.globalData.deviceNode = deviceNode
-            wx.navigateBack({
-              delta: 1,
-            })
+            // wx.navigateBack({
+            //   delta: 1,
+            // })
             wx.navigateTo({
               url: '/pages/index/index'
             });

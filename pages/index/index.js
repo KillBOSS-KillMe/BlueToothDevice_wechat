@@ -301,12 +301,15 @@ Page({
       characteristicId: that.data.notifyCharacteristicId,
       success: function (res) {
         var log = that.data.textLog + "notify启动成功" + res.errMsg+"\n";
+        console.log('notifyBLECharacteristicValueChange')
+        console.log(res)
         that.setData({ 
           textLog: log,
         });
         that.onBLECharacteristicValueChange();   //监听特征值变化
       },
       fail: function (res) {
+        console.log(res)
         wx.showToast({
           title: 'notify启动失败',
           mask: true
@@ -322,8 +325,11 @@ Page({
   onBLECharacteristicValueChange:function(){
     var that = this;
     wx.onBLECharacteristicValueChange(function (res) {
+      // console.log(res)
       var resValue = utils.ab2hext(res.value); //16进制字符串
+      console.log(resValue)
       let deviceData = app.getDiviceDataAnalysis(resValue)
+      // console.log(deviceData)
       that.setData({
         deviceData: deviceData
       })
@@ -331,7 +337,16 @@ Page({
         deviceId: that.data.deviceId,
         serviceId: that.data.serviceId,
         characteristicId: that.data.notifyCharacteristicId,
-        success (res) {}
+        success (res) {
+          // console.log(res)
+          // var resValue = utils.ab2hext(res.value); //16进制字符串
+          // console.log(resValue)
+          // let deviceData = app.getDiviceDataAnalysis(resValue)
+          // console.log(deviceData)
+          // that.setData({
+          //   deviceData: deviceData
+          // })
+        }
       })
 
     });
@@ -344,18 +359,19 @@ Page({
   },
 
   //发送指令
-  sentOrder:function(){
-    var that = this; 
-    var orderStr = that.data.orderInputStr;//指令
-    console.log(`获取指令==>>${orderStr}`)
-    let order = utils.stringToBytes(orderStr);
-    console.log(`指令==>>${orderStr}字符串转byte==>>${order}`)
-    that.writeBLECharacteristicValue(order);
-  },
+  // sentOrder:function(){
+  //   var that = this; 
+  //   var orderStr = that.data.orderInputStr;//指令
+  //   console.log(`获取指令==>>${orderStr}`)
+  //   let order = utils.stringToBytes(orderStr);
+  //   console.log(`指令==>>${orderStr}字符串转byte==>>${order}`)
+  //   that.writeBLECharacteristicValue(order);
+  // },
 
   //向低功耗蓝牙设备特征值中写入二进制数据。
   //注意：必须设备的特征值支持write才可以成功调用，具体参照 characteristic 的 properties 属性
   writeBLECharacteristicValue: function (order){
+    order = utils.stringToBytes(order);
     var that = this;
     let byteLength = order.byteLength;
     console.log(`执行指令的字节长度==>>${byteLength}`)
@@ -395,7 +411,15 @@ Page({
       
     })
   },
-
+  // 更新数据到硬件
+  upDeviceData() {
+    // FF00FF00FF00FF0000040500000401020304050001000100100001020304050002
+    // 00030800000102030405000300020430000102030405000400000C2000
+    let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
+    let deviceData = app.getDiviceDataAnalysis(a)
+    let upData = app.setDiviceDataAnalysis(deviceData, '02')
+    this.writeBLECharacteristicValue(upData)
+  },
 
 
 
@@ -609,7 +633,7 @@ Page({
     // event.currentTarget.dataset.index
     var startIndex = event.currentTarget.dataset.index
     console.log(startIndex)
-    console.log('获取到的元素为', this.data.flieList[startIndex])
+    console.log('获取到的元素为', this.data.deviceData.seqListNode[startIndex])
     // 初始化页面数据
     var pageInfo = this.data.pageInfo
     pageInfo.startY = event.touches[0].clientY
@@ -633,7 +657,7 @@ Page({
   },
 
   dragMove: function (event) {
-    var flieList = this.data.flieList
+    var seqListNode = this.data.deviceData.seqListNode
     var pageInfo = this.data.pageInfo
     // 计算拖拽距离
     var movableViewInfo = this.data.movableViewInfo
@@ -647,24 +671,25 @@ Page({
     if (readyPlaceIndex < 0) {
       readyPlaceIndex = 0
     }
-    else if (readyPlaceIndex >= flieList.length) {
-      readyPlaceIndex = flieList.length - 1
+    else if (readyPlaceIndex >= seqListNode.length) {
+      readyPlaceIndex = seqListNode.length - 1
     }
 
     if (readyPlaceIndex != pageInfo.selectedIndex) {
-      var selectedData = flieList[pageInfo.selectedIndex]
+      var selectedData = seqListNode[pageInfo.selectedIndex]
 
-      flieList.splice(pageInfo.selectedIndex, 1)
-      flieList.splice(readyPlaceIndex, 0, selectedData)
+      seqListNode.splice(pageInfo.selectedIndex, 1)
+      seqListNode.splice(readyPlaceIndex, 0, selectedData)
       pageInfo.selectedIndex = readyPlaceIndex
     }
     // 移动movableView
     pageInfo.readyPlaceIndex = readyPlaceIndex
     // console.log('移动到了索引', readyPlaceIndex, '选项为', flieList[readyPlaceIndex])
-
+    let deviceData = this.data.deviceData
+    deviceData['seqListNode'] = seqListNode
     this.setData({
       movableViewInfo: movableViewInfo,
-      flieList: flieList,
+      deviceData: deviceData,
       pageInfo: pageInfo
     })
   },

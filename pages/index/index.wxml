@@ -120,6 +120,7 @@
 
 <view class="linkDevice">
   <view bindtap="linkDevice">连接设备</view>
+  <view bindtap="upDeviceData">上传排序</view>
   <view bindtap="closeBLEConnection">断开连接</view>
 </view>
 <!-- 新建组弹框 -->

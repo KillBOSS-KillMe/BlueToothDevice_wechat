@@ -1,12 +1,11 @@
 // 字符串转byte
 function stringToBytes(str) {
-  // var strArray = new Uint8Array(str.length);
-  // for (var i = 0; i < str.length; i++) {
-  //   strArray[i] = str.charCodeAt(i);
-  // }
-  // const array = new Uint8Array(strArray.length)
-  // strArray.forEach((item, index) => array[index] = item)
-  let array = new ArrayBuffer(str)
+  var strArray = new Uint8Array(str.length);
+  for (var i = 0; i < str.length; i++) {
+    strArray[i] = str.charCodeAt(i);
+  }
+  const array = new Uint8Array(strArray.length)
+  strArray.forEach((item, index) => array[index] = item)
   return array.buffer;
 }
 
@@ -25,7 +24,15 @@ function ab2hext(buffer) {
     hex = (hex.length === 1) ? '0' + hex : hex;
     hexStr += hex;
   }
-  return hexStr;
+  return hexStr.toUpperCase();
+  // var hexArr = Array.prototype.map.call(
+  //   new Uint8Array(buffer),
+  //   function (bit) {
+  //     return ('00' + bit.toString(16)).slice(-2)
+  //   }
+  // )
+  // console.log(hexArr)
+  // return hexArr.join('');
 }
 
 //16进制转字符串
