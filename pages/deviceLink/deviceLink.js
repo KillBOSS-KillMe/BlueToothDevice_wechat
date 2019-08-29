@@ -72,7 +72,7 @@ Page({
         }
       })
     }
-
+    this.openBluetoothAdapter();
   },
 
   /**
@@ -310,6 +310,7 @@ Page({
         // } else {
         //   app.showModal1("无可用service");
         // }
+        console.log(res.services)
         for (let i = 0; i < res.services.length; i++) {
           if (res.services[i].isPrimary) { //该服务是否为主服务
             var s = res.services[i].uuid;
@@ -326,9 +327,9 @@ Page({
             wx.navigateBack({
               delta: 1,
             })
-            // wx.navigateTo({
-            //   url: '/pages/deviceInfo/deviceInfo'
-            // });
+            wx.navigateTo({
+              url: '/pages/index/index'
+            });
             return
           }
         }

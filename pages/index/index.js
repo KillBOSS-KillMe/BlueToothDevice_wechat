@@ -85,6 +85,7 @@
 // });
 
 const app = getApp()
+var utils = require("../../utils/util.js");
 Page({
   data: {
     topNav: false,
@@ -125,7 +126,9 @@ Page({
     navAction: ['active', 'noActive', 'noActive', 'noActive'],
     deviceId: '',
     name: '',
-    serviceId: ''
+    serviceId: '',
+    deviceData: {},
+    readCharacteristicId: ''
   },
 
 
@@ -152,6 +155,12 @@ Page({
         this.getGroupList()
       }
     }
+    // let deviceData = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
+    // deviceData = app.getDiviceDataAnalysis(deviceData)
+    // console.log(deviceData)
+    // this.setData({
+    //   deviceData: deviceData
+    // })
   },
   onShow() {
     if (wx.setKeepScreenOn) {
@@ -164,8 +173,8 @@ Page({
     }
     // 获取到连接的设备服务信息
     let deviceNode = app.globalData.deviceNode
+    console.log(deviceNode)
     if (Object.keys(deviceNode).length > 0) {
-      var that = this;
       var devid = decodeURIComponent(deviceNode.deviceId);
       var devname = decodeURIComponent(deviceNode.name);
       var devserviceid = decodeURIComponent(deviceNode.serviceId);
@@ -177,8 +186,8 @@ Page({
         name: devname,
         serviceId: devserviceid 
       });
-      //获取特征值
-      that.getBLEDeviceCharacteristics();
+      // //获取特征值
+      this.getBLEDeviceCharacteristics();
     } else {
       wx.showModal({
         title: '',
@@ -240,44 +249,49 @@ Page({
     }, 2000)
   },
   //获取蓝牙设备某个服务中的所有 characteristic（特征值）
-  getBLEDeviceCharacteristics: function (order){
-    var that = this;
+  getBLEDeviceCharacteristics() {
+    // var that = this;
     console.log('特征值读取-----------------------------------')
+    console.log(`deviceId-----${this.data.deviceId}`)
+    console.log(`serviceId-----${this.data.serviceId}`)
     wx.getBLEDeviceCharacteristics({
-      deviceId: that.data.deviceId,
-      serviceId: that.data.serviceId,
-      success: function (res) {
+      deviceId: this.data.deviceId,
+      serviceId: this.data.serviceId,
+      success: res => {
         console.log(res)
         for (let i = 0; i < res.characteristics.length; i++) {
           let item = res.characteristics[i]
           if (item.properties.read) {//该特征值是否支持 read 操作
-            var log = that.data.textLog + "该特征值支持 read 操作:" + item.uuid + "\n";
-            that.setData({
-              textLog: log,
+            // var log = this.data.textLog + "该特征值支持 read 操作:" + item.uuid + "\n";
+            this.setData({
+              // textLog: log,
               readCharacteristicId: item.uuid
             });
           }
           if (item.properties.write) {//该特征值是否支持 write 操作
-            var log = that.data.textLog + "该特征值支持 write 操作:" + item.uuid + "\n";
-            that.setData({
-              textLog: log,
+            // var log = this.data.textLog + "该特征值支持 write 操作:" + item.uuid + "\n";
+            this.setData({
+              // textLog: log,
               writeCharacteristicId: item.uuid,
               canWrite:true
             });
             
           }
           if (item.properties.notify || item.properties.indicate) {//该特征值是否支持 notify或indicate 操作
-            var log = that.data.textLog + "该特征值支持 notify 操作:" + item.uuid + "\n";
-            that.setData({
-              textLog: log,
+            // var log = this.data.textLog + "该特征值支持 notify 操作:" + item.uuid + "\n";
+            this.setData({
+              // textLog: log,
               notifyCharacteristicId: item.uuid,
             });
-            that.notifyBLECharacteristicValueChange();
+            this.notifyBLECharacteristicValueChange();
           }
 
         }
 
-      }
+      },
+      fail: function(err) {
+        console.log(err)
+      },
     })
     // that.onBLECharacteristicValueChange();   //监听特征值变化
   },
@@ -313,26 +327,16 @@ Page({
   onBLECharacteristicValueChange:function(){
     var that = this;
     wx.onBLECharacteristicValueChange(function (res) {
-      console.log('-------------22222监听特征值变化22222---------------')
-      console.log(res)
       var resValue = utils.ab2hext(res.value); //16进制字符串
-      console.log(`res.value==>>ab2hext转16进制==>>${resValue}`)
-      // var resValueStr = utils.hexToString(resValue);
-      // console.log(`res.value==>>ab2hext转16进制==>>hexToString转字符串==>>${resValueStr}`)
-  
-      // var log0 = that.data.textLog + "成功获取：" + resValueStr + "\n";
+      let deviceData = app.getDiviceDataAnalysis(resValue)
+      that.setData({
+        deviceData: deviceData
+      })
       wx.readBLECharacteristicValue({
-        // 这里的 deviceId 需要已经通过 createBLEConnection 与对应设备建立链接
         deviceId: that.data.deviceId,
-        // 这里的 serviceId 需要在 getBLEDeviceServices 接口中获取
         serviceId: that.data.serviceId,
-        // 这里的 characteristicId 需要在 getBLEDeviceCharacteristics 接口中获取
         characteristicId: that.data.notifyCharacteristicId,
-        success (res) {
-          console.log('-------------11111监听特征值变化11111---------------')
-          console.log('readBLECharacteristicValue:', res)
-          console.log(utils.ab2hext(res.value))
-        }
+        success (res) {}
       })
 
     });

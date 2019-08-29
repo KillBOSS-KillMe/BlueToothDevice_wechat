@@ -440,6 +440,7 @@ height:69rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 200rpx;
 }
 .linkDevice view{
   padding: 30rpx;
