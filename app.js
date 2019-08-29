@@ -53,6 +53,7 @@ App({
   },
   globalData: {
     userInfo: {},
+    deviceNode: {},
     sysinfo: null,
     groupList: [],
     articleDetail: {},

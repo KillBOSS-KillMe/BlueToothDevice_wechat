@@ -433,3 +433,18 @@ height:69rpx;
   padding: 0 28rpx;
   height: 60rpx;
 }
+
+.linkDevice{
+  width: 690rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.linkDevice view{
+  padding: 30rpx;
+  border-radius: 10rpx;
+  background-color: #3393FF;
+  color: #fff;
+  font-size: 28rpx;
+}
