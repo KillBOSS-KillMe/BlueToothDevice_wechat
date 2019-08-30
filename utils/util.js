@@ -1,12 +1,15 @@
 // 字符串转byte
 function stringToBytes(str) {
-  var strArray = new Uint8Array(str.length);
-  for (var i = 0; i < str.length; i++) {
-    strArray[i] = str.charCodeAt(i);
-  }
-  const array = new Uint8Array(strArray.length)
-  strArray.forEach((item, index) => array[index] = item)
-  return array.buffer;
+  // var strArray = new Uint8Array(str.length);
+  // for (var i = 0; i < str.length; i++) {
+  //   strArray[i] = str.charCodeAt(i);
+  // }
+  // const array = new Uint8Array(strArray.length)
+  // strArray.forEach((item, index) => array[index] = item)
+  // return array.buffer;
+  return new Uint8Array(str.match(/[\da-f]{2}/gi).map(function (h) {
+    return parseInt(h, 16)
+  })).buffer
 }
 
 // ArrayBuffer转16进制字符串示例

@@ -324,32 +324,62 @@ Page({
   //监听低功耗蓝牙设备的特征值变化。必须先启用notify接口才能接收到设备推送的notification。
   onBLECharacteristicValueChange:function(){
     var that = this;
-    wx.onBLECharacteristicValueChange(function (res) {
-      // console.log(res)
-      var resValue = utils.ab2hext(res.value); //16进制字符串
-      console.log(resValue)
-      let deviceData = app.getDiviceDataAnalysis(resValue)
-      // console.log(deviceData)
-      that.setData({
-        deviceData: deviceData
-      })
-      wx.readBLECharacteristicValue({
-        deviceId: that.data.deviceId,
-        serviceId: that.data.serviceId,
-        characteristicId: that.data.notifyCharacteristicId,
-        success (res) {
+    wx.readBLECharacteristicValue({
+      deviceId: that.data.deviceId,
+      serviceId: that.data.serviceId,
+      characteristicId: that.data.notifyCharacteristicId,
+      success (res) {
+        console.log(res)
+        // console.log(res)
+        // var resValue = utils.ab2hext(res.value); //16进制字符串
+        // console.log(resValue)
+        // let deviceData = app.getDiviceDataAnalysis(resValue)
+        // console.log(deviceData)
+        // that.setData({
+        //   deviceData: deviceData
+        // })
+        wx.onBLECharacteristicValueChange(function (res) {
           // console.log(res)
-          // var resValue = utils.ab2hext(res.value); //16进制字符串
-          // console.log(resValue)
-          // let deviceData = app.getDiviceDataAnalysis(resValue)
-          // console.log(deviceData)
-          // that.setData({
-          //   deviceData: deviceData
-          // })
-        }
-      })
-
-    });
+          var resValue = utils.ab2hext(res.value); //16进制字符串
+          if (resValue.indexOf("FF00FF00FF00FF00") != -1) {
+            console.log('getData========>>>>>>' + resValue)
+            let deviceData = app.getDiviceDataAnalysis(resValue)
+            console.log(deviceData)
+            that.setData({
+              deviceData: deviceData
+            })
+          }
+          
+        });
+      }
+    })
+    
+    // wx.onBLECharacteristicValueChange(function (res) {
+    //   // console.log(res)
+    //   var resValue = utils.ab2hext(res.value); //16进制字符串
+    //   console.log(resValue)
+    //   let deviceData = app.getDiviceDataAnalysis(resValue)
+    //   // console.log(deviceData)
+    //   that.setData({
+    //     deviceData: deviceData
+    //   })
+    //   wx.readBLECharacteristicValue({
+    //     deviceId: that.data.deviceId,
+    //     serviceId: that.data.serviceId,
+    //     characteristicId: that.data.notifyCharacteristicId,
+    //     success (res) {
+          
+    //       // console.log(res)
+    //       // var resValue = utils.ab2hext(res.value); //16进制字符串
+    //       // console.log(resValue)
+    //       // let deviceData = app.getDiviceDataAnalysis(resValue)
+    //       // console.log(deviceData)
+    //       // that.setData({
+    //       //   deviceData: deviceData
+    //       // })
+    //     }
+    //   })
+    // });
   },
   //orderInput
   orderInput:function(e){
@@ -380,6 +410,10 @@ Page({
       textLog: log,
     });
     console.log(`${that.data.deviceId}===${that.data.serviceId}===${that.data.writeCharacteristicId}===${order.slice(0, 20)}`)
+    console.log('=========================')
+    console.log(order)
+    console.log(utils.ab2hext(order))
+    // return false
     wx.writeBLECharacteristicValue({
       deviceId: that.data.deviceId,
       serviceId: that.data.serviceId,
@@ -399,6 +433,7 @@ Page({
         that.setData({
           textLog: log,
         });
+        that.onShow()
       },
 
       fail: function (res) {
