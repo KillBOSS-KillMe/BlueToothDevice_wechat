@@ -34,4 +34,5 @@
       </view>
     </block>
   </scroll-view>
+  <view class="devices_summary" bindtap="goIndex">跳过</view>
 </view>

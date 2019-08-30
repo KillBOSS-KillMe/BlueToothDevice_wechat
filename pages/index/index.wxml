@@ -57,7 +57,7 @@
 <!-- 项目栏部分 -->
 <view class='aiHua'>
   <scroll-view  class='aiYou' scroll-y='{{pageInfo.scrollY}}' style='height: {{pageInfo.scrollHeight}}%'>
-    <block class="item" wx:for="{{flieList}}" wx:key="{{item}}">
+    <block class="item" wx:if="{{listType != 'a' && listType != 'b' && listType != 'all'}}" wx:for="{{flieList}}" wx:key="{{item}}">
       <view class="aiYou-li {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}"
       bindlongtap='' data-index='{{index}}'>
         <view class='aihua01-left' data-id="{{item.id}}" data-groupid="{{item.group_id}}">
@@ -85,7 +85,7 @@
         </view>
       </view>
     </block>
-    <block class="item" wx:for="{{deviceData.seqListNode}}" wx:key="{{item}}">
+    <block class="item" wx:if="{{listType == 'a' || listType == 'b' || listType == 'all'}}" wx:for="{{deviceData.seqListNode}}" wx:key="{{item}}">
       <view class="aiYou-li"
       bindlongtap='' data-index='{{index}}'
       bindtouchstart='dragStart' 

@@ -128,7 +128,8 @@ Page({
     name: '',
     serviceId: '',
     deviceData: {},
-    readCharacteristicId: ''
+    readCharacteristicId: '',
+    listType: ''
   },
 
 
@@ -137,6 +138,7 @@ Page({
       navAction: app.globalData.navAction
     })
     let userInfo = app.globalData.userInfo
+    console.log(userInfo)
     // 获取用户信息
     if (Object.keys(userInfo).length == 0) {
       this.getUserInfo()
@@ -166,6 +168,13 @@ Page({
         }
       })
     }
+    let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
+    let deviceData = app.getDiviceDataAnalysis(a)
+    console.log(deviceData)
+    this.setData({
+      deviceData: deviceData
+    })
+    return ''
     // 获取到连接的设备服务信息
     let deviceNode = app.globalData.deviceNode
     console.log(deviceNode)
@@ -346,6 +355,7 @@ Page({
             let deviceData = app.getDiviceDataAnalysis(resValue)
             console.log(deviceData)
             that.setData({
+              originalData: deviceData,
               deviceData: deviceData
             })
           }
@@ -451,9 +461,18 @@ Page({
   upDeviceData() {
     // FF00FF00FF00FF0000040500000401020304050001000100100001020304050002
     // 00030800000102030405000300020430000102030405000400000C2000
-    let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
-    let deviceData = app.getDiviceDataAnalysis(a)
-    let upData = app.setDiviceDataAnalysis(deviceData, '01')
+    // let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
+    // let deviceData = app.getDiviceDataAnalysis(a)
+    let deviceData = this.data.deviceData
+    let originalData = this.data.originalData
+    let type = ""
+    if (deviceData.seqListNode > originalData.seqListNode) {
+      type = '02'
+    } else if (deviceData.seqListNode <= originalData.seqListNode) {
+      type = '01'
+    }
+    
+    let upData = app.setDiviceDataAnalysis(deviceData, type)
     this.writeBLECharacteristicValue(upData)
   },
 
@@ -509,6 +528,8 @@ Page({
                 })
                 app.globalData.userInfo = data
                 // 获取分组
+                console.log('=============')
+                console.log(data)
                 this.getGroupList()
               } else {
                 wx.showModal({
@@ -631,6 +652,9 @@ Page({
     })
   },
   setGroup(e) {
+    this.setData({
+      listType: e.currentTarget.dataset.id
+    })
     this.getFlieList(e.currentTarget.dataset.id)
   },
   // 通过分组ID获取分组下数据包列表

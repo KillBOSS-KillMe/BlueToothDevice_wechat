@@ -81,8 +81,12 @@ Page({
   onUnload: function() {
     this.closeBluetoothAdapter(); //关闭蓝牙模块，使其进入未初始化状态。
   },
-
-
+  // 进入首页
+  goIndex() {
+    wx.navigateTo({
+      url: '/pages/index/index'
+    });
+  },
   //退出页面
   backPage: function() {
     // wx.navigateBack({
