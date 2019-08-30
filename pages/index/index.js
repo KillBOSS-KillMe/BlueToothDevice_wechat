@@ -385,15 +385,16 @@ Page({
       serviceId: that.data.serviceId,
       characteristicId: that.data.writeCharacteristicId,
       // 这里的value是ArrayBuffer类型
-      value: order.slice(0, 20),
+      // value: order.slice(0, 20),
+      value: order,
       success: function (res) {
         console.log('============特征值中写入反馈结果============')
         console.log(res)
-        if (byteLength > 20) {
-          setTimeout(function(){
-            // that.writeBLECharacteristicValue(order.slice(20, byteLength));
-          },150);
-        }
+        // if (byteLength > 20) {
+        //   setTimeout(function(){
+        //     // that.writeBLECharacteristicValue(order.slice(20, byteLength));
+        //   },150);
+        // }
         var log = that.data.textLog + "写入成功：" + res.errMsg + "\n";
         that.setData({
           textLog: log,
@@ -417,7 +418,7 @@ Page({
     // 00030800000102030405000300020430000102030405000400000C2000
     let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
     let deviceData = app.getDiviceDataAnalysis(a)
-    let upData = app.setDiviceDataAnalysis(deviceData, '02')
+    let upData = app.setDiviceDataAnalysis(deviceData, '01')
     this.writeBLECharacteristicValue(upData)
   },
 

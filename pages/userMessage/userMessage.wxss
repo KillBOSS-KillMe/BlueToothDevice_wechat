@@ -41,10 +41,16 @@ page {
   justify-content: flex-start;
   margin-top: 31rpx;
 }
+.from {
+  font-weight: 600;
+}
 .from image{
   width: 40rpx;
   height: 40rpx;
   border-radius: 20rpx;
+}
+.from .from-name{
+  font-weight: 600;
 }
 .from-name{
   font-size: 24rpx;
@@ -77,4 +83,10 @@ font-size: 20rpx;
 color: #FFFEFE;
 padding: 0 13rpx;
 margin-left: 20rpx;
+}
+.from-img{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+
 }

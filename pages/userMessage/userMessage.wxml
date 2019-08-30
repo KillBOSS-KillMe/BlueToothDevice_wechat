@@ -13,11 +13,22 @@
       </view> -->
       <view class='de-li-cen'>
         <navigator class='from'>
-          <!-- <image src='/image/luntan2.jpg' class='from-img'></image> -->
-          <text class='from-name'>{{item.content}}</text>
+          <image src='{{item.avatarUrl}}' class='from-img'></image>
+          <text class='from-name'>{{item.nickname}}</text>
+          <text wx:if="{{item.type == '1'}}">系统通知</text>
+          <text wx:if="{{item.type == '2'}}">评论了你的帖子</text>
+          <text wx:if="{{item.type == '3'}}">回复了你的评论</text>
+          <text wx:if="{{item.type == '4'}}">置顶了你的帖子</text>
+          <text wx:if="{{item.type == '3'}}">加精了你的帖子</text>
+          <text wx:if="{{item.type == '3'}}">禁言了你的帖子</text>
+          <text wx:if="{{item.type == '3'}}">删除了你的帖子</text>
         </navigator>
+      </view>
+      <view class='de-li-cen'>
         <view class='fabuTime'>
-        <text class='fabuDay'>{{item.createTime}}</text>
+          <image src='{{item.from_avatarUrl}}' class='from-img'></image>
+          <text class='from-name'>{{item.from_nickname}}</text>
+          <text class='fabuDay'>{{item.createTime}}</text>
         </view>
       </view>
       <view class='de-li-bot'>
