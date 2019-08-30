@@ -174,7 +174,7 @@ Page({
     this.setData({
       deviceData: deviceData
     })
-    return ''
+    // return ''
     // 获取到连接的设备服务信息
     let deviceNode = app.globalData.deviceNode
     console.log(deviceNode)
@@ -200,7 +200,7 @@ Page({
         confirmText:'是',
         success(res){
           if(res.confirm){
-            // 用户点击了确定属性的按钮，对应选择了'去支付'
+            // 用户点击了确定属性的按钮，对应选择了'去连接'
             // 跳转
             wx.navigateTo({
               url: `/pages/deviceLink/deviceLink`
@@ -331,7 +331,7 @@ Page({
   },
   // 值获取----值获取----值获取----值获取----值获取----值获取----值获取----值获取----
   //监听低功耗蓝牙设备的特征值变化。必须先启用notify接口才能接收到设备推送的notification。
-  onBLECharacteristicValueChange:function(){
+  onBLECharacteristicValueChange:function(){  
     var that = this;
     wx.readBLECharacteristicValue({
       deviceId: that.data.deviceId,
@@ -348,7 +348,7 @@ Page({
         //   deviceData: deviceData
         // })
         wx.onBLECharacteristicValueChange(function (res) {
-          // console.log(res)
+          console.log(res)
           var resValue = utils.ab2hext(res.value); //16进制字符串
           if (resValue.indexOf("FF00FF00FF00FF00") != -1) {
             console.log('getData========>>>>>>' + resValue)
