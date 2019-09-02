@@ -179,24 +179,20 @@ Page({
         }
       })
     }
-    // let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
-    // let deviceData = app.getDiviceDataAnalysis(a)
-    // deviceData['listA'] = deviceData.seqListNode.sort(compare("groupANum")).reverse();
-    // // orderA: [],
-    // // orderB: [],
-    // // orderAll: [],
-    // let orderA = []
-    // let i = 0
-    // for (i in deviceData.listA) {
-    //   orderA.push(deviceData.listA[i].groupA)
-    // }
-    // console.log(deviceData)
-    // console.log(orderA)
-    // this.setData({
-    //   deviceData: deviceData,
-    //   orderA: orderA
-    // })
-    // return ''
+    let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
+    let deviceData = app.getDiviceDataAnalysis(a)
+    deviceData['listA'] = deviceData.seqListNode.sort(compare("groupANum")).reverse();
+    let orderA = []
+    let i = 0
+    for (i in deviceData.listA) {
+      orderA.push(deviceData.listA[i].groupA)
+    }
+    console.log(deviceData)
+    this.setData({
+      deviceData: deviceData,
+      orderA: orderA
+    })
+    return ''
     // 获取到连接的设备服务信息
     let deviceNode = app.globalData.deviceNode
     console.log(deviceNode)
@@ -239,6 +235,36 @@ Page({
   linkDevice() {
     wx.navigateTo({
       url: `/pages/deviceLink/deviceLink`
+    })
+  },
+  // 设备数据删除事件
+  delDeviceData(e) {
+    console.log(e)
+    let id = e.currentTarget.dataset.id
+    wx.showModal({ //使用模态框提示用户进行操作
+      title: '',
+      content: '确认删除当前数据？',
+      success: res => {
+        if (res.confirm) {
+          this.delDeviceDataRun(id)
+        }
+      }
+    })
+  },
+  delDeviceDataRun(id) {
+    let deviceData = this.data.deviceData
+    let seqListNode = deviceData.seqListNode
+    for (let i = 0; i < seqListNode.length; i++) {
+      if (seqListNode[i].id == id) {
+        seqListNode.splice(i, 1);
+      }
+    }
+    console.log(seqListNode)
+    // 获取分组数据列表
+    this.getGroupingList()
+    deviceData['seqListNode'] = seqListNode
+    this.setData({
+      deviceData: deviceData
     })
   },
   //清空log日志
@@ -683,7 +709,18 @@ Page({
     this.setData({
       listType: e.currentTarget.dataset.id
     })
-    if (e.currentTarget.dataset.id == 'a') {
+    let listType = this.data.listType
+    if (listType == 'a' || listType == 'b' || listType == 'all') {
+      // 获取分组数据列表
+      this.getGroupingList()
+    } else {
+      // 从服务器获取数据
+      this.getFlieList(listType)
+    }
+  },
+  // 获取分组数据列表
+  getGroupingList() {
+    if (this.data.listType == 'a') {
       let deviceData = this.data.deviceData
       // 通过json中的groupANum大小来排序reverse为倒叙操作
       if (deviceData.seqListNode.length > 0) {
@@ -698,7 +735,7 @@ Page({
         orderA: orderA,
         deviceData: deviceData
       })
-    } else if (e.currentTarget.dataset.id == 'b') {
+    } else if (this.data.listType == 'b') {
       let deviceData = this.data.deviceData
       if (deviceData.seqListNode.length > 0) {
         deviceData['listB'] = deviceData.seqListNode.sort(compare("groupBNum")).reverse();
@@ -712,7 +749,7 @@ Page({
         orderB: orderB,
         deviceData: deviceData
       })
-    } else if (e.currentTarget.dataset.id == 'all') {
+    } else if (this.data.listType == 'all') {
       let deviceData = this.data.deviceData
       if (deviceData.seqListNode.length > 0) {
         deviceData['listAll'] = deviceData.seqListNode.sort(compare("groupAllNum")).reverse();
@@ -726,9 +763,6 @@ Page({
         orderAll: orderAll,
         deviceData: deviceData
       })
-    } else {
-      // 从服务器获取数据
-      this.getFlieList(e.currentTarget.dataset.id)
     }
   },
   // 通过分组ID获取分组下数据包列表
@@ -786,7 +820,7 @@ Page({
       thisShowList = this.data.deviceData.listB
     } else if (this.data.listType == 'all') {
       thisShowList = this.data.deviceData.listAll
-    } 
+    }
     movableViewInfo.data = thisShowList[startIndex]
     movableViewInfo.showClass = "inline"
 

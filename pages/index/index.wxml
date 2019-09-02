@@ -32,7 +32,7 @@
   <view class='in-con-con'>
     <block class="groupList" wx:for="{{deviceGroupList}}" wx:key="{{item}}">
       <view class='in-con-nav' data-id="{{item.id}}" bindtap="setGroup">
-        <view class='in-con-icon'>
+        <view class="in-con-icon {{item.id == listType?'active':''}}">
           <image src='/image/xitongzu.png' class='xitongzu'></image>
         </view>
         <text class='in-group'>{{item.group}}</text>
@@ -87,7 +87,7 @@
     </block>
     <block class="item" wx:if="{{listType == 'a'}}" wx:for="{{deviceData.listA}}" wx:key="{{item}}">
       <view class="aiYou-li {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}"
-      bindlongtap='' data-index='{{index}}'
+      bindlongtap='delDeviceData' data-index='{{index}}'  data-id="{{item.id}}"
       bindtouchstart='dragStart' 
       bindtouchmove='dragMove'
       bindtouchend='dragEnd'>
@@ -117,7 +117,7 @@
     </block>
     <block class="item" wx:if="{{listType == 'b'}}" wx:for="{{deviceData.listB}}" wx:key="{{item}}">
       <view class="aiYou-li {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}"
-      bindlongtap='' data-index='{{index}}'
+      bindlongtap='delDeviceData' data-index='{{index}}'  data-id="{{item.id}}"
       bindtouchstart='dragStart' 
       bindtouchmove='dragMove'
       bindtouchend='dragEnd'>
@@ -147,7 +147,7 @@
     </block>
     <block class="item" wx:if="{{listType == 'all'}}" wx:for="{{deviceData.listAll}}" wx:key="{{item}}">
       <view class="aiYou-li {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}"
-      bindlongtap='' data-index='{{index}}'
+      bindlongtap='delDeviceData' data-index='{{index}}'  data-id="{{item.id}}"
       bindtouchstart='dragStart' 
       bindtouchmove='dragMove'
       bindtouchend='dragEnd'>
@@ -180,7 +180,7 @@
 
 <view class="linkDevice">
   <view bindtap="linkDevice">连接设备</view>
-  <view bindtap="upDeviceData">上传排序</view>
+  <view bindtap="upDeviceData">数据更新到设备</view>
   <view bindtap="closeBLEConnection">断开连接</view>
 </view>
 <!-- 新建组弹框 -->
