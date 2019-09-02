@@ -228,7 +228,7 @@ height:69rpx;
   position:relative;
 }
 .ready-place{
-  background-color: #f5f5f5
+  background-color: #f5f5f5 !important;
 }
 .icon-weixuanze1{
   font-size:28rpx;

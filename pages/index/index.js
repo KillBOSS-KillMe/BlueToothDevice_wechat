@@ -83,29 +83,6 @@
 // that.setData({
 //   textLog: log0,
 // });
-// function deviceAList(a, b) {
-//   // console.log(a.groupANum, b.groupANum)
-//   return a.groupANum - b.groupANum
-//   //   var A = a.groupANum // ignore upper and lowercase
-//   //   var B = b.groupANum // ignore upper and lowercase
-//   //   if (A < B) {
-//   //     return -1;
-//   //   }
-//   //   if (A > B) {
-//   //     return 1;
-//   //   }
-
-
-//   // // names must be equal
-
-//   //   return 0;
-// }
-// function deviceBList(a, b) {
-//   return a.groupBNum - b.groupBNum
-// }
-// function deviceAllList(a, b) {
-//   return a.groupAllNum - b.groupAllNum
-// }
 function compare(property) {
   return function (a, b) {
     var value1 = a[property];
@@ -760,7 +737,15 @@ Page({
     })
     // 初始化拖动控件数据
     var movableViewInfo = this.data.movableViewInfo
-    movableViewInfo.data = this.data.flieList[startIndex]
+    let thisShowList = []
+    if (this.data.listType == 'a') {
+      thisShowList = this.data.deviceData.listA
+    } else if (this.data.listType == 'b') {
+      thisShowList = this.data.deviceData.listB
+    } else if (this.data.listType == 'all') {
+      thisShowList = this.data.deviceData.listAll
+    } 
+    movableViewInfo.data = thisShowList[startIndex]
     movableViewInfo.showClass = "inline"
 
     this.setData({
@@ -776,7 +761,7 @@ Page({
     var movableViewInfo = this.data.movableViewInfo
     var movedDistance = event.touches[0].clientY - pageInfo.startY
     movableViewInfo.y = pageInfo.startY - (pageInfo.rowHeight / 2) + movedDistance
-    console.log('移动的距离为', movedDistance)
+    // console.log('移动的距离为', movedDistance)
 
     // 修改预计放置位置
     var movedIndex = parseInt(movedDistance / pageInfo.rowHeight)
