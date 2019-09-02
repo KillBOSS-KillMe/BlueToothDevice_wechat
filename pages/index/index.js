@@ -135,6 +135,10 @@ Page({
     name: '',
     serviceId: '',
     deviceData: {},
+    originalData: {},
+    orderA: [],
+    orderB: [],
+    orderAll: [],
     readCharacteristicId: '',
     listType: 'a'
   },
@@ -175,14 +179,24 @@ Page({
         }
       })
     }
-    let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
-    let deviceData = app.getDiviceDataAnalysis(a)
-    deviceData['listA'] = deviceData.seqListNode.sort(compare("groupANum"));
-    console.log(deviceData)
-    this.setData({
-      deviceData: deviceData
-    })
-    return ''
+    // let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
+    // let deviceData = app.getDiviceDataAnalysis(a)
+    // deviceData['listA'] = deviceData.seqListNode.sort(compare("groupANum")).reverse();
+    // // orderA: [],
+    // // orderB: [],
+    // // orderAll: [],
+    // let orderA = []
+    // let i = 0
+    // for (i in deviceData.listA) {
+    //   orderA.push(deviceData.listA[i].groupA)
+    // }
+    // console.log(deviceData)
+    // console.log(orderA)
+    // this.setData({
+    //   deviceData: deviceData,
+    //   orderA: orderA
+    // })
+    // return ''
     // 获取到连接的设备服务信息
     let deviceNode = app.globalData.deviceNode
     console.log(deviceNode)
@@ -361,8 +375,14 @@ Page({
           if (resValue.indexOf("FF00FF00FF00FF00") != -1) {
             console.log('getData========>>>>>>' + resValue)
             let deviceData = app.getDiviceDataAnalysis(resValue)
-            console.log(deviceData)
+            deviceData['listA'] = deviceData.seqListNode.sort(compare("groupANum")).reverse();
+            let orderA = []
+            let i = 0
+            for (i in deviceData.listA) {
+              orderA.push(deviceData.listA[i].groupA)
+            }
             that.setData({
+              orderA: orderA,
               originalData: deviceData,
               deviceData: deviceData
             })
@@ -472,6 +492,7 @@ Page({
     // let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
     // let deviceData = app.getDiviceDataAnalysis(a)
     let deviceData = this.data.deviceData
+    console.log(deviceData)
     let originalData = this.data.originalData
     let type = ""
     if (deviceData.seqListNode > originalData.seqListNode) {
@@ -479,7 +500,6 @@ Page({
     } else if (deviceData.seqListNode <= originalData.seqListNode) {
       type = '01'
     }
-
     let upData = app.setDiviceDataAnalysis(deviceData, type)
     this.writeBLECharacteristicValue(upData)
   },
@@ -666,20 +686,44 @@ Page({
     if (e.currentTarget.dataset.id == 'a') {
       let deviceData = this.data.deviceData
       // 通过json中的groupANum大小来排序reverse为倒叙操作
-      deviceData['listA'] = deviceData.seqListNode.sort(compare("groupANum")).reverse();
+      if (deviceData.seqListNode.length > 0) {
+        deviceData['listA'] = deviceData.seqListNode.sort(compare("groupANum")).reverse();
+      }
+      let orderA = []
+      let i = 0
+      for (i in deviceData.listA) {
+        orderA.push(deviceData.listA[i].groupA)
+      }
       this.setData({
+        orderA: orderA,
         deviceData: deviceData
       })
     } else if (e.currentTarget.dataset.id == 'b') {
       let deviceData = this.data.deviceData
-      deviceData['listB'] = deviceData.seqListNode.sort(compare("groupBNum")).reverse();
+      if (deviceData.seqListNode.length > 0) {
+        deviceData['listB'] = deviceData.seqListNode.sort(compare("groupBNum")).reverse();
+      }
+      let orderB = []
+      let i = 0
+      for (i in deviceData.listB) {
+        orderB.push(deviceData.listB[i].groupB)
+      }
       this.setData({
+        orderB: orderB,
         deviceData: deviceData
       })
     } else if (e.currentTarget.dataset.id == 'all') {
       let deviceData = this.data.deviceData
-      deviceData['listAll'] = deviceData.seqListNode.sort(compare("groupAllNum")).reverse();
+      if (deviceData.seqListNode.length > 0) {
+        deviceData['listAll'] = deviceData.seqListNode.sort(compare("groupAllNum")).reverse();
+      }
+      let orderAll = []
+      let i = 0
+      for (i in deviceData.listAll) {
+        orderAll.push(deviceData.listAll[i].groupAll)
+      }
       this.setData({
+        orderAll: orderAll,
         deviceData: deviceData
       })
     } else {
@@ -808,8 +852,81 @@ Page({
       pageInfo: pageInfo,
       movableViewInfo: movableViewInfo
     })
+    if (this.data.listType == 'a') {
+      let listA = this.data.deviceData.listA
+      let orderA = this.data.orderA
+      let deviceData = this.data.deviceData
+      let i = 0
+      for (i in listA) {
+        listA[i]['groupA'] = orderA[i]
+        listA[i]['groupANum'] = parseInt(orderA[i])
+      }
+      deviceData['listA'] = listA
+      this.setData({
+        deviceData: deviceData
+      })
+    } else if (this.data.listType == 'b') {
+      let listB = this.data.deviceData.listB
+      let orderB = this.data.orderB
+      let deviceData = this.data.deviceData
+      let i = 0
+      for (i in listB) {
+        listB[i]['groupB'] = orderB[i]
+        listB[i]['groupBNum'] = parseInt(orderB[i])
+      }
+      deviceData['listB'] = listB
+      this.setData({
+        deviceData: deviceData
+      })
+    } else if (this.data.listType == 'all') {
+      let listAll = this.data.deviceData.listAll
+      let orderAll = this.data.orderAll
+      let deviceData = this.data.deviceData
+      let i = 0
+      for (i in listAll) {
+        listAll[i]['groupAll'] = orderAll[i]
+        listAll[i]['groupAllNum'] = parseInt(orderAll[i])
+      }
+      deviceData['listAll'] = listAll
+      this.setData({
+        deviceData: deviceData
+      })
+    }
+    this.matchGroup()
   },
-
+  matchGroup() {
+    let deviceData = this.data.deviceData
+    let seqListNode = deviceData.seqListNode
+    let listA = deviceData.listA
+    let listB = deviceData.listB
+    let listAll = deviceData.listAll
+    let i = 0
+    for (i in seqListNode) {
+      let a = 0, b = 0, all = 0
+      for (a in listA) {
+        if (seqListNode[i].id == listA[a].id) {
+          seqListNode[i]['groupA'] = listA[a].groupA
+          seqListNode[i]['groupANum'] = listA[a].groupANum
+        }
+      }
+      for (b in listB) {
+        if (seqListNode[i].id == listB[b].id) {
+          seqListNode[i]['groupB'] = listB[b].groupB
+          seqListNode[i]['groupBNum'] = listB[b].groupBNum
+        }
+      }
+      for (all in listAll) {
+        if (seqListNode[i].id == listAll[all].id) {
+          seqListNode[i]['groupAll'] = listAll[all].groupAll
+          seqListNode[i]['groupAllNum'] = listAll[all].groupAllNum
+        }
+      }
+    }
+    deviceData['seqListNode'] = seqListNode
+    this.setData({
+      deviceData: deviceData
+    })
+  },
   // 进入设备页
   goDevicePage() {
     app.globalData.navAction = ['active', 'noActive', 'noActive', 'noActive']

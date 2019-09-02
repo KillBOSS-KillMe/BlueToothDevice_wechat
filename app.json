@@ -1,8 +1,9 @@
 {
   "usingComponents": {},
   "pages": [
-    "pages/index/index",
     "pages/deviceLink/deviceLink",
+    "pages/index/index",
+    
     "pages/userAttention/userAttention",
     "pages/userBanned/userBanned",
     "pages/newArticle/newArticle",
