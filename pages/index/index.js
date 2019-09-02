@@ -733,8 +733,6 @@ Page({
   },
   // 通过分组ID获取分组下数据包列表
   getFlieList(id) {
-    // let id = e.disabled.id
-    console.log(id)
     wx.request({
       url: `${app.globalData.requestUrl}/FileGroup/queryData`,
       method: 'POST',
@@ -766,8 +764,8 @@ Page({
   dragStart(event) {
     // event.currentTarget.dataset.index
     var startIndex = event.currentTarget.dataset.index
-    console.log(startIndex)
-    console.log('获取到的元素为', this.data.deviceData.seqListNode[startIndex])
+    // console.log(startIndex)
+    // console.log('获取到的元素为', this.data.deviceData.seqListNode[startIndex])
     // 初始化页面数据
     var pageInfo = this.data.pageInfo
     pageInfo.startY = event.touches[0].clientY
@@ -894,6 +892,7 @@ Page({
     }
     this.matchGroup()
   },
+  // 把拖拽后的数据写入seqListNode中
   matchGroup() {
     let deviceData = this.data.deviceData
     let seqListNode = deviceData.seqListNode
