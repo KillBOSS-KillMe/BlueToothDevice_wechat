@@ -83,6 +83,36 @@
 // that.setData({
 //   textLog: log0,
 // });
+// function deviceAList(a, b) {
+//   // console.log(a.groupANum, b.groupANum)
+//   return a.groupANum - b.groupANum
+//   //   var A = a.groupANum // ignore upper and lowercase
+//   //   var B = b.groupANum // ignore upper and lowercase
+//   //   if (A < B) {
+//   //     return -1;
+//   //   }
+//   //   if (A > B) {
+//   //     return 1;
+//   //   }
+
+
+//   // // names must be equal
+
+//   //   return 0;
+// }
+// function deviceBList(a, b) {
+//   return a.groupBNum - b.groupBNum
+// }
+// function deviceAllList(a, b) {
+//   return a.groupAllNum - b.groupAllNum
+// }
+function compare(property) {
+  return function (a, b) {
+    var value1 = a[property];
+    var value2 = b[property];
+    return value2 - value1;
+  }
+}
 
 const app = getApp()
 var utils = require("../../utils/util.js");
@@ -108,9 +138,9 @@ Page({
     newGroupNameData: '',
     groupList: [],
     deviceGroupList: [
-      {'id': 'a', 'group': 'A组'},
-      {'id': 'b', 'group': 'A组'},
-      {'id': 'all', 'group': '全部'}
+      { 'id': 'a', 'group': 'A组' },
+      { 'id': 'b', 'group': 'B组' },
+      { 'id': 'all', 'group': '全部' }
     ],
     state: '',
     pageInfo: {
@@ -129,7 +159,7 @@ Page({
     serviceId: '',
     deviceData: {},
     readCharacteristicId: '',
-    listType: ''
+    listType: 'a'
   },
 
 
@@ -157,7 +187,7 @@ Page({
         this.getGroupList()
       }
     }
-    
+
   },
   onShow() {
     if (wx.setKeepScreenOn) {
@@ -170,11 +200,12 @@ Page({
     }
     let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
     let deviceData = app.getDiviceDataAnalysis(a)
+    deviceData['listA'] = deviceData.seqListNode.sort(compare("groupANum"));
     console.log(deviceData)
     this.setData({
       deviceData: deviceData
     })
-    // return ''
+    return ''
     // 获取到连接的设备服务信息
     let deviceNode = app.globalData.deviceNode
     console.log(deviceNode)
@@ -188,7 +219,7 @@ Page({
       this.setData({
         deviceId: devid,
         name: devname,
-        serviceId: devserviceid 
+        serviceId: devserviceid
       });
       // //获取特征值
       this.getBLEDeviceCharacteristics();
@@ -196,16 +227,16 @@ Page({
       wx.showModal({
         title: '',
         content: '是否前往设备连接页面？',
-        cancelText:'否',
-        confirmText:'是',
-        success(res){
-          if(res.confirm){
+        cancelText: '否',
+        confirmText: '是',
+        success(res) {
+          if (res.confirm) {
             // 用户点击了确定属性的按钮，对应选择了'去连接'
             // 跳转
             wx.navigateTo({
               url: `/pages/deviceLink/deviceLink`
             })
-          } 
+          }
           // else if(res.cancel){
           //   // 用户点击了取消属性的按钮，对应选择了'取消'
           // } 
@@ -227,7 +258,7 @@ Page({
     });
   },
   //返回蓝牙是否正处于链接状态
-  onBLEConnectionStateChange:function (onFailCallback) {
+  onBLEConnectionStateChange: function (onFailCallback) {
     wx.onBLEConnectionStateChange(function (res) {
       // 该方法回调中可以用于处理连接意外断开等异常情况
       console.log(`device ${res.deviceId} state has changed, connected: ${res.connected}`);
@@ -277,9 +308,9 @@ Page({
             this.setData({
               // textLog: log,
               writeCharacteristicId: item.uuid,
-              canWrite:true
+              canWrite: true
             });
-            
+
           }
           if (item.properties.notify || item.properties.indicate) {//该特征值是否支持 notify或indicate 操作
             // var log = this.data.textLog + "该特征值支持 notify 操作:" + item.uuid + "\n";
@@ -293,15 +324,15 @@ Page({
         }
 
       },
-      fail: function(err) {
+      fail: function (err) {
         console.log(err)
       },
     })
     // that.onBLECharacteristicValueChange();   //监听特征值变化
   },
-    //启用低功耗蓝牙设备特征值变化时的 notify 功能，订阅特征值。
+  //启用低功耗蓝牙设备特征值变化时的 notify 功能，订阅特征值。
   //注意：必须设备的特征值支持notify或者indicate才可以成功调用，具体参照 characteristic 的 properties 属性
-  notifyBLECharacteristicValueChange: function (){
+  notifyBLECharacteristicValueChange: function () {
     var that = this;
     wx.notifyBLECharacteristicValueChange({
       state: true, // 启用 notify 功能
@@ -309,10 +340,10 @@ Page({
       serviceId: that.data.serviceId,
       characteristicId: that.data.notifyCharacteristicId,
       success: function (res) {
-        var log = that.data.textLog + "notify启动成功" + res.errMsg+"\n";
+        var log = that.data.textLog + "notify启动成功" + res.errMsg + "\n";
         console.log('notifyBLECharacteristicValueChange')
         console.log(res)
-        that.setData({ 
+        that.setData({
           textLog: log,
         });
         that.onBLECharacteristicValueChange();   //监听特征值变化
@@ -331,13 +362,13 @@ Page({
   },
   // 值获取----值获取----值获取----值获取----值获取----值获取----值获取----值获取----
   //监听低功耗蓝牙设备的特征值变化。必须先启用notify接口才能接收到设备推送的notification。
-  onBLECharacteristicValueChange:function(){  
+  onBLECharacteristicValueChange: function () {
     var that = this;
     wx.readBLECharacteristicValue({
       deviceId: that.data.deviceId,
       serviceId: that.data.serviceId,
       characteristicId: that.data.notifyCharacteristicId,
-      success (res) {
+      success(res) {
         console.log(res)
         // console.log(res)
         // var resValue = utils.ab2hext(res.value); //16进制字符串
@@ -359,11 +390,11 @@ Page({
               deviceData: deviceData
             })
           }
-          
+
         });
       }
     })
-    
+
     // wx.onBLECharacteristicValueChange(function (res) {
     //   // console.log(res)
     //   var resValue = utils.ab2hext(res.value); //16进制字符串
@@ -378,7 +409,7 @@ Page({
     //     serviceId: that.data.serviceId,
     //     characteristicId: that.data.notifyCharacteristicId,
     //     success (res) {
-          
+
     //       // console.log(res)
     //       // var resValue = utils.ab2hext(res.value); //16进制字符串
     //       // console.log(resValue)
@@ -392,7 +423,7 @@ Page({
     // });
   },
   //orderInput
-  orderInput:function(e){
+  orderInput: function (e) {
     this.setData({
       orderInputStr: e.detail.value
     })
@@ -410,7 +441,7 @@ Page({
 
   //向低功耗蓝牙设备特征值中写入二进制数据。
   //注意：必须设备的特征值支持write才可以成功调用，具体参照 characteristic 的 properties 属性
-  writeBLECharacteristicValue: function (order){
+  writeBLECharacteristicValue: function (order) {
     order = utils.stringToBytes(order);
     var that = this;
     let byteLength = order.byteLength;
@@ -449,12 +480,12 @@ Page({
       fail: function (res) {
         console.log('========================')
         console.log(res)
-        var log = that.data.textLog + "写入失败" + res.errMsg+"\n";
+        var log = that.data.textLog + "写入失败" + res.errMsg + "\n";
         that.setData({
           textLog: log,
         });
       }
-      
+
     })
   },
   // 更新数据到硬件
@@ -471,7 +502,7 @@ Page({
     } else if (deviceData.seqListNode <= originalData.seqListNode) {
       type = '01'
     }
-    
+
     let upData = app.setDiviceDataAnalysis(deviceData, type)
     this.writeBLECharacteristicValue(upData)
   },
@@ -655,7 +686,29 @@ Page({
     this.setData({
       listType: e.currentTarget.dataset.id
     })
-    this.getFlieList(e.currentTarget.dataset.id)
+    if (e.currentTarget.dataset.id == 'a') {
+      let deviceData = this.data.deviceData
+      // 通过json中的groupANum大小来排序reverse为倒叙操作
+      deviceData['listA'] = deviceData.seqListNode.sort(compare("groupANum")).reverse();
+      this.setData({
+        deviceData: deviceData
+      })
+    } else if (e.currentTarget.dataset.id == 'b') {
+      let deviceData = this.data.deviceData
+      deviceData['listB'] = deviceData.seqListNode.sort(compare("groupBNum")).reverse();
+      this.setData({
+        deviceData: deviceData
+      })
+    } else if (e.currentTarget.dataset.id == 'all') {
+      let deviceData = this.data.deviceData
+      deviceData['listAll'] = deviceData.seqListNode.sort(compare("groupAllNum")).reverse();
+      this.setData({
+        deviceData: deviceData
+      })
+    } else {
+      // 从服务器获取数据
+      this.getFlieList(e.currentTarget.dataset.id)
+    }
   },
   // 通过分组ID获取分组下数据包列表
   getFlieList(id) {

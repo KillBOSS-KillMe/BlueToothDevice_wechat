@@ -85,7 +85,67 @@
         </view>
       </view>
     </block>
-    <block class="item" wx:if="{{listType == 'a' || listType == 'b' || listType == 'all'}}" wx:for="{{deviceData.seqListNode}}" wx:key="{{item}}">
+    <block class="item" wx:if="{{listType == 'a'}}" wx:for="{{deviceData.listA}}" wx:key="{{item}}">
+      <view class="aiYou-li"
+      bindlongtap='' data-index='{{index}}'
+      bindtouchstart='dragStart' 
+      bindtouchmove='dragMove'
+      bindtouchend='dragEnd'>
+        <view class='aihua01-left' data-id="{{item.id}}">
+          <text class='in-count'>{{index + 1}}</text>
+          <icon class='iconfont iconjiaoben wjj-icon'></icon>
+          <!-- <icon wx:if="{{item.type == '1'}}" class='iconfont icon-jiaoben wjj-icon'></icon> -->
+          <!-- <icon wx:if="{{item.type == '2'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
+          <icon wx:if="{{item.type == '3'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
+          <icon wx:if="{{item.type == '4'}}" class='iconfont icon-jiaoben wjj-icon'></icon> -->
+          <view class='aihua01'>
+            <text class='aihua-con'>{{item.id}}</text>
+            <view style='display:flex;justify-content:start;'>
+              <text class='aihua-date' wx:if="{{item.isCurExist == '0'}}">游戏数据不存在</text>
+              <text class='aihua-date' wx:if="{{item.isCurExist == '1'}}">游戏数据存在</text>
+            </view>
+          </view>
+        </view>
+        <view class='aihua01-right'>
+          <!-- <text class='aihua01-size'>{{item.size}}kb</text> -->
+          <view class='in-xuanzhong'>
+            <icon class="iconfont  {{item.str=='0'?'icon-weixuanze':'icon-xuanze'}} icon-weixuanze1" bindtap='clickTest' data-index="{{index}}"></icon>
+          </view>
+          
+        </view>
+      </view>
+    </block>
+    <block class="item" wx:if="{{listType == 'b'}}" wx:for="{{deviceData.listB}}" wx:key="{{item}}">
+      <view class="aiYou-li"
+      bindlongtap='' data-index='{{index}}'
+      bindtouchstart='dragStart' 
+      bindtouchmove='dragMove'
+      bindtouchend='dragEnd'>
+        <view class='aihua01-left' data-id="{{item.id}}">
+          <text class='in-count'>{{index + 1}}</text>
+          <icon class='iconfont iconjiaoben wjj-icon'></icon>
+          <!-- <icon wx:if="{{item.type == '1'}}" class='iconfont icon-jiaoben wjj-icon'></icon> -->
+          <!-- <icon wx:if="{{item.type == '2'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
+          <icon wx:if="{{item.type == '3'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
+          <icon wx:if="{{item.type == '4'}}" class='iconfont icon-jiaoben wjj-icon'></icon> -->
+          <view class='aihua01'>
+            <text class='aihua-con'>{{item.id}}</text>
+            <view style='display:flex;justify-content:start;'>
+              <text class='aihua-date' wx:if="{{item.isCurExist == '0'}}">游戏数据不存在</text>
+              <text class='aihua-date' wx:if="{{item.isCurExist == '1'}}">游戏数据存在</text>
+            </view>
+          </view>
+        </view>
+        <view class='aihua01-right'>
+          <!-- <text class='aihua01-size'>{{item.size}}kb</text> -->
+          <view class='in-xuanzhong'>
+            <icon class="iconfont  {{item.str=='0'?'icon-weixuanze':'icon-xuanze'}} icon-weixuanze1" bindtap='clickTest' data-index="{{index}}"></icon>
+          </view>
+          
+        </view>
+      </view>
+    </block>
+    <block class="item" wx:if="{{listType == 'all'}}" wx:for="{{deviceData.listAll}}" wx:key="{{item}}">
       <view class="aiYou-li"
       bindlongtap='' data-index='{{index}}'
       bindtouchstart='dragStart' 
