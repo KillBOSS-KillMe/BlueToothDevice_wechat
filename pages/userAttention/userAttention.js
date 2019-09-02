@@ -31,7 +31,7 @@ Page({
   },
   // 选择显示项
   navbarTap: function (e) {
-    let index = e.currentTarget.dataset.idx
+    let index = e.currentTarget.dataset.index
     this.setData({
       currentTab: index
     })
