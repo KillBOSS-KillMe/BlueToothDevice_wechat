@@ -181,20 +181,20 @@ Page({
         }
       })
     }
-    let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
-    let deviceData = app.getDiviceDataAnalysis(a)
-    deviceData['listA'] = deviceData.seqListNode.sort(compare("groupANum")).reverse();
-    let orderA = []
-    let i = 0
-    for (i in deviceData.listA) {
-      orderA.push(deviceData.listA[i].groupA)
-    }
-    console.log(deviceData)
-    this.setData({
-      deviceData: deviceData,
-      orderA: orderA
-    })
-    return ''
+    // let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
+    // let deviceData = app.getDiviceDataAnalysis(a)
+    // deviceData['listA'] = deviceData.seqListNode.sort(compare("groupANum")).reverse();
+    // let orderA = []
+    // let i = 0
+    // for (i in deviceData.listA) {
+    //   orderA.push(deviceData.listA[i].groupA)
+    // }
+    // console.log(deviceData)
+    // this.setData({
+    //   deviceData: deviceData,
+    //   orderA: orderA
+    // })
+    // return ''
     // 获取到连接的设备服务信息
     let deviceNode = app.globalData.deviceNode
     console.log(deviceNode)
