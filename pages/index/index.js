@@ -237,6 +237,44 @@ Page({
       url: `/pages/deviceLink/deviceLink`
     })
   },
+  // 新建数据
+  newDeviceData() {
+    let deviceData = this.data.deviceData
+    let seqListNode = deviceData.seqListNode
+    let idList = seqListNode.map(seqListNode =>  parseInt(seqListNode.id))
+    let groupA = seqListNode.map(seqListNode =>  parseInt(seqListNode.groupA))
+    let groupB = seqListNode.map(seqListNode =>  parseInt(seqListNode.groupB))
+    let groupAll = seqListNode.map(seqListNode =>  parseInt(seqListNode.groupAll))
+    let dataId = Math.max.apply(null, idList) + 1
+    let dataGroupA = Math.max.apply(null, groupA) * 10
+    let dataGroupB = Math.max.apply(null, groupB) * 10
+    let dataGroupAll = Math.max.apply(null, groupAll) * 10
+    dataId = dataId.toString().padStart(14, '0')
+    dataGroupA = dataGroupA.toString().padStart(10, '0')
+    dataGroupB = dataGroupB.toString().padStart(10, '0')
+    dataGroupAll = dataGroupAll.toString().padStart(12, '0')
+    let newSeq = {
+      groupA: dataGroupA,
+      groupANum: parseInt(dataGroupA),
+      groupAll: dataGroupAll,
+      groupAllNum: parseInt(dataGroupAll),
+      groupB: dataGroupB,
+      groupBNum: parseInt(dataGroupB),
+      id: dataId,
+      isCur: "0000",
+      isCurA: "0",
+      isCurAll: "0",
+      isCurB: "0",
+      isCurExist: "0"
+    }
+    seqListNode.push(newSeq)
+    deviceData['seqListNode'] = seqListNode
+    this.setData({
+      deviceData: deviceData
+    })
+    // 获取分组数据列表
+    this.getGroupingList()
+  },
   // 设备数据删除事件
   delDeviceData(e) {
     console.log(e)

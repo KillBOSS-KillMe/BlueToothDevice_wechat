@@ -433,7 +433,9 @@ height:69rpx;
   padding: 0 28rpx;
   height: 60rpx;
 }
-
+.aiHua .linkDevice{
+  margin-bottom: 20rpx;
+}
 .linkDevice{
   width: 690rpx;
   padding: 30rpx;
@@ -451,5 +453,5 @@ height:69rpx;
 }
 
 .in-con-nav .active{
-  background-color: #0099FF !important;
+  box-shadow: #3393FF 0rpx 0rpx 10rpx 10rpx ;
 }
