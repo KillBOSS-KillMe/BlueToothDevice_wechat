@@ -242,13 +242,17 @@ Page({
   newDeviceData() {
     let deviceData = this.data.deviceData
     let seqListNode = deviceData.seqListNode
+    let num = deviceData.num
     let idList = seqListNode.map(seqListNode =>  parseInt(seqListNode.id))
     let groupA = seqListNode.map(seqListNode =>  parseInt(seqListNode.groupA))
     let groupB = seqListNode.map(seqListNode =>  parseInt(seqListNode.groupB))
     let groupAll = seqListNode.map(seqListNode =>  parseInt(seqListNode.groupAll))
     let dataId = Math.max.apply(null, idList) + 1
-    let dataGroupA = parseInt(Math.max.apply(null, groupA), 2) + 1
-    let dataGroupB = parseInt(Math.max.apply(null, groupB), 2) + 1
+    // 1001转2进制===>>>代表在A组或者B组中不存在
+    // let dataGroupA = parseInt(Math.max.apply(null, groupA), 2) + 1
+    // let dataGroupB = parseInt(Math.max.apply(null, groupB), 2) + 1
+    let dataGroupA = num
+    let dataGroupB = num
     let dataGroupAll = parseInt(Math.max.apply(null, groupAll), 2) + 1
     dataId = dataId.toString().padStart(14, '0')
     dataGroupA = dataGroupA.toString(2).padStart(10, '0')
@@ -269,7 +273,9 @@ Page({
       isCurExist: "0"
     }
     seqListNode.push(newSeq)
+    deviceData['num'] = num + 1
     deviceData['seqListNode'] = seqListNode
+    deviceData['num'] = deviceData.num + 1
     console.log(seqListNode)
     this.setData({
       deviceData: deviceData
@@ -279,7 +285,6 @@ Page({
   },
   // 设备数据删除事件
   delDeviceData(e) {
-    console.log(e)
     let id = e.currentTarget.dataset.id
     wx.showModal({ //使用模态框提示用户进行操作
       title: '',
@@ -293,20 +298,36 @@ Page({
   },
   // 执行删除操作
   delDeviceDataRun(id) {
+
     let deviceData = this.data.deviceData
     let seqListNode = deviceData.seqListNode
-    for (let i = 0; i < seqListNode.length; i++) {
-      if (seqListNode[i].id == id) {
-        seqListNode.splice(i, 1);
+    let listType = this.data.listType
+    if (listType == 'all') {
+      for (let i = 0; i < seqListNode.length; i++) {
+        if (seqListNode[i].id == id) {
+          seqListNode.splice(i, 1);
+        }
+      }
+    } else {
+      let hideGroup = 1001
+      for (let i = 0; i < seqListNode.length; i++) {
+        if (seqListNode[i].id == id) {
+          if (listType == 'a') {
+            seqListNode[i]['groupA'] = hideGroup.toString(2).padStart(10, '0')
+            seqListNode[i]['groupANum'] = parseInt(seqListNode[i].groupA)
+          } else {
+            seqListNode[i]['groupB'] = hideGroup.toString(2).padStart(10, '0')
+            seqListNode[i]['groupBNum'] = parseInt(seqListNode[i].groupB)
+          }
+        }
       }
     }
-    console.log(seqListNode)
-    // 获取分组数据列表
-    this.getGroupingList()
     deviceData['seqListNode'] = seqListNode
     this.setData({
       deviceData: deviceData
     })
+    // 获取分组数据列表
+    this.getGroupingList()
   },
   //清空log日志
   startClear: function () {
