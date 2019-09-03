@@ -222,7 +222,7 @@
 .luntan-img {
   margin-top: 33rpx;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .luntan-imgCon {

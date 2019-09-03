@@ -65,43 +65,6 @@
               <text>{{item.follow}}</text>
             </view>
           </view>
-          <!-- 评论 -->
-          <!-- <view class="comment">
-            <view class="comment-i" wx:for="{{1}}" wx:key="{{index}}">
-              <image src="/image/luntan1.jpg" style="width: 56rpx; height: 56rpx;"></image>
-              <view class="comment-right">
-                <view class="comment-current">
-                  <view class="comment-text">
-                    <view class="name">
-                      韩君：
-                      <text class="text">非常棒的分享，谢谢！非常棒的分享，谢谢！</text>
-                      <icon class="iconfont icon-fujian"></icon>
-                      <text class="file">捕鱼大战游戏</text>
-                    </view>
-                  </view>
-                  <view class="time">2019-12-21</view>
-                </view>
-                <view class="comment-two">
-                  <view class="comment-two-i">
-                    <image src="/image/luntan1.jpg" style="width: 56rpx; height: 56rpx;"></image>
-                    <view class="comment-right">
-                      <view class="comment-text">
-                        <view class="name">
-                          冬瓜头：
-                          <text class="text">回复</text>
-                          西瓜头
-                          <text class="text">非常棒的分享，谢谢！非常棒的分享，谢谢！</text>
-                          <icon class="iconfont icon-tupian"></icon>
-                          <text class="file tupian">查看图片</text>
-                        </view>
-                      </view>
-                      <view class="time">2019-12-21</view>
-                    </view>
-                  </view>
-                </view>
-              </view>
-            </view>
-          </view> -->
         </view>
       </view>
     </view>

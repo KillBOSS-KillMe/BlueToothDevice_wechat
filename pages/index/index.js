@@ -151,7 +151,8 @@ Page({
     let userInfo = app.globalData.userInfo
     console.log(userInfo)
     // 获取用户信息
-    if (userInfo.hasOwnProperty("id")) {
+    console.log(userInfo.hasOwnProperty("id"))
+    if (!userInfo.hasOwnProperty("id")) {
     // if (Object.keys(userInfo).length == 0) {
       this.getUserInfo()
     } else {
