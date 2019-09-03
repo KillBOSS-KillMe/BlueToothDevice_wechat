@@ -87,6 +87,7 @@
     </block>
     <block class="item" wx:if="{{listType == 'a'}}" wx:for="{{deviceData.listA}}" wx:key="{{item}}">
       <view class="aiYou-li {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}"
+       hover-class="none" wx:if="{{item.groupANum < deviceData.num}}"
       bindlongtap='delDeviceData' data-index='{{index}}'  data-id="{{item.id}}"
       bindtouchstart='dragStart' 
       bindtouchmove='dragMove'
@@ -117,6 +118,7 @@
     </block>
     <block class="item" wx:if="{{listType == 'b'}}" wx:for="{{deviceData.listB}}" wx:key="{{item}}">
       <view class="aiYou-li {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}"
+       hover-class="none" wx:if="{{item.groupBNum < deviceData.num}}"
       bindlongtap='delDeviceData' data-index='{{index}}'  data-id="{{item.id}}"
       bindtouchstart='dragStart' 
       bindtouchmove='dragMove'

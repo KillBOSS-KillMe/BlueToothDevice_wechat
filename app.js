@@ -262,11 +262,11 @@ App({
         isCurB: isCur[2],
         isCurAll: isCur[3],
         groupA: groupA,
-        groupANum: parseInt(groupA),
+        groupANum: parseInt(groupA, 2),
         groupB: groupB,
-        groupBNum: parseInt(groupB),
+        groupBNum: parseInt(groupB, 2),
         groupAll: groupAll,
-        groupAllNum: parseInt(groupAll),
+        groupAllNum: parseInt(groupAll, 2),
       }
     }
     return dataNode

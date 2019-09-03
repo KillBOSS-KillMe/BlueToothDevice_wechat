@@ -151,7 +151,8 @@ Page({
     let userInfo = app.globalData.userInfo
     console.log(userInfo)
     // 获取用户信息
-    if (Object.keys(userInfo).length == 0) {
+    if (userInfo.hasOwnProperty("id")) {
+    // if (Object.keys(userInfo).length == 0) {
       this.getUserInfo()
     } else {
       this.setData({
@@ -246,20 +247,20 @@ Page({
     let groupB = seqListNode.map(seqListNode =>  parseInt(seqListNode.groupB))
     let groupAll = seqListNode.map(seqListNode =>  parseInt(seqListNode.groupAll))
     let dataId = Math.max.apply(null, idList) + 1
-    let dataGroupA = Math.max.apply(null, groupA) * 10
-    let dataGroupB = Math.max.apply(null, groupB) * 10
-    let dataGroupAll = Math.max.apply(null, groupAll) * 10
+    let dataGroupA = parseInt(Math.max.apply(null, groupA), 2) + 1
+    let dataGroupB = parseInt(Math.max.apply(null, groupB), 2) + 1
+    let dataGroupAll = parseInt(Math.max.apply(null, groupAll), 2) + 1
     dataId = dataId.toString().padStart(14, '0')
-    dataGroupA = dataGroupA.toString().padStart(10, '0')
-    dataGroupB = dataGroupB.toString().padStart(10, '0')
-    dataGroupAll = dataGroupAll.toString().padStart(12, '0')
+    dataGroupA = dataGroupA.toString(2).padStart(10, '0')
+    dataGroupB = dataGroupB.toString(2).padStart(10, '0')
+    dataGroupAll = dataGroupAll.toString(2).padStart(12, '0')
     let newSeq = {
       groupA: dataGroupA,
-      groupANum: parseInt(dataGroupA),
+      groupANum: parseInt(dataGroupA, 2),
       groupAll: dataGroupAll,
-      groupAllNum: parseInt(dataGroupAll),
+      groupAllNum: parseInt(dataGroupAll, 2),
       groupB: dataGroupB,
-      groupBNum: parseInt(dataGroupB),
+      groupBNum: parseInt(dataGroupB, 2),
       id: dataId,
       isCur: "0000",
       isCurA: "0",
@@ -269,6 +270,7 @@ Page({
     }
     seqListNode.push(newSeq)
     deviceData['seqListNode'] = seqListNode
+    console.log(seqListNode)
     this.setData({
       deviceData: deviceData
     })
@@ -289,6 +291,7 @@ Page({
       }
     })
   },
+  // 执行删除操作
   delDeviceDataRun(id) {
     let deviceData = this.data.deviceData
     let seqListNode = deviceData.seqListNode
@@ -565,6 +568,7 @@ Page({
       type = '01'
     }
     let upData = app.setDiviceDataAnalysis(deviceData, type)
+    console.log(upData)
     this.writeBLECharacteristicValue(upData)
   },
 
