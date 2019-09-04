@@ -563,10 +563,10 @@ Page({
     that.setData({
       textLog: log,
     });
-    console.log(`${that.data.deviceId}===${that.data.serviceId}===${that.data.writeCharacteristicId}===${order.slice(0, 20)}`)
-    console.log('=========================')
-    console.log(order)
-    console.log(utils.ab2hext(order))
+    // console.log(`${that.data.deviceId}===${that.data.serviceId}===${that.data.writeCharacteristicId}===${order.slice(0, 20)}`)
+    // console.log('=========================')
+    // console.log(order)
+    // console.log(utils.ab2hext(order))
     // return false
     wx.writeBLECharacteristicValue({
       deviceId: that.data.deviceId,
@@ -617,7 +617,8 @@ Page({
       type = '01'
     }
     let upData = app.setDiviceDataAnalysis(deviceData, type)
-    console.log(upData)
+    console.clear()
+    console.log(`发送数据字符串===>>>${upData}`)
     this.writeBLECharacteristicValue(upData)
   },
 

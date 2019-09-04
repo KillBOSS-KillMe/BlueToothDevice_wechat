@@ -291,7 +291,7 @@ App({
     codeValue += type
     codeValue += pad
     codeValue += len
-    let num = deviceDataNode.num + ''
+    let num = deviceDataNode.seqListNode.length + ''
     // num ==>> seq数量, 使用padStart补全为4位的字符
     codeValue += num.padStart(4, '0')
     let seqListNode = deviceDataNode.seqListNode
