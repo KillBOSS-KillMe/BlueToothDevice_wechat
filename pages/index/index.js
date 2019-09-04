@@ -244,6 +244,9 @@ Page({
     let deviceData = this.data.deviceData
     let seqListNode = deviceData.seqListNode
     let num = deviceData.num
+    // 如果该数据不存在某一组，则给该组的顺序数据赋值为1001
+    let hideGroup = 1001
+    let listType = this.data.listType
     let idList = seqListNode.map(seqListNode =>  parseInt(seqListNode.id))
     let groupA = seqListNode.map(seqListNode =>  parseInt(seqListNode.groupA))
     let groupB = seqListNode.map(seqListNode =>  parseInt(seqListNode.groupB))
@@ -255,6 +258,19 @@ Page({
     let dataGroupA = num
     let dataGroupB = num
     let dataGroupAll = parseInt(Math.max.apply(null, groupAll), 2) + 1
+    if (listType == 'a') {
+      dataGroupA = num
+      dataGroupB = hideGroup
+      dataGroupAll = hideGroup
+    } else if (listType == 'b') {
+      dataGroupA = hideGroup
+      dataGroupB = num
+      dataGroupAll = hideGroup
+    } else if (listType == 'all') {
+      dataGroupA = hideGroup
+      dataGroupB = hideGroup
+      dataGroupAll = num
+    }
     dataId = dataId.toString().padStart(14, '0')
     dataGroupA = dataGroupA.toString(2).padStart(10, '0')
     dataGroupB = dataGroupB.toString(2).padStart(10, '0')
