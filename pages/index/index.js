@@ -140,7 +140,8 @@ Page({
     orderB: [],
     orderAll: [],
     readCharacteristicId: '',
-    listType: 'a'
+    listType: 'a',
+    hideGroup: 1101
   },
 
 
@@ -190,11 +191,13 @@ Page({
     //   orderA.push(deviceData.listA[i].groupA)
     // }
     // console.log(deviceData)
-    // this.setData({
+    //     this.setData({
     //   deviceData: deviceData,
     //   orderA: orderA
     // })
-    // return ''
+    // this.getGroupingList()
+
+    // return false
     // 获取到连接的设备服务信息
     let deviceNode = app.globalData.deviceNode
     console.log(deviceNode)
@@ -245,7 +248,7 @@ Page({
     let seqListNode = deviceData.seqListNode
     let num = deviceData.num
     // 如果该数据不存在某一组，则给该组的顺序数据赋值为1001
-    let hideGroup = 1001
+    let hideGroup = this.data.hideGroup
     let listType = this.data.listType
     let idList = seqListNode.map(seqListNode =>  parseInt(seqListNode.id))
     let groupA = seqListNode.map(seqListNode =>  parseInt(seqListNode.groupA))
@@ -262,19 +265,26 @@ Page({
       dataGroupA = num
       dataGroupB = hideGroup
       dataGroupAll = hideGroup
+      dataGroupA = dataGroupA.toString().padStart(10, '0')
+      dataGroupB = dataGroupB.toString(2).padStart(10, '0')
+      dataGroupAll = dataGroupAll.toString(2).padStart(12, '0')
     } else if (listType == 'b') {
       dataGroupA = hideGroup
       dataGroupB = num
       dataGroupAll = hideGroup
+      dataGroupA = dataGroupA.toString(2).padStart(10, '0')
+      dataGroupB = dataGroupB.toString().padStart(10, '0')
+      dataGroupAll = dataGroupAll.toString(2).padStart(12, '0')
     } else if (listType == 'all') {
       dataGroupA = hideGroup
       dataGroupB = hideGroup
       dataGroupAll = num
+      dataGroupA = dataGroupA.toString(2).padStart(10, '0')
+      dataGroupB = dataGroupB.toString(2).padStart(10, '0')
+      dataGroupAll = dataGroupAll.toString().padStart(12, '0')
     }
     dataId = dataId.toString().padStart(14, '0')
-    dataGroupA = dataGroupA.toString(2).padStart(10, '0')
-    dataGroupB = dataGroupB.toString(2).padStart(10, '0')
-    dataGroupAll = dataGroupAll.toString(2).padStart(12, '0')
+    
     let newSeq = {
       groupA: dataGroupA,
       groupANum: parseInt(dataGroupA, 2),
@@ -292,8 +302,8 @@ Page({
     seqListNode.push(newSeq)
     deviceData['num'] = num + 1
     deviceData['seqListNode'] = seqListNode
-    deviceData['num'] = deviceData.num + 1
-    console.log(seqListNode)
+    // deviceData['num'] = deviceData.num + 1
+    console.log(deviceData)
     this.setData({
       deviceData: deviceData
     })
@@ -326,7 +336,7 @@ Page({
         }
       }
     } else {
-      let hideGroup = 1001
+      let hideGroup = this.data.hideGroup
       for (let i = 0; i < seqListNode.length; i++) {
         if (seqListNode[i].id == id) {
           if (listType == 'a') {
@@ -491,6 +501,7 @@ Page({
               originalData: deviceData,
               deviceData: deviceData
             })
+            this.getGroupingList()
           }
 
         });
@@ -844,6 +855,8 @@ Page({
         deviceData: deviceData
       })
     }
+    // 排序部分生成
+    this.setGroupNum()
   },
   // 通过分组ID获取分组下数据包列表
   getFlieList(id) {
@@ -964,6 +977,11 @@ Page({
       pageInfo: pageInfo,
       movableViewInfo: movableViewInfo
     })
+    // 排序部分生成
+    this.setGroupNum()
+  },
+  // 排序部分生成
+  setGroupNum() {
     if (this.data.listType == 'a') {
       let listA = this.data.deviceData.listA
       let orderA = this.data.orderA
