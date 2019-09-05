@@ -141,7 +141,7 @@ Page({
     orderAll: [],
     readCharacteristicId: '',
     listType: 'a',
-    hideGroup: 1101
+    hideGroup: 1001
   },
 
 
@@ -182,22 +182,14 @@ Page({
         }
       })
     }
-    // let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
-    // let deviceData = app.getDiviceDataAnalysis(a)
-    // deviceData['listA'] = deviceData.seqListNode.sort(compare("groupANum")).reverse();
-    // let orderA = []
-    // let i = 0
-    // for (i in deviceData.listA) {
-    //   orderA.push(deviceData.listA[i].groupA)
-    // }
-    // console.log(deviceData)
-    //     this.setData({
-    //   deviceData: deviceData,
-    //   orderA: orderA
-    // })
-    // this.getGroupingList()
-
-    // return false
+    let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
+    // let a = 'FF00FF00FF00FF000000000000040102030405000108010010000102030405000202030800000102030405000300020430000102030405000404000c2000'
+    let deviceData = app.getDiviceDataAnalysis(a)
+    this.setData({
+      deviceData: deviceData
+    })
+    this.getGroupingList()
+    return false
     // 获取到连接的设备服务信息
     let deviceNode = app.globalData.deviceNode
     console.log(deviceNode)
@@ -265,26 +257,20 @@ Page({
       dataGroupA = num
       dataGroupB = hideGroup
       dataGroupAll = hideGroup
-      dataGroupA = dataGroupA.toString().padStart(10, '0')
-      dataGroupB = dataGroupB.toString(2).padStart(10, '0')
-      dataGroupAll = dataGroupAll.toString(2).padStart(12, '0')
+      
     } else if (listType == 'b') {
       dataGroupA = hideGroup
       dataGroupB = num
       dataGroupAll = hideGroup
-      dataGroupA = dataGroupA.toString(2).padStart(10, '0')
-      dataGroupB = dataGroupB.toString().padStart(10, '0')
-      dataGroupAll = dataGroupAll.toString(2).padStart(12, '0')
     } else if (listType == 'all') {
       dataGroupA = hideGroup
       dataGroupB = hideGroup
       dataGroupAll = num
-      dataGroupA = dataGroupA.toString(2).padStart(10, '0')
-      dataGroupB = dataGroupB.toString(2).padStart(10, '0')
-      dataGroupAll = dataGroupAll.toString().padStart(12, '0')
     }
     dataId = dataId.toString().padStart(14, '0')
-    
+    dataGroupA = dataGroupA.toString(2).padStart(10, '0')
+    dataGroupB = dataGroupB.toString(2).padStart(10, '0')
+    dataGroupAll = dataGroupAll.toString(2).padStart(12, '0')
     let newSeq = {
       groupA: dataGroupA,
       groupANum: parseInt(dataGroupA, 2),
@@ -350,6 +336,7 @@ Page({
       }
     }
     deviceData['seqListNode'] = seqListNode
+    console.log(deviceData)
     this.setData({
       deviceData: deviceData
     })
@@ -576,6 +563,7 @@ Page({
       // value: order.slice(0, 20),
       value: order,
       success: function (res) {
+        wx.hideLoading()
         console.log('============特征值中写入反馈结果============')
         console.log(res)
         // if (byteLength > 20) {
@@ -591,6 +579,7 @@ Page({
       },
 
       fail: function (res) {
+        wx.hideLoading()
         console.log('========================')
         console.log(res)
         var log = that.data.textLog + "写入失败" + res.errMsg + "\n";
@@ -607,6 +596,11 @@ Page({
     // 00030800000102030405000300020430000102030405000400000C2000
     // let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
     // let deviceData = app.getDiviceDataAnalysis(a)
+
+    // 显示loading图标
+    wx.showLoading({
+      title: '数据写入中',
+    })
     let deviceData = this.data.deviceData
     console.log(deviceData)
     let originalData = this.data.originalData
@@ -811,9 +805,11 @@ Page({
     }
   },
   // 获取分组数据列表
-  getGroupingList() {
+  getGroupingList(deviceData) {
+    if (!deviceData) {
+      deviceData = this.data.deviceData
+    }
     if (this.data.listType == 'a') {
-      let deviceData = this.data.deviceData
       // 通过json中的groupANum大小来排序reverse为倒叙操作
       if (deviceData.seqListNode.length > 0) {
         deviceData['listA'] = deviceData.seqListNode.sort(compare("groupANum")).reverse();
@@ -828,7 +824,6 @@ Page({
         deviceData: deviceData
       })
     } else if (this.data.listType == 'b') {
-      let deviceData = this.data.deviceData
       if (deviceData.seqListNode.length > 0) {
         deviceData['listB'] = deviceData.seqListNode.sort(compare("groupBNum")).reverse();
       }
@@ -842,7 +837,6 @@ Page({
         deviceData: deviceData
       })
     } else if (this.data.listType == 'all') {
-      let deviceData = this.data.deviceData
       if (deviceData.seqListNode.length > 0) {
         deviceData['listAll'] = deviceData.seqListNode.sort(compare("groupAllNum")).reverse();
       }
@@ -990,7 +984,7 @@ Page({
       let i = 0
       for (i in listA) {
         listA[i]['groupA'] = orderA[i]
-        listA[i]['groupANum'] = parseInt(orderA[i])
+        listA[i]['groupANum'] = parseInt(orderA[i], 2)
       }
       deviceData['listA'] = listA
       this.setData({
@@ -1003,7 +997,7 @@ Page({
       let i = 0
       for (i in listB) {
         listB[i]['groupB'] = orderB[i]
-        listB[i]['groupBNum'] = parseInt(orderB[i])
+        listB[i]['groupBNum'] = parseInt(orderB[i], 2)
       }
       deviceData['listB'] = listB
       this.setData({
@@ -1016,7 +1010,7 @@ Page({
       let i = 0
       for (i in listAll) {
         listAll[i]['groupAll'] = orderAll[i]
-        listAll[i]['groupAllNum'] = parseInt(orderAll[i])
+        listAll[i]['groupAllNum'] = parseInt(orderAll[i], 2)
       }
       deviceData['listAll'] = listAll
       this.setData({

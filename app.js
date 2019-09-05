@@ -271,6 +271,7 @@ App({
     }
     return dataNode
   },
+  
   // 反编译deviceDataNode数据,获取可下发设备的数据
   setDiviceDataAnalysis(deviceDataNode, type) {
     console.log(deviceDataNode)
