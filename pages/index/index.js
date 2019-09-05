@@ -186,6 +186,7 @@ Page({
     // let a = 'FF00FF00FF00FF000000000000040102030405000108010010000102030405000202030800000102030405000300020430000102030405000404000c2000'
     let deviceData = app.getDiviceDataAnalysis(a)
     this.setData({
+      originalData: deviceData,
       deviceData: deviceData
     })
     this.getGroupingList()
@@ -477,14 +478,7 @@ Page({
           if (resValue.indexOf("FF00FF00FF00FF00") != -1) {
             console.log('getData========>>>>>>' + resValue)
             let deviceData = app.getDiviceDataAnalysis(resValue)
-            deviceData['listA'] = deviceData.seqListNode.sort(compare("groupANum")).reverse();
-            let orderA = []
-            let i = 0
-            for (i in deviceData.listA) {
-              orderA.push(deviceData.listA[i].groupA)
-            }
             that.setData({
-              orderA: orderA,
               originalData: deviceData,
               deviceData: deviceData
             })
@@ -1101,3 +1095,4 @@ Page({
   //     cancelText: "否",
   //   })
   // },
+
