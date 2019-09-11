@@ -141,7 +141,8 @@ Page({
     orderAll: [],
     readCharacteristicId: '',
     listType: 'a',
-    hideGroup: 1001
+    hideGroup: 1001,
+    listGameData: []
   },
 
 
@@ -150,6 +151,7 @@ Page({
       navAction: app.globalData.navAction
     })
     let userInfo = app.globalData.userInfo
+    this.getGameList()
     console.log(userInfo)
     // 获取用户信息
     console.log(userInfo.hasOwnProperty("id"))
@@ -237,6 +239,35 @@ Page({
   },
   // 新建数据
   newDeviceData() {
+    if (this.data.listGameData.length <= 0) {
+      this.getGameList()
+    } else {
+
+    }
+    // wx.request({
+    //   url: `${app.globalData.requestUrl}/Official/download`,
+    //   data: {
+    //     did: 
+    //   },
+    //   method: "POST",
+    //   success: data => {
+    //     data = app.null2str(data)
+    //     if (data.data.code == '1') {
+          
+    //     } else {
+    //       wx.showModal({
+    //         title: '',
+    //         content: data.data.msg,
+    //         showCancel: false
+    //       })
+    //     }
+    //   }
+    // })
+
+
+
+
+    return false
     let deviceData = this.data.deviceData
     let seqListNode = deviceData.seqListNode
     let num = deviceData.num
@@ -873,6 +904,32 @@ Page({
           //   title: '',
           //   content: data.data.msg
           // })
+        }
+      }
+    })
+  },
+
+  // 获取服务器上的游戏文件列表
+  getGameList() {
+    wx.showLoading({
+      title: '列表获取中',
+    })
+    wx.request({
+      url: `${app.globalData.requestUrl}/Official/official_type`,
+      method: "POST",
+      success: data => {
+        wx.hideLoading()
+        data = app.null2str(data)
+        if (data.data.code == '1') {
+          this.setData({
+            listGameData: data.data.data,
+          })
+        } else {
+          wx.showModal({
+            title: '',
+            content: data.data.msg,
+            showCancel: false
+          })
         }
       }
     })

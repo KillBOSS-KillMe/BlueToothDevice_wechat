@@ -184,7 +184,39 @@
     <view bindtap="upDeviceData">数据更新到设备</view>
   </view>
 </view>
-
+<view class="popUpFloor">
+  <view class="gameList">
+    <!-- <block class="item" wx:for="{{listGameData}}" wx:key="{{item}}">
+      <view class="aiYou-li" data-index='{{index}}'  data-id="{{item.id}}">
+        <view class='aihua01-left' data-id="{{item.id}}">
+          <icon class='iconfont iconjiaoben wjj-icon'></icon>
+          <view class='aihua01'>
+            <text class='aihua-con'>{{item.type}}</text>
+          </view>
+        </view>
+        <icon class="iconfont icon-weixuanze1" bindtap='clickTest' data-index="{{index}}"></icon>
+      </view>
+    </block> -->
+    <scroll-view scroll-y="true" class="containerleft">
+      <block wx:for="{{listGameData}}" wx:key="{{item}}">
+        <li wx:if='{{ item.id == menuClassId }}' class="menuClass active" bindtap="changeMenuClass" data-id='{{ item.id }}'>{{ item.type }}</li>
+        <li wx:else class="menuClass notactive" bindtap="changeMenuClass" data-id='{{ item.id }}'>{{ item.type }}</li>
+      </block>
+    </scroll-view>
+    <view class="containerBinList">
+      <block wx:for="{{listGameData}}" wx:key="{{item}}">
+        <view class="item" data-id="{{ item.id }}">
+          <view>
+            <icon class='iconfont iconjiaoben'></icon>
+            <text>{{item.type}}</text>
+          </view>
+          <icon class='iconfont iconjiaoben'></icon>
+        </view>
+      </block>
+      <view wx:if="{{menu.length == 0}}" class="dataNullShow">暂无数据包</view>
+    </view>
+  </view>
+</view>
 
 <view class="linkDevice">
   <view bindtap="linkDevice">连接设备</view>
