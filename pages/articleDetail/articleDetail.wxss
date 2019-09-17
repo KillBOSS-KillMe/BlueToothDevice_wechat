@@ -9,7 +9,7 @@ page {
 .Administrator{
   display: flex;
   justify-content:space-between;
-  align-items: center;
+  /* align-items: center; */
   margin-bottom: 30rpx;
 }
 .admin-left{
@@ -177,7 +177,7 @@ border-radius:50%;
 }
 
 .luntanCon-tit {
-  width: 72%;
+  /* width: 72%; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -270,6 +270,9 @@ border-radius:50%;
   padding-right: 10rpx;
   display: flex;
   justify-content: center;
+}
+.luntanConBot-right .active{
+  color: #CC3300;
 }
 .icon-chakan, .icon-pinglun, .icon-shoucang {
   font-size: 28rpx;
@@ -386,6 +389,7 @@ padding: 30rpx  0rpx 30rpx 25rpx;
  }
   .comment-text .name icon {
     display: inline;
+    font-size: 35rpx;
   }
  .comment-text .text {
    color: #424242;
@@ -462,8 +466,9 @@ padding: 30rpx  0rpx 30rpx 25rpx;
 
 
 .banned{
+  height: 45rpx;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
   color: #424242;
   font-size: 28rpx;

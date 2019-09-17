@@ -188,7 +188,7 @@
 }
 
 .luntanCon-tit {
-  width: 72%;
+  /* width: 72%; */
   display: flex;
   justify-content: space-between;
   align-items: center;
