@@ -70,40 +70,45 @@
           <view class="comment-i">
             <image src="{{item.avatarUrl}}" style="width: 56rpx; height: 56rpx;"></image>
             <view class="comment-right">
-              <view class="comment-current"
-               data-commentid="{{item.id}}"
+              <view class="comment-current" 
+               data-commentid="{{item.id}}" 
                  data-uid="{{item.uid}}"
-                  data-content="{{item.content}}"
-                bindtap="goReply"
+                  data-content="{{item.content}}" 
                 bindlongtap="delComment">
                 <view class="comment-text">
                   <view class="name">
                     {{item.nickname}}：
-                    <text class="text">{{item.content}}</text>
-                    <icon wx:if="{{item.c_file.length > 0}}" class="iconfont iconpicture"></icon>
-                    <text wx:if="{{item.c_file.length > 0}}" class="file">查看图片</text>
+                    <text class="text" data-commentid="{{item.id}}" 
+                      data-uid="{{item.uid}}" 
+                        data-content="{{item.content}}" 
+                      bindtap="goReply">{{item.content}}</text>
+                    <icon wx:if="{{item.c_file.length > 0}}" data-index="{{index}}" bindtap="showImg1" class="iconfont iconpicture"></icon>
+                    <text wx:if="{{item.c_file.length > 0}}" data-index="{{index}}" bindtap="showImg1" class="file">查看图片</text>
                   </view>
                 </view>
                 <view class="time">{{item.createTime}}</view>
               </view>
               <block wx:for="{{item.reply}}" wx:for-item="replyItem" wx:for-index="replyIndex">
                 <view class="comment-two" 
-               data-commentid="{{replyItem.id}}"
-                 data-uid="{{replyItem.uid}}"
-                  data-content="{{replyItem.content}}"
-                bindtap="goReply"
+               data-commentid="{{replyItem.id}}" 
+                 data-uid="{{replyItem.uid}}" 
+                  data-content="{{replyItem.content}}" 
                 bindlongtap="delReply">
                 <view class="comment-two-i">
-                  <image src="{{replyItem.reply_img}}" style="width: 56rpx; height: 56rpx;"></image>
+                  <image src="{{replyItem.user_img}}" style="width: 56rpx; height: 56rpx;"></image>
                   <view class="comment-right">
                     <view class="comment-text">
                       <view class="name">
                         {{replyItem.nickname}}：
                         <text class="text">回复</text>
                         {{replyItem.reply_name}}
-                        <text class="text">{{replyItem.content}}</text>
-                        <icon wx:if="{{replyItem.r_file.length > 0}}" class="iconfont iconpicture"></icon>
-                        <text wx:if="{{replyItem.r_file.length > 0}}" class="file">查看图片</text>
+                        <text class="text" 
+                          data-commentid="{{replyItem.id}}" 
+                          data-uid="{{replyItem.uid}}" 
+                            data-content="{{replyItem.content}}" 
+                          bindtap="goReply">{{replyItem.content}}</text>
+                        <icon wx:if="{{replyItem.r_file.length > 0}}" bindtap="showImg2" data-index="{{index}}" data-replyindex="{{replyIndex}}" class="iconfont iconpicture"></icon>
+                        <text wx:if="{{replyItem.r_file.length > 0}}" bindtap="showImg2" data-index="{{index}}" data-replyindex="{{replyIndex}}"  class="file">查看图片</text>
                       </view>
                     </view>
                     <view class="time">{{replyItem.createTime}}</view>

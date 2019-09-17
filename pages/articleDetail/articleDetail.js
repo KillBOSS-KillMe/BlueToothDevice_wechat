@@ -332,6 +332,35 @@ Page({
       }
     })
   },
+  showImg1(e) {
+    let index = e.currentTarget.dataset.index
+    let commentList =  this.data.commentList
+    let imgNode = commentList[index].c_file
+    let img = []
+    let originalImgUrl = this.data.originalImgUrl
+    for (let i = 0;i < imgNode.length; i++) {
+      img.push(originalImgUrl + imgNode[i].file)
+    }
+    wx.previewImage({
+      current: img, // 当前显示图片的http链接   
+      urls: img // 需要预览的图片http链接列表   
+    })
+  },
+  showImg2(e) {
+    let index = e.currentTarget.dataset.index
+    let replyindex = e.currentTarget.dataset.replyindex
+    let commentList =  this.data.commentList
+    let imgNode = commentList[index].reply[replyindex].r_file
+    let img = []
+    let originalImgUrl = this.data.originalImgUrl
+    for (let i = 0;i < imgNode.length; i++) {
+      img.push(originalImgUrl + imgNode[i].file)
+    }
+    wx.previewImage({
+      current: img, // 当前显示图片的http链接   
+      urls: img // 需要预览的图片http链接列表   
+    })
+  },
   /**
    * 页面上拉触底事件的处理函数
    */

@@ -130,6 +130,14 @@ Page({
       }
     })
   },
+  // 查看大图
+  showImg(e) {
+    let url =  e.currentTarget.dataset.img
+    wx.previewImage({
+      current: [url], // 当前显示图片的http链接   
+      urls: [url] // 需要预览的图片http链接列表   
+    })
+  },
   // goQuanxian(e) {
   //   wx.navigateTo({
   //     url: `/pages/yh-quanxian/yh-quanxian?id=${e.currentTarget.dataset.id}`,

@@ -30,7 +30,7 @@
           <view class='luntan-img'>
             <block wx:for="{{item.file}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="{{imgItem}}">
               <view class='luntan-imgCon' wx:if="{{imgIndex < 4 && imgItem.type == 1}}">
-                <image data-id="{{imgItem.id}}" data-img="{{requestImgUrl + imgItem.file}}" src='{{requestImgUrl + imgItem.file}}'></image>
+                <image data-id="{{imgItem.id}}" bindtap="showImg" data-img="{{requestImgUrl + imgItem.file}}" src='{{requestImgUrl + imgItem.file}}'></image>
               </view>
             </block>
           </view>
