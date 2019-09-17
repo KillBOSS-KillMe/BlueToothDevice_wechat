@@ -30,7 +30,7 @@
           <view class='luntan-img'>
             <block wx:for="{{item.file}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="{{imgItem}}">
               <view class='luntan-imgCon' wx:if="{{imgIndex < 4 && imgItem.type == 1}}">
-                <image data-id="{{imgItem.id}}" bindtap="showImg" data-img="{{requestImgUrl + imgItem.file}}" src='{{requestImgUrl + imgItem.file}}'></image>
+                <image data-id="{{imgItem.id}}" bindtap="showImg" data-img="{{originalImgUrl + imgItem.file}}" src='{{requestImgUrl + imgItem.file}}'></image>
               </view>
             </block>
           </view>
@@ -49,7 +49,7 @@
             <view class='yours' data-id="{{item.uid}}">{{item.nickname}}</view>
             <view class='data'>{{item.createTime}}</view>
           </view>
-          <view class='luntanCon-bot'>
+          <view class='luntanCon-bot' bindtap='goDetail' data-id="{{item.id}}">
             <view class='luntanConBot-left'>
               <icon class='iconfont icon-'></icon>
               <text>{{item.see}}</text>

@@ -25,7 +25,7 @@
         </view> -->
         <block wx:for="{{articleDetail.file}}" wx:for-item="item" wx:for-index="imgIndex" wx:key="{{imgItem}}">
           <view class='luntan-imgCon' wx:if="{{item.type == 1}}">
-            <image data-id="{{item.id}}" data-img="{{requestImgUrl + item.file}}" src='{{requestImgUrl + item.file}}'></image>
+            <image data-id="{{item.id}}" bindtap="showImg" data-img="{{originalImgUrl + item.file}}" src='{{requestImgUrl + item.file}}'></image>
           </view>
         </block>
       </view>
@@ -60,7 +60,7 @@
           <text>条</text>
         </view>
         <view class='luntanConBot-right' bindtap="articleCollection" data-follow="{{articleDetail.is_follow}}">
-          <icon class='iconfont icontubiaozhizuomoban'></icon>
+          <icon class="iconfont icontubiaozhizuomoban  {{articleDetail.is_follow == 1?'active':''}}"></icon>
           <text>{{articleDetail.follow}}</text>
         </view>
       </view>

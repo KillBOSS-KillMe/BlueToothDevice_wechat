@@ -8,7 +8,8 @@ Page({
     userInfo: {},
     imgUrl: '',
     commentList:[],
-    options: {}
+    options: {},
+    count: 0
   },
 
   /**
@@ -47,6 +48,7 @@ Page({
           }
           this.setData({
             commentList: data,
+            count: data.data.count
           })
         } else {
           wx.showModal({

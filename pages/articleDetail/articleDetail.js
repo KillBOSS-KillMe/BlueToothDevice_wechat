@@ -38,9 +38,11 @@ Page({
   },
   // 获取文章详情
   getArticleList(id) {
+    
     wx.request({
       url: `${app.globalData.requestUrl}/User/post_info`,
       data: {
+        uid: this.data.userInfo.id,
         post_id: id
       },
       method: "POST",
@@ -330,6 +332,13 @@ Page({
           })
         }
       }
+    })
+  },
+  showImg(e) {
+    let url =  e.currentTarget.dataset.img
+    wx.previewImage({
+      current: [url], // 当前显示图片的http链接   
+      urls: [url] // 需要预览的图片http链接列表   
     })
   },
   showImg1(e) {

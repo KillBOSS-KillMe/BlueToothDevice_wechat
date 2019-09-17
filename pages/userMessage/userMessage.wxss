@@ -1,7 +1,11 @@
 page {
   background: #fff;
 }
-
+.fabuTime{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 .de-li {
   padding: 40rpx 26rpx;
   border-bottom: 1rpx solid #EDEDED;
@@ -23,8 +27,6 @@ page {
   color: #3393FF;
   font-weight: bold;
   margin-left: 12rpx;
-}
-.fabuTxt{
 }
 .zhuangtai,.fabu{
   font-size: 32rpx;

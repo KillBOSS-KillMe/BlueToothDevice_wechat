@@ -264,7 +264,7 @@
 }
 
 .luntanConBot-left, .luntanConBot-con, .luntanConBot-right {
-  width: 33.3%;
+  /* width: 33.3%; */
   text-align: center;
   font-size: 26rpx;
   color: #8e8e8e;

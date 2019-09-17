@@ -8,7 +8,7 @@
         <text class='pl-top-tit'>{{options.name}}</text>
         <view class='pl-top-txt'>
           <text class='pl-pingfen'>下载</text>
-          <text class='pl-score'>{{options.d_num}}</text>
+          <text class='pl-score'>{{count}}</text>
           <text class='pl-score-ci'>次</text>
         </view>
       </view>
@@ -30,7 +30,6 @@
     </block>
   </view>
 </view>
-
 <!-- 底部 -->
 <view class='yx-bot'>
   <view class='hr'></view>
