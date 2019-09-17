@@ -185,15 +185,15 @@ Page({
         }
       })
     }
-    let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
-    // let a = 'FF00FF00FF00FF000000000000040102030405000108010010000102030405000202030800000102030405000300020430000102030405000404000c2000'
-    let deviceData = app.getDiviceDataAnalysis(a)
-    this.setData({
-      originalData: deviceData,
-      deviceData: deviceData
-    })
-    this.getGroupingList()
-    return false
+    // let a = 'FF00FF00FF00FF000004050000040102030405000100010010000102030405000200030800000102030405000300020430000102030405000400000C2000'
+    // // let a = 'FF00FF00FF00FF000000000000040102030405000108010010000102030405000202030800000102030405000300020430000102030405000404000c2000'
+    // let deviceData = app.getDiviceDataAnalysis(a)
+    // this.setData({
+    //   originalData: deviceData,
+    //   deviceData: deviceData
+    // })
+    // this.getGroupingList()
+    // return false
     // 获取到连接的设备服务信息
     let deviceNode = app.globalData.deviceNode
     console.log(deviceNode)

@@ -184,7 +184,7 @@
     <view bindtap="upDeviceData">数据更新到设备</view>
   </view>
 </view>
-<view class="popUpFloor">
+<view class="popUpFloor" wx:if="{{false}}">
   <view class="gameList">
     <!-- <block class="item" wx:for="{{listGameData}}" wx:key="{{item}}">
       <view class="aiYou-li" data-index='{{index}}'  data-id="{{item.id}}">
