@@ -203,6 +203,7 @@
 .luntanConTit-right {
   width: 66rpx;
   height: 38rpx;
+  padding: 10rpx;
   background: #3393ff;
   border-radius: 10rpx;
   text-align: center;
