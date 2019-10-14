@@ -55,19 +55,19 @@
   <view class='user-cen-con'>
     <view class='user-nav-li'>
       <navigator url='/pages/userAttention/userAttention' class='user-nav-li-li'>
-        <text class='user-count'>{{follow_num}}111</text>
+        <text class='user-count'>{{userInfo.forbidden}}</text>
         <text class='user-nav-con'>关注</text>
       </navigator>
     </view>
     <view class='user-nav-li'>
       <navigator url='/pages/userDownloadList/userDownloadList' class='user-nav-li-li'>
-        <text class='user-count'>{{download_num}}111</text>
+        <text class='user-count'>{{userInfo.download_num}}</text>
         <text class='user-nav-con'>下载</text>
       </navigator>
     </view>
     <view class='user-nav-li' bindtap="tieziTap">
       <navigator url='/pages/userArticle/userArticle' class='user-nav-li-li'>
-        <text class='user-count'>{{release_num}}111</text>
+        <text class='user-count'>{{userInfo.follow_num}}</text>
         <text class='user-nav-con'>帖子</text>
       </navigator>
     </view>

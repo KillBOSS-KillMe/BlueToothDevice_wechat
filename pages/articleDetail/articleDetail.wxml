@@ -82,8 +82,8 @@
                       data-uid="{{item.uid}}" 
                         data-content="{{item.content}}" 
                       bindtap="goReply">{{item.content}}</text>
-                    <icon wx:if="{{item.c_file.length > 0}}" data-index="{{index}}" bindtap="showImg1" class="iconfont iconpicture"></icon>
-                    <text wx:if="{{item.c_file.length > 0}}" data-index="{{index}}" bindtap="showImg1" class="file">查看图片</text>
+                    <!-- <icon wx:if="{{item.c_file.length > 0}}" data-index="{{index}}" bindtap="showImg1" class="iconfont iconpicture"></icon>
+                    <text wx:if="{{item.c_file.length > 0}}" data-index="{{index}}" bindtap="showImg1" class="file">查看图片</text> -->
                   </view>
                 </view>
                 <block wx:for="{{item.c_file}}" wx:for-item="replyItem" wx:for-index="replyIndex">
@@ -110,8 +110,8 @@
                           data-uid="{{replyItem.uid}}" 
                             data-content="{{replyItem.content}}" 
                           bindtap="goReply">{{replyItem.content}}</text>
-                        <icon wx:if="{{replyItem.r_file.length > 0}}" bindtap="showImg2" data-index="{{index}}" data-replyindex="{{replyIndex}}" class="iconfont iconpicture"></icon>
-                        <text wx:if="{{replyItem.r_file.length > 0}}" bindtap="showImg2" data-index="{{index}}" data-replyindex="{{replyIndex}}"  class="file">查看图片</text>
+                        <!-- <icon wx:if="{{replyItem.r_file.length > 0}}" bindtap="showImg2" data-index="{{index}}" data-replyindex="{{replyIndex}}" class="iconfont iconpicture"></icon>
+                        <text wx:if="{{replyItem.r_file.length > 0}}" bindtap="showImg2" data-index="{{index}}" data-replyindex="{{replyIndex}}"  class="file">查看图片</text> -->
                       </view>
                     </view>
                     <block wx:for="{{replyItem.r_file}}" wx:for-item="replyItemImg" wx:for-index="replyImgIndex">
