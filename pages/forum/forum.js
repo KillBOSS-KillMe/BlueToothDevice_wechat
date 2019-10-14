@@ -52,7 +52,7 @@ Page({
           data = data.data.data
           let i = 0
           for (i in data) {
-            data[i]['createTime'] = app.transformTime(data[i].createTime)
+            data[i]['createTime'] = app.transformTime(data[i].createTime * 1000)
           }
           let list = this.data.articleListAll.concat(data)
           this.setData({

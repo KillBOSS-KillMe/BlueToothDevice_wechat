@@ -78,7 +78,7 @@ Page({
     } else {
       url = 'upload_file'
       wx.chooseMessageFile({
-        count: 9,
+        count: 1,
         type: 'all',
         success: res => {
           this.uploadimg(res.tempFiles, type, url)
@@ -91,6 +91,10 @@ Page({
     //上传图片
     let i = 0
     for (i in imgurlNode) {
+      let name = ''
+      if (type == "file") {
+        name = imgurlNode[i].name
+      }
       wx.uploadFile({
         url: `${app.globalData.requestUrl}/Forum/${url}`,
         filePath: imgurlNode[i].path,
@@ -105,15 +109,17 @@ Page({
               imgList: imgList
             })
           } else {
-            console.log(data)
             data = JSON.parse(data.data)
             data = data.data
             let fileList = this.data.fileList
             let fileNameList = this.data.fileNameList
-            console.log(data)
-            let fileName = data.split('/').pop()
-            console.log(data, fileName)
-            fileList.push(data)
+            let fileName = ''
+            if (type == "file") {
+              fileName = imgurlNode[i].name
+            } else {
+              fileName = data.split('/').pop()
+            }
+            fileList.push({'name': fileName, 'path': data})
             fileNameList.push(fileName)
             this.setData({
               fileNameList: fileNameList,
