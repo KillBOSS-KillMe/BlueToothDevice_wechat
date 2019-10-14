@@ -367,6 +367,14 @@ border-radius:50%;
 .comment {
 padding: 30rpx  0rpx 30rpx 25rpx;
 }
+.comment image{
+  width: 100rpx;
+  height: 100rpx;
+}
+.comment-two image{
+  width: 100rpx;
+  height: 100rpx;
+}
 .comment-i {
   display: flex;
 }
@@ -484,7 +492,7 @@ padding: 30rpx  0rpx 30rpx 25rpx;
   margin-right: 10rpx;
 }
 .adminDom{
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 690rpx;
@@ -495,6 +503,7 @@ padding: 30rpx  0rpx 30rpx 25rpx;
   justify-content: space-between;
   font-size: 30rpx;
   color: #424242;
+  background-color: #fff;
 }
 .adminDom view{
   display: flex;

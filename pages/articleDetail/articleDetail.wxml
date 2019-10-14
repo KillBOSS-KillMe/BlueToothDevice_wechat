@@ -86,6 +86,9 @@
                     <text wx:if="{{item.c_file.length > 0}}" data-index="{{index}}" bindtap="showImg1" class="file">查看图片</text>
                   </view>
                 </view>
+                <block wx:for="{{item.c_file}}" wx:for-item="replyItem" wx:for-index="replyIndex">
+                  <image data-id="{{item.id}}" bindtap="showImg" data-img="{{originalImgUrl + replyItem.file}}" src="{{originalImgUrl + replyItem.file}}" />
+                </block>
                 <view class="time">{{item.createTime}}</view>
               </view>
               <block wx:for="{{item.reply}}" wx:for-item="replyItem" wx:for-index="replyIndex">
@@ -111,6 +114,9 @@
                         <text wx:if="{{replyItem.r_file.length > 0}}" bindtap="showImg2" data-index="{{index}}" data-replyindex="{{replyIndex}}"  class="file">查看图片</text>
                       </view>
                     </view>
+                    <block wx:for="{{replyItem.r_file}}" wx:for-item="replyItemImg" wx:for-index="replyImgIndex">
+                      <image data-id="{{item.id}}" bindtap="showImg" data-img="{{originalImgUrl + replyItemImg.file}}" src="{{originalImgUrl + replyItemImg.file}}" />
+                    </block>
                     <view class="time">{{replyItem.createTime}}</view>
                   </view>
                 </view>
