@@ -8,6 +8,7 @@ Page({
     articleList: [],
     requestImgUrl: '',
     originalImgUrl: '',
+    pageNum: 1,
     navAction:  ['noActive', 'active', 'noActive', 'noActive']
   },
   onLoad: function () {
@@ -38,27 +39,22 @@ Page({
       method: 'POST',
       data: {
         uid: this.data.userInfo.id,
-        page: this.data.articleList.length/5
+        page: this.data.pageNum
       },
       success: data => {
         // console.log(data)
         data = app.null2str(data)
         if (data.data.code == 1) {
+          let pageNum = this.data.pageNum + 1
+          this.setData({
+            pageNum: pageNum
+          })
           data = data.data.data
           let i = 0
           for (i in data) {
             data[i]['createTime'] = app.transformTime(data[i].createTime)
-            // let y = 0
-            // for (y in data[i].file) {
-            //   if (data[i].file[y].type == 1) {
-            //     data[i]['imgList'].push(data[i].file[y])
-            //   } else {
-            //     data[i]['fileList'].push(data[i].file[y])
-            //   }
-            // }
           }
           let list = this.data.articleListAll.concat(data)
-          // console.log(list)
           this.setData({
             articleListAll: list,
             articleList: list
