@@ -165,10 +165,10 @@ Page({
   },
 
   //选择用途后加样式
-  select_use: function (e) {
+  selectLabel: function (e) {
     let index = e.currentTarget.dataset.index
     this.setData({
-      label: this.lableLists[index],
+      label: this.data.lableLists[index],
     });
   },
   handleTitleblur(e) {

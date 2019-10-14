@@ -3,9 +3,10 @@
     <view class="shangchuanLeft">
       <view class="choseLable">请选择标签</view>
       <view class="lables">
-        <block class="groupList" wx:for="{{lableLists}}" wx:key="{{item}}">
-          <view class="lableli {{label.id==item.id?'active-tag':''}}">
-            <view bindtap="select_use" data-index="{{index}}" class="lableList">{{item.label}}</view>
+        <block class="lableList" wx:for="{{lableLists}}" wx:key="{{item}}">
+          <view class="labenItem {{label.id==item.id?'labelActive':''}}" bindtap="selectLabel" data-index="{{index}}">
+            {{item.label}}
+            <!-- <view  class="lableList"> -->
           </view>
         </block>
       </view>

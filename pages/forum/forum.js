@@ -21,7 +21,10 @@ Page({
       navAction: app.globalData.navAction,
       userInfo: app.globalData.userInfo,
       requestImgUrl: app.globalData.requestImgUrl,
-      originalImgUrl: app.globalData.originalImgUrl
+      originalImgUrl: app.globalData.originalImgUrl,
+      pageNum: 1,
+      articleListAll: [],
+      articleList: []
     })
     // 获取文章列表
     this.getArticleList()

@@ -24,21 +24,30 @@ page{
   margin-bottom: 29rpx;
 
 }
-.lableli{
-  text-align: center;
-  margin: 30rpx 54rpx 0 0;
-  width: 102rpx;
-}
-.lableli:nth-of-type(4n) {
-  margin-right: 0;
-}
-
 .lableList{
-padding: 15rpx 0;
-background:#CFCFCF;
-border-radius:10rpx;
-font-size: 28rpx;
-color: #FFFFFF;
+  width: 100%;
+  margin-bottom: 29rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.labenItem{
+  text-align: center;
+  padding: 20rpx;
+  margin: 10rpx;
+  border-radius: 10rpx;
+  background-color: #ddd;
+  color: #343434;
+}
+/* .labenItem:nth-of-type(4n) {
+  margin-right: 0;
+} */
+
+.labelActive{
+  background:#489BFE !important;
+  color: #FFFFFF !important;
 }
 .question-title{
   padding: 0 20rpx;
@@ -104,6 +113,7 @@ margin: 0;
   background: #3393FF;
   border-radius: 10rpx;
   font-size: 24rpx;
+  z-index: 999;
 }
 .img-wrap {
   display: flex;
