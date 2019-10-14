@@ -664,6 +664,7 @@ Page({
               })
               if (res.userInfo) {
                 // 提交用户信息
+                console.log(res.userInfo)
                 this.setUserInfo(res.userInfo)
               }
             }

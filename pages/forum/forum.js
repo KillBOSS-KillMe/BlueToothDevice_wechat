@@ -11,16 +11,17 @@ Page({
     navAction:  ['noActive', 'active', 'noActive', 'noActive']
   },
   onLoad: function () {
+    
+    // 获取文章列表
+    // this.getArticleList()
+  },
+  onShow() {
     this.setData({
       navAction: app.globalData.navAction,
       userInfo: app.globalData.userInfo,
       requestImgUrl: app.globalData.requestImgUrl,
       originalImgUrl: app.globalData.originalImgUrl
     })
-    // 获取文章列表
-    // this.getArticleList()
-  },
-  onShow() {
     // 获取文章列表
     this.getArticleList()
   },
