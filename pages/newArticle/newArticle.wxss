@@ -35,8 +35,9 @@ page{
 }
 .labenItem{
   text-align: center;
-  padding: 20rpx;
+  padding: 10rpx 20rpx;
   margin: 10rpx;
+  font-size: 25rpx;
   border-radius: 10rpx;
   background-color: #ddd;
   color: #343434;

@@ -79,7 +79,7 @@ Page({
       url = 'upload_file'
       wx.chooseMessageFile({
         count: 1,
-        type: 'all',
+        type: 'file',
         success: res => {
           this.uploadimg(res.tempFiles, type, url)
         }
@@ -91,9 +91,24 @@ Page({
     //上传图片
     let i = 0
     for (i in imgurlNode) {
-      let name = ''
-      if (type == "file") {
-        name = imgurlNode[i].name
+      if (type == 'image') {
+        if (imgurlNode[i].size > 5000000) {
+          wx.showToast({
+            title: `第${i + 1}张图片大于5M`,
+            icon: 'none',
+            duration: 2000
+          })
+          return false
+        }
+      } else {
+        if (imgurlNode[i].size > 1000000) {
+          wx.showToast({
+            title: `第${i + 1}个bin文件大于1M`,
+            icon: 'none',
+            duration: 2000
+          })
+          return false
+        }
       }
       wx.uploadFile({
         url: `${app.globalData.requestUrl}/Forum/${url}`,
@@ -110,21 +125,30 @@ Page({
             })
           } else {
             data = JSON.parse(data.data)
-            data = data.data
-            let fileList = this.data.fileList
-            let fileNameList = this.data.fileNameList
-            let fileName = ''
-            if (type == "file") {
-              fileName = imgurlNode[i].name
+            if (data.code == 1) {
+              data = data.data
+              let fileList = this.data.fileList
+              let fileNameList = this.data.fileNameList
+              let fileName = ''
+              if (type == "file") {
+                fileName = imgurlNode[i].name
+              } else {
+                fileName = data.split('/').pop()
+              }
+              fileList.push({'name': fileName, 'path': data})
+              fileNameList.push(fileName)
+              this.setData({
+                fileNameList: fileNameList,
+                fileList: fileList
+              })
             } else {
-              fileName = data.split('/').pop()
+              wx.showToast({
+                title: data.msg,
+                icon: 'none',
+                duration: 4000
+              })
             }
-            fileList.push({'name': fileName, 'path': data})
-            fileNameList.push(fileName)
-            this.setData({
-              fileNameList: fileNameList,
-              fileList: fileList
-            })
+              
           }
           
         }
