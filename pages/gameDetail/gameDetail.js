@@ -16,9 +16,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // gameDetail?id=${dataNode.id}&name=${dataNode.name}&img=${dataNode.img}
-    // &c_num=${dataNode.c_num}&d_num=${dataNode.d_num}`
-    console.log(options)
     wx.setNavigationBarTitle({
       title: options.name
     })
@@ -27,12 +24,13 @@ Page({
       userInfo: app.globalData.userInfo,
       imgUrl: app.globalData.imgUrl
     })
+    this.getGameDetali(this.data.options.id)
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getGameDetali(options.id)
+    
   },
   // 获取游戏详情
   getGameDetali(id) {
@@ -49,7 +47,7 @@ Page({
           data = data.data.data
           let i = 0
           for (i in data) {
-            data[i]['createTime'] = app.transformTime(data[i].createTime)
+            data[i]['createTime'] = app.transformTime(data[i].createTime*1000)
           }
           this.setData({
             commentList: data,
