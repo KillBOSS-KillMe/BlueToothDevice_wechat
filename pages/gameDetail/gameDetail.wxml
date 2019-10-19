@@ -34,7 +34,7 @@
 <view class='yx-bot'>
   <view class='hr'></view>
   <view class='yx-bot-cen'>
-    <navigator url='/pages/gameComment/gameComment?id={{gameId}}'>
+    <navigator url='/pages/gameComment/gameComment?id={{options.id}}'>
       <button class='yx-log'>评论</button>
     </navigator>
   </view>

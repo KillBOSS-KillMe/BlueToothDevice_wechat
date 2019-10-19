@@ -7,6 +7,7 @@ Page({
   data: {
     userInfo: {},
     imgUrl: '',
+    gameId: '',
     con: ''
   },
 
@@ -15,6 +16,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      options: options,
       gameId: options.id,
       userInfo: app.globalData.userInfo
     })
@@ -39,7 +41,7 @@ Page({
       url: `${app.globalData.requestUrl}/Official/comment`,
       method: "POST",
       data: {
-        game_id: this.data.gameId,
+        game_id: this.data.options.id,
         uid: this.data.userInfo.id,
         content: this.data.con
       },

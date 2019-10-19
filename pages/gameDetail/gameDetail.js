@@ -27,6 +27,11 @@ Page({
       userInfo: app.globalData.userInfo,
       imgUrl: app.globalData.imgUrl
     })
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     this.getGameDetali(options.id)
   },
   // 获取游戏详情
@@ -51,11 +56,11 @@ Page({
             count: data.data.count
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg,
-            showCancel: false
-          })
+          // wx.showModal({
+          //   title: '',
+          //   content: data.data.msg,
+          //   showCancel: false
+          // })
         }
       }
     })
@@ -68,12 +73,7 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
-  },
 
   /**
    * 生命周期函数--监听页面隐藏
