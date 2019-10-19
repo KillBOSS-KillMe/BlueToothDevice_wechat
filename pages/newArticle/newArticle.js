@@ -295,13 +295,13 @@ Page({
       method: 'POST',
       data: {
         uid: this.data.userInfo.id,
-        label: this.data.label.id,
+        label: this.data.label.label,
         title: this.data.article.title,
         content: this.data.article.content,
         file: this.data.fileList,
         image: this.data.imgList
       },
-      success(data) {
+      success: data => {
         data = app.null2str(data)
         if (data.data.code == 1) {
           this.setData({

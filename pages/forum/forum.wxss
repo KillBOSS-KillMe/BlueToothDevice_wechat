@@ -201,7 +201,7 @@
 }
 
 .luntanConTit-right {
-  width: 66rpx;
+  width: auto;
   height: 38rpx;
   padding: 10rpx;
   background: #3393ff;
