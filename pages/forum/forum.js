@@ -53,16 +53,25 @@ Page({
             pageNum: pageNum
           })
           data = data.data.data
-          let i = 0
-          for (i in data) {
-            data[i]['createTime'] = app.transformTime(data[i].createTime * 1000)
-          }
+          
           let list = this.data.articleListAll.concat(data)
+          let i = 0
+          for (i in list) {
+            list[i]['createTime'] = app.transformTime(list[i].createTime * 1000)
+            if (app.globalData.delPostId == list[i].id) {
+              list.splice(i, 1)
+            }
+          }
           this.setData({
             articleListAll: list,
             articleList: list
           })
         } else {
+          wx.showToast({
+            title: "无更多数据",
+            icon: 'none',
+            duration: 2000
+          });
           // wx.showModal({
           //   title: '',
           //   content: data.data.msg

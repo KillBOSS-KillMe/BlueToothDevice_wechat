@@ -51,7 +51,7 @@ Page({
         data = app.null2str(data)
         if (data.data.code == 1) {
           data = data.data.data[0]
-          data['createTime'] = app.transformTime(data.createTime)
+          data['createTime'] = app.transformTime(data.createTime*1000)
           // 文章内容存入全局，在评论回复页使用
           app.globalData.articleDetail = data
           this.setData({
@@ -184,6 +184,7 @@ Page({
       success: data => {
         data = app.null2str(data)
         if (data.data.code == 1) {
+          app.globalData.delPostId = this.data.articleDetail.pid
           wx.showToast({
             title: "删除成功！",
             icon: 'success',
