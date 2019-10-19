@@ -33,6 +33,9 @@ Page({
     this.getLabelList()
   },
   onUnload() {
+    if (!this.data.delFile) {
+      return false
+    }
     this.rmAllImgFile()
   },
   // 获取标签列表
