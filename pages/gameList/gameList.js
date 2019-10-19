@@ -84,12 +84,14 @@ Page({
             content: '该项未购买，是否前往购买？',
             cancelText:'取消',
             confirmText:'去支付',
-            success(res){
+            success: res => {
               if(res.confirm){
                 // 用户点击了确定属性的按钮，对应选择了'去支付'
                 // 跳转
+                let listData = JSON.stringify(this.data.listData)
+
                 wx.navigateTo({
-                  url: `/pages/gameBuy/gameBuy?price=${dataNode.price}&id=${dataNode.id}&name=${dataNode.name}&img=${dataNode.img}&c_num=${dataNode.c_num}&d_num=${dataNode.d_num}`
+                  url: `/pages/gameBuy/gameBuy?list=${listData}`
                 })
               } 
               // else if(res.cancel){

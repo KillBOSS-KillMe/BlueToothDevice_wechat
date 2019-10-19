@@ -1,10 +1,22 @@
 <!--pages/gameBuy/gameBuy.wxml-->
-<view class="gameImg">
-  <image src="{{imgUrl + options.img}}" />
-</view> 
-<view class="gameName">{{options.name}}</view> 
+<view class="yx-cen">
+  <view class='yx-cen-con'>
+    <block class="gameList" wx:for="{{listData}}" wx:key="item">
+      <view class='yx-li' bindtap="selGame" data-isBuy="{{item.is_buy}}" data-id="{{item.id}}" data-index="{{index}}">
+        <view class='yx-li-img'>
+          <image src='{{imgUrl + item.img}}'></image>
+          <view wx:if="{{downloadStr}}" class="yx-li-img-border {{item.str == '1'?'yx-li-img-border1':''}}"></view>
+        </view>
+        <view class='yx-li-txt binName'>￥{{item.price}}</view>
+        <view class='yx-li-txt'>{{item.name}}</view>
+        
+      </view>
+    </block>
+  </view>
+</view>
+
 <view class="buy">
   <view class="name">应付金额：</view>
-  <view class="money">￥{{options.price}}</view>
+  <view class="money">￥{{allPrice}}</view>
 </view>
 <view class="runBuy" bindtap="runBuy" data-price="{{ptions.price}}">支付</view>
