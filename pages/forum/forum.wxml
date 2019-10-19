@@ -9,9 +9,9 @@
     </view>
     <view class='in-sec-right'>
       <view class='luntan-sec'>
-        <navigator url='/pages/newArticle/newArticle'>
-          <icon class='iconfont iconzhiding'></icon>
-        </navigator>
+        <!-- <navigator url='/pages/newArticle/newArticle'> -->
+          <icon class='iconfont iconzhiding' bindtap="goNewAticle"></icon>
+        <!-- </navigator> -->
       </view>
     </view>
   </view>

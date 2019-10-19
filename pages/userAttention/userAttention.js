@@ -184,6 +184,11 @@ Page({
       fensiList: fensiList
     })
   },
-
+  // 进入帖子详情页
+  goPostDetail(e) {
+    wx.navigateTo({
+      url: `/pages/articleDetail/articleDetail?id=${e.currentTarget.dataset.id}`
+    })
+  },
   
 })

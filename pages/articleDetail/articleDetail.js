@@ -126,6 +126,14 @@ Page({
   },
   // 进入评论页
   goComment() {
+    if (this.data.userInfo.forbidden_time != '') {
+      wx.showToast({
+        title: "您已被禁言",
+        icon: 'none',
+        duration: 2000
+      });
+      return false
+    }
     let articleDetail = this.data.articleDetail
     let urlData = `?type=comment&post_id=${articleDetail.pid}
     &id=${articleDetail.uid}&title=${articleDetail.title}`
@@ -135,6 +143,14 @@ Page({
   },
   // 进入回复页
   goReply(e) {
+    if (this.data.userInfo.forbidden_time != '') {
+      wx.showToast({
+        title: "您已被禁言",
+        icon: 'none',
+        duration: 2000
+      });
+      return false
+    }
     let commentNode = e.currentTarget.dataset
     let articleDetail = this.data.articleDetail
     let urlData = `?type=reply&post_id=${articleDetail.pid}&commentid=${commentNode.commentid}&comment=${commentNode.content}&reply_uid=${commentNode.uid}`

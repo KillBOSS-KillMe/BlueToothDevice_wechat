@@ -200,5 +200,19 @@ Page({
     wx.redirectTo({
       url: '/pages/user/user'
     })
+  },
+  // 进入发帖页
+  goNewAticle() {
+    if (this.data.userInfo.forbidden_time != '') {
+      wx.showToast({
+        title: "您已被禁言",
+        icon: 'none',
+        duration: 2000
+      });
+      return false
+    }
+    wx.redirectTo({
+      url: '/pages/newArticle/newArticle'
+    })
   }
 })
