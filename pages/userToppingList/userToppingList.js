@@ -74,6 +74,12 @@ Page({
       }
     })
   },
+  // 进入帖子详情页
+  goPostDetail(e) {
+    wx.navigateTo({
+      url: `/pages/articleDetail/articleDetail?id=${e.currentTarget.dataset.id}`
+    })
+  },
   /**
    * 页面上拉触底事件的处理函数
    */

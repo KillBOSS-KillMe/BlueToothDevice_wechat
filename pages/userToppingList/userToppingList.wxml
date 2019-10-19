@@ -11,7 +11,7 @@
           </navigator>
           <button class='de-li-btn' data-id="{{item.id}}" bindtap='cancel'>取消</button>
         </view>
-        <view class='gz-li-right-bot'>
+        <view class='gz-li-right-bot' data-id="{{item.id}}" bindtap="goPostDetail">
           <text class='gz-li-bot-txt'>{{item.title}}</text>
           <span class='gz-li-bot-span'>{{item.label}}</span>
         </view>

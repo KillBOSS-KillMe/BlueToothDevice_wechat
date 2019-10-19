@@ -74,7 +74,7 @@
   </view>
 </view>
 <!-- 下面 -->
-<view class='user-bot'>
+<view class='user-bot' wx:if="{{userInfo.power == 2}}">
   <view class="user-bot-cen">
     <view class='user-bot-tit'>应用功能</view>
     <view class='user-bot-jilu'>

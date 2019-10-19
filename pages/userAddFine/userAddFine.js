@@ -35,7 +35,7 @@ Page({
           data = data.data.data
           let i = 0
           for (i in data) {
-            data[i]['createTime'] = app.transformTime(data[i].createTime)
+            data[i]['createTime'] = app.transformTime(data[i].createTime*1000)
           }
           this.setData({
             listData: data
@@ -71,6 +71,12 @@ Page({
           })
         }
       }
+    })
+  },
+  // 进入帖子详情页
+  goPostDetail(e) {
+    wx.navigateTo({
+      url: `/pages/articleDetail/articleDetail?id=${e.currentTarget.dataset.id}`
     })
   },
   /**
