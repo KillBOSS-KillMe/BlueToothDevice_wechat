@@ -6,10 +6,11 @@
       <view class='aiYou-li'>
         <view class='aihua01-left' data-id="{{item.id}}">
           <text class='in-count'>{{index + 1}}</text>
-          <icon wx:if="{{item.type == '1'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
+          <icon class="iconfont iconjiaoben file-item-icon"></icon>
+          <!-- <icon wx:if="{{item.type == '1'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
           <icon wx:if="{{item.type == '2'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
           <icon wx:if="{{item.type == '3'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
-          <icon wx:if="{{item.type == '4'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
+          <icon wx:if="{{item.type == '4'}}" class='iconfont icon-jiaoben wjj-icon'></icon> -->
           <view class='aihua01'>
             <text class='aihua-con'>{{item.name}}</text>
             <view style='display:flex;justify-content:start;'>

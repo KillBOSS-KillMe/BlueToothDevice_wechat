@@ -1,80 +1,81 @@
-// pages/user-tiezi/user-tiezi.js
+//logs.js
+// const util = require('../../utils/util.js')
 const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    userInfo: {},
-    articleList: [],
+    logs: [],
     articleListAll: [],
+    articleList: [],
     requestImgUrl: '',
-    originalImgUrl: ''
-    
+    originalImgUrl: '',
+    pageNum: 1,
+    navAction:  ['noActive', 'active', 'noActive', 'noActive']
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {    
+  onLoad: function () {
+    
+    // 获取文章列表
+    // this.getArticleList()
+  },
+  onShow() {
     this.setData({
+      navAction: app.globalData.navAction,
       userInfo: app.globalData.userInfo,
       requestImgUrl: app.globalData.requestImgUrl,
-      originalImgUrl: app.globalData.originalImgUrl
+      originalImgUrl: app.globalData.originalImgUrl,
+      pageNum: 1,
+      articleListAll: [],
+      articleList: []
     })
+    // 获取文章列表
     this.getArticleList()
   },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    this.getArticleList()
+  },
+  // 获取文章列表
   getArticleList() {
     wx.request({
       url: `${app.globalData.requestUrl}/User/user_post`,
+      method: 'POST',
       data: {
         uid: this.data.userInfo.id,
-        page: 0
+        page: this.data.pageNum
       },
-      method: "POST",
       success: data => {
+        // console.log(data)
         data = app.null2str(data)
-        if (data.data.code == '1') {
+        if (data.data.code == 1) {
+          let pageNum = this.data.pageNum + 1
+          this.setData({
+            pageNum: pageNum
+          })
           data = data.data.data
-          let i = 0
-          for (i in data) {
-            data[i]['createTime'] = app.transformTime(data[i].createTime*1000)
-          }
+          
           let list = this.data.articleListAll.concat(data)
+          let i = 0
+          for (i in list) {
+            list[i]['createTime'] = app.transformTime(list[i].createTime * 1000)
+            if (app.globalData.delPostId == list[i].id) {
+              list.splice(i, 1)
+            }
+          }
           this.setData({
             articleListAll: list,
             articleList: list
           })
         } else {
-          // 无数据时
           wx.showToast({
-            title: data.data.msg,
+            title: "无更多数据",
             icon: 'none',
             duration: 2000
-          })
-        }
-      }
-    })
-  },
-  // 文章搜索，根据标题搜索
-  getSearch(e) {
-    wx.request({
-      url: `${app.globalData.requestUrl}/Forum/search`,
-      method: 'POST',
-      data: {
-        title: e.detail.value
-      },
-      success: data => {
-        data = app.null2str(data)
-        if (data.data.code == 1) {
-          this.setData({
-            articleList: data.data.data
-          })
-        } else {
-          this.setData({
-            articleList: this.data.articleListAll
-          })
+          });
+          // wx.showModal({
+          //   title: '',
+          //   content: data.data.msg
+          // })
         }
       }
     })
@@ -116,15 +117,17 @@ Page({
       }
     })
   },
+  // 查看大图
+  showImg(e) {
+    let url =  e.currentTarget.dataset.img
+    wx.previewImage({
+      current: [url], // 当前显示图片的http链接   
+      urls: [url] // 需要预览的图片http链接列表   
+    })
+  },
   goDetail(e) {
     wx.navigateTo({
       url: `/pages/articleDetail/articleDetail?id=${e.currentTarget.dataset.id}`
     })
-  },
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
   }
 })

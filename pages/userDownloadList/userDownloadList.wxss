@@ -1,6 +1,11 @@
 page{
   background: #fff;
 }
+.iconjiaoben {
+  font-size: 70rpx;
+  padding: 0 20rpx;
+  color: #3594FF;
+}
 /* 项目栏部分 */
 .aiHua{
   width:100%;
@@ -14,13 +19,13 @@ page{
   padding:34rpx 0;
   border-top: 2rpx solid #EDEDED;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 .in-count{
   font-size:30rpx;
   float: left;
   color: #FF33BE;
-  margin-top:15rpx;
 }
 .aihua-con{
   font-size:30rpx;
@@ -69,6 +74,9 @@ height:69rpx;
 }
 .aihua01-left{
   width:70%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 .aihua01-right{
   width:30%;

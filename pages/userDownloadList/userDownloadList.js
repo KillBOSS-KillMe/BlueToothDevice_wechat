@@ -30,8 +30,12 @@ Page({
       success: res => {
         res = app.null2str(res.data)
         if (res.code == '1') {
+          let flieList = res.data
+          for (let i = 0; i < flieList.length; i++) {
+            flieList[i]['createTime'] = app.transformTime(flieList[i].createTime * 1000)
+          }
           this.setData({
-            flieList: res.data
+            flieList: flieList
           })
         } else {
           wx.showModal({
