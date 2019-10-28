@@ -1,3 +1,9 @@
+/*
+ * @Author: luow 
+ * @Date: 2019-10-28 14:22:23 
+ * @Last Modified by:   luow 
+ * @Last Modified time: 2019-10-28 14:22:23 
+ */
 // pages/gameBuy/gameBuy.js
 const app = getApp()
 Page({
@@ -63,7 +69,7 @@ Page({
             'paySign': data.paySign,
             'success': data => {
               console.log(data)
-              wepy.showToast({
+              wx.showToast({
                 title: '充值成功',
                 icon: 'none',
                 duration: 2000
@@ -75,7 +81,7 @@ Page({
             },
             'fail': data => {
               console.log(data)
-              wepy.showModal({
+              wx.showToast({
                 title: '',
                 content: '充值失败',
                 showCancel: false
@@ -83,7 +89,7 @@ Page({
             }
           })
         } else {
-          wx.showModal({
+          wx.showToast({
             title: '',
             content: data.data.msg
           })

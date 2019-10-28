@@ -76,8 +76,6 @@ Page({
         }
       } else {
         let isBuy = e.currentTarget.dataset.isbuy
-        
-        console.log(isBuy)
         if (isBuy == '0') {
           wx.showModal({
             title: '',
