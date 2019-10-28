@@ -31,7 +31,7 @@
       </view>
       <view class="file">
         <block wx:for="{{articleDetail.file}}" wx:for-item="item" wx:for-index="imgIndex" wx:key="{{imgItem}}">
-          <view class="file-item" wx:if="{{item.type == 2}}">
+          <view class="file-item" wx:if="{{item.type == 2}}" data-url="{{item.file}}" bindtap="downFile">
             <icon class="iconfont iconjiaoben file-item-icon"></icon>
             <view class="file-h overflow-one">{{item.filename}}</view>
             <!-- <view class="file-t overflow-one">下载102次下载102次</view> -->

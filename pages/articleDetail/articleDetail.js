@@ -1,3 +1,9 @@
+/*
+ * @Author: luow 
+ * @Date: 2019-10-28 14:35:57 
+ * @Last Modified by: luow
+ * @Last Modified time: 2019-10-28 15:43:10
+ */
 // pages/quanxian/quanxian.js
 // var until = require("../../utils/util.js")
 const app = getApp()
@@ -38,7 +44,7 @@ Page({
   },
   // 获取文章详情
   getArticleList(id) {
-    
+
     wx.request({
       url: `${app.globalData.requestUrl}/User/post_info`,
       data: {
@@ -51,7 +57,7 @@ Page({
         data = app.null2str(data)
         if (data.data.code == 1) {
           data = data.data.data[0]
-          data['createTime'] = app.transformTime(data.createTime*1000)
+          data['createTime'] = app.transformTime(data.createTime * 1000)
           // 文章内容存入全局，在评论回复页使用
           app.globalData.articleDetail = data
           this.setData({
@@ -351,8 +357,62 @@ Page({
       }
     })
   },
+  // 文件下载
+  downFile(e) {
+    console.log(e)
+    wx.showModal({
+      title: '',
+      content: '该项未购买，是否前往购买？',
+      cancelText: '取消',
+      confirmText: '去支付',
+      success: res => {
+        if (res.confirm) {
+          // 执行下载
+          let url = e.currentTarget.dataset.url
+          console.log(url)
+          this.runDownFile(url)
+        }
+        // else if(res.cancel){
+        //   // 用户点击了取消属性的按钮，对应选择了'取消'
+        //   that.setData({
+        //     userSex:2
+        //   })
+        // } 
+      }
+    })
+  },
+  runDownFile(url) {
+    wx.downloadFile({
+      url: app.globalData.requestUrl + url,
+      success: res => {
+        wx.saveFile({
+          tempFilePath: res.tempFilePath,
+          success: result => {
+            const savedFilePath = result.savedFilePath;
+            console.log(savedFilePath)
+            // 打开文件
+            wx.openDocument({
+              filePath: savedFilePath,
+              success: function (res) {
+                console.log('打开文档成功')
+              },
+            });
+          },
+          fail: e=> {
+            console.info("保存一个文件失败")
+          }
+        })
+      },
+      fail: e=> {
+        console.info("下载一个文件失败");
+        if (fail) {
+          fail(e);
+        }
+      }
+    })
+  },
   showImg(e) {
-    let url =  e.currentTarget.dataset.img
+    let url = e.currentTarget.dataset.img
     wx.previewImage({
       current: [url], // 当前显示图片的http链接   
       urls: [url] // 需要预览的图片http链接列表   
@@ -360,11 +420,11 @@ Page({
   },
   showImg1(e) {
     let index = e.currentTarget.dataset.index
-    let commentList =  this.data.commentList
+    let commentList = this.data.commentList
     let imgNode = commentList[index].c_file
     let img = []
     let originalImgUrl = this.data.originalImgUrl
-    for (let i = 0;i < imgNode.length; i++) {
+    for (let i = 0; i < imgNode.length; i++) {
       img.push(originalImgUrl + imgNode[i].file)
     }
     wx.previewImage({
@@ -375,11 +435,11 @@ Page({
   showImg2(e) {
     let index = e.currentTarget.dataset.index
     let replyindex = e.currentTarget.dataset.replyindex
-    let commentList =  this.data.commentList
+    let commentList = this.data.commentList
     let imgNode = commentList[index].reply[replyindex].r_file
     let img = []
     let originalImgUrl = this.data.originalImgUrl
-    for (let i = 0;i < imgNode.length; i++) {
+    for (let i = 0; i < imgNode.length; i++) {
       img.push(originalImgUrl + imgNode[i].file)
     }
     wx.previewImage({

@@ -1,8 +1,8 @@
 /*
  * @Author: luow 
  * @Date: 2019-10-28 14:22:23 
- * @Last Modified by:   luow 
- * @Last Modified time: 2019-10-28 14:22:23 
+ * @Last Modified by: luow
+ * @Last Modified time: 2019-10-28 15:15:11
  */
 // pages/gameBuy/gameBuy.js
 const app = getApp()
@@ -61,6 +61,7 @@ Page({
         data = app.null2str(data)
         if (data.data.code == 1) {
           data = data.data.data
+          console.log(data)
           wx.requestPayment({
             'timeStamp': data.timeStamp,
             'nonceStr': data.nonceStr,
