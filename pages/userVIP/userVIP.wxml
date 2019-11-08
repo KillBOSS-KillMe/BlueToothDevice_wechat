@@ -1,0 +1,11 @@
+<!--pages/userVIP/userVIP.wxml-->
+<view class="user">
+  <image src="{{userInfo.avatarUrl}}"></image>
+  <view>
+    <view class="name">{{userInfo.nickname}}</view>
+    <view class="info">
+      <text class="vip"></text>
+      <text>(会员到期还剩30天)</text>
+    </view>
+  </view>
+</view>
