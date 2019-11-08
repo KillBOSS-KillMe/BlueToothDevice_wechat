@@ -26,7 +26,7 @@
           <text class='luntanConTit-right'>{{item.label}}</text>
         </view>
         <view class='luntanCon-txt'>
-          <text class='luntan-txt' bindtap='goDetail' data-id="{{item.id}}">{{item.content}}</text>
+          <view class='luntan-txt' bindtap='goDetail' data-id="{{item.id}}">{{item.content}}</view>
           <view class='luntan-img'>
             <block wx:for="{{item.file}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="{{imgItem}}">
               <view class='luntan-imgCon' wx:if="{{imgIndex < 4 && imgItem.type == 1}}">

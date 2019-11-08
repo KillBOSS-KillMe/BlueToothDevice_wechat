@@ -219,7 +219,11 @@
   margin-top: 25rpx;
   line-height: 38rpx;
 }
-
+.luntanCon-txt .luntan-txt{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
 .luntan-img {
   margin-top: 33rpx;
   display: flex;

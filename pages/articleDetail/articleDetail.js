@@ -2,7 +2,7 @@
  * @Author: luow 
  * @Date: 2019-10-28 14:35:57 
  * @Last Modified by: luow
- * @Last Modified time: 2019-10-28 15:43:10
+ * @Last Modified time: 2019-11-08 17:43:41
  */
 // pages/quanxian/quanxian.js
 // var until = require("../../utils/util.js")
@@ -83,12 +83,13 @@ Page({
           data = data.data.data
           let i = 0
           for (i in data) {
-            data[i]['createTime'] = app.transformTime(data[i].createTime)
+            data[i]['createTime'] = app.transformTime(data[i].createTime * 1000)
             let y = 0
             for (y in data[i].reply) {
-              data[i].reply[y]['createTime'] = app.transformTime(data[i].reply[y].createTime)
+              data[i].reply[y]['createTime'] = app.transformTime(data[i].reply[y].createTime * 1000)
             }
           }
+          console.log(data)
           this.setData({
             commentList: data
           })
