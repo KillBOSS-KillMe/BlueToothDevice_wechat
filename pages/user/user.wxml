@@ -8,16 +8,16 @@
         <view class='user-top-cen-top'>
           <view class="userInfoDom">
             <view class='user-tit'>{{userInfo.nickname}}</view>
-            <navigator url='/pages/userAchievement/userAchievement' class='user-chengjiu-li'>
+            <navigator url='/pages/userAchievement/userAchievement' class='user-chengjiu-li' hover-class="none">
               <icon class='iconfont iconchengjiupingjia'></icon>
               <icon class='iconfont iconchengjiupingjia'></icon>
               <icon class='iconfont iconchengjiupingjia'></icon>
               <icon class='iconfont iconchengjiupingjia'></icon>
               <icon class='iconfont iconchengjiupingjia'></icon>
             </navigator>
-            <navigator class="membership" url="/pages/userVIP/userVIP">开通会员</navigator>
+            <navigator class="membership" url="/pages/userVIP/userVIP" hover-class="none">开通会员</navigator>
           </view>
-          <navigator url='/pages/userMessage/userMessage' class="message">
+          <navigator url='/pages/userMessage/userMessage' class="message" hover-class="none">
             <icon class='iconfont iconxiaoxi1'></icon>
             <view wx:if="{{messageShow}}"></view>
           </navigator>
@@ -31,7 +31,7 @@
       </view>
     </view>
     <view class='user-top-right' id="{{item.id}}" wx:for="{{item}}" wx:key="unique" bindtap='viewDetails' data-buildId="{{item.buildId}}" data-status="{{item.status}}">
-      <navigator url='../user-xiaoxi/user-xiaoxi'>
+      <navigator url='../user-xiaoxi/user-xiaoxi' hover-class="none">
         <icon class='iconfont icon-xiaoxi user-xiaoxi'></icon>
         <!-- <text class='userred-xiaoxi'></text> -->
         <view wx:if="{{item.status == 1}}" class="dian_hide"></view>
@@ -44,19 +44,19 @@
 <view class='user-cen'>
   <view class='user-cen-con'>
     <view class='user-nav-li'>
-      <navigator url='/pages/userAttention/userAttention' class='user-nav-li-li'>
+      <navigator url='/pages/userAttention/userAttention' class='user-nav-li-li' hover-class="none">
         <text class='user-count'>{{userInfo.follow_num}}</text>
         <text class='user-nav-con'>关注</text>
       </navigator>
     </view>
     <view class='user-nav-li'>
-      <navigator url='/pages/userDownloadList/userDownloadList' class='user-nav-li-li'>
+      <navigator url='/pages/userDownloadList/userDownloadList' class='user-nav-li-li' hover-class="none">
         <text class='user-count'>{{userInfo.download_num}}</text>
         <text class='user-nav-con'>下载</text>
       </navigator>
     </view>
     <view class='user-nav-li' bindtap="tieziTap">
-      <navigator url='/pages/userArticle/userArticle' class='user-nav-li-li'>
+      <navigator url='/pages/userArticle/userArticle' class='user-nav-li-li' hover-class="none">
         <text class='user-count'>{{userInfo.release_num}}</text>
         <text class='user-nav-con'>帖子</text>
       </navigator>
@@ -69,7 +69,7 @@
     <view class='user-bot-tit'>应用功能</view>
     <view class='user-bot-jilu'>
       <view class='user-jilu-li'>
-        <navigator url='/pages/userDelete/userDelete'>
+        <navigator url='/pages/userDelete/userDelete'  hover-class="none">
           <view class='user-li-icon'>
             <icon class='iconfont iconshanchu'></icon>
           </view>
@@ -77,7 +77,7 @@
         </navigator>
       </view>
       <view class='user-jilu-li'>
-        <navigator url='/pages/userToppingList/userToppingList'>
+        <navigator url='/pages/userToppingList/userToppingList'  hover-class="none">
           <view class='user-li-icon'>
             <icon class='iconfont iconzhiding'></icon>
           </view>
@@ -85,7 +85,7 @@
         </navigator>
       </view>
       <view class='user-jilu-li'>
-        <navigator url='/pages/userBanned/userBanned'>
+        <navigator url='/pages/userBanned/userBanned'  hover-class="none">
           <view class='user-li-icon'>
             <icon class='iconfont iconjinyan'></icon>
           </view>
@@ -93,7 +93,7 @@
         </navigator>
       </view>
       <view class='user-jilu-li' bindtap='lanya'>
-        <navigator url='/pages/userAddFine/userAddFine'>
+        <navigator url='/pages/userAddFine/userAddFine'  hover-class="none">
           <view class='user-li-icon'>
             <icon class='iconfont iconhuatijiajingicon'></icon>
           </view>

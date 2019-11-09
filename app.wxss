@@ -20,7 +20,9 @@
 // overflow:hidden;
 // text-overflow:ellipsis;
 // white-space:nowrap; */
-
+navigator:hover{
+  background: none
+}
 /* 浮层 */
 .popUpFloor{
   width: 100vw;

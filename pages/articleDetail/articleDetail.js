@@ -18,13 +18,15 @@ Page({
     articleDetail: {},
     commentList: [],
     requestImgUrl: '',
-    originalImgUrl: ''
+    originalImgUrl: '',
+    cur: 0,
+    zd:"置顶"
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
       options: options,
       userInfo: app.globalData.userInfo,
@@ -39,7 +41,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     this.getCommentList(this.data.options.id)
   },
   // 获取文章详情
@@ -215,7 +217,7 @@ Page({
             duration: 2000,
             mask: true
           });
-          setTimeout(function () {
+          setTimeout(function() {
             wx.navigateBack({
               delta: 1,
             })
@@ -230,32 +232,68 @@ Page({
     })
   },
   // 置顶
-  topping() {
-    wx.request({
-      url: `${app.globalData.requestUrl}/Forum/top`,
-      method: 'POST',
-      data: {
-        aid: this.data.userInfo.id,
-        uid: this.data.articleDetail.uid,
-        post_id: this.data.articleDetail.pid,
-        title: this.data.articleDetail.title,
-        nickname: this.data.userInfo.nickname
-      },
-      success: data => {
-        data = app.null2str(data)
-        if (data.data.code == 1) {
-          wx.showModal({
-            title: '',
-            content: '置顶成功'
-          })
-        } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+  topping(e) {
+    console.log(e.currentTarget.dataset.cur)
+    if (e.currentTarget.dataset.cur == 0) {
+      this.setData({
+        cur: 1,
+        zd:'取消置顶'
+      })
+      wx.request({
+        url: `${app.globalData.requestUrl}/Forum/top`,
+        method: 'POST',
+        data: {
+          aid: this.data.userInfo.id,
+          uid: this.data.articleDetail.uid,
+          post_id: this.data.articleDetail.pid,
+          title: this.data.articleDetail.title,
+          nickname: this.data.userInfo.nickname
+        },
+        success: data => {
+          data = app.null2str(data)
+          if (data.data.code == 1) {
+            wx.showModal({
+              title: '',
+              content: '置顶成功'
+            })
+          } else {
+            wx.showModal({
+              title: '',
+              content: data.data.msg
+            })
+          }
         }
-      }
-    })
+      })
+      return false
+    }
+    if (e.currentTarget.dataset.cur == 1) {
+      this.setData({
+        cur: 0,
+        zd: '置顶'
+      })
+      wx.request({
+        url: `${app.globalData.requestUrl}/User/cancel_top`,
+        data: {
+          post_id: this.data.articleDetail.pid
+        },
+        method: "POST",
+        success: data => {
+          data = app.null2str(data)
+          if (data.data.code == 1) {
+            wx.showModal({
+              title: '',
+              content: '取消置顶'
+            })
+          } else {
+            wx.showModal({
+              title: '',
+              content: data.data.msg
+            })
+          }
+        }
+      })
+      return false
+    }
   },
   // 加精
   addBoutique() {
@@ -395,17 +433,17 @@ Page({
             // 打开文件
             wx.openDocument({
               filePath: savedFilePath,
-              success: function (res) {
+              success: function(res) {
                 console.log('打开文档成功')
               },
             });
           },
-          fail: e=> {
+          fail: e => {
             console.info("保存一个文件失败")
           }
         })
       },
-      fail: e=> {
+      fail: e => {
         console.info("下载一个文件失败");
         if (fail) {
           fail(e);
@@ -452,7 +490,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   }
 })

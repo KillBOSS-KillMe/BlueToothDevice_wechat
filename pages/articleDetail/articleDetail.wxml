@@ -136,9 +136,12 @@
       <icon class="iconfont iconshanchu"></icon>
       删除
     </view>
-    <view bindtap="topping">
-      <icon class="iconfont iconzhiding"></icon>
-      置顶
+    <view bindtap="topping" data-cur="{{cur}}">
+      <view>
+        <icon class="iconfont iconzhiding" wx:if="{{cur==0}}"></icon>
+        <icon class="iconfont iconzhiding itenIcon" wx:if="{{cur==1}}"></icon>
+      </view>
+      {{zd}}
     </view>
     <view bindtap="addBoutique">
       <icon class="iconfont iconhuatijiajingicon"></icon>
