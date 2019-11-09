@@ -83,9 +83,9 @@ Page({
   },
   // 进入首页
   goIndex() {
-    wx.navigateTo({
-      url: '/pages/index/index'
-    });
+    wx.redirectTo({
+      url: '/pages/index/index',
+    })
   },
   //退出页面
   backPage: function() {
