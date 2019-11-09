@@ -402,6 +402,14 @@ padding: 30rpx  0rpx 30rpx 25rpx;
  .comment-text .text {
    color: #424242;
    font-size: 28rpx;
+   /* width: 500rpx; */
+   /* overflow: hidden;
+   display: block !important; */
+   word-wrap:break-word;
+ }
+.comment-text  .text1{
+   color: #424242;
+   font-size: 28rpx;
  }
 .comment-text .file {
   color: #3393FF;
@@ -418,7 +426,7 @@ padding: 30rpx  0rpx 30rpx 25rpx;
   box-sizing: border-box;
 }
 .comment-two-i .comment-right {
-  max-width: 430rpx;
+  max-width: 470rpx;
 }
 /* 底部 */
 

@@ -103,7 +103,7 @@
                     <view class="comment-text">
                       <view class="name">
                         {{replyItem.nickname}}：
-                        <text class="text">回复</text>
+                        <text class="text1">回复</text>
                         {{replyItem.reply_name}}
                         <text class="text" 
                           data-commentid="{{item.id}}" 
