@@ -106,7 +106,7 @@
                         <text class="text">回复</text>
                         {{replyItem.reply_name}}
                         <text class="text" 
-                          data-commentid="{{replyItem.id}}" 
+                          data-commentid="{{item.id}}" 
                           data-uid="{{replyItem.uid}}" 
                             data-content="{{replyItem.content}}" 
                           bindtap="goReply">{{replyItem.content}}</text>

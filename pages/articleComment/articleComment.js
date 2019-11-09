@@ -104,8 +104,8 @@ Page({
       upData = {
         comment_id: options.commentid,
         post_id: options.post_id,
-        id:  options.reply_uid,
-        reply_id:  options.reply_uid,
+        id: options.reply_uid,
+        reply_id: options.reply_uid,
         comment: options.comment,
         content: this.data.commentCon,
         uid: this.data.userInfo.id,
