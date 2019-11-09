@@ -1,1 +1,111 @@
 /* pages/userVIP/userVIP.wxss */
+page{
+    width: 690rpx;
+  background: #fff;
+  padding-top: 30rpx;
+  height: 100%;
+  padding: 30rpx 30rpx;
+}
+.user{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 2rpx solid #EDEDED;
+  padding: 36rpx 0 30rpx;
+}
+.userImg{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+.user>view{
+  margin-left: 24rpx;
+
+}
+.name{
+  color: #424242;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+.info>view{
+   color: #999;
+  font-size: 24rpx;
+  margin-top: 16rpx;
+}
+.info>view>text{
+   color: #BB945A;
+  font-size: 24rpx;
+}
+.userVipList>text{
+  color: #BB945A;
+    font-size: 32rpx;
+  font-weight: bold;
+  margin: 30rpx 0;
+  display: block;
+}
+.userVipList{
+  margin: 0 20rpx;
+}
+.userVipListBox{
+  display: flex;
+  justify-content: flex-start;
+  align-content: space-between;
+  
+  flex-wrap: wrap;
+}
+.userVipListBox .item{
+  width: 195rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  margin: 0 20rpx 20rpx 0;
+  height: 264rpx;
+}
+.userVipListBox .item:nth-child(3n){
+  margin: 0 0 20rpx 0;
+}
+.item>text{
+   color: #BB945A;
+    font-size: 32rpx;
+  font-weight: bold;
+  margin: 50rpx 0 20rpx;
+  display: block;
+}
+.price{
+  color: #BB945A;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.price text{
+  color: #BB945A;
+  font-size: 60rpx;
+  font-weight: bold;
+}
+.img{
+  width: 80rpx;
+  height: 67rpx;
+}
+.cancel{
+  color: #999999;
+  font-size: 28rpx;
+  font-weight: 600;
+  margin-top: 25rpx;
+}
+.opening{
+  background: #C59D69;
+  border-radius: 10rpx;
+  color: #fff;
+  font-size: 32rpx;
+  border: none;
+  position: fixed;
+  bottom: 30rpx;
+  width: 690rpx;
+  height: 85rpx;
+  text-align: center;
+  line-height: 85rpx;
+}
+.active{
+  border: 4rpx solid #C59D69; 
+}
+.default{
+    border: 4rpx solid #AFAFAF;
+}
