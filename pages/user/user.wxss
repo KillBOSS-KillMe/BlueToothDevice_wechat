@@ -394,3 +394,14 @@
   display: inline-block;
   border: 1px solid #fff;
 }
+.membership{
+  font-size: 22rpx;
+  color: #fff;
+  border-radius: 19rpx;
+  background: #E1CA8C;
+  width: 122rpx;
+  display: block;
+  text-align: center;
+  padding: 5rpx 0;
+  margin-left: 20rpx;
+}

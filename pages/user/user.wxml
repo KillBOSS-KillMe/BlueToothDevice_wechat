@@ -15,6 +15,7 @@
               <icon class='iconfont iconchengjiupingjia'></icon>
               <icon class='iconfont iconchengjiupingjia'></icon>
             </navigator>
+            <navigator class="membership" url="/pages/userVIP/userVIP">开通会员</navigator>
           </view>
           <navigator url='/pages/userMessage/userMessage' class="message">
             <icon class='iconfont iconxiaoxi1'></icon>

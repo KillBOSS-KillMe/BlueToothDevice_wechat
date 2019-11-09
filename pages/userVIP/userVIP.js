@@ -1,18 +1,36 @@
 // pages/userVIP/userVIP.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userInfo: {},
+    list:[
+      {id:'1',time:'单月',price:'19'},
+      { id: '2', time: '2个月',price:'36'},
+      { id: '3', time: '3个月',price:"120"},
+      { id: '4', time: '终生会员', price: "360" },
+    ],
+    showId:1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
+  },
 
+  dealTap: function (e) {
+    var id = e.currentTarget.dataset.id;
+    console.log(id)
+    this.setData({
+      showId: id
+    });
   },
 
   /**
