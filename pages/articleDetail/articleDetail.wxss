@@ -173,7 +173,7 @@ border-radius:50%;
 }
 
 .luntanCon-con {
-  padding: 44rpx 26rpx;
+  padding: 44rpx 26rpx 80rpx;
 }
 
 .luntanCon-tit {

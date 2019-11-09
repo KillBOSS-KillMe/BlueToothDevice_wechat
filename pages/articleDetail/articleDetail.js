@@ -69,6 +69,7 @@ Page({
   },
   // 获取文章评论
   getCommentList(id) {
+    console.log(id)
     wx.request({
       url: `${app.globalData.requestUrl}/User/post_comment`,
       data: {
