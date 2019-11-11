@@ -2,7 +2,8 @@
   <view class='pl-top-cen'>
     <view class='pl-top-xx'>
       <view class='pl-top-img'>
-        <image src="{{imgUrl + options.img}}"></image>
+        <!-- <image src="{{imgUrl + options.img}}"></image> -->
+        <image wx:if='{{options.img}}' src="{{imgUrl + options.img}}"></image>
       </view>
       <view class='pl-top-right'>
         <text class='pl-top-tit'>{{options.name}}</text>

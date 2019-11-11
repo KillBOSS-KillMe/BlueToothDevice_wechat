@@ -24,7 +24,7 @@
         </view>
         <view class='user-top-cen-bot' bindtap="newGroup">
           <text class='userIdTit'>SW-</text>
-          <view class='userIdindex' wx:for="{{userIdindex}}">
+          <view class='userIdindex' wx:for="{{userIdindex}}" wx:key=''>
             <text class='userId'></text>
           </view>
         </view>
