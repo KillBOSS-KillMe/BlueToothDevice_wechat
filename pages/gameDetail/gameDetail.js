@@ -30,7 +30,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    // console.log(options)
+    this.getGameDetali(this.data.options.id)
   },
   // 获取游戏详情
   getGameDetali(id) {
@@ -41,17 +42,18 @@ Page({
         game_id: id
       },
       success: data => {
-        console.log(data)
         data = app.null2str(data)
         if (data.data.code == '1') {
           data = data.data.data
+          console.log(data)
+          // console.log(data.data)
           let i = 0
           for (i in data) {
             data[i]['createTime'] = app.transformTime(data[i].createTime*1000)
           }
           this.setData({
             commentList: data,
-            count: data.data.count
+            // count: data.data.count
           })
         } else {
           // wx.showModal({
