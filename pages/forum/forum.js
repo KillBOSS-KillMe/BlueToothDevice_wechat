@@ -12,7 +12,9 @@ Page({
     navAction:  ['noActive', 'active', 'noActive', 'noActive']
   },
   onLoad: function () {
-    
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
     // 获取文章列表
     // this.getArticleList()
   },
@@ -211,7 +213,7 @@ Page({
       });
       return false
     }
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/newArticle/newArticle'
     })
   }
