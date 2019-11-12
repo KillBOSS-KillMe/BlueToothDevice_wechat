@@ -2,7 +2,7 @@
  * @Author: luow 
  * @Date: 2019-10-28 14:35:57 
  * @Last Modified by: luow
- * @Last Modified time: 2019-11-08 17:43:41
+ * @Last Modified time: 2019-11-12 16:46:41
  */
 // pages/quanxian/quanxian.js
 // var until = require("../../utils/util.js")
@@ -399,27 +399,30 @@ Page({
   },
   // 文件下载
   downFile(e) {
-    console.log(e)
-    wx.showModal({
-      title: '',
-      content: '该项未购买，是否前往购买？',
-      cancelText: '取消',
-      confirmText: '去支付',
-      success: res => {
-        if (res.confirm) {
-          // 执行下载
-          let url = e.currentTarget.dataset.url
-          console.log(url)
-          this.runDownFile(url)
-        }
-        // else if(res.cancel){
-        //   // 用户点击了取消属性的按钮，对应选择了'取消'
-        //   that.setData({
-        //     userSex:2
-        //   })
-        // } 
-      }
-    })
+    // console.log(e)
+    let url = e.currentTarget.dataset.url
+    console.log(url)
+    this.runDownFile(url)
+    // wx.showModal({
+    //   title: '',
+    //   content: '该项未购买，是否前往购买？',
+    //   cancelText: '取消',
+    //   confirmText: '去支付',
+    //   success: res => {
+    //     if (res.confirm) {
+    //       // 执行下载
+    //       let url = e.currentTarget.dataset.url
+    //       console.log(url)
+    //       this.runDownFile(url)
+    //     }
+    //     // else if(res.cancel){
+    //     //   // 用户点击了取消属性的按钮，对应选择了'取消'
+    //     //   that.setData({
+    //     //     userSex:2
+    //     //   })
+    //     // } 
+    //   }
+    // })
   },
   runDownFile(url) {
     wx.downloadFile({
