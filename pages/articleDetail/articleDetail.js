@@ -2,7 +2,7 @@
  * @Author: luow 
  * @Date: 2019-10-28 14:35:57 
  * @Last Modified by: luow
- * @Last Modified time: 2019-11-12 16:46:41
+ * @Last Modified time: 2019-11-12 17:00:51
  */
 // pages/quanxian/quanxian.js
 // var until = require("../../utils/util.js")
@@ -163,7 +163,7 @@ Page({
     }
     let commentNode = e.currentTarget.dataset
     let articleDetail = this.data.articleDetail
-    let urlData = `?type=reply&post_id=${articleDetail.pid}&commentid=${commentNode.commentid}&comment=${commentNode.content}&reply_uid=${commentNode.uid}`
+    let urlData = `?type=reply&replyname=${commentNode.replyname}&post_id=${articleDetail.pid}&commentid=${commentNode.commentid}&comment=${commentNode.content}&reply_uid=${commentNode.uid}`
     wx.navigateTo({
       url: `/pages/articleComment/articleComment${urlData}`,
     })

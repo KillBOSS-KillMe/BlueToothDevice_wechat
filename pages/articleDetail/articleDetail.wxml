@@ -81,6 +81,7 @@
                     <text class="text" data-commentid="{{item.id}}" 
                       data-uid="{{item.uid}}" 
                         data-content="{{item.content}}" 
+                        data-replyname="{{item.nickname}}"
                       bindtap="goReply">{{item.content}}</text>
                     <!-- <icon wx:if="{{item.c_file.length > 0}}" data-index="{{index}}" bindtap="showImg1" class="iconfont iconpicture"></icon>
                     <text wx:if="{{item.c_file.length > 0}}" data-index="{{index}}" bindtap="showImg1" class="file">查看图片</text> -->
@@ -109,6 +110,7 @@
                           data-commentid="{{item.id}}" 
                           data-uid="{{replyItem.uid}}" 
                             data-content="{{replyItem.content}}" 
+                            data-replyname="{{replyItem.reply_name}}"
                           bindtap="goReply">{{replyItem.content}}</text>
                         <!-- <icon wx:if="{{replyItem.r_file.length > 0}}" bindtap="showImg2" data-index="{{index}}" data-replyindex="{{replyIndex}}" class="iconfont iconpicture"></icon>
                         <text wx:if="{{replyItem.r_file.length > 0}}" bindtap="showImg2" data-index="{{index}}" data-replyindex="{{replyIndex}}"  class="file">查看图片</text> -->

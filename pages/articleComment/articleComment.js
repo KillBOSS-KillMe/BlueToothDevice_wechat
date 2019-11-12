@@ -10,14 +10,20 @@ Page({
     requestImgUrl: '',
     originalImgUrl: '',
     imgList: [],
-    commentCon: ''
+    commentCon: '',
+    placeholderText: '请输入评论内容'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    console.log(options)
+  onLoad: function (options) { 
+    // console.log(options)
+    if (options.hasOwnProperty('replyname')){
+      this.setData({
+        placeholderText: `回复${options.replyname}`
+      })
+    }
     this.setData({
       options: options,
       userInfo: app.globalData.userInfo,

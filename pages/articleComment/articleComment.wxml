@@ -2,7 +2,7 @@
 <view class="con">
   <view class="setcon">
     <view class="setTextImg">
-      <textarea bindinput="getCommentCon"></textarea>
+      <textarea placeholder="{{placeholderText}}" bindinput="getCommentCon"></textarea>
       <icon class="iconfont iconadd" bindtap="chooseImage"></icon>
     </view>
     <view class="imgList">
