@@ -3,13 +3,25 @@
   <view class="setcon">
     <view class="setTextImg">
       <textarea placeholder="{{placeholderText}}" bindinput="getCommentCon"></textarea>
-      <icon class="iconfont iconadd" bindtap="chooseImage"></icon>
+      <view class="upfile">
+        <icon class="iconfont iconpicture" bindtap="chooseImage"></icon>
+        <icon class="iconfont iconjiaoben" bindtap="chooseFile"></icon>
+      </view>
     </view>
     <view class="imgList">
       <block class="groupList" wx:for="{{imgList}}" wx:key="{{item}}">
         <view class="img-item">
           <image bindtap="previewImage" data-index="{{index}}" src="{{originalImgUrl + item}}"></image>
           <image class="close-img" bindtap="deleImg" data-index="{{index}}" src="/image/guanbi.png"></image>
+        </view>
+      </block>
+    </view>
+    <view class="fileList">
+      <block class="groupList" wx:for="{{fileList}}" wx:key="{{item}}">
+        <view class="img-item">
+          <icon class="iconfont iconjiaoben"></icon>
+          <view class="file-h overflow-one">{{item.filename}}</view>
+          <image class="close-img" bindtap="deleFile" data-index="{{index}}" src="/image/guanbi.png"></image>
         </view>
       </block>
     </view>

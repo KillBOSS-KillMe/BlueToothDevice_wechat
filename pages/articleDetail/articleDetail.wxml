@@ -90,6 +90,15 @@
                 <block wx:for="{{item.c_file}}" wx:for-item="replyItem" wx:for-index="replyIndex">
                   <image data-id="{{item.id}}" bindtap="showImg" data-img="{{originalImgUrl + replyItem.file}}" src="{{originalImgUrl + replyItem.file}}" />
                 </block>
+                <view class="file">
+                  <block wx:for="{{item.c_file}}" wx:for-item="item" wx:for-index="imgIndex" wx:key="{{imgItem}}">
+                    <view class="file-item" wx:if="{{item.type == 2}}" data-url="{{item.file}}" bindtap="downFile">
+                      <icon class="iconfont iconjiaoben file-item-icon"></icon>
+                      <view class="file-h overflow-one">{{item.filename}}</view>
+                      <!-- <view class="file-t overflow-one">下载102次下载102次</view> -->
+                    </view>
+                  </block>
+                </view>
                 <view class="time">{{item.createTime}}</view>
               </view>
               <block wx:for="{{item.reply}}" wx:for-item="replyItem" wx:for-index="replyIndex">
@@ -119,6 +128,15 @@
                     <block wx:for="{{replyItem.r_file}}" wx:for-item="replyItemImg" wx:for-index="replyImgIndex">
                       <image data-id="{{item.id}}" bindtap="showImg" data-img="{{originalImgUrl + replyItemImg.file}}" src="{{originalImgUrl + replyItemImg.file}}" />
                     </block>
+                    <view class="file">
+                      <block wx:for="{{replyItem.r_file}}" wx:for-item="item" wx:for-index="imgIndex" wx:key="{{imgItem}}">
+                        <view class="file-item" wx:if="{{item.type == 2}}" data-url="{{item.file}}" bindtap="downFile">
+                          <icon class="iconfont iconjiaoben file-item-icon"></icon>
+                          <view class="file-h overflow-one">{{item.filename}}</view>
+                          <!-- <view class="file-t overflow-one">下载102次下载102次</view> -->
+                        </view>
+                      </block>
+                    </view>
                     <view class="time">{{replyItem.createTime}}</view>
                   </view>
                 </view>

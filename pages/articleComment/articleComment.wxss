@@ -18,9 +18,17 @@ page{
   border-radius: 5rpx;
 }
 .setTextImg{
+  height: 130rpx;
   display: flex;
   /* align-items: center; */
   justify-content: space-between;
+}
+.upfile{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  color: #489BFE;
 }
 textarea{
   width: 480rpx;
@@ -38,7 +46,7 @@ textarea{
   align-items: center;
   justify-content: center;
 }
-.imgList{
+.imgList, .fileList{
   margin-top: 30rpx;
   display: flex;
   justify-content: flex-start;
@@ -53,6 +61,21 @@ textarea{
 }
 .img-item {
   position: relative;
+}
+.img-item icon{
+  font-size: 150rpx;
+  color: #333;
+  width: 150rpx;
+  height: 150rpx;
+  padding: 10rpx;
+}
+.img-item view{
+  width: 150rpx;
+  font-size: 25rpx;
+  color: #333;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 .img-item:nth-of-type(3n) {
   margin-right: 0;

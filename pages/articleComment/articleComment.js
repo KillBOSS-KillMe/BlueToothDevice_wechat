@@ -10,6 +10,7 @@ Page({
     requestImgUrl: '',
     originalImgUrl: '',
     imgList: [],
+    fileList: [],
     commentCon: '',
     placeholderText: '请输入评论内容'
   },
@@ -47,6 +48,47 @@ Page({
         this.uploadimg(res.tempFiles)
       }
     })
+  },
+  // 文件选择
+  chooseFile: function () {
+    wx.chooseMessageFile({
+      count: 1,
+      type: 'file',
+      success: res => {
+        console.log(res)
+        this.uploadfile(res.tempFiles)
+      }
+    })
+  },
+  // 文件上传
+  uploadfile(fileNode) {
+    //上传图片
+    let i = 0
+    for (let i = 0; i < fileNode.length; i++) {
+      console.log(fileNode[i].path)
+      console.log(fileNode[i].name)
+      wx.uploadFile({
+        url: `${app.globalData.requestUrl}/Forum/upload_file`,
+        filePath: fileNode[i].path,
+        name: 'file',
+        formData: {
+          name: fileNode[i].name
+        },
+        success: data => {
+          console.log(data)
+          data = app.null2str(JSON.parse(data.data))
+          if (data.code == 1) {
+            let fileList = this.data.fileList
+            fileList.push({filename: data.name, path: data.data})
+            console.log(fileList)
+            this.setData({
+              fileList: fileList
+            })
+          }
+          
+        }
+      });
+    }
   },
   // 图片上传
   uploadimg(imgurlNode) {
@@ -96,7 +138,7 @@ Page({
         content: this.data.commentCon,
         uid: this.data.userInfo.id,
         nickname: this.data.userInfo.nickname,
-        file: '',
+        file: this.data.fileList,
         image: this.data.imgList
       }
     } else {
@@ -117,7 +159,7 @@ Page({
         content: this.data.commentCon,
         uid: this.data.userInfo.id,
         nickname: this.data.userInfo.nickname,
-        file: '',
+        file: this.data.fileList,
         image: this.data.imgList
       }
     }
@@ -141,6 +183,15 @@ Page({
           }, 2000)
         }
       }
+    })
+  },
+  // 文件删除
+  deleFile(e) {
+    var index = e.currentTarget.dataset.index
+    var fileList = this.data.fileList
+    fileList.splice(index, 1)
+    this.setData({
+      fileList: fileList
     })
   },
   // 图片删除
