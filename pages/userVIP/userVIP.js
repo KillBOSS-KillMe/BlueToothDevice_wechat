@@ -7,13 +7,10 @@ Page({
    */
   data: {
     userInfo: {},
-    list:[
-      {id:'1',time:'单月',price:'19'},
-      { id: '2', time: '2个月',price:'36'},
-      { id: '3', time: '3个月',price:"120"},
-      { id: '4', time: '终生会员', price: "360" },
-    ],
-    showId:1
+    price: {},
+    item: 3,
+    thisIndex: 1,
+    remainingTime: ''
   },
 
   /**
@@ -23,16 +20,148 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo
     })
+    console.log(this.data.userInfo)
+    if (this.data.userInfo.member_time != "") {
+      let userInfo = this.data.userInfo
+      let remainingTime = userInfo.member_time - userInfo.createTime
+      this.setData({
+        remainingTime: app.formatDuring(remainingTime)
+      })
+    }
+    
+    this.getVipPrice()
+    // this.getUserInfo()
   },
 
   dealTap: function (e) {
-    var id = e.currentTarget.dataset.id;
-    console.log(id)
+    var index = e.currentTarget.dataset.index + 1;
+    console.log(index)
     this.setData({
-      showId: id
+      thisIndex: index
     });
   },
-
+  // 获取文章列表
+  getVipPrice() {
+    wx.request({
+      url: `${app.globalData.requestUrl}/apiMember/memberPrice`,
+      method: 'POST',
+      // data: {
+      //   uid: this.data.userInfo.id,
+      //   page: this.data.pageNum
+      // },
+      success: data => {
+        console.log(data)
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          let price = {
+            price: data.data.data.price,
+            permanent: data.data.data.permanent
+          }
+          this.setData({
+            price: price
+          })
+        } else {
+          wx.showToast({
+            title: "无更多数据",
+            icon: 'none',
+            duration: 2000
+          });
+          // wx.showModal({
+          //   title: '',
+          //   content: data.data.msg
+          // })
+        }
+      }
+    })
+  },
+  pay() {
+    let userInfo = this.data.userInfo
+    let data = {
+      openid: userInfo.openid,
+      uid: userInfo.id,
+    }
+    if (this.data.thisIndex > this.data.item) {
+      // console.log('包年')
+      data.num = 0
+      data.is_forever = 1
+    } else {
+      // console.log(`包月--${this.data.thisIndex}个月`)
+      data.num = this.data.thisIndex
+      data.is_forever = 0
+    }
+    console.log(data)
+    // return false
+    wx.request({
+      url: `${app.globalData.requestUrl}/apiMember/buyMember`,
+      method: 'POST',
+      data: data,
+      success: data => {
+        console.log(data)
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          data = data.data.data
+          wx.requestPayment({
+            'timeStamp': data.timeStamp,
+            'nonceStr': data.nonceStr,
+            'package': data.package,
+            'signType': data.signType,
+            'paySign': data.paySign,
+            'success': data => {
+              console.log(data)
+              wx.showToast({
+                title: '充值成功',
+                icon: 'none',
+                duration: 2000
+              })
+              // 刷新用户信息
+              this.getUserInfo()
+              // 两秒后返回上一页
+              setTimeout(e => {
+                wx.navigateBack({ changed: true })
+              }, 2000)
+            },
+            'fail': data => {
+              console.log(data)
+              wx.showToast({
+                title: '',
+                content: '充值失败',
+                showCancel: false
+              })
+            }
+          })
+        } else {
+          wx.showToast({
+            title: "无更多数据",
+            icon: 'none',
+            duration: 2000
+          });
+          // wx.showModal({
+          //   title: '',
+          //   content: data.data.msg
+          // })
+        }
+      }
+    })
+  },
+  // 刷新用户信息
+  getUserInfo() {
+    wx.request({
+      url: `${app.globalData.requestUrl}/User/user_info`,
+      method: 'POST',
+      data: {
+        id: this.data.userInfo.id
+      },
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          app.globalData.userInfo = data.data.data
+          this.setData({
+            userInfo: data.data.data
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

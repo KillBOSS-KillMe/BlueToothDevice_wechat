@@ -15,7 +15,10 @@
               <icon class='iconfont iconchengjiupingjia'></icon>
               <icon class='iconfont iconchengjiupingjia'></icon>
             </navigator>
-            <navigator class="membership" url="/pages/userVIP/userVIP" hover-class="none">开通会员</navigator>
+            <navigator class="membership" url="/pages/userVIP/userVIP" hover-class="none">
+              <text wx:if="{{userInfo.member_time == ''}}">开通会员</text>
+              <text wx:if="{{userInfo.member_time != ''}}">查看会员</text>
+            </navigator>
           </view>
           <navigator url='/pages/userMessage/userMessage' class="message" hover-class="none">
             <icon class='iconfont iconxiaoxi1'></icon>

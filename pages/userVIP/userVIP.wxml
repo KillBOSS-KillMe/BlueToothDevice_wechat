@@ -5,25 +5,39 @@
     <view class="">
       <view class="name">{{userInfo.nickname}}</view>
       <view class="info">
-        <!-- <view class="vip" wx:if=="{{}}">未开通</view> -->
-        <view><text>单月VIP</text>(会员到期还剩29天)</view>
+        <view class="vip" wx:if="{{userInfo.member_time == ''}}">未开通</view>
+        <view wx:if="{{userInfo.member_time != ''}}">
+          <!-- <text>单月VIP</text>(会员到期还剩29天) -->
+          <text>VIP</text>(会员到期还剩{{remainingTime}})
+        </view>
       </view>
     </view>
   </view>
   <view class="userVipList">
     <text>开通VIP畅想免费下载特权</text>
     <view class="userVipListBox"> 
-      <view class="item {{showId == item.id ? 'active' : 'default'}}" wx:for="{{list}}" wx:key="{{item}}" bindtap='dealTap' data-id="{{item.id}}">
-        <text>{{item.time}}</text>
-        <view class="price">￥<text>{{item.price}}</text></view> 
+      <block wx:for="{{item}}" wx:key="{{item}}">
+        <view class="item {{thisIndex == (index + 1) ? 'active' : 'default'}}" bindtap='dealTap' data-index="{{index}}">
+          <text wx:if="{{(index + 1)  == 1}}">单月</text>
+          <text wx:if="{{(index + 1)  != 1}}">{{index + 1}}个月</text>
+          <view class="price">￥<text>{{price.price * (index + 1)}}</text></view> 
+          <view style="margin-left: 100rpx;">
+            <image class="img" wx:if="{{thisIndex == (index + 1)}}" src="/image/userVipImg.png"></image>
+            <image class="img" wx:else src="/image/userVipImg1.png"></image>
+          </view>  
+        </view>
+      </block>
+      <view class="item {{thisIndex == (item + 1) ? 'active' : 'default'}}" bindtap='dealTap' data-index="{{item}}">
+        <text>终身会员</text>
+        <view class="price">￥<text>{{price.permanent}}</text></view> 
         <view style="margin-left: 100rpx;">
-          <image class="img" wx:if="{{showId == item.id}}" src="/image/userVipImg.png"></image>
+          <image class="img" wx:if="{{thisIndex == (item + 1)}}" src="/image/userVipImg.png"></image>
           <image class="img" wx:else src="/image/userVipImg1.png"></image>
         </view>  
       </view>
     </view>
   </view>
-  <view class="cancel">会员到期随时取消</view>
-  <view class="opening">立即开通</view>
+  <view class="cancel">会员到期特权会取消</view>
+  <view class="opening" bindtap="pay">立即开通</view>
 </view>
 
