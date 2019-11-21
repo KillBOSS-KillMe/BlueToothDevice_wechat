@@ -24,10 +24,20 @@
             </view>
           </block>
           <block class="groupList" wx:for="{{fileList}}" wx:index="index" wx:key="{{item}}">
-            <view class="file-item">
+            <!-- <view class="file-item">
               <icon class='iconfont iconjiaoben wjj-icon'></icon>
               <view>{{fileNameList[index]}}</view>
               <image class="close-img" bindtap="deleFile" data-index="{{index}}" src="/image/guanbi.png"></image>
+            </view> -->
+            <view class="fileItem">
+              <view>
+                <icon class="iconfont iconfujian1"></icon>
+                <text>{{item.name}}</text>
+              </view>
+              <view>
+                <text class="size">({{item.size}}B)</text>
+                <text class="del" bindtap="deleFile" data-index="{{index}}">删除</text>
+              </view>
             </view>
           </block>
         </view>

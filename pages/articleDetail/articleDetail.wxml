@@ -31,10 +31,20 @@
       </view>
       <view class="file">
         <block wx:for="{{articleDetail.file}}" wx:for-item="item" wx:for-index="imgIndex" wx:key="{{imgItem}}">
-          <view class="file-item" wx:if="{{item.type == 2}}" data-url="{{item.file}}" bindtap="downFile">
+          <!-- <view class="file-item" wx:if="{{item.type == 2}}" data-url="{{item.file}}" bindtap="downFile">
             <icon class="iconfont iconjiaoben file-item-icon"></icon>
             <view class="file-h overflow-one">{{item.filename}}</view>
-            <!-- <view class="file-t overflow-one">下载102次下载102次</view> -->
+            <view class="file-t overflow-one">下载102次下载102次</view>
+          </view> -->
+          <view class="fileItem" wx:if="{{item.type == 2}}" data-url="{{item.file}}" bindtap="downFile">
+            <view>
+              <icon class="iconfont iconfujian1"></icon>
+              <text>{{item.filename}}</text>
+            </view>
+            <view>
+              <text class="size">({{item.size}}B)</text>
+              <!-- <text class="del" bindtap="deleFile" data-index="{{index}}">删除</text> -->
+            </view>
           </view>
         </block>
       </view>
@@ -92,10 +102,20 @@
                 </block>
                 <view class="file">
                   <block wx:for="{{item.c_file}}" wx:for-item="item" wx:for-index="imgIndex" wx:key="{{imgItem}}">
-                    <view class="file-item" wx:if="{{item.type == 2}}" data-url="{{item.file}}" bindtap="downFile">
+                    <!-- <view class="file-item" wx:if="{{item.type == 2}}" data-url="{{item.file}}" bindtap="downFile">
                       <icon class="iconfont iconjiaoben file-item-icon"></icon>
                       <view class="file-h overflow-one">{{item.filename}}</view>
-                      <!-- <view class="file-t overflow-one">下载102次下载102次</view> -->
+                      <view class="file-t overflow-one">下载102次下载102次</view>
+                    </view> -->
+                    <view class="fileItem" wx:if="{{item.type == 2}}" data-url="{{item.file}}" bindtap="downFile">
+                      <view>
+                        <icon class="iconfont iconfujian1"></icon>
+                        <text>{{item.filename}}</text>
+                      </view>
+                      <view>
+                        <text class="size">({{item.size}}B)</text>
+                        <!-- <text class="del" bindtap="deleFile" data-index="{{index}}">删除</text> -->
+                      </view>
                     </view>
                   </block>
                 </view>
@@ -130,10 +150,20 @@
                     </block>
                     <view class="file">
                       <block wx:for="{{replyItem.r_file}}" wx:for-item="item" wx:for-index="imgIndex" wx:key="{{imgItem}}">
-                        <view class="file-item" wx:if="{{item.type == 2}}" data-url="{{item.file}}" bindtap="downFile">
+                        <!-- <view class="file-item" wx:if="{{item.type == 2}}" data-url="{{item.file}}" bindtap="downFile">
                           <icon class="iconfont iconjiaoben file-item-icon"></icon>
                           <view class="file-h overflow-one">{{item.filename}}</view>
-                          <!-- <view class="file-t overflow-one">下载102次下载102次</view> -->
+                          <view class="file-t overflow-one">下载102次下载102次</view>
+                        </view> -->
+                        <view class="fileItem" wx:if="{{item.type == 2}}" data-url="{{item.file}}" bindtap="downFile">
+                          <view>
+                            <icon class="iconfont iconfujian1"></icon>
+                            <text>{{item.filename}}</text>
+                          </view>
+                          <view>
+                            <text class="size">({{item.size}}B)</text>
+                            <!-- <text class="del" bindtap="deleFile" data-index="{{index}}">删除</text> -->
+                          </view>
                         </view>
                       </block>
                     </view>

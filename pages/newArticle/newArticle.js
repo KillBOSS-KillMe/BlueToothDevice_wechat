@@ -17,7 +17,7 @@ Page({
     article: {},
     requestImgUrl: '',
     originalImgUrl: '',
-    delFile: true
+    upStrt: false
   },
 
   /**
@@ -32,11 +32,57 @@ Page({
     // 获取标签列表
     this.getLabelList()
   },
-  onUnload() {
-    if (!this.data.delFile) {
+  onHide() {
+    // 批量删除无用冗余文件
+    this.delAllFile()
+  },
+  // 批量删除无用冗余文件
+  delAllFile() {
+    // 如果评论发布成功，则不删除
+    if (!this.data.upStrt) {
       return false
     }
-    this.rmAllImgFile()
+    let fileList = this.data.fileList
+    let imgList = this.data.imgList
+    let delNode = []
+    for (let i = 0; i < fileList.length; i++) {
+      delNode.push({path: '', type: '2'})
+    }
+    for (let i = 0; i < imgList.length; i++) {
+      delNode.push({path: '', type: '1'})
+    }
+    if (delNode.length <= 0) {
+      return false
+    }
+    wx.request({
+      url: `${app.globalData.requestUrl}/Forum/del_all_file`,
+      method: 'POST',
+      data: {
+        path: imgList[index]
+      },
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          imgList.splice(index, 1)
+          this.setData({
+            imgList: imgList
+          })
+          wx.showToast({
+            title: "删除成功！",
+            icon: 'success',
+            duration: 2000,
+            mask: true
+          });
+        } else {
+          wx.showToast({
+            title: "删除失败！",
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          });
+        }
+      }
+    })
   },
   // 获取标签列表
   getLabelList() {
@@ -71,30 +117,76 @@ Page({
   // 图片选择
   chooseImage(e) {
     let type = e.currentTarget.dataset.type
-    let url = ''
     if (type == 'image') {
-      url = 'upload_img'
+      // 图片选择
       wx.chooseImage({
-        count: 9, // 默认9
+        count: 9 - this.data.imgList.length, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
         success: res => {
-          this.uploadimg(res.tempFiles, type, url)
+          this.uploadimg(res.tempFiles)
         }
       })
     } else {
-      url = 'upload_file'
+      // 文件选择
       wx.chooseMessageFile({
         count: 1,
         type: 'file',
         success: res => {
-          this.uploadimg(res.tempFiles, type, url)
+          this.uploadfile(res.tempFiles) 
         }
       })
     }
   },
+  // 文件上传
+  uploadfile(fileNode) {
+    //上传图片
+    for (let i = 0; i < fileNode.length; i++) {
+      wx.uploadFile({
+        url: `${app.globalData.requestUrl}/Forum/upload_file`,
+        filePath: fileNode[i].path,
+        name: 'file',
+        formData: {
+          name: fileNode[i].name,
+          size: fileNode[i].size
+        },
+        success: data => {
+          data = app.null2str(JSON.parse(data.data))
+          if (data.code == 1) {
+            let fileList = this.data.fileList
+            fileList.push({name: data.name, filename: data.name, path: data.data, size: data.size})
+            this.setData({
+              fileList: fileList
+            })
+          }
+        }
+      });
+    }
+  },
   // 图片上传
-  uploadimg(imgurlNode, type, url) {
+  uploadimg(imgurlNode) {
+    //上传图片
+    let i = 0
+    for (i in imgurlNode) {
+      wx.uploadFile({
+        url: `${app.globalData.requestUrl}/Forum/upload_img`,
+        filePath: imgurlNode[i].path,
+        name: 'image',
+        formData: {},
+        success: data => {
+          data = app.null2str(data)
+          let imgList = this.data.imgList
+          imgList.push(data.data)
+          console.log(imgList)
+          this.setData({
+            imgList: imgList
+          })
+        }
+      });
+    }
+  },
+  // 图片上传
+  uploadimgsssss(imgurlNode, type, url) {
     //上传图片
     let i = 0
     for (i in imgurlNode) {
@@ -121,7 +213,9 @@ Page({
         url: `${app.globalData.requestUrl}/Forum/${url}`,
         filePath: imgurlNode[i].path,
         name: type,
-        formData: {},
+        formData: {
+          name: imgurlNode[i].name,
+        },
         success: data => {
           data = app.null2str(data)
           if (type == 'image') {
@@ -137,12 +231,14 @@ Page({
               let fileList = this.data.fileList
               let fileNameList = this.data.fileNameList
               let fileName = ''
+              let size = ''
               if (type == "file") {
                 fileName = imgurlNode[i].name
+                size = imgurlNode[i].size
               } else {
                 fileName = data.split('/').pop()
               }
-              fileList.push({'name': fileName, 'path': data})
+              fileList.push({'name': fileName, 'path': data, 'size': size})
               fileNameList.push(fileName)
               this.setData({
                 fileNameList: fileNameList,
@@ -161,93 +257,68 @@ Page({
         }
       });
     }
-
   },
   // 图片删除
   deleImg(e) {
     var index = e.currentTarget.dataset.index
-    this.runDelFile(index, 'img')
-    // var imgList = this.data.imgList
-    // imgList.splice(index, 1)
-    // this.setData({
-    //   imgList: imgList
-    // })
+    let url = this.data.imgList[index]
+    this.runDelFile(url, 'img')
   },
   // 文件删除
   deleFile(e) {
     var index = e.currentTarget.dataset.index
-    this.runDelFile(index, 'file')
-    // var fileNameList = this.data.fileNameList
-    // var fileList = this.data.fileList
-    // fileNameList.splice(index, 1)
-    // fileList.splice(index, 1)
-    // this.setData({
-    //   fileNameList: fileNameList,
-    //   fileList: fileList
-    // })
+    let url = this.data.fileList[index].path
+    this.runDelFile(url, 'file')
   },
-  // 文件删除执行
-  runDelFile(index, type) {
-    let data = []
+  runDelFile(url, type) {
     if (type == 'file') {
-      data = this.data.fileList[index].path
+      type = '2'
     } else {
-      data = this.data.imgList[index]
+      type = '1'
     }
     wx.request({
-      url: `${app.globalData.requestUrl}/Forum/del_all_file`,
+      url: `${app.globalData.requestUrl}/Forum/del_file`,
       method: 'POST',
       data: {
-        file: data
+        path: url,
+        type: type
       },
-      success(data) {
+      success: data => {
         data = app.null2str(data)
+        console.log(data)
         if (data.data.code == 1) {
-          if (type == 'file') {
-            var fileNameList = this.data.fileNameList
-            var fileList = this.data.fileList
-            fileNameList.splice(index, 1)
+          if (type == '2') {
+            let fileList = this.data.fileList
             fileList.splice(index, 1)
             this.setData({
-              fileNameList: fileNameList,
               fileList: fileList
             })
           } else {
-            var imgList = this.data.imgList
+            let imgList = this.data.imgList
             imgList.splice(index, 1)
             this.setData({
               imgList: imgList
             })
           }
-        }
-      }
-    })
-  },
-  rmAllImgFile() {
-    let paths = []
-    let fileList = this.data.fileList
-    let imgList = this.data.imgList
-    for (let i = 0; i < fileList.length; i++) {
-      paths.push(fileList[i].path)
-    }
-    for (let i = 0; i < imgList.length; i++) {
-      paths.push(imgList[i])
-    }
-    console.log(paths)
-    wx.request({
-      url: `${app.globalData.requestUrl}/Forum/del_all_file`,
-      method: 'POST',
-      data: {
-        paths: paths
-      },
-      success(data) {
-        data = app.null2str(data)
-        if (data.data.code == 1) {
           
+          wx.showToast({
+            title: "删除成功！",
+            icon: 'success',
+            duration: 2000,
+            mask: true
+          });
+        } else {
+          wx.showToast({
+            title: "删除失败！",
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          });
         }
       }
     })
   },
+  
   // 图片预览
   previewImage: function (e) {
     let index = e.target.dataset.index;
@@ -309,7 +380,7 @@ Page({
         if (data.data.code == 1) {
           this.setData({
             // 页面隐藏时，控制文件不被删除
-            delFile: false
+            upStrt: true
           })
           wx.showToast({
             title: "发布成功！",

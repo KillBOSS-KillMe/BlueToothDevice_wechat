@@ -12,16 +12,26 @@
       <block class="groupList" wx:for="{{imgList}}" wx:key="{{item}}">
         <view class="img-item">
           <image bindtap="previewImage" data-index="{{index}}" src="{{originalImgUrl + item}}"></image>
-          <image class="close-img" bindtap="deleImg" data-index="{{index}}" src="/image/guanbi.png"></image>
+          <image class="close-img" bindtap="deleImg" data-type="1" data-index="{{index}}" src="/image/guanbi.png"></image>
         </view>
       </block>
     </view>
     <view class="fileList">
       <block class="groupList" wx:for="{{fileList}}" wx:key="{{item}}">
-        <view class="img-item">
+        <!-- <view class="img-item">
           <icon class="iconfont iconjiaoben"></icon>
           <view class="file-h overflow-one">{{item.filename}}</view>
           <image class="close-img" bindtap="deleFile" data-index="{{index}}" src="/image/guanbi.png"></image>
+        </view> -->
+        <view class="fileItem">
+          <view>
+            <icon class="iconfont iconfujian1"></icon>
+            <text>{{item.filename}}</text>
+          </view>
+          <view>
+            <text class="size">({{item.size}}B)</text>
+            <text class="del" bindtap="deleFile" data-type="2" data-index="{{index}}">删除</text>
+          </view>
         </view>
       </block>
     </view>

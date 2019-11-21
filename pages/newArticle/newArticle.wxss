@@ -159,6 +159,37 @@ margin: 0;
 }
 
 
+.fileItem{
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fileItem view{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.fileItem .iconfont{
+  font-size: 30rpx;
+  color: #489BFE;
+  margin-right: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fileItem text{
+  color: #333;
+  font-size: 30rpx;
+}
+.fileItem  .size {
+  color: #999;
+}
+.fileItem .del{
+  color: #489BFE;
+}
+
 /* ---------------------------------弹框 */
 .tips {display: none;position: fixed;background: #000;opacity: 0.5; top: 0;left: 0;right: 0;bottom: 0;z-index: 999;}
 .dele-block {visibility: collapse; opacity: 0;  position: fixed;bottom: 28rpx; background: #fff; width: 698rpx; left: 26rpx; border-radius: 10rpx;z-index: 999;  color: #424242;font-size: 34rpx; transition: all .3s ease-in-out;}
