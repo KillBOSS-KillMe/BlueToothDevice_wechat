@@ -51,6 +51,11 @@ Page({
     if (this.data.guanzhurenList.length > 0) {
       return ''
     }
+    wx.showToast({
+      title: "数据加载中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/user_follow`,
       data: {
@@ -58,6 +63,7 @@ Page({
       },
       method: "POST",
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == '1') {
           let guanzhurenList = data.data.data
@@ -83,6 +89,11 @@ Page({
     if (this.data.guanzhutieziList.length > 0) {
       return ''
     }
+    wx.showToast({
+      title: "数据加载中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/follow_post`,
       data: {
@@ -90,6 +101,7 @@ Page({
       },
       method: "POST",
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == '1') {
           this.setData({
@@ -110,6 +122,11 @@ Page({
     if (this.data.fensiList.length > 0) {
       return ''
     }
+    wx.showToast({
+      title: "数据加载中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/user_fans`,
       data: {
@@ -117,6 +134,7 @@ Page({
       },
       method: "POST",
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == '1') {
           let fensiList = data.data.data
@@ -165,6 +183,11 @@ Page({
     } else {
       url = 'follow'
     }
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/${url}`,
       method: 'POST',
@@ -173,8 +196,8 @@ Page({
         f_id: id
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
-        // console.log(data)
         if (data.data.code == 1) {
           if (guanzhurenList[index].str == '0') {
             guanzhurenList[index].str = '1'
@@ -204,6 +227,11 @@ Page({
     } else {
       url = 'follow'
     }
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/${url}`,
       method: 'POST',
@@ -212,8 +240,8 @@ Page({
         f_id: id
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
-        // console.log(data)
         if (data.data.code == 1) {
           if (fensiList[index].str == '0') {
             fensiList[index].str = '1'

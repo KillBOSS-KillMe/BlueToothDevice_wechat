@@ -42,15 +42,16 @@ Page({
   },
   // 获取文章列表
   getVipPrice() {
+    wx.showToast({
+      title: "数据加载中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/apiMember/memberPrice`,
       method: 'POST',
-      // data: {
-      //   uid: this.data.userInfo.id,
-      //   page: this.data.pageNum
-      // },
       success: data => {
-        console.log(data)
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           let price = {
@@ -89,17 +90,25 @@ Page({
       data.num = this.data.thisIndex
       data.is_forever = 0
     }
-    console.log(data)
-    // return false
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/apiMember/buyMember`,
       method: 'POST',
       data: data,
       success: data => {
-        console.log(data)
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           data = data.data.data
+          wx.showToast({
+            title: "数据提交中...",
+            icon: 'loading',
+            duration: 1000000
+          });
           wx.requestPayment({
             'timeStamp': data.timeStamp,
             'nonceStr': data.nonceStr,
@@ -108,6 +117,7 @@ Page({
             'paySign': data.paySign,
             'success': data => {
               console.log(data)
+              wx.hideToast()
               wx.showToast({
                 title: '充值成功',
                 icon: 'none',
@@ -145,6 +155,11 @@ Page({
   },
   // 刷新用户信息
   getUserInfo() {
+    wx.showToast({
+      title: "数据更新中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/user_info`,
       method: 'POST',
@@ -152,6 +167,7 @@ Page({
         id: this.data.userInfo.id
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           app.globalData.userInfo = data.data.data

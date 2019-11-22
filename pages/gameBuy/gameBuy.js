@@ -2,7 +2,7 @@
  * @Author: luow 
  * @Date: 2019-10-28 14:22:23 
  * @Last Modified by: luow
- * @Last Modified time: 2019-10-28 15:15:11
+ * @Last Modified time: 2019-11-22 16:14:42
  */
 // pages/gameBuy/gameBuy.js
 const app = getApp()
@@ -62,6 +62,11 @@ Page({
         if (data.data.code == 1) {
           data = data.data.data
           console.log(data)
+          wx.showToast({
+            title: "数据提交中...",
+            icon: 'loading',
+            duration: 1000000
+          });
           wx.requestPayment({
             'timeStamp': data.timeStamp,
             'nonceStr': data.nonceStr,
@@ -69,6 +74,7 @@ Page({
             'signType': data.signType,
             'paySign': data.paySign,
             'success': data => {
+              wx.hideToast()
               console.log(data)
               wx.showToast({
                 title: '充值成功',

@@ -29,6 +29,11 @@ Page({
   },
   // 更新用户信息
   upDateUserInfo() {
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/user_info`,
       method: 'POST',
@@ -37,6 +42,7 @@ Page({
         f_id: null
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           this.setData({
@@ -49,6 +55,11 @@ Page({
   },
   // 获取是否存在新消息
   getMessage() {
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/point`,
       method: 'POST',
@@ -56,6 +67,8 @@ Page({
         uid: this.data.userInfo.id
       },
       success: data => {
+        wx.hideToast()
+        data = app.null2str(data)
         if (data.data.code == "1") {
           this.setData({
             messageShow: true

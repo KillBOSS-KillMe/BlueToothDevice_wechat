@@ -54,6 +54,11 @@ Page({
     if (delNode.length <= 0) {
       return false
     }
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/del_all_file`,
       method: 'POST',
@@ -61,6 +66,7 @@ Page({
         path: imgList[index]
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           imgList.splice(index, 1)
@@ -86,6 +92,11 @@ Page({
   },
   // 获取标签列表
   getLabelList() {
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/label`,
       method: 'POST',
@@ -94,6 +105,7 @@ Page({
         page: 0
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           this.setData({
@@ -281,6 +293,11 @@ Page({
     } else {
       type = '1'
     }
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/del_file`,
       method: 'POST',
@@ -289,8 +306,8 @@ Page({
         type: type
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
-        console.log(data)
         if (data.data.code == 1) {
           if (type == '2') {
             let fileList = this.data.fileList
@@ -369,6 +386,11 @@ Page({
       })
       return false
     }
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/insert_post`,
       method: 'POST',
@@ -381,6 +403,7 @@ Page({
         image: this.data.imgList
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           this.setData({

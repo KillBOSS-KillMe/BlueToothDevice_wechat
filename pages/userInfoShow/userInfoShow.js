@@ -21,6 +21,11 @@ Page({
   },
 
   getShowUserInfo(options) {
+    wx.showToast({
+      title: "数据加载中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/user_info`,
       method: 'POST',
@@ -29,12 +34,12 @@ Page({
         f_id: options.id
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           this.setData({
             info: data.data.data
           })
-          console.log(this.data.info)
         } else {
           wx.showModal({
             title: '',
@@ -52,6 +57,11 @@ Page({
       })
       return false
     }
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/follow`,
       method: 'POST',
@@ -60,16 +70,14 @@ Page({
         f_id: this.data.info.id
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
-        // console.log(data)
         if (data.data.code == 1) {
           let info = this.data.info
           info['is_follow'] = 1
           this.setData({
             info: info
           })
-          console.log(this.data.info)
-          // console.log(this.data.userInfo)
         } else {
           wx.showModal({
             title: '',

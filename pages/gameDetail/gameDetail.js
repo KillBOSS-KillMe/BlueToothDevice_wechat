@@ -35,6 +35,11 @@ Page({
   },
   // 获取游戏详情
   getGameDetali(id) {
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Official/comment_list`,
       method: "POST",
@@ -42,18 +47,16 @@ Page({
         game_id: id
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == '1') {
           data = data.data.data
-          console.log(data)
-          // console.log(data.data)
           let i = 0
           for (i in data) {
             data[i]['createTime'] = app.transformTime(data[i].createTime*1000)
           }
           this.setData({
             commentList: data,
-            // count: data.data.count
           })
         } else {
           // wx.showModal({

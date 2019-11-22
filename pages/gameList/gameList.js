@@ -30,6 +30,11 @@ Page({
 
   // 获取游戏列表
   getList(id) {
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Official/catalog`,
       method: "POST",
@@ -37,7 +42,7 @@ Page({
         type_id: id
       },
       success: data => {
-        console.log(data)
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == '1') {
           data = data.data.data

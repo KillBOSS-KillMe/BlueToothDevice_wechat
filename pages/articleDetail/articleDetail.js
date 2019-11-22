@@ -2,7 +2,7 @@
  * @Author: luow 
  * @Date: 2019-10-28 14:35:57 
  * @Last Modified by: luow
- * @Last Modified time: 2019-11-22 09:36:43
+ * @Last Modified time: 2019-11-22 16:13:52
  */
 // pages/quanxian/quanxian.js
 // var until = require("../../utils/util.js")
@@ -46,7 +46,11 @@ Page({
   },
   // 获取文章详情
   getArticleList(id) {
-
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/post_info`,
       data: {
@@ -55,7 +59,7 @@ Page({
       },
       method: "POST",
       success: data => {
-        console.log(data)
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           data = data.data.data[0]
@@ -71,7 +75,11 @@ Page({
   },
   // 获取文章评论
   getCommentList(id) {
-    console.log(id)
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/post_comment`,
       data: {
@@ -80,7 +88,7 @@ Page({
       },
       method: "POST",
       success: data => {
-        console.log(data)
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           data = data.data.data
@@ -104,6 +112,11 @@ Page({
   articleCollection(e) {
     let articleNode = this.data.articleDetail
     let follow = e.currentTarget.dataset.follow
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/followPost`,
       method: 'POST',
@@ -113,6 +126,7 @@ Page({
         type: parseInt(follow)
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           if (follow == 0) {
@@ -170,6 +184,11 @@ Page({
   },
   // 禁言
   runBanned() {
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/forbidden`,
       method: 'POST',
@@ -180,6 +199,7 @@ Page({
         nickname: this.data.userInfo.nickname
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           wx.showModal({
@@ -197,6 +217,11 @@ Page({
   },
   // 删除
   delArticle() {
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/del_post`,
       method: 'POST',
@@ -208,6 +233,7 @@ Page({
         nickname: this.data.articleDetail.nickname
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           app.globalData.delPostId = this.data.articleDetail.pid
@@ -239,6 +265,11 @@ Page({
         cur: 1,
         zd:'取消置顶'
       })
+      wx.showToast({
+        title: "数据提交中...",
+        icon: 'loading',
+        duration: 1000000
+      });
       wx.request({
         url: `${app.globalData.requestUrl}/Forum/top`,
         method: 'POST',
@@ -250,6 +281,7 @@ Page({
           nickname: this.data.userInfo.nickname
         },
         success: data => {
+          wx.hideToast()
           data = app.null2str(data)
           if (data.data.code == 1) {
             wx.showModal({
@@ -271,6 +303,11 @@ Page({
         cur: 0,
         zd: '置顶'
       })
+      wx.showToast({
+        title: "数据提交中...",
+        icon: 'loading',
+        duration: 1000000
+      });
       wx.request({
         url: `${app.globalData.requestUrl}/User/cancel_top`,
         data: {
@@ -278,6 +315,7 @@ Page({
         },
         method: "POST",
         success: data => {
+          wx.hideToast()
           data = app.null2str(data)
           if (data.data.code == 1) {
             wx.showModal({
@@ -297,6 +335,11 @@ Page({
   },
   // 加精
   addBoutique() {
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/essence`,
       method: 'POST',
@@ -308,6 +351,7 @@ Page({
         nickname: this.data.userInfo.nickname
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           wx.showModal({
@@ -355,6 +399,11 @@ Page({
   },
   // 删除评论执行
   runDelComment(id) {
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/del_comment`,
       method: 'POST',
@@ -362,6 +411,7 @@ Page({
         id: id
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           // 刷新评论部分
@@ -377,6 +427,11 @@ Page({
   },
   // 删除回复执行
   runDelReply(id) {
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/del_reply`,
       method: 'POST',
@@ -384,6 +439,7 @@ Page({
         id: id
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           // 刷新评论部分

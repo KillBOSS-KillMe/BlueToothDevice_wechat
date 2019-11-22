@@ -39,6 +39,11 @@ Page({
   },
   // 获取文章列表
   getArticleList() {
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/forum`,
       method: 'POST',
@@ -47,7 +52,7 @@ Page({
         page: this.data.pageNum
       },
       success: data => {
-        // console.log(data)
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           let pageNum = this.data.pageNum + 1
@@ -84,6 +89,11 @@ Page({
   },
   // 文章搜索，根据标题搜索
   getSearch(e) {
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/search`,
       method: 'POST',
@@ -91,6 +101,7 @@ Page({
         title: e.detail.value
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           this.setData({
@@ -109,6 +120,11 @@ Page({
     let index = e.currentTarget.dataset.index
     let articleNode = this.data.articleList[index]
     let follow = e.currentTarget.dataset.follow
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/followPost`,
       method: 'POST',
@@ -118,6 +134,7 @@ Page({
         type: parseInt(follow)
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           if (follow == 0) {

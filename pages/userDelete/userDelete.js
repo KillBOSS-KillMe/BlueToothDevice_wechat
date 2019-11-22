@@ -24,6 +24,11 @@ Page({
     this.setData({
       listData: []
     })
+    wx.showToast({
+      title: "数据加载中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/del_post`,
       data: {
@@ -31,6 +36,7 @@ Page({
       },
       method: "POST",
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == '1') {
           data = data.data.data
@@ -54,6 +60,11 @@ Page({
   },
   // 取消删除
   cancel(e) {
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/cancel_del`,
       data: {
@@ -61,6 +72,7 @@ Page({
       },
       method: "POST",
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == '1') {
           this.getDelList()

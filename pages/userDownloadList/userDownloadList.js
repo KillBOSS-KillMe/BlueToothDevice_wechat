@@ -18,6 +18,11 @@ Page({
     // if (this.data.guanzhurenList.length > 0) {
     //   return ''
     // }
+    wx.showToast({
+      title: "数据加载中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/download_log`,
       headers: {
@@ -28,6 +33,7 @@ Page({
       },
       method: "POST",
       success: res => {
+        wx.hideToast()
         res = app.null2str(res.data)
         if (res.code == '1') {
           let flieList = res.data

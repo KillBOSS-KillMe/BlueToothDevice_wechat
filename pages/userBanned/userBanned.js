@@ -23,6 +23,11 @@ Page({
     this.setData({
       listData: []
     })
+    wx.showToast({
+      title: "数据加载中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/user_forbidden`,
       data: {
@@ -30,6 +35,7 @@ Page({
       },
       method: "POST",
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == '1') {
           this.setData({
@@ -48,6 +54,11 @@ Page({
   },
   // 取消禁言
   cancel(e) {
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/User/cancel_forbidden`,
       data: {
@@ -55,6 +66,7 @@ Page({
       },
       method: "POST",
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == '1') {
           this.getBannedList()

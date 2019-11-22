@@ -679,6 +679,11 @@ Page({
       success: res => {
         if (res.code) {
           this.code = res.code
+          wx.showToast({
+            title: "数据加载中...",
+            icon: 'loading',
+            duration: 1000000
+          });
           wx.request({
             url: `${app.globalData.requestUrl}/Login/wxLogin`,
             method: 'POST',
@@ -688,6 +693,8 @@ Page({
               nickname: userInfo.nickName
             },
             success: data => {
+              wx.hideToast()
+              data = app.null2str(data)
               if (data.data.code == 1) {
                 data = app.null2str(data.data.data)
                 this.setData({
@@ -768,6 +775,11 @@ Page({
     })
   },
   addGroup() {
+    wx.showToast({
+      title: "数据加载中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/FileGroup/addGroup`,
       method: 'POST',
@@ -776,6 +788,7 @@ Page({
         group: this.data.newGroupNameData
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           this.newGroup()
@@ -792,6 +805,11 @@ Page({
   },
   // 获取分组
   getGroupList() {
+    wx.showToast({
+      title: "数据加载中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/FileGroup/queryGroup`,
       method: 'POST',
@@ -799,6 +817,7 @@ Page({
         id: this.data.userInfo.id
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == '1') {
           data = data.data.data
@@ -882,6 +901,11 @@ Page({
   },
   // 通过分组ID获取分组下数据包列表
   getFlieList(id) {
+    wx.showToast({
+      title: "数据加载中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/FileGroup/queryData`,
       method: 'POST',
@@ -889,6 +913,7 @@ Page({
         gid: id
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == '1') {
           let i = 0
@@ -913,14 +938,16 @@ Page({
 
   // 获取服务器上的游戏文件列表
   getGameList() {
-    wx.showLoading({
-      title: '列表获取中',
-    })
+    wx.showToast({
+      title: "数据加载中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Official/official_type`,
       method: "POST",
       success: data => {
-        wx.hideLoading()
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == '1') {
           this.setData({

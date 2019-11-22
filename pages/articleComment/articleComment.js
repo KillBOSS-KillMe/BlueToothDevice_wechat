@@ -55,6 +55,11 @@ Page({
     if (delNode.length <= 0) {
       return false
     }
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/del_all_file`,
       method: 'POST',
@@ -62,6 +67,7 @@ Page({
         paths: delNode
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           imgList.splice(index, 1)
@@ -217,11 +223,17 @@ Page({
         image: this.data.imgList
       }
     }
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/${url}`,
       method: 'POST',
       data: upData,
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           // 保存发布状态
@@ -248,6 +260,11 @@ Page({
     var index = e.currentTarget.dataset.index
     var fileList = this.data.fileList
     let type = e.currentTarget.dataset.type
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/del_file`,
       method: 'POST',
@@ -256,6 +273,7 @@ Page({
         type: type
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         console.log(data)
         if (data.data.code == 1) {
@@ -286,6 +304,11 @@ Page({
     var index = e.currentTarget.dataset.index
     var imgList = this.data.imgList
     let type = e.currentTarget.dataset.type
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Forum/del_file`,
       method: 'POST',
@@ -294,6 +317,7 @@ Page({
         type: type
       },
       success: data => {
+        wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
           imgList.splice(index, 1)
