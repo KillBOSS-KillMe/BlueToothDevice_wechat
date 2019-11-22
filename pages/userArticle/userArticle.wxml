@@ -16,14 +16,24 @@
               </view>
             </block>
           </view>
-          <view class="file">
+          <view>
             <block wx:for="{{item.file}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="{{imgItem}}">
-              <view wx:if="{{index < 4 && imgItem.type == 2}}" class="file-item">
+              <!-- <view wx:if="{{index < 4 && imgItem.type == 2}}" class="file-item">
                 <icon class="iconfont iconjiaoben file-item-icon"></icon>
                 <view class="file-h overflow-one">{{imgItem.filename}}</view>
-                <!-- <view class="file-t overflow-one">下载102次下载102次</view> -->
+                <view class="file-t overflow-one">下载102次下载102次</view>
+              </view> -->
+              <view class="fileItem" wx:if="{{index < 4 && imgItem.type == 2}}">
+                <view>
+                  <icon class="iconfont iconfujian1"></icon>
+                  <text>{{imgItem.filename}}</text>
+                </view>
+                <view>
+                  <text class="size">({{imgItem.size}}B)</text>
+                </view>
               </view>
             </block>
+            
           </view>
           <view class='luntan-from'>
             <text class='form-con'>来自</text>

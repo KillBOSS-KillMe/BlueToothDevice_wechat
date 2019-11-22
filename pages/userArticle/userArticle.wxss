@@ -446,3 +446,37 @@
 .luntanConBot-right .active{
   color: #CC3300;
 }
+
+
+
+
+.fileItem{
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fileItem view{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.fileItem .iconfont{
+  font-size: 30rpx;
+  color: #489BFE;
+  margin-right: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fileItem text{
+  color: #333;
+  font-size: 30rpx;
+}
+.fileItem  .size {
+  color: #999;
+}
+.fileItem .del{
+  color: #489BFE;
+}
