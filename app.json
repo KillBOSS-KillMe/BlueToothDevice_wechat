@@ -25,7 +25,8 @@
     "pages/userAchievement/userAchievement",
     "pages/userDelete/userDelete",
     "pages/userArticle/userArticle",
-    "pages/userVIP/userVIP"
+    "pages/userVIP/userVIP",
+    "pages/userInfoShow/userInfoShow"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -78,7 +78,7 @@
       <view class="comment">
         <block wx:for="{{commentList}}" wx:for-item="item" wx:for-index="index">
           <view class="comment-i">
-            <image src="{{item.avatarUrl}}" style="width: 56rpx; height: 56rpx;"></image>
+            <image src="{{item.avatarUrl}}" data-id="{{item.uid}}" bindtap="showUserInfo" style="width: 56rpx; height: 56rpx;"></image>
             <view class="comment-right">
               <view class="comment-current" 
                data-commentid="{{item.id}}" 
@@ -128,7 +128,7 @@
                   data-content="{{replyItem.content}}" 
                 bindlongtap="delReply">
                 <view class="comment-two-i">
-                  <image src="{{replyItem.user_img}}" style="width: 56rpx; height: 56rpx;"></image>
+                  <image src="{{replyItem.user_img}}" data-id="{{replyItem.uid}}" bindtap="showUserInfo" style="width: 56rpx; height: 56rpx;"></image>
                   <view class="comment-right">
                     <view class="comment-text">
                       <view class="name">

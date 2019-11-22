@@ -154,35 +154,87 @@ Page({
 
   },
 
-// 关注
+  // 关注
   focusTap(e) {
-    var index = e.currentTarget.dataset.index
-    console.log(index)
-    var guanzhurenList = this.data.guanzhurenList
+    let id = e.currentTarget.dataset.id
+    let url = ''
+    let index = e.currentTarget.dataset.index
+    let guanzhurenList = this.data.guanzhurenList
     if (guanzhurenList[index].str == '0') {
-      guanzhurenList[index].str = '1'
+      url = 'follow_cancel'
     } else {
-      guanzhurenList[index].str = '0'
+      url = 'follow'
     }
-    console.log(guanzhurenList)
-    this.setData({
-      guanzhurenList: guanzhurenList
+    wx.request({
+      url: `${app.globalData.requestUrl}/User/${url}`,
+      method: 'POST',
+      data: {
+        id: this.data.userInfo.id,
+        f_id: id
+      },
+      success: data => {
+        data = app.null2str(data)
+        // console.log(data)
+        if (data.data.code == 1) {
+          if (guanzhurenList[index].str == '0') {
+            guanzhurenList[index].str = '1'
+          } else {
+            guanzhurenList[index].str = '0'
+          }
+          this.setData({
+            guanzhurenList: guanzhurenList
+          })
+        } else {
+          wx.showModal({
+            title: '',
+            content: data.data.msg
+          })
+        }
+      }
     })
   },
   // 粉丝里面的关注
   focusTaps(e) {
-    var index = e.currentTarget.dataset.index
-    console.log(index)
-    var fensiList = this.data.fensiList
+    let id = e.currentTarget.dataset.id
+    let url = ''
+    let index = e.currentTarget.dataset.index
+    let fensiList = this.data.fensiList
     if (fensiList[index].str == '0') {
-      fensiList[index].str = '1'
+      url = 'follow_cancel'
     } else {
-      fensiList[index].str = '0'
+      url = 'follow'
     }
-    console.log(fensiList)
-    this.setData({
-      fensiList: fensiList
+    wx.request({
+      url: `${app.globalData.requestUrl}/User/${url}`,
+      method: 'POST',
+      data: {
+        id: this.data.userInfo.id,
+        f_id: id
+      },
+      success: data => {
+        data = app.null2str(data)
+        // console.log(data)
+        if (data.data.code == 1) {
+          if (fensiList[index].str == '0') {
+            fensiList[index].str = '1'
+          } else {
+            fensiList[index].str = '0'
+          }
+          this.setData({
+            fensiList: fensiList
+          })
+        } else {
+          wx.showModal({
+            title: '',
+            content: data.data.msg
+          })
+        }
+      }
     })
+  },
+  focusTaps(e) {
+    
+    
   },
   // 进入帖子详情页
   goPostDetail(e) {

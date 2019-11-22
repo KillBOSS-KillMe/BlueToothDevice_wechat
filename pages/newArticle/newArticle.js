@@ -158,6 +158,11 @@ Page({
             this.setData({
               fileList: fileList
             })
+          } else {
+            wx.showModal({
+              title: '',
+              content: data.msg
+            })
           }
         }
       });

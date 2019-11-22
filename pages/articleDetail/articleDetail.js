@@ -2,7 +2,7 @@
  * @Author: luow 
  * @Date: 2019-10-28 14:35:57 
  * @Last Modified by: luow
- * @Last Modified time: 2019-11-12 17:00:51
+ * @Last Modified time: 2019-11-22 09:36:43
  */
 // pages/quanxian/quanxian.js
 // var until = require("../../utils/util.js")
@@ -488,6 +488,12 @@ Page({
     wx.previewImage({
       current: img, // 当前显示图片的http链接   
       urls: img // 需要预览的图片http链接列表   
+    })
+  },
+  showUserInfo(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/userInfoShow/userInfoShow?id=${id}`,
     })
   },
   /**

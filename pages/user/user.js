@@ -23,6 +23,30 @@ Page({
     // console.log(this.data.userInfo)
     this.getMessage()
   },
+  onShow() {
+    // 更新用户信息
+    this.upDateUserInfo()
+  },
+  // 更新用户信息
+  upDateUserInfo() {
+    wx.request({
+      url: `${app.globalData.requestUrl}/User/user_info`,
+      method: 'POST',
+      data: {
+        id: this.data.userInfo.id,
+        f_id: null
+      },
+      success: data => {
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          this.setData({
+            userInfo: data.data.data
+          })
+          app.globalData.userInfo = data.data.data
+        }
+      }
+    })
+  },
   // 获取是否存在新消息
   getMessage() {
     wx.request({
