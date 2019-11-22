@@ -7,6 +7,7 @@ Page({
    */
   data: {
     // getFlieList() {
+    userInfo: {},
     flieList:[]
     },
   // },
@@ -18,6 +19,9 @@ Page({
     // if (this.data.guanzhurenList.length > 0) {
     //   return ''
     // }
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
     wx.showToast({
       title: "数据加载中...",
       icon: 'loading',
@@ -29,7 +33,7 @@ Page({
         'Content-Type': 'application/json'
       },
       data: {
-        uid: '1'
+        uid: this.data.userInfo.id
       },
       method: "POST",
       success: res => {
