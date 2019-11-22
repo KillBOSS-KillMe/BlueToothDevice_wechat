@@ -34,7 +34,7 @@
               </view>
             </block>
           </view>
-          <view class="file">
+          <view>
             <block wx:for="{{item.file}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="{{imgItem}}">
               <!-- <view wx:if="{{index < 4 && imgItem.type == 2}}" class="file-item">
                 <icon class="iconfont iconjiaoben file-item-icon"></icon>
