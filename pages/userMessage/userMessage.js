@@ -19,6 +19,12 @@ Page({
     })
     this.getMessageList()
   },
+  // 进入文章详情
+  goDetail(e) {
+    wx.navigateTo({
+      url: `/pages/articleDetail/articleDetail?id=${e.currentTarget.dataset.id}`
+    })
+  },
   getMessageList() {
     wx.showToast({
       title: "数据加载中...",

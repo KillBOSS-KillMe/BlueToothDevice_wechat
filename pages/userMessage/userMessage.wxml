@@ -31,7 +31,7 @@
           <text class='fabuDay'>{{item.createTime}}</text>
         </view>
       </view>
-      <view class='de-li-bot'>
+      <view class='de-li-bot' data-id="{{item.post_id}}" bindtap="goDetail">
         <text class='fabu-tit'>{{item.title}}</text>
         <span class="fabu-type">{{item.label}}</span>
       </view>
