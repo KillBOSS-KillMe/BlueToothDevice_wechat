@@ -191,7 +191,7 @@
   /* width: 72%; */
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .luntanConTit-left {
@@ -201,6 +201,7 @@
 }
 
 .luntanConTit-right {
+  white-space:nowrap;
   width: auto;
   height: 38rpx;
   padding: 10rpx;

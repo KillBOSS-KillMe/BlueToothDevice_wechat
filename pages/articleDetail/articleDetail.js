@@ -2,7 +2,7 @@
  * @Author: luow 
  * @Date: 2019-10-28 14:35:57 
  * @Last Modified by: luow
- * @Last Modified time: 2019-11-22 16:13:52
+ * @Last Modified time: 2019-12-18 15:13:29
  */
 // pages/quanxian/quanxian.js
 // var until = require("../../utils/util.js")
@@ -44,10 +44,16 @@ Page({
   onShow: function() {
     this.getCommentList(this.data.options.id)
   },
+  onPullDownRefresh(){
+    // 获取文章详情
+    this.getArticleList(this.data.options.id)
+    // 刷新评论
+    this.getCommentList(this.data.options.id)
+  }, 
   // 获取文章详情
   getArticleList(id) {
     wx.showToast({
-      title: "数据提交中...",
+      title: "数据加载中...",
       icon: 'loading',
       duration: 1000000
     });
@@ -76,7 +82,7 @@ Page({
   // 获取文章评论
   getCommentList(id) {
     wx.showToast({
-      title: "数据提交中...",
+      title: "数据加载中...",
       icon: 'loading',
       duration: 1000000
     });
@@ -546,6 +552,7 @@ Page({
       urls: img // 需要预览的图片http链接列表   
     })
   },
+  // 显示用户信息
   showUserInfo(e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({

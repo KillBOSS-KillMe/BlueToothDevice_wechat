@@ -270,5 +270,11 @@ Page({
       url: `/pages/articleDetail/articleDetail?id=${e.currentTarget.dataset.id}`
     })
   },
-  
+  // 显示用户信息
+  showUserInfo(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/userInfoShow/userInfoShow?id=${id}`,
+    })
+  },
 })

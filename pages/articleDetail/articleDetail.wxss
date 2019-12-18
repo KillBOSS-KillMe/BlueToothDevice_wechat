@@ -180,7 +180,7 @@ border-radius:50%;
   /* width: 72%; */
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .luntanConTit-left {
@@ -190,6 +190,7 @@ border-radius:50%;
 }
 
 .luntanConTit-right {
+  white-space:nowrap;
   width: 66rpx;
   height: 38rpx;
   background: #3393ff;
@@ -378,6 +379,17 @@ padding: 30rpx  0rpx 30rpx 25rpx;
 }
 .comment-i {
   display: flex;
+  border-top: 1rpx solid #ededed;
+  padding-top: 50rpx;
+  position: relative;
+}
+.fool{
+  padding-top: 10rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 20rpx;
+  color: #999;
 }
 .comment-i > image,
 .comment-two-i > image {

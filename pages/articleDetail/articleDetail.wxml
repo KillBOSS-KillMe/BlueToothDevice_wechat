@@ -78,6 +78,7 @@
       <view class="comment">
         <block wx:for="{{commentList}}" wx:for-item="item" wx:for-index="index">
           <view class="comment-i">
+            <view class="fool">{{index + 1}}楼</view>
             <image src="{{item.avatarUrl}}" data-id="{{item.uid}}" bindtap="showUserInfo" style="width: 56rpx; height: 56rpx;"></image>
             <view class="comment-right">
               <view class="comment-current" 

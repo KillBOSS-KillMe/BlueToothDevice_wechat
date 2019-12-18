@@ -13,7 +13,7 @@
         <view class='gz-top-cen'>
           <view class='gz-top-cen-chengjiu'>
             <view class='gz-top-img'>
-              <image src="{{item.avatarUrl}}"></image>
+              <image src="{{item.avatarUrl}}" data-id="{{item.id}}" bindtap="showUserInfo"></image>
             </view>
             <view class='gz-top-cen-cen'>
               <view class='gz-top-cen-top'>
@@ -67,7 +67,7 @@
           <view class='gz-top-cen'>
             <view class='gz-top-cen-chengjiu'>
               <view class='gz-top-img'>
-                <image src="{{item.avatarUrl}}"></image>
+                <image src="{{item.avatarUrl}}" data-id="{{item.id}}" bindtap="showUserInfo"></image>
               </view>
               <view class='gz-top-cen-cen'>
                 <view class='gz-top-cen-top'>
