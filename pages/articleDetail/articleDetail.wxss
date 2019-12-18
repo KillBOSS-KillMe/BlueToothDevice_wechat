@@ -18,8 +18,9 @@ page {
 }
 .admin-left image{
   width:60rpx;
-height:60rpx;
-border-radius:50%;
+  height:60rpx;
+  border-radius:50%;
+  margin-right: 20rpx;
 }
 .admin-name{
   font-size: 32rpx;
@@ -182,7 +183,27 @@ border-radius:50%;
   justify-content: space-between;
   /* align-items: center; */
 }
+.luntanCon-tit view{
+  display: flex;
+  justify-content: space-between;
+}
+.luntanCon-tit view text{
+  margin-left: 10rpx;
+}
+.luntanCon-tit .luntanConTit-label {
+  background-color: #CC3300;
+  white-space: nowrap;
+  width: 66rpx;
+  height: 38rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  display: block;
+  font-size: 20rpx;
+  color: #fffefe;
+  line-height: 38rpx;
+  padding: 0 10rpx;
 
+}
 .luntanConTit-left {
   font-size: 32rpx;
   color: #424242;

@@ -2,7 +2,7 @@
  * @Author: luow 
  * @Date: 2019-10-28 14:35:57 
  * @Last Modified by: luow
- * @Last Modified time: 2019-12-18 15:13:29
+ * @Last Modified time: 2019-12-18 17:40:46
  */
 // pages/quanxian/quanxian.js
 // var until = require("../../utils/util.js")
@@ -109,6 +109,45 @@ Page({
           console.log(data)
           this.setData({
             commentList: data
+          })
+        }
+      }
+    })
+  },
+  // 帖子置顶操作 & 取消置顶
+  sticky(e) {
+    let top = e.currentTarget.dataset.top
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
+    wx.request({
+      url: `${app.globalData.requestUrl}/`,
+      method: 'POST',
+      data: {
+        uid: this.data.userInfo.id,
+        pid: articleNode.pid,
+        type: parseInt(follow)
+      },
+      success: data => {
+        wx.hideToast()
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          if (top == 0) {
+            articleNode["top"] = 1
+            articleNode["top"] = articleNode.follow + 1
+          } else {
+            articleNode["top"] = 0
+            articleNode["top"] = articleNode.follow - 1
+          }
+          this.setData({
+            articleDetail: articleNode
+          })
+        } else {
+          wx.showModal({
+            title: '',
+            content: data.data.msg
           })
         }
       }

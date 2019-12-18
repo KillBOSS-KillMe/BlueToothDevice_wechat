@@ -15,7 +15,16 @@
     </view>
     <view class='luntanCon-tit'>
       <text class='luntanConTit-left'>{{articleDetail.title}}</text>
-      <text class='luntanConTit-right'>{{articleDetail.label}}</text>
+      <view>
+        <text class='luntanConTit-label' wx:if="{{articleDetail.is_follow == 0 && userInfo.power == 2}}" data-is_follow="{{articleDetail.is_follow}}" bindtap="addFine">加精</text>
+        <text class='luntanConTit-label' wx:if="{{articleDetail.is_follow == 1 && userInfo.power == 2}}" data-is_follow="{{articleDetail.is_follow}}" bindtap="addFine">取加精</text>
+        <text class='luntanConTit-label' wx:if="{{articleDetail.is_follow == 1 && userInfo.power != 2}}">加精</text>
+        <text class='luntanConTit-label' wx:if="{{articleDetail.top == 0 && userInfo.power == 2}}" data-top="{{articleDetail.top}}" data bindtap="sticky">置顶</text>
+        <text class='luntanConTit-label' wx:if="{{articleDetail.top == 1 && userInfo.power == 2}}" data-top="{{articleDetail.top}}" bindtap="sticky">取消置顶</text>
+        <text class='luntanConTit-label' wx:if="{{articleDetail.top == 1 && userInfo.power != 2}}">置顶</text>
+        <text class='luntanConTit-right'>{{articleDetail.label}}</text>
+      </view>
+      
     </view>
     <view class='luntanCon-txt'>
       <text class='luntan-txt'>{{articleDetail.content}}</text>

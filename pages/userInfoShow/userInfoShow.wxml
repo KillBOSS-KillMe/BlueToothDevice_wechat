@@ -43,5 +43,5 @@
 </view>
 <view class="attention" bindtap="attention" wx:if="{{userInfo.id != info.id}}">
   <text wx:if="{{info.is_follow == 0}}">关注</text>
-  <text wx:if="{{info.is_follow == 1}}">已关注</text>
+  <text wx:if="{{info.is_follow == 1}}">取消关注</text>
 </view>
