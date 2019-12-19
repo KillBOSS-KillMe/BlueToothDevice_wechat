@@ -239,3 +239,14 @@
   align-items: center;
   justify-content: center;
 }
+.attention view{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.attention .muted{
+  background-color: #CC3300;
+  color: #fffefe;
+}

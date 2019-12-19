@@ -17,10 +17,10 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo
     })
-    this.getShowUserInfo(options)
+    this.getShowUserInfo(options.id)
   },
 
-  getShowUserInfo(options) {
+  getShowUserInfo(id) {
     wx.showToast({
       title: "数据加载中...",
       icon: 'loading',
@@ -31,7 +31,7 @@ Page({
       method: 'POST',
       data: {
         id: this.data.userInfo.id,
-        f_id: options.id
+        f_id: id
       },
       success: data => {
         wx.hideToast()
@@ -50,22 +50,32 @@ Page({
       }
     })
   },
+
+  // 关注
   attention() {
-    if (this.data.info.is_follow == 1) {
-      wx.showToast({
-        title: '已经关注',
-        icon: 'none',
-        duration: 2000
-      });
-      return false
-    }
+    // if (this.data.info.is_follow == 1) {
+    //   wx.showToast({
+    //     title: '已经关注',
+    //     icon: 'none',
+    //     duration: 2000
+    //   });
+    //   return false
+    // }
     wx.showToast({
       title: "数据提交中...",
       icon: 'loading',
       duration: 1000000
     });
+    let url = ''
+    if (this.data.info.is_follow == 1) {
+      // 执行取消关注
+      url = 'User/follow_cancel'
+    } else {
+      // 执行关注
+      url = 'User/follow'
+    }
     wx.request({
-      url: `${app.globalData.requestUrl}/User/follow`,
+      url: `${app.globalData.requestUrl}/${url}`,
       method: 'POST',
       data: {
         id: this.data.userInfo.id,
@@ -75,11 +85,8 @@ Page({
         wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
-          let info = this.data.info
-          info['is_follow'] = 1
-          this.setData({
-            info: info
-          })
+          // 刷新用户信息
+          this.getShowUserInfo(this.data.info.id)
         } else {
           wx.showToast({
             title: data.data.msg,
