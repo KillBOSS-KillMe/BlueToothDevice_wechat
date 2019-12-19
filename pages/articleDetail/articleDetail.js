@@ -2,7 +2,7 @@
  * @Author: luow 
  * @Date: 2019-10-28 14:35:57 
  * @Last Modified by: luow
- * @Last Modified time: 2019-12-19 15:59:19
+ * @Last Modified time: 2019-12-19 17:00:18
  */
 // pages/quanxian/quanxian.js
 // var until = require("../../utils/util.js")
@@ -110,46 +110,6 @@ Page({
           this.setData({
             commentList: data
           })
-        }
-      }
-    })
-  },
-  // 帖子置顶操作 & 取消置顶
-  sticky(e) {
-    let top = e.currentTarget.dataset.top
-    wx.showToast({
-      title: "数据提交中...",
-      icon: 'loading',
-      duration: 1000000
-    });
-    wx.request({
-      url: `${app.globalData.requestUrl}/`,
-      method: 'POST',
-      data: {
-        uid: this.data.userInfo.id,
-        pid: articleNode.pid,
-        type: parseInt(follow)
-      },
-      success: data => {
-        wx.hideToast()
-        data = app.null2str(data)
-        if (data.data.code == 1) {
-          if (top == 0) {
-            articleNode["top"] = 1
-            articleNode["top"] = articleNode.follow + 1
-          } else {
-            articleNode["top"] = 0
-            articleNode["top"] = articleNode.follow - 1
-          }
-          this.setData({
-            articleDetail: articleNode
-          })
-        } else {
-          wx.showToast({
-            title: data.data.msg,
-            icon: 'none',
-            duration: 2000
-          });
         }
       }
     })
@@ -347,6 +307,8 @@ Page({
               icon: 'success',
               duration: 2000
             });
+            // 当前页数据刷新
+            this.getArticleList(this.data.options.id)
           } else {
             wx.showToast({
               title: data.data.msg,
@@ -421,6 +383,8 @@ Page({
             icon: 'success',
             duration: 2000
           });
+          // 当前页数据刷新
+          this.getArticleList(this.data.options.id)
         } else {
           wx.showToast({
             title: data.data.msg,
