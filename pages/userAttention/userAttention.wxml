@@ -23,8 +23,8 @@
           </view>
           <view class='gz-top-right'>
             <view data-index="{{index}}" data-id="{{item.id}}" class="{{item.str=='0'?'gz-guanzhu':'gz-guanzhued'}}" bindtap="focusTap">
-              <span wx:if="{{item.str == '0'}}">已关注</span>
-              <span wx:if="{{item.str == '1'}}">关注</span>
+              <span wx:if="{{item.str == '1'}}" >关注</span>
+              <span wx:if="{{item.str == '0'}}">取消关注</span>
             </view>
           </view>
         </view>
@@ -67,7 +67,7 @@
           <view class='gz-top-cen'>
             <view class='gz-top-cen-chengjiu'>
               <view class='gz-top-img'>
-                <image src="{{item.avatarUrl}}" data-id="{{item.id}}" bindtap="showUserInfo"></image>
+                <image src="{{item.avatarUrl}}" data-id="{{item.uid}}" bindtap="showUserInfo"></image>
               </view>
               <view class='gz-top-cen-cen'>
                 <view class='gz-top-cen-top'>
@@ -76,9 +76,9 @@
               </view>
             </view>
             <view class='gz-top-right'>
-              <view data-index="{{index}}" data-id="{{item.id}}" class="{{item.str=='0'?'gz-guanzhu':'gz-guanzhued'}}" bindtap="focusTaps">
-                <span wx:if="{{item.str == '0'}}">关注</span>
-                <span wx:if="{{item.str == '1'}}">已关注</span>
+              <view data-index="{{index}}" data-id="{{item.uid}}" class="{{item.str=='0'?'gz-guanzhu':'gz-guanzhued'}}" bindtap="focusTaps">
+                <span wx:if="{{item.str == '1'}}" >关注</span>
+                <span wx:if="{{item.str == '0'}}">取消关注</span>
               </view>
             </view>
           </view>

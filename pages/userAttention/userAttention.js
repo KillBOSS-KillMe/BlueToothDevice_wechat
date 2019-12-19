@@ -262,10 +262,6 @@ Page({
       }
     })
   },
-  focusTaps(e) {
-    
-    
-  },
   // 进入帖子详情页
   goPostDetail(e) {
     wx.navigateTo({
