@@ -2,7 +2,7 @@
  * @Author: luow 
  * @Date: 2019-10-28 14:35:57 
  * @Last Modified by: luow
- * @Last Modified time: 2019-12-19 10:22:04
+ * @Last Modified time: 2019-12-19 15:59:19
  */
 // pages/quanxian/quanxian.js
 // var until = require("../../utils/util.js")
@@ -231,6 +231,14 @@ Page({
   },
   // 禁言
   runBanned() {
+    if (this.data.articleDetail.essence == 0) {
+      wx.showToast({
+        title: "请在个人中心解除禁言",
+        icon: 'none',
+        duration: 2000
+      })
+      return false
+    }
     wx.showToast({
       title: "数据提交中...",
       icon: 'loading',

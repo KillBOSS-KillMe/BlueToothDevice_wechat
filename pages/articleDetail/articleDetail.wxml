@@ -8,9 +8,13 @@
           <view class='admin-date'>{{articleDetail.createTime}}</view>
         </view>
       </view>
-      <view class="banned" bindtap="runBanned" wx:if="{{userInfo.power == 2 && userInfo.id != articleDetail.uid}}">
+      <view class="banned" bindtap="runBanned" wx:if="{{userInfo.power == 2 && userInfo.id != articleDetail.uid && articleDetail.essence == 1}}">
         <icon class="iconfont iconjinyan"></icon>
         禁言
+      </view>
+      <view class="banned" bindtap="runBanned" wx:if="{{userInfo.power == 2 && userInfo.id != articleDetail.uid && articleDetail.essence == 0}}">
+        <icon class="iconfont iconjinyan"></icon>
+        已禁言
       </view>
     </view>
     <view class='luntanCon-tit'>
