@@ -44,6 +44,6 @@
 <view class="attention" wx:if="{{userInfo.id != info.id}}">
   <view bindtap="attention" wx:if="{{info.is_follow == 0}}">关注</view>
   <view bindtap="attention" wx:if="{{info.is_follow == 1}}">取消关注</view>
-  <view bindtap="muted" class="muted" wx:if="{{info.is_follow == 1}}">禁言</view>
-  <view bindtap="notMuted" class="muted" wx:if="{{info.is_follow == 0}}">解除禁言</view>
+  <view bindtap="runBanned" class="muted" wx:if="{{info.forbidden_id == '' && userInfo.power == 2}}">禁言</view>
+  <view bindtap="runBanned" class="muted" wx:if="{{info.forbidden_id != '' && userInfo.power == 2}}">解除禁言</view>
 </view>

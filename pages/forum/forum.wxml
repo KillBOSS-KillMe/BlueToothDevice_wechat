@@ -23,7 +23,11 @@
       <view class='luntanCon-con'>
         <view class='luntanCon-tit' bindtap='goDetail' data-id="{{item.id}}">
           <text class='luntanConTit-left'>{{item.title}}</text>
-          <text class='luntanConTit-right'>{{item.label}}</text>
+          <view>
+            <text class='luntanConTit-right'>{{item.label}}</text>
+            <text class='luntanConTit-label' wx:if="{{item.essence == 1}}">加精</text>
+            <text class='luntanConTit-label' wx:if="{{item.top == 1}}">置顶</text>
+          </view>
         </view>
         <view class='luntanCon-txt'>
           <view class='luntan-txt' bindtap='goDetail' data-id="{{item.id}}">{{item.content}}</view>

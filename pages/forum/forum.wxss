@@ -199,12 +199,18 @@
   color: #424242;
   font-weight: 700;
 }
-
+.luntanCon-tit view{
+  display: flex;
+  justify-content: space-between;
+}
+.luntanCon-tit view text{
+  margin-left: 10rpx;
+}
 .luntanConTit-right {
   white-space:nowrap;
   width: auto;
   height: 38rpx;
-  padding: 10rpx;
+  padding: 0 10rpx;
   background: #3393ff;
   border-radius: 10rpx;
   text-align: center;
@@ -212,6 +218,19 @@
   font-size: 20rpx;
   color: #fffefe;
   line-height: 38rpx;
+}
+.luntanCon-tit .luntanConTit-label {
+  background-color: #CC3300;
+  white-space: nowrap;
+  width: 66rpx;
+  height: 38rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  display: block;
+  font-size: 20rpx;
+  color: #fffefe;
+  line-height: 38rpx;
+  padding: 0 10rpx;
 }
 
 .luntanCon-txt {

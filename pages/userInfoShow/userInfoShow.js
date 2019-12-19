@@ -97,6 +97,50 @@ Page({
       }
     })
   },
+  // 禁言相关操作
+  runBanned() {
+    if (this.data.info.forbidden_id != '') {
+      wx.showToast({
+        title: "请在个人中心解除禁言",
+        icon: 'none',
+        duration: 2000
+      })
+      return false
+    }
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
+    wx.request({
+      url: `${app.globalData.requestUrl}/Forum/forbidden`,
+      method: 'POST',
+      data: {
+        aid: this.data.userInfo.id,
+        uid: this.data.info.id,
+        time: 1,
+        nickname: this.data.userInfo.nickname
+      },
+      success: data => {
+        wx.hideToast()
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+          wx.showToast({
+            title: '禁言成功',
+            icon: 'success',
+            duration: 2000
+          });
+          this.getShowUserInfo(this.data.info.id)
+        } else {
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

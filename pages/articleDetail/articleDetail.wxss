@@ -202,7 +202,6 @@ page {
   color: #fffefe;
   line-height: 38rpx;
   padding: 0 10rpx;
-
 }
 .luntanConTit-left {
   font-size: 32rpx;
