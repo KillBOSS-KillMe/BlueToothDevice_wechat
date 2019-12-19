@@ -67,10 +67,6 @@ Page({
             icon: 'none',
             duration: 2000
           });
-          // wx.showModal({
-          //   title: '',
-          //   content: data.data.msg
-          // })
         }
       }
     })
@@ -145,10 +141,6 @@ Page({
             icon: 'none',
             duration: 2000
           });
-          // wx.showModal({
-          //   title: '',
-          //   content: data.data.msg
-          // })
         }
       }
     })

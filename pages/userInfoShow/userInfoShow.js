@@ -41,20 +41,22 @@ Page({
             info: data.data.data
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })
   },
   attention() {
     if (this.data.info.is_follow == 1) {
-      wx.showModal({
-        title: '',
-        content: '已经关注'
-      })
+      wx.showToast({
+        title: '已经关注',
+        icon: 'none',
+        duration: 2000
+      });
       return false
     }
     wx.showToast({
@@ -79,10 +81,11 @@ Page({
             info: info
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })

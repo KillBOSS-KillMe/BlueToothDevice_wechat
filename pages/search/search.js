@@ -48,10 +48,11 @@ Page({
             souList: data.data.data
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.errmsg
-          })
+          wx.showToast({
+            title: data.data.errmsg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })

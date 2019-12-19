@@ -75,11 +75,11 @@ Page({
             guanzhurenList: guanzhurenList
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg,
-            showCancel: false
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })
@@ -108,11 +108,11 @@ Page({
             guanzhutieziLists: data.data.data
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg,
-            showCancel: false
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })
@@ -146,11 +146,11 @@ Page({
             fensiList: fensiList
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg,
-            showCancel: false
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })
@@ -208,10 +208,11 @@ Page({
             guanzhurenList: guanzhurenList
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })
@@ -252,10 +253,11 @@ Page({
             fensiList: fensiList
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })

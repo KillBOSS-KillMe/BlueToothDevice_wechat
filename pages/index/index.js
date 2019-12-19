@@ -706,10 +706,11 @@ Page({
                 console.log(data)
                 this.getGroupList()
               } else {
-                wx.showModal({
-                  title: '',
-                  content: data.data.errmsg
-                })
+                wx.showToast({
+                  title: data.data.errmsg,
+                  icon: 'none',
+                  duration: 2000
+                });
               }
             }
           })
@@ -795,10 +796,11 @@ Page({
           // 获取分组
           this.getGroupList()
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })
@@ -829,10 +831,11 @@ Page({
             this.getFlieList(data[0].id)
           }
         } else {
-          // wx.showModal({
-          //   title: '',
-          //   content: data.data.msg
-          // })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })
@@ -927,10 +930,11 @@ Page({
             flieList: data
           })
         } else {
-          // wx.showModal({
-          //   title: '',
-          //   content: data.data.msg
-          // })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })
@@ -954,11 +958,11 @@ Page({
             listGameData: data.data.data,
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg,
-            showCancel: false
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })

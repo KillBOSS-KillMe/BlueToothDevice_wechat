@@ -40,11 +40,11 @@ Page({
             listData: data.data.data,
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg,
-            showCancel: false
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })

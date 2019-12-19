@@ -75,14 +75,10 @@ Page({
           })
         } else {
           wx.showToast({
-            title: "无更多数据",
+            title: data.data.msg,
             icon: 'none',
             duration: 2000
           });
-          // wx.showModal({
-          //   title: '',
-          //   content: data.data.msg
-          // })
         }
       }
     })
@@ -150,10 +146,11 @@ Page({
             articleList: articleList
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })

@@ -2,7 +2,7 @@
  * @Author: luow 
  * @Date: 2019-10-28 14:35:57 
  * @Last Modified by: luow
- * @Last Modified time: 2019-12-18 17:40:46
+ * @Last Modified time: 2019-12-19 10:22:04
  */
 // pages/quanxian/quanxian.js
 // var until = require("../../utils/util.js")
@@ -145,10 +145,11 @@ Page({
             articleDetail: articleNode
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })
@@ -185,10 +186,11 @@ Page({
             articleDetail: articleNode
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })
@@ -247,15 +249,17 @@ Page({
         wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
-          wx.showModal({
-            title: '',
-            content: '禁言成功'
-          })
+          wx.showToast({
+            title: '禁言成功',
+            icon: 'success',
+            duration: 2000
+          });
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })
@@ -294,10 +298,11 @@ Page({
             })
           }, 2000)
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })
@@ -329,15 +334,17 @@ Page({
           wx.hideToast()
           data = app.null2str(data)
           if (data.data.code == 1) {
-            wx.showModal({
-              title: '',
-              content: '置顶成功'
-            })
+            wx.showToast({
+              title: '置顶成功',
+              icon: 'success',
+              duration: 2000
+            });
           } else {
-            wx.showModal({
-              title: '',
-              content: data.data.msg
-            })
+            wx.showToast({
+              title: data.data.msg,
+              icon: 'none',
+              duration: 2000
+            });
           }
         }
       })
@@ -363,15 +370,17 @@ Page({
           wx.hideToast()
           data = app.null2str(data)
           if (data.data.code == 1) {
-            wx.showModal({
-              title: '',
-              content: '取消置顶'
-            })
+            wx.showToast({
+              title: '取消置顶',
+              icon: 'success',
+              duration: 2000
+            });
           } else {
-            wx.showModal({
-              title: '',
-              content: data.data.msg
-            })
+            wx.showToast({
+              title: data.data.msg,
+              icon: 'none',
+              duration: 2000
+            });
           }
         }
       })
@@ -399,15 +408,17 @@ Page({
         wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
-          wx.showModal({
-            title: '',
-            content: '加精成功'
-          })
+          wx.showToast({
+            title: '加精成功',
+            icon: 'success',
+            duration: 2000
+          });
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })
@@ -462,10 +473,11 @@ Page({
           // 刷新评论部分
           this.getCommentList(this.data.options.id)
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })
@@ -490,10 +502,11 @@ Page({
           // 刷新评论部分
           this.getCommentList(this.data.options.id)
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })

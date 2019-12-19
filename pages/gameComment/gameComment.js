@@ -30,11 +30,11 @@ Page({
   // 评论提交
   upComment() {
     if (this.data.con == '') {
-      wx.showModal({
-        title: '',
-        content: '评论内容不能为空',
-        showCancel: false
-      })
+      wx.showToast({
+        title: '评论内容不能为空',
+        icon: 'none',
+        duration: 2000
+      });
       return false
     }
     wx.showToast({
@@ -65,11 +65,11 @@ Page({
             duration: 2000
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: data.data.msg,
-            showCancel: false
-          })
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
       }
     })

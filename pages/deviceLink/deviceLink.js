@@ -135,7 +135,11 @@ Page({
       },
       fail: function(err) {
         isopen: true;
-        app.showModal1("蓝牙开关未开启");
+        wx.showToast({
+          title: "蓝牙开关未开启",
+          icon: 'none',
+          duration: 2000
+        });
         var log = that.data.textLog + "蓝牙开关未开启 \n";
         that.setData({
           textLog: log
@@ -152,7 +156,11 @@ Page({
         that.setData({
           devices: []
         });
-        app.showModal1("蓝牙开关未开启");
+        wx.showToast({
+          title: "蓝牙开关未开启",
+          icon: 'none',
+          duration: 2000
+        });
       }
     })
   },
@@ -274,11 +282,24 @@ Page({
         });
 
         if (err.errCode === 10012) {
-          app.showModal1("连接超时,请重试!");
+          wx.showToast({
+            title: "连接超时,请重试!",
+            icon: 'none',
+            duration: 2000
+          });
         } else if (err.errCode === 10013) {
-          app.showModal1("连接失败,蓝牙地址无效!");
+          wx.showToast({
+            title: "连接失败,蓝牙地址无效!",
+            icon: 'none',
+            duration: 2000
+          });
         } else {
-          app.showModal1("连接失败,请重试!"); // + err.errCode10003原因多种：蓝牙设备未开启或异常导致无法连接;蓝牙设备被占用或者上次蓝牙连接未断开导致无法连接
+          wx.showToast({
+            title: "连接失败,请重试!",
+            icon: 'none',
+            duration: 2000
+          });
+          // + err.errCode10003原因多种：蓝牙设备未开启或异常导致无法连接;蓝牙设备被占用或者上次蓝牙连接未断开导致无法连接
         }
 
         that.closeBLEConnection()

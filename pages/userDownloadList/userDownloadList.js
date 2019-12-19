@@ -48,11 +48,11 @@ Page({
             flieList: flieList
           })
         } else {
-          wx.showModal({
-            title: '',
-            content: res.msg,
-            showCancel: false
-          })
+          wx.showToast({
+            title: res.msg,
+            icon: 'none',
+            duration: 2000
+          });
         }
         console.log(res.data);
       }

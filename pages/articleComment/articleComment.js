@@ -141,10 +141,11 @@ Page({
               fileList: fileList
             })
           } else {
-            wx.showModal({
-              title: '',
-              content: data.msg
-            })
+            wx.showToast({
+              title: data.msg,
+              icon: 'none',
+              duration: 2000
+            });
           }
         }
       });
