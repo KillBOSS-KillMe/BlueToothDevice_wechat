@@ -41,6 +41,7 @@ Page({
   },
   // 获取游戏详情
   getGameDetali(id) {
+    console.log(this.data.userInfo)
     wx.showToast({
       title: "数据提交中...",
       icon: 'loading',
@@ -50,6 +51,7 @@ Page({
       url: `${app.globalData.requestUrl}/Official/comment_list`,
       method: "POST",
       data: {
+        uid: this.data.userInfo.id,
         game_id: id
       },
       success: data => {
@@ -74,7 +76,43 @@ Page({
       }
     })
   },
-
+  // 点赞
+  setLike(e) {
+    if (e.currentTarget.dataset.star == '1') {
+      wx.showToast({
+        title: "不可重复点赞",
+        icon: 'none',
+        duration: 2000
+      });
+      return false
+    }
+    wx.showToast({
+      title: "数据提交中...",
+      icon: 'loading',
+      duration: 1000000
+    });
+    wx.request({
+      url: `${app.globalData.requestUrl}/Official/like`,
+      method: "POST",
+      data: {
+        uid: this.data.userInfo.id,
+        comment_id: e.currentTarget.dataset.id
+      },
+      success: data => {
+        wx.hideToast()
+        data = app.null2str(data)
+        if (data.data.code == '1') {
+          this.getGameDetali(this.data.options.id)
+        } else {
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

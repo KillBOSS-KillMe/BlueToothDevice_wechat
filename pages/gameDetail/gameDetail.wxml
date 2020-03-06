@@ -33,6 +33,10 @@
         </view>
         <view class='pl-cen-bot'>
           <text class='pl-cen-pinglun'>{{item.content}}</text>
+          <view class="{{item.like == 1?'active':''}}" data-star="{{item.like}}" data-id="{{item.id}}" bindtap="setLike">
+            <icon class="iconfont icondianzan"></icon>
+            {{item.like_count}}
+          </view>
         </view>
       </view>
     </block>
