@@ -7,7 +7,7 @@ page {
   justify-content: flex-start;
 }
 .de-li {
-  padding: 40rpx 26rpx;
+  padding: 20rpx 26rpx;
   border-bottom: 1rpx solid #EDEDED;
 }
 
@@ -41,7 +41,7 @@ page {
 .de-li-cen{
   display: flex;
   justify-content: flex-start;
-  margin-top: 31rpx;
+  margin-top: 10rpx;
 }
 .from {
   font-weight: 600;
@@ -72,7 +72,7 @@ page {
   margin-left: 32rpx;
 }
 .fabu-tit{
-  font-size: 35rpx;
+  font-size: 25rpx;
   color: #424242;
   font-weight: bold;
 }

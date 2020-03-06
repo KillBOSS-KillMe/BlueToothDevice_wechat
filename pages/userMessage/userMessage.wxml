@@ -32,8 +32,8 @@
         </view>
       </view>
       <view class='de-li-bot' data-id="{{item.post_id}}" bindtap="goDetail">
-        <text class='fabu-tit'>{{item.title}}</text>
-        <span class="fabu-type">{{item.label}}</span>
+        <text class='fabu-tit'>{{item.content}}</text>
+        <!-- <span class="fabu-type">{{item.label}}</span> -->
       </view>
     </view>
   </block>
