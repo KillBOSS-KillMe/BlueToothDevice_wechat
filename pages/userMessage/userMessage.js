@@ -21,9 +21,12 @@ Page({
   },
   // 进入文章详情
   goDetail(e) {
-    wx.navigateTo({
-      url: `/pages/articleDetail/articleDetail?id=${e.currentTarget.dataset.id}`
-    })
+    let post_id = e.currentTarget.dataset.id
+    if (post_id != '') {
+      wx.navigateTo({
+        url: `/pages/articleDetail/articleDetail?id=${post_id}`
+      })
+    }
   },
   getMessageList() {
     wx.showToast({
