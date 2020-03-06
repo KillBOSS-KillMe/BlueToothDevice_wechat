@@ -170,8 +170,7 @@ Page({
       return false
     }
     let articleDetail = this.data.articleDetail
-    let urlData = `?type=comment&post_id=${articleDetail.pid}
-    &id=${articleDetail.uid}&title=${articleDetail.title}`
+    let urlData = `?type=comment&post_id=${articleDetail.pid}&id=${articleDetail.uid}&title=${articleDetail.title}`
     wx.navigateTo({
       url: `/pages/articleComment/articleComment${urlData}`,
     })

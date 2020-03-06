@@ -194,7 +194,7 @@ Page({
       // 评论数据整合
       upData = {
         post_id: options.post_id,
-        id:  options.post_id,
+        id:  options.id,
         title: options.title,
         content: this.data.commentCon,
         uid: this.data.userInfo.id,
