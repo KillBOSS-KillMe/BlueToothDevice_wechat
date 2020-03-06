@@ -195,12 +195,26 @@
       <icon class="iconfont iconshanchu"></icon>
       删除
     </view>
-    <view bindtap="topping" data-cur="{{cur}}">
+    <!-- <view bindtap="topping" data-cur="{{cur}}">
+      <view>
+        <icon class="iconfont iconzhiding" wx:if="{{cur==0}}"></icon>
+        zhiding
+      </view>
       <view>
         <icon class="iconfont iconzhiding" wx:if="{{cur==0}}"></icon>
         <icon class="iconfont iconzhiding itenIcon" wx:if="{{cur==1}}"></icon>
       </view>
-      {{zd}}
+      {{articleDetail.nickname}}
+    </view> -->
+    <view bindtap="topping">
+      <view wx:if="{{articleDetail.top==0}}">
+        <icon class="iconfont iconzhiding"></icon>
+        置顶
+      </view>
+      <view wx:if="{{articleDetail.top==1}}">
+        <icon class="iconfont iconzhiding itenIcon"></icon>
+        取消置顶
+      </view>
     </view>
     <view bindtap="addBoutique">
       <icon class="iconfont iconhuatijiajingicon"></icon>

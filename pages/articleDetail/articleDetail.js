@@ -18,9 +18,7 @@ Page({
     articleDetail: {},
     commentList: [],
     requestImgUrl: '',
-    originalImgUrl: '',
-    cur: 0,
-    zd:"置顶"
+    originalImgUrl: ''
   },
 
   /**
@@ -277,12 +275,7 @@ Page({
   },
   // 置顶
   topping(e) {
-    console.log(e.currentTarget.dataset.cur)
-    if (e.currentTarget.dataset.cur == 0) {
-      this.setData({
-        cur: 1,
-        zd:'取消置顶'
-      })
+    if (this.data.articleDetail.top == 0) {
       wx.showToast({
         title: "数据提交中...",
         icon: 'loading',
@@ -319,12 +312,7 @@ Page({
         }
       })
       return false
-    }
-    if (e.currentTarget.dataset.cur == 1) {
-      this.setData({
-        cur: 0,
-        zd: '置顶'
-      })
+    } else if (this.data.articleDetail.top == 1) {
       wx.showToast({
         title: "数据提交中...",
         icon: 'loading',
@@ -345,6 +333,8 @@ Page({
               icon: 'success',
               duration: 2000
             });
+            // 当前页数据刷新
+            this.getArticleList(this.data.options.id)
           } else {
             wx.showToast({
               title: data.data.msg,
