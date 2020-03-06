@@ -112,7 +112,7 @@ Page({
           }
           console.log(list)
           this.setData({
-            commentList: data
+            commentList: list
           })
         }
       }
