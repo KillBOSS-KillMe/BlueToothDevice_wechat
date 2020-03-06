@@ -354,36 +354,68 @@ Page({
       icon: 'loading',
       duration: 1000000
     });
-    wx.request({
-      url: `${app.globalData.requestUrl}/Forum/essence`,
-      method: 'POST',
-      data: {
-        aid: this.data.userInfo.id,
-        uid: this.data.articleDetail.uid,
-        post_id: this.data.articleDetail.pid,
-        title: this.data.articleDetail.title,
-        nickname: this.data.userInfo.nickname
-      },
-      success: data => {
-        wx.hideToast()
-        data = app.null2str(data)
-        if (data.data.code == 1) {
-          wx.showToast({
-            title: '加精成功',
-            icon: 'success',
-            duration: 2000
-          });
-          // 当前页数据刷新
-          this.getArticleList(this.data.options.id)
-        } else {
-          wx.showToast({
-            title: data.data.msg,
-            icon: 'none',
-            duration: 2000
-          });
+    if (this.data.articleDetail.essence == 0) {
+      // 加精
+      wx.request({
+        url: `${app.globalData.requestUrl}/Forum/essence`,
+        method: 'POST',
+        data: {
+          aid: this.data.userInfo.id,
+          uid: this.data.articleDetail.uid,
+          post_id: this.data.articleDetail.pid,
+          title: this.data.articleDetail.title,
+          nickname: this.data.userInfo.nickname
+        },
+        success: data => {
+          wx.hideToast()
+          data = app.null2str(data)
+          if (data.data.code == 1) {
+            wx.showToast({
+              title: '加精成功',
+              icon: 'success',
+              duration: 2000
+            });
+            // 当前页数据刷新
+            this.getArticleList(this.data.options.id)
+          } else {
+            wx.showToast({
+              title: data.data.msg,
+              icon: 'none',
+              duration: 2000
+            });
+          }
         }
-      }
-    })
+      })
+    } else if (this.data.articleDetail.essence == 1) {
+      // 取消加精
+      wx.request({
+        url: `${app.globalData.requestUrl}/User/cancel_essence`,
+        method: 'POST',
+        data: {
+          post_id: this.data.articleDetail.pid
+        },
+        success: data => {
+          wx.hideToast()
+          data = app.null2str(data)
+          if (data.data.code == 1) {
+            wx.showToast({
+              title: '取消成功',
+              icon: 'success',
+              duration: 2000
+            });
+            // 当前页数据刷新
+            this.getArticleList(this.data.options.id)
+          } else {
+            wx.showToast({
+              title: data.data.msg,
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        }
+      })
+    }
+    
   },
   // 长按删除评论
   delComment(e) {

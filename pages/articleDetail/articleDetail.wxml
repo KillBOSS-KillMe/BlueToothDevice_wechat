@@ -217,8 +217,15 @@
       </view>
     </view>
     <view bindtap="addBoutique">
-      <icon class="iconfont iconhuatijiajingicon"></icon>
-      加精
+    <!-- wx:if="{{articleDetail.essence == 1}}" -->
+      <view wx:if="{{articleDetail.essence == 1}}">
+        <icon class="iconfont iconhuatijiajingicon"></icon>
+        取消加精
+      </view>
+      <view wx:if="{{articleDetail.essence == 0}}">
+        <icon class="iconfont iconhuatijiajingicon"></icon>
+        加精
+      </view>
     </view>
     <view bindtap="goComment">
       <icon class="iconfont iconxiaoxi"></icon>
