@@ -18,7 +18,8 @@ Page({
     articleDetail: {},
     commentList: [],
     requestImgUrl: '',
-    originalImgUrl: ''
+    originalImgUrl: '',
+    pageNum: 1
   },
 
   /**
@@ -88,23 +89,28 @@ Page({
       url: `${app.globalData.requestUrl}/User/post_comment`,
       data: {
         post_id: id,
-        page: 0
+        page: this.data.pageNum
       },
       method: "POST",
       success: data => {
         wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
+          let pageNum = this.data.pageNum + 1
+          this.setData({
+            pageNum: pageNum
+          })
           data = data.data.data
+          let list = this.data.commentList.concat(data)
           let i = 0
-          for (i in data) {
-            data[i]['createTime'] = app.transformTime(data[i].createTime * 1000)
+          for (i in list) {
+            list[i]['createTime'] = app.transformTime(list[i].createTime * 1000)
             let y = 0
-            for (y in data[i].reply) {
-              data[i].reply[y]['createTime'] = app.transformTime(data[i].reply[y].createTime * 1000)
+            for (y in list[i].reply) {
+              list[i].reply[y]['createTime'] = app.transformTime(list[i].reply[y].createTime * 1000)
             }
           }
-          console.log(data)
+          console.log(list)
           this.setData({
             commentList: data
           })
@@ -609,6 +615,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    // 刷新评论
+    this.getCommentList(this.data.options.id)
   }
 })
