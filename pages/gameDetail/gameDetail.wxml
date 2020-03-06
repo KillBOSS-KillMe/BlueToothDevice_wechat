@@ -12,6 +12,13 @@
           <text class='pl-score'>{{count}}</text>
           <text class='pl-score-ci'>次</text>
         </view>
+        <view class="introduce">
+          <view class="introduceCon {{introduceShowType ? 'showType2':'showType1'}}">{{options.introduce}}</view>
+          <view class="introduceShow" bindtap="selIntroduceShowType">
+            <text wx:if="{{!introduceShowType}}">展开</text>
+            <text wx:if="{{introduceShowType}}">收起</text>
+          </view>
+        </view>
       </view>
     </view>
     <block class="pinglunList" wx:for="{{commentList}}" wx:key="{{index}}" wx:for-item="item">

@@ -9,7 +9,8 @@ Page({
     imgUrl: '',
     commentList:[],
     options: {},
-    count: 0
+    count: 0,
+    introduceShowType: false
   },
 
   /**
@@ -24,7 +25,7 @@ Page({
       userInfo: app.globalData.userInfo,
       imgUrl: app.globalData.imgUrl
     })
-    this.getGameDetali(this.data.options.id)
+    // this.getGameDetali(this.data.options.id)
   },
   /**
    * 生命周期函数--监听页面显示
@@ -32,6 +33,11 @@ Page({
   onShow: function () {
     // console.log(options)
     this.getGameDetali(this.data.options.id)
+  },
+  selIntroduceShowType() {
+    this.setData({
+      introduceShowType: !this.data.introduceShowType
+    })
   },
   // 获取游戏详情
   getGameDetali(id) {

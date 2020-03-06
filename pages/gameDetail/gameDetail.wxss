@@ -15,7 +15,7 @@ page{
   padding: 40rpx 0;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   border-bottom: 1px solid #EDEDED;
 }
 .pl-top-img{
@@ -39,6 +39,33 @@ border-radius:10rpx;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+.introduce{
+  width: 540rpx;
+  height: auto;
+  margin-top: 10rpx;
+  font-size: 25rpx;
+  color: #424242;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.introduceCon {
+  width: 480rpx
+}
+.showType1{
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.showType2{
+  height: auto;
+}
+.introduceShow {
+  width: 60rpx;
+  color: #3393FF;
 }
 .pl-pingfen{
   font-size: 20rpx;
