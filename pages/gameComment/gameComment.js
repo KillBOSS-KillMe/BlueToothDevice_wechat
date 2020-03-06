@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: options.name
+      title: `评论-${options.name}`
     })
     this.setData({
       options: options,
