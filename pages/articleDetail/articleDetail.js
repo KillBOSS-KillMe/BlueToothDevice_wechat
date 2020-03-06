@@ -27,28 +27,68 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
+      pageNum: 1,
+    })
+    this.setData({
+      // pageNum: 1,
+      commentList: [],
+      articleDetail: {},
       options: options,
       userInfo: app.globalData.userInfo,
       requestImgUrl: app.globalData.requestImgUrl,
       originalImgUrl: app.globalData.originalImgUrl
     })
-
+    
     // 获取文章详情
     this.getArticleList(options.id)
-    // this.getCommentList(options.id)
+    this.getCommentList(options.id)
   },
+  // 下拉刷新
+  // onPullDownRefresh: function() {
+  //   this.runPullDown()
+  // },
+  // onPullDownRefresh: function () {
+  //   console.log(12312312)
+  //   wx.showNavigationBarLoading() //在标题栏中显示加载
+
+  //   //模拟加载
+  //   setTimeout(() => {
+  //     this.runPullDown()
+  //     // complete
+  //     wx.hideNavigationBarLoading() //完成停止加载
+  //     wx.stopPullDownRefresh() //停止下拉刷新
+  //   }, 1500);
+  // },
+  // runPullDown() {
+  //   console.log(123123123)
+  //   // this.setData({
+  //   //   pageNum: 1,
+  //   //   commentList: [],
+  //   //   articleDetail: {}
+  //   // })
+  //   // console.clear()
+  //   // console.log(this.data.pageNum)
+  //   // // 获取文章详情
+  //   // this.getArticleList(this.data.options.id)
+  //   // this.getCommentList(this.data.options.id)
+  // },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    this.setData({
+      pageNum: 1,
+      commentList: [],
+      articleDetail: {}
+    })
     this.getCommentList(this.data.options.id)
   },
-  onPullDownRefresh(){
-    // 获取文章详情
-    this.getArticleList(this.data.options.id)
-    // 刷新评论
-    this.getCommentList(this.data.options.id)
-  }, 
+  // onPullDownRefresh(){
+  //   // 获取文章详情
+  //   this.getArticleList(this.data.options.id)
+  //   // 刷新评论
+  //   this.getCommentList(this.data.options.id)
+  // }, 
   // 获取文章详情
   getArticleList(id) {
     wx.showToast({
@@ -85,6 +125,7 @@ Page({
       icon: 'loading',
       duration: 1000000
     });
+    console.log(this.data.pageNum)
     wx.request({
       url: `${app.globalData.requestUrl}/User/post_comment`,
       data: {
