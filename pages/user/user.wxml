@@ -26,7 +26,7 @@
           </navigator>
         </view>
         <view class='user-top-cen-bot' bindtap="newGroup">
-          <text class='userIdTit'>SW-</text>
+          <!-- <text class='userIdTit'>SW-</text> -->
           <view class='userIdindex' wx:for="{{userIdindex}}" wx:key=''>
             <text class='userId'></text>
           </view>
@@ -107,27 +107,13 @@
   </view>
 </view>
 <!-- 新建组弹框 -->
-<view class="floating {{floatingStr?'':'hide'}}">
+<!-- <view class="floating {{floatingStr?'':'hide'}}"> -->
+<view class="floating floatingStr hide">
   <view class="con">
     <view class="content">
       <view class="name">请输入ID码</view>
       <view class="content-con">
-        <!-- <input type="text" placeholder="新建组" bindinput="newGroupName" /> -->
-        <text class='yonghuIDLine'>SW-</text>
-        <input class='yonghuID'></input>
-        <input class='yonghuID'></input>
-        <input class='yonghuID'></input>
-        <input class='yonghuID'></input>
-        <text class='yonghuIDLine'>-</text>
-        <input class='yonghuID'></input>
-        <input class='yonghuID'></input>
-        <input class='yonghuID'></input>
-        <input class='yonghuID'></input>
-        <text class='yonghuIDLine'>-</text>
-        <input class='yonghuID'></input>
-        <input class='yonghuID'></input>
-        <input class='yonghuID'></input>
-        <input class='yonghuID'></input>
+        <input placeholder="请输入"></input>
       </view>
     </view>
     <view class="button">

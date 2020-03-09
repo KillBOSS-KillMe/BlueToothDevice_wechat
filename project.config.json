@@ -44,33 +44,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/sc-chose/sc-chose",
-					"pathName": "pages/sc-chose/sc-chose",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/luntan/luntan",
-					"pathName": "pages/luntan/luntan",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/yh-quanxian/yh-quanxian",
-					"pathName": "pages/yh-quanxian/yh-quanxian",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "上传",
-					"pathName": "pages/sc-chose/sc-chose",
+					"name": "pages/homePage/homePage",
+					"pathName": "pages/homePage/homePage",
 					"query": "",
 					"scene": null
 				},
@@ -82,17 +61,10 @@
 					"scene": null
 				},
 				{
-					"id": 5,
-					"name": "pages/articleDetail/articleDetail",
-					"pathName": "pages/articleDetail/articleDetail",
-					"query": "id=7",
-					"scene": null
-				},
-				{
 					"id": -1,
-					"name": "pages/homePage/homePage",
-					"pathName": "pages/homePage/homePage",
-					"query": "id=7",
+					"name": "pages/user/user",
+					"pathName": "pages/user/user",
+					"query": "",
 					"scene": null
 				}
 			]

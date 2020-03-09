@@ -298,6 +298,14 @@
   justify-content: flex-start;
   
 }
+.content-con input {
+  width: 600rpx;
+  border: 1rpx solid #bbb;
+  border-radius: 6rpx;
+  height: 60rpx;
+  padding-left: 20rpx;
+
+}
 .yonghuIDLine{
   font-size: 30rpx;
   color: #424242;

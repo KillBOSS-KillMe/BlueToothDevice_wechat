@@ -6,9 +6,13 @@
       <view class="name">{{userInfo.nickname}}</view>
       <view class="info">
         <view class="vip" wx:if="{{userInfo.member_time == ''}}">未开通</view>
-        <view wx:if="{{userInfo.member_time != ''}}">
-          <!-- <text>单月VIP</text>(会员到期还剩29天) -->
-          <text>VIP</text>(会员到期还剩{{remainingTime}})
+        <view wx:if="{{remainingTime}}">
+          <text>VIP</text>
+          (会员到期还剩{{remainingTime}})
+        </view>
+        <view wx:else="{{remainingTime}}">
+          <text>VIP</text>
+          (会员已到期)
         </view>
       </view>
     </view>

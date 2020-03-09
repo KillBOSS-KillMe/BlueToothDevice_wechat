@@ -47,7 +47,7 @@ Page({
           data = data.data.data
           let i = 0
           for (i in data) {
-            data[i]['createTime'] = app.transformTime(data[i].createTime)
+            data[i]['createTime'] = app.transformTime(data[i].news_time * 1000)
           }
           this.setData({
             messageList: data

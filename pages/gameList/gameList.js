@@ -13,18 +13,18 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
       options: options,
       userInfo: app.globalData.userInfo,
       imgUrl: app.globalData.imgUrl
     })
-    
+
   },
-    /**
+  /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     this.getList(this.data.options.id)
   },
 
@@ -81,32 +81,35 @@ Page({
         }
       } else {
         let isBuy = e.currentTarget.dataset.isbuy
-        if (isBuy == '0') {
-          wx.showModal({
-            title: '',
-            content: '该项未购买，是否前往购买？',
-            cancelText:'取消',
-            confirmText:'去支付',
-            success: res => {
-              if(res.confirm){
-                // 用户点击了确定属性的按钮，对应选择了'去支付'
-                // 跳转
-                let listData = JSON.stringify(this.data.listData)
 
-                wx.navigateTo({
-                  url: `/pages/gameBuy/gameBuy?list=${listData}`
-                })
-              } 
-              // else if(res.cancel){
-              //   // 用户点击了取消属性的按钮，对应选择了'取消'
-              //   that.setData({
-              //     userSex:2
-              //   })
-              // } 
-            }
-          })
-          return false
-        }
+
+
+        // if (isBuy == '0') {
+        //   wx.showModal({
+        //     title: '',
+        //     content: '该项未购买，是否前往购买？',
+        //     cancelText:'取消',
+        //     confirmText:'去支付',
+        //     success: res => {
+        //       if(res.confirm){
+        //         // 用户点击了确定属性的按钮，对应选择了'去支付'
+        //         // 跳转
+        //         let listData = JSON.stringify(this.data.listData)
+
+        //         wx.navigateTo({
+        //           url: `/pages/gameBuy/gameBuy?list=${listData}`
+        //         })
+        //       } 
+        //       // else if(res.cancel){
+        //       //   // 用户点击了取消属性的按钮，对应选择了'取消'
+        //       //   that.setData({
+        //       //     userSex:2
+        //       //   })
+        //       // } 
+        //     }
+        //   })
+        //   return false
+        // }
         listData[index]['str'] = '1'
         selGameList.push(listData[index])
       }
@@ -125,6 +128,25 @@ Page({
   },
   // 下载按钮点击的事件
   download() {
+    //先检查相册访问授权情况
+    wx.getSetting({
+      success: (res) => {
+        //检查是否有访问相册的权限，如果没有则通过wx.authorize方法授权
+        if (!res.authSetting['scope.writePhotosAlbum']) {
+          console.log('没有获取授权');
+          wx.authorize({
+            scope: 'scope.writePhotosAlbum',
+            success: (res) => {
+              //用户点击允许获取相册信息后进入下载保存逻辑
+            }
+          })
+        } else {
+          console.log('已获取授权');
+        }
+      }
+    });
+
+
     // 选中的项目大于0项，执行下载
     if (this.data.selGameList.length > 0) {
       // 此时进行递归下载
@@ -136,27 +158,59 @@ Page({
         did += ','
       }
       did = did.substring(0, did.length - 1)
-      
-
-      // 单条数据下载
-      wx.downloadFile({
-        url: `${app.globalData.requestUrl + selGameList[0].file}`,
-        success: function (data) {
-          console.log(data);
-          var path = data.tempFilePath;
-          wx.saveImageToPhotosAlbum({
-
-            filePath: path,
-            success(data) {
-              wx.showToast({
-                title: '保存成功',
-                icon: 'success',
-                duration: 2000
+      var stemManager = wx.getFileSystemManager()
+      wx.request({
+        url: `${app.globalData.requestUrl}/Official/download`,
+        method: "POST",
+        data: {
+          did: did,
+          uid: this.data.userInfo.id,
+        },
+        success(res) {
+          if (res.data.code == 1) {
+          var list = res.data.data || []
+            Promise.all(list.map(item => {
+              return new Promise((resolve, reject) => {
+                console.log(`${app.globalData.requestUrl}${item.file}`)
+                wx.downloadFile({
+                  url: `${app.globalData.requestUrl}${item.file}`,
+                  success(res) {
+                    var savePath = `${wx.env.USER_DATA_PATH}/${item.name}.jpg`
+                    stemManager.saveFile({
+                      tempFilePath: res.tempFilePath,
+                      filePath: savePath,
+                      success(data) {
+                        //获取了相册的访问权限，使用 wx.saveImageToPhotosAlbum 将图片保存到相册中
+                        wx.saveImageToPhotosAlbum({
+                          filePath: savePath,
+                          success: (data) => {
+                            resolve(data)
+                          }
+                        })
+                      },
+                    })
+                  }
+                })
               })
-            }
-          })
+            })).then(res => {
+              //保存成功弹出提示，告知一下用户
+              wx.showModal({
+                title: '文件已保存到手机相册',
+                content: '位于tencent/MicroMsg/WeiXin下 \r\n将保存的文件重命名改为[ .bin ]后缀即可',
+                confirmColor: '#0bc183',
+                confirmText: '知道了',
+                showCancel: false
+              })
+            })
+          } else {
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none'
+            })
+          }
         }
       })
+
     } else {
       // 等于0项，修改按钮状态
       if (this.data.downloadStr) {
@@ -175,7 +229,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
@@ -183,35 +237,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
