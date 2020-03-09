@@ -78,6 +78,21 @@
 					"id": -1,
 					"name": "pages/user/user",
 					"pathName": "pages/user/user",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "pages/articleDetail/articleDetail",
+					"pathName": "pages/articleDetail/articleDetail",
+					"query": "id=7",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/homePage/homePage",
+					"pathName": "pages/homePage/homePage",
+					"query": "id=7",
 					"scene": null
 				}
 			]

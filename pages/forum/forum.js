@@ -61,14 +61,19 @@ Page({
           })
           data = data.data.data
           
-          let list = this.data.articleListAll.concat(data)
+
           let i = 0
-          for (i in list) {
-            list[i]['createTime'] = app.transformTime(list[i].createTime * 1000)
-            if (app.globalData.delPostId == list[i].id) {
-              list.splice(i, 1)
+          for (i in data) {
+            data[i]['createTime'] = app.transformTime(data[i].createTime * 1000)
+            if (app.globalData.delPostId == data[i].id) {
+              data.splice(i, 1)
             }
           }
+
+          let list = this.data.articleListAll.concat(data)
+
+
+
           this.setData({
             articleListAll: list,
             articleList: list

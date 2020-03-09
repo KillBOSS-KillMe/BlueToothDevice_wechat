@@ -141,16 +141,18 @@ Page({
           this.setData({
             pageNum: pageNum
           })
-          data = data.data.data
-          let list = this.data.commentList.concat(data)
+          data = data.data.data || []
           let i = 0
-          for (i in list) {
-            list[i]['createTime'] = app.transformTime(list[i].createTime * 1000)
+          for (i in data) {
+            data[i]['createTime'] = app.transformTime(data[i].createTime * 1000)
             let y = 0
-            for (y in list[i].reply) {
-              list[i].reply[y]['createTime'] = app.transformTime(list[i].reply[y].createTime * 1000)
+            for (y in data[i].reply) {
+              data[i].reply[y]['createTime'] = app.transformTime(data[i].reply[y].createTime * 1000)
             }
           }
+
+          let list = this.data.commentList.concat(data)
+
           console.log(list)
           this.setData({
             commentList: list

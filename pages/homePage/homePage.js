@@ -16,6 +16,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.downloadFile({
+      url: `${app.globalData.requestUrl}/upload/file/game/20191203/f3444e080d8954667476069afe9e9b85.bin`,
+      success(data) {console.log(data)}
+    })
+
     this.setData({
       navAction: app.globalData.navAction,
       userInfo: app.globalData.userInfo,
