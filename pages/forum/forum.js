@@ -99,14 +99,26 @@ Page({
       url: `${app.globalData.requestUrl}/Forum/search`,
       method: 'POST',
       data: {
-        title: e.detail.value
+        title: e.detail.value,
+        uid: this.data.userInfo.id,
       },
       success: data => {
         wx.hideToast()
         data = app.null2str(data)
         if (data.data.code == 1) {
+
+          data = data.data.data
+          let i = 0
+          for (i in data) {
+            data[i]['createTime'] = app.transformTime(data[i].createTime * 1000)
+            if (app.globalData.delPostId == data[i].id) {
+              data.splice(i, 1)
+            }
+          }
+          // let list = this.data.articleListAll.concat(data)
+          let list = data
           this.setData({
-            articleList: data.data.data
+            articleList: list
           })
         } else {
           this.setData({

@@ -129,22 +129,20 @@ Page({
   // 下载按钮点击的事件
   download() {
     //先检查相册访问授权情况
-    wx.getSetting({
-      success: (res) => {
-        //检查是否有访问相册的权限，如果没有则通过wx.authorize方法授权
-        if (!res.authSetting['scope.writePhotosAlbum']) {
-          console.log('没有获取授权');
-          wx.authorize({
-            scope: 'scope.writePhotosAlbum',
-            success: (res) => {
-              //用户点击允许获取相册信息后进入下载保存逻辑
-            }
-          })
-        } else {
-          console.log('已获取授权');
-        }
-      }
-    });
+    // wx.getSetting({
+    //   success: (res) => {
+    //     //检查是否有访问相册的权限，如果没有则通过wx.authorize方法授权
+    //     if (!res.authSetting['scope.writePhotosAlbum']) {
+    //       wx.authorize({
+    //         scope: 'scope.writePhotosAlbum',
+    //         success: (res) => {
+    //           //用户点击允许获取相册信息后进入下载保存逻辑
+    //         }
+    //       })
+    //     } else {
+    //     }
+    //   }
+    // });
 
 
     // 选中的项目大于0项，执行下载
@@ -171,35 +169,38 @@ Page({
           var list = res.data.data || []
             Promise.all(list.map(item => {
               return new Promise((resolve, reject) => {
-                console.log(`${app.globalData.requestUrl}${item.file}`)
                 wx.downloadFile({
                   url: `${app.globalData.requestUrl}${item.file}`,
                   success(res) {
-                    var savePath = `${wx.env.USER_DATA_PATH}/${item.name}.jpg`
+                    var savePath = `${wx.env.USER_DATA_PATH}/${item.name}.bin`
                     stemManager.saveFile({
                       tempFilePath: res.tempFilePath,
                       filePath: savePath,
                       success(data) {
-                        //获取了相册的访问权限，使用 wx.saveImageToPhotosAlbum 将图片保存到相册中
-                        wx.saveImageToPhotosAlbum({
-                          filePath: savePath,
-                          success: (data) => {
-                            resolve(data)
-                          }
-                        })
+                        resolve(data)
                       },
                     })
-                  }
+                  },
                 })
               })
             })).then(res => {
               //保存成功弹出提示，告知一下用户
               wx.showModal({
-                title: '文件已保存到手机相册',
-                content: '位于tencent/MicroMsg/WeiXin下 \r\n将保存的文件重命名改为[ .bin ]后缀即可',
+                title: '文件下载成功',
+                content: '位于tencent/MicroMsg/wxanewfiles下',
                 confirmColor: '#0bc183',
                 confirmText: '知道了',
-                showCancel: false
+                showCancel: false,
+                success(res) {
+                  if(res.confirm) {
+                    wx.navigateBack()
+                  }
+                }
+              })
+            }).catch(data => {
+              wx.showToast({
+                title: '下载错误，请重试',
+                icon: 'none'
               })
             })
           } else {
