@@ -24,7 +24,8 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo,
       requestImgUrl: app.globalData.requestImgUrl,
-      originalImgUrl: app.globalData.originalImgUrl
+      originalImgUrl: app.globalData.originalImgUrl,
+      id: options.id
     })
     // 关注的人
     this.userFollow()
@@ -59,7 +60,7 @@ Page({
     wx.request({
       url: `${app.globalData.requestUrl}/User/user_follow`,
       data: {
-        uid: this.data.userInfo.id
+        uid: this.data.id
       },
       method: "POST",
       success: data => {
@@ -97,7 +98,7 @@ Page({
     wx.request({
       url: `${app.globalData.requestUrl}/User/follow_post`,
       data: {
-        uid: this.data.userInfo.id
+        uid: this.data.id
       },
       method: "POST",
       success: data => {
@@ -130,7 +131,7 @@ Page({
     wx.request({
       url: `${app.globalData.requestUrl}/User/user_fans`,
       data: {
-        uid: this.data.userInfo.id
+        uid: this.data.id
       },
       method: "POST",
       success: data => {

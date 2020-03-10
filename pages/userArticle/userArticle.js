@@ -11,8 +11,10 @@ Page({
     pageNum: 1,
     navAction:  ['noActive', 'active', 'noActive', 'noActive']
   },
-  onLoad: function () {
-    
+  onLoad: function (options) {
+    this.setData({
+      id: options.id
+    })
     // 获取文章列表
     // this.getArticleList()
   },
@@ -46,7 +48,7 @@ Page({
       url: `${app.globalData.requestUrl}/User/user_post`,
       method: 'POST',
       data: {
-        uid: this.data.userInfo.id,
+        uid: this.data.id,
         page: this.data.pageNum
       },
       success: data => {

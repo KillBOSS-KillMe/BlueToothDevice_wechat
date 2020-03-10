@@ -47,19 +47,19 @@
 <view class='user-cen'>
   <view class='user-cen-con'>
     <view class='user-nav-li'>
-      <navigator url='/pages/userAttention/userAttention' class='user-nav-li-li' hover-class="none">
+      <navigator url='/pages/userAttention/userAttention?id={{id}}' class='user-nav-li-li' hover-class="none">
         <text class='user-count'>{{userInfo.follow_num}}</text>
         <text class='user-nav-con'>关注</text>
       </navigator>
     </view>
     <view class='user-nav-li'>
-      <navigator url='/pages/userDownloadList/userDownloadList' class='user-nav-li-li' hover-class="none">
+      <navigator url='/pages/userDownloadList/userDownloadList?id={{id}}' class='user-nav-li-li' hover-class="none">
         <text class='user-count'>{{userInfo.download_num}}</text>
         <text class='user-nav-con'>下载</text>
       </navigator>
     </view>
     <view class='user-nav-li' bindtap="tieziTap">
-      <navigator url='/pages/userArticle/userArticle' class='user-nav-li-li' hover-class="none">
+      <navigator url='/pages/userArticle/userArticle?id={{id}}' class='user-nav-li-li' hover-class="none">
         <text class='user-count'>{{userInfo.release_num}}</text>
         <text class='user-nav-con'>帖子</text>
       </navigator>

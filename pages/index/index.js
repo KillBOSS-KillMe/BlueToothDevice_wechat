@@ -153,9 +153,7 @@ Page({
     })
     let userInfo = app.globalData.userInfo
     this.getGameList()
-    console.log(userInfo)
     // 获取用户信息
-    console.log(userInfo.hasOwnProperty("id"))
     if (!userInfo.hasOwnProperty("id")) {
     // if (Object.keys(userInfo).length == 0) {
       this.getUserInfo()
@@ -177,11 +175,14 @@ Page({
 
   },
   onShow() {
+      app.globalData.navAction = ['active', 'noActive', 'noActive', 'noActive']
+    this.setData({
+      navAction: ['active', 'noActive', 'noActive', 'noActive']
+    })
     if (wx.setKeepScreenOn) {
       wx.setKeepScreenOn({
         keepScreenOn: true,
         success: function (res) {
-          //console.log('保持屏幕常亮')
         }
       })
     }
@@ -196,7 +197,6 @@ Page({
     // return false
     // 获取到连接的设备服务信息
     let deviceNode = app.globalData.deviceNode
-    console.log(deviceNode)
     if (Object.keys(deviceNode).length > 0) {
       var devid = decodeURIComponent(deviceNode.deviceId);
       var devname = decodeURIComponent(deviceNode.name);
@@ -322,7 +322,6 @@ Page({
     deviceData['num'] = num + 1
     deviceData['seqListNode'] = seqListNode
     // deviceData['num'] = deviceData.num + 1
-    console.log(deviceData)
     this.setData({
       deviceData: deviceData
     })
@@ -369,7 +368,6 @@ Page({
       }
     }
     deviceData['seqListNode'] = seqListNode
-    console.log(deviceData)
     this.setData({
       deviceData: deviceData
     })
@@ -387,7 +385,6 @@ Page({
   onBLEConnectionStateChange: function (onFailCallback) {
     wx.onBLEConnectionStateChange(function (res) {
       // 该方法回调中可以用于处理连接意外断开等异常情况
-      console.log(`device ${res.deviceId} state has changed, connected: ${res.connected}`);
       return res.connected;
     });
   },
@@ -412,14 +409,10 @@ Page({
   //获取蓝牙设备某个服务中的所有 characteristic（特征值）
   getBLEDeviceCharacteristics() {
     // var that = this;
-    console.log('特征值读取-----------------------------------')
-    console.log(`deviceId-----${this.data.deviceId}`)
-    console.log(`serviceId-----${this.data.serviceId}`)
     wx.getBLEDeviceCharacteristics({
       deviceId: this.data.deviceId,
       serviceId: this.data.serviceId,
       success: res => {
-        console.log(res)
         for (let i = 0; i < res.characteristics.length; i++) {
           let item = res.characteristics[i]
           if (item.properties.read) {//该特征值是否支持 read 操作
@@ -451,7 +444,6 @@ Page({
 
       },
       fail: function (err) {
-        console.log(err)
       },
     })
     // that.onBLECharacteristicValueChange();   //监听特征值变化
@@ -467,15 +459,12 @@ Page({
       characteristicId: that.data.notifyCharacteristicId,
       success: function (res) {
         var log = that.data.textLog + "notify启动成功" + res.errMsg + "\n";
-        console.log('notifyBLECharacteristicValueChange')
-        console.log(res)
         that.setData({
           textLog: log,
         });
         that.onBLECharacteristicValueChange();   //监听特征值变化
       },
       fail: function (res) {
-        console.log(res)
         wx.showToast({
           title: 'notify启动失败',
           mask: true
@@ -495,7 +484,6 @@ Page({
       serviceId: that.data.serviceId,
       characteristicId: that.data.notifyCharacteristicId,
       success(res) {
-        console.log(res)
         // console.log(res)
         // var resValue = utils.ab2hext(res.value); //16进制字符串
         // console.log(resValue)
@@ -505,10 +493,8 @@ Page({
         //   deviceData: deviceData
         // })
         wx.onBLECharacteristicValueChange(function (res) {
-          console.log(res)
           var resValue = utils.ab2hext(res.value); //16进制字符串
           if (resValue.indexOf("FF00FF00FF00FF00") != -1) {
-            console.log('getData========>>>>>>' + resValue)
             let deviceData = app.getDiviceDataAnalysis(resValue)
             that.setData({
               originalData: deviceData,

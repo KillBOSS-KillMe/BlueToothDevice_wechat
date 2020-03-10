@@ -21,7 +21,7 @@
               </view>
             </view>
           </view>
-          <view class='gz-top-right'>
+          <view class='gz-top-right' wx:if="{{id == userInfo.id}}">
             <view data-index="{{index}}" data-id="{{item.id}}" class="{{item.str=='0'?'gz-guanzhu':'gz-guanzhued'}}" bindtap="focusTap">
               <span wx:if="{{item.str == '1'}}" >关注</span>
               <span wx:if="{{item.str == '0'}}">取消关注</span>
@@ -75,7 +75,7 @@
                 </view>
               </view>
             </view>
-            <view class='gz-top-right'>
+            <view class='gz-top-right'  wx:if="{{id == userInfo.id}}">
               <view data-index="{{index}}" data-id="{{item.uid}}" class="{{item.str=='0'?'gz-guanzhu':'gz-guanzhued'}}" bindtap="focusTaps">
                 <span wx:if="{{item.str == '1'}}" >关注</span>
                 <span wx:if="{{item.str == '0'}}">取消关注</span>

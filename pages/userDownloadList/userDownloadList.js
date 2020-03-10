@@ -20,7 +20,8 @@ Page({
     //   return ''
     // }
     this.setData({
-      userInfo: app.globalData.userInfo
+      userInfo: app.globalData.userInfo,
+      id: options.id
     })
     wx.showToast({
       title: "数据加载中...",
@@ -33,7 +34,7 @@ Page({
         'Content-Type': 'application/json'
       },
       data: {
-        uid: this.data.userInfo.id
+        uid: this.data.id
       },
       method: "POST",
       success: res => {

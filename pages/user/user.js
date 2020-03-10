@@ -15,10 +15,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(opt) {
-    console.log(app.globalData.userInfo)
     this.setData({
       navAction: app.globalData.navAction,
-      userInfo: app.globalData.userInfo
+      userInfo: app.globalData.userInfo,
+      id: app.globalData.userInfo.id
     })
     // console.log(this.data.userInfo)
     this.getMessage()

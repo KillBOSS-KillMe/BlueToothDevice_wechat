@@ -15,7 +15,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      userInfo: app.globalData.userInfo
+      userInfo: app.globalData.userInfo,
+      id: options.id
     })
     this.getShowUserInfo(options.id)
   },

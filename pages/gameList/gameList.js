@@ -172,6 +172,7 @@ Page({
                 wx.downloadFile({
                   url: `${app.globalData.requestUrl}${item.file}`,
                   success(res) {
+                    // console.log(wx.env.USER_DATA_PATH)
                     var savePath = `${wx.env.USER_DATA_PATH}/${item.name}.bin`
                     stemManager.saveFile({
                       tempFilePath: res.tempFilePath,
