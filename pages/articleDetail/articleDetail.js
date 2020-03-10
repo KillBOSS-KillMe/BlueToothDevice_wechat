@@ -78,8 +78,7 @@ Page({
   onShow: function() {
     this.setData({
       pageNum: 1,
-      commentList: [],
-      articleDetail: {}
+      commentList: []
     })
     this.getCommentList(this.data.options.id)
   },
@@ -125,7 +124,6 @@ Page({
       icon: 'loading',
       duration: 1000000
     });
-    console.log(this.data.pageNum)
     wx.request({
       url: `${app.globalData.requestUrl}/User/post_comment`,
       data: {
@@ -152,8 +150,6 @@ Page({
           }
 
           let list = this.data.commentList.concat(data)
-
-          console.log(list)
           this.setData({
             commentList: list
           })
