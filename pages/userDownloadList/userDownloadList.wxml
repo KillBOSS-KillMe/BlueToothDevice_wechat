@@ -26,6 +26,7 @@
             <icon class='iconfont icon-xuanze'></icon>
           </view>
           <text class='aihua01-size'>{{item.size}}</text>
+          <text class='aihua01-size'>{{item.d_num}}</text>
         </view>
       </view>
     </block>
