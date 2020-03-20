@@ -281,15 +281,15 @@ Page({
   deleImg(e) {
     var index = e.currentTarget.dataset.index
     let url = this.data.imgList[index]
-    this.runDelFile(url, 'img')
+    this.runDelFile(url, 'img',index)
   },
   // 文件删除
   deleFile(e) {
     var index = e.currentTarget.dataset.index
     let url = this.data.fileList[index].path
-    this.runDelFile(url, 'file')
+    this.runDelFile(url, 'file',index)
   },
-  runDelFile(url, type) {
+  runDelFile(url, type,index) {
     if (type == 'file') {
       type = '2'
     } else {
@@ -323,6 +323,7 @@ Page({
             this.setData({
               imgList: imgList
             })
+            console.log(imgList,'删除')
           }
           
           wx.showToast({

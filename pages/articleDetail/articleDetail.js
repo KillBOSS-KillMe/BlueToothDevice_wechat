@@ -41,7 +41,7 @@ Page({
     
     // 获取文章详情
     this.getArticleList(options.id)
-    this.getCommentList(options.id)
+    // this.getCommentList(options.id)
   },
   // 下拉刷新
   // onPullDownRefresh: function() {

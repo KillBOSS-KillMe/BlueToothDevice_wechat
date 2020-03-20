@@ -2,12 +2,13 @@
 <view class="con">
   <view class="setcon">
     <view class="setTextImg">
-      <textarea placeholder="{{placeholderText}}" bindinput="getCommentCon"></textarea>
+      <textarea placeholder="{{placeholderText}}" maxlength="50" bindinput="getCommentCon"></textarea>
       <view class="upfile">
         <icon class="iconfont iconpicture" bindtap="chooseImage"></icon>
         <icon class="iconfont iconjiaoben" bindtap="chooseFile"></icon>
       </view>
     </view>
+    <text class="currentWordNumber">{{currentWordNumber|0}}/50</text>
     <view class="imgList">
       <block class="groupList" wx:for="{{imgList}}" wx:key="{{item}}">
         <view class="img-item">

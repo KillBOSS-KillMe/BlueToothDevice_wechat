@@ -93,6 +93,12 @@ Page({
   },
   // 获取评论内容
   getCommentCon(e) {
+    var len = parseInt(e.detail.value.length);
+    if (len > this.data.max) return;
+    // 当输入框内容的长度大于最大长度限制（max)时，终止setData()的执行
+    this.setData({
+      currentWordNumber: len //当前字数
+    });
     this.setData({
       commentCon: e.detail.value
     })
