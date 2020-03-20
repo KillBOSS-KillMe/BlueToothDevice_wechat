@@ -30,17 +30,18 @@
     </view>
   </view> -->
   <view class='in-con-con'>
-    <block class="groupList" wx:for="{{deviceGroupList}}" wx:key="{{item}}">
-      <view class='in-con-nav' data-id="{{item.id}}" bindtap="setGroup">
+  <!-- 导航暂存 -->
+    <!-- <block class="groupList" wx:for="{{deviceGroupList}}" wx:key="{{item}}">
+      <view class='in-con-nav' data-id="{{item.id}}" bindtap="setGroup" >
         <view class="in-con-icon {{item.id == listType?'active':''}}">
           <image src='/image/xitongzu.png' class='xitongzu'></image>
         </view>
         <text class='in-group'>{{item.group}}</text>
       </view>
-    </block>
+    </block> -->
     <block class="groupList" wx:for="{{groupList}}" wx:key="{{item}}">
-      <view class='in-con-nav' data-id="{{item.id}}" bindtap="setGroup">
-        <view class='in-con-icon'>
+      <view class='in-con-nav' data-id="{{item.id}}" data-current = "{{index}}" bindtap="setGroup" bindlongpress="delGroup">
+        <view class="in-con-icon {{index == currentIndex ?'active':''}}">
           <image src='/image/zu.png' class='xitongzu'></image>
         </view>
         <text class='in-group'>{{item.group}}</text>
@@ -55,9 +56,10 @@
   </view>
 </view>
 <!-- 项目栏部分 -->
-<view class='aiHua'>
+<view class='aiHua'  current="{{currentIndex}}">
   <scroll-view  class='aiYou' scroll-y='{{pageInfo.scrollY}}' style='height: {{pageInfo.scrollHeight}}%'>
-    <block class="item" wx:if="{{listType != 'a' && listType != 'b' && listType != 'all'}}" wx:for="{{flieList}}" wx:key="{{item}}">
+    <!-- <block class="item" wx:if="{{listType != 'a' && listType != 'b' && listType != 'all'}}" wx:for="{{flieList}}" wx:key="{{item}}"> -->
+    <block class="item"  wx:for="{{flieList}}" wx:key="{{item}}">
       <view class="aiYou-li {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}"
       bindlongtap='' data-index='{{index}}'>
         <view class='aihua01-left' data-id="{{item.id}}" data-groupid="{{item.group_id}}">
@@ -78,14 +80,15 @@
         </view>
         <view class='aihua01-right'>
           <text class='aihua01-size'>{{item.size}}kb</text>
-          <view class='in-xuanzhong'>
+          <text class="dataDel" bindtap="dataDel" data-id="{{item.id}}" data-index="{{index}}">删除</text>
+          <!-- <view class='in-xuanzhong'>
             <icon class="iconfont  {{item.str=='0'?'icon-weixuanze':'icon-xuanze'}} icon-weixuanze1" bindtap='clickTest' data-index="{{index}}"></icon>
-          </view>
+          </view> -->
           
         </view>
       </view>
     </block>
-    <block class="item" wx:if="{{listType == 'a'}}" wx:for="{{deviceData.listA}}" wx:key="{{item}}">
+    <!-- <block class="item" wx:if="{{listType == 'a'}}" wx:for="{{deviceData.listA}}" wx:key="{{item}}">
       <view class="aiYou-li {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}"
        hover-class="none" wx:if="{{item.groupANum < deviceData.num}}"
       bindlongtap='delDeviceData' data-index='{{index}}'  data-id="{{item.id}}"
@@ -95,10 +98,6 @@
         <view class='aihua01-left' data-id="{{item.id}}">
           <text class='in-count'>{{index + 1}}</text>
           <icon class='iconfont iconjiaoben wjj-icon'></icon>
-          <!-- <icon wx:if="{{item.type == '1'}}" class='iconfont icon-jiaoben wjj-icon'></icon> -->
-          <!-- <icon wx:if="{{item.type == '2'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
-          <icon wx:if="{{item.type == '3'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
-          <icon wx:if="{{item.type == '4'}}" class='iconfont icon-jiaoben wjj-icon'></icon> -->
           <view class='aihua01'>
             <text class='aihua-con'>{{item.id}}</text>
             <view style='display:flex;justify-content:start;'>
@@ -108,15 +107,14 @@
           </view>
         </view>
         <view class='aihua01-right'>
-          <!-- <text class='aihua01-size'>{{item.size}}kb</text> -->
           <view class='in-xuanzhong'>
             <icon class="iconfont  {{item.str=='0'?'icon-weixuanze':'icon-xuanze'}} icon-weixuanze1" bindtap='clickTest' data-index="{{index}}"></icon>
           </view>
           
         </view>
       </view>
-    </block>
-    <block class="item" wx:if="{{listType == 'b'}}" wx:for="{{deviceData.listB}}" wx:key="{{item}}">
+    </block> -->
+    <!-- <block class="item" wx:if="{{listType == 'b'}}" wx:for="{{deviceData.listB}}" wx:key="{{item}}">
       <view class="aiYou-li {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}"
        hover-class="none" wx:if="{{item.groupBNum < deviceData.num}}"
       bindlongtap='delDeviceData' data-index='{{index}}'  data-id="{{item.id}}"
@@ -126,10 +124,6 @@
         <view class='aihua01-left' data-id="{{item.id}}">
           <text class='in-count'>{{index + 1}}</text>
           <icon class='iconfont iconjiaoben wjj-icon'></icon>
-          <!-- <icon wx:if="{{item.type == '1'}}" class='iconfont icon-jiaoben wjj-icon'></icon> -->
-          <!-- <icon wx:if="{{item.type == '2'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
-          <icon wx:if="{{item.type == '3'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
-          <icon wx:if="{{item.type == '4'}}" class='iconfont icon-jiaoben wjj-icon'></icon> -->
           <view class='aihua01'>
             <text class='aihua-con'>{{item.id}}</text>
             <view style='display:flex;justify-content:start;'>
@@ -139,7 +133,6 @@
           </view>
         </view>
         <view class='aihua01-right'>
-          <!-- <text class='aihua01-size'>{{item.size}}kb</text> -->
           <view class='in-xuanzhong'>
             <icon class="iconfont  {{item.str=='0'?'icon-weixuanze':'icon-xuanze'}} icon-weixuanze1" bindtap='clickTest' data-index="{{index}}"></icon>
           </view>
@@ -156,10 +149,6 @@
         <view class='aihua01-left' data-id="{{item.id}}">
           <text class='in-count'>{{index + 1}}</text>
           <icon class='iconfont iconjiaoben wjj-icon'></icon>
-          <!-- <icon wx:if="{{item.type == '1'}}" class='iconfont icon-jiaoben wjj-icon'></icon> -->
-          <!-- <icon wx:if="{{item.type == '2'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
-          <icon wx:if="{{item.type == '3'}}" class='iconfont icon-jiaoben wjj-icon'></icon>
-          <icon wx:if="{{item.type == '4'}}" class='iconfont icon-jiaoben wjj-icon'></icon> -->
           <view class='aihua01'>
             <text class='aihua-con'>{{item.id}}</text>
             <view style='display:flex;justify-content:start;'>
@@ -169,17 +158,17 @@
           </view>
         </view>
         <view class='aihua01-right'>
-          <!-- <text class='aihua01-size'>{{item.size}}kb</text> -->
           <view class='in-xuanzhong'>
             <icon class="iconfont  {{item.str=='0'?'icon-weixuanze':'icon-xuanze'}} icon-weixuanze1" bindtap='clickTest' data-index="{{index}}"></icon>
           </view>
           
         </view>
       </view>
-    </block>
+    </block> -->
     
   </scroll-view >
-  <view class="linkDevice" wx:if="{{listType == 'a' || listType == 'b' || listType == 'all'}}">
+  <!-- <view class="linkDevice" wx:if="{{listType == 'a' || listType == 'b' || listType == 'all'}}"> -->
+  <view class="linkDevice">
     <view bindtap="newDeviceData">添加数据包</view>
     <view bindtap="upDeviceData">数据更新到设备</view>
   </view>

@@ -120,6 +120,7 @@ Page({
       { 'id': 'b', 'group': 'B组' },
       { 'id': 'all', 'group': '全部' }
     ],
+    currentIndex: null,
     state: '',
     pageInfo: {
       rowHeight: 47,
@@ -143,7 +144,8 @@ Page({
     readCharacteristicId: '',
     listType: 'a',
     hideGroup: 1001,
-    listGameData: []
+    listGameData: [],
+    gid: ''
   },
 
 
@@ -152,6 +154,7 @@ Page({
       navAction: app.globalData.navAction
     })
     let userInfo = app.globalData.userInfo
+    console.log(userInfo,'缓存用户信息')
     this.getGameList()
     // 获取用户信息
     if (!userInfo.hasOwnProperty("id")) {
@@ -172,13 +175,13 @@ Page({
         this.getGroupList()
       }
     }
-
   },
   onShow() {
-      app.globalData.navAction = ['active', 'noActive', 'noActive', 'noActive']
+    app.globalData.navAction = ['active', 'noActive', 'noActive', 'noActive']
     this.setData({
       navAction: ['active', 'noActive', 'noActive', 'noActive']
     })
+    this.getUserInfo()
     if (wx.setKeepScreenOn) {
       wx.setKeepScreenOn({
         keepScreenOn: true,
@@ -238,13 +241,120 @@ Page({
       url: `/pages/deviceLink/deviceLink`
     })
   },
-  // 新建数据
-  newDeviceData() {
-    if (this.data.listGameData.length <= 0) {
-      this.getGameList()
-    } else {
+  // 删除数据包
+  dataDel(e){
+    console.log(e.currentTarget.dataset.id)
+    let delId = e.currentTarget.dataset.id
+    let index = e.currentTarget.dataset.index
+    wx.request({
+      url: `${app.globalData.requestUrl}/FileGroup/delData`,
+      method: 'POST',
+      data: {
+        id: delId
+      },
+      success: data => {
+        wx.hideToast()
+        data = app.null2str(data)
+        if (data.data.code == 1) {
+        let flieList = this.data.flieList
+        flieList.splice(index, 1)
+        console.log(flieList)
+          this.setData({
+            flieList: flieList
+          })
+          wx.showToast({
+            title: "删除成功！",
+            icon: 'success',
+            duration: 2000,
+          });
+        } else {
+          wx.showToast({
+            title: data.data.msg,
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      }
+    })
+  },
+  // 长按删除分组
+  delGroup(e){
+    console.log(e)
+    let gid = e.currentTarget.dataset.id
+    let index = e.currentTarget.dataset.current
+    wx.showModal({ //使用模态框提示用户进行操作
+      title: '',
+      content: '确认删除当前分组？',
+      success: res => {
+        if (res.confirm) {
+          wx.request({
+            url: `${app.globalData.requestUrl}/FileGroup/delGroup`,
+            method: 'POST',
+            data: {
+              uid: this.data.userInfo.id,
+              gid: gid
+            },
+            success: data => {
+              wx.hideToast()
+              data = app.null2str(data)
+              if (data.data.code == 1) {
+                let groupList = this.data.groupList
+                groupList.splice(index, 1)
+                console.log(groupList)
+                this.setData({
+                  groupList: groupList
+                })
+                this.getFlieList()
+                this.setData({
+                  flieList: []
+                })
+                wx.showToast({
+                  title: "删除成功！",
+                  icon: 'success',
+                  duration: 2000,
+                });
+              } else {
+                wx.showToast({
+                  title: data.data.msg,
+                  icon: 'none',
+                  duration: 2000
+                });
+              }
+            }
+          })
+        }
+      }
+    })
 
+  },
+  // 新建数据
+  newDeviceData(e) {
+    if (this.data.gid == ''){
+      wx.showToast({
+        title: '请选择分组',
+        icon: 'none',
+        duration: 2000
+      })
+    }else{
+      // 文件选择
+      wx.chooseMessageFile({
+        count: 1,
+        type: 'file',
+        success: res => {
+          this.uploadfile(res.tempFiles)
+        }
+      })
     }
+    
+   
+
+
+
+    // if (this.data.listGameData.length <= 0) {
+    //   this.getGameList()
+    // } else {
+
+    // }
     // wx.request({
     //   url: `${app.globalData.requestUrl}/Official/download`,
     //   data: {
@@ -327,6 +437,43 @@ Page({
     })
     // 获取分组数据列表
     this.getGroupingList()
+  },
+  // 文件上传
+  uploadfile(fileNode) {
+    console.log(this.data.userInfo.id)
+    // return false
+    for (let i = 0; i < fileNode.length; i++) {
+      console.log(fileNode[i].path)
+      wx.uploadFile({
+        url: `${app.globalData.requestUrl}/FileGroup/uploadData`,
+        filePath: fileNode[i].path,
+        name: 'data',
+        formData: {
+          name: fileNode[i].name,
+          uid: this.data.userInfo.id,         //用户Id
+          gid: this.data.gid,         //分组id
+        },
+        success: data => {
+          data = app.null2str(JSON.parse(data.data))
+          // data = app.null2str(data.data)
+          if (data.code == 1) {
+            console.log(data,'shuju')
+            this.getFlieList()
+            // let fileList = this.data.fileList
+            // fileList.push({ name: data.name, filename: data.name, path: data.data, size: data.size })
+            // this.setData({
+            //   fileList: fileList
+            // })
+          } else {
+            wx.showToast({
+              title: data.msg,
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        }
+      });
+    }
   },
   // 设备数据删除事件
   delDeviceData(e) {
@@ -813,9 +960,10 @@ Page({
             groupList: data
           })
           app.globalData.groupList = data
-          if (data.length > 0) {
-            this.getFlieList(data[0].id)
-          }
+          console.log(data[0].id,'导航ID')
+          // if (data.length > 0) {
+          //   this.getFlieList(data[0].id)
+          // }
         } else {
           wx.showToast({
             title: data.data.msg,
@@ -827,17 +975,25 @@ Page({
     })
   },
   setGroup(e) {
+    console.log(e)
     this.setData({
-      listType: e.currentTarget.dataset.id
+      currentIndex: e.currentTarget.dataset.current
     })
-    let listType = this.data.listType
-    if (listType == 'a' || listType == 'b' || listType == 'all') {
-      // 获取分组数据列表
-      this.getGroupingList()
-    } else {
-      // 从服务器获取数据
-      this.getFlieList(listType)
-    }
+    
+    let listType = e.currentTarget.dataset.id
+    this.setData({
+      gid: listType
+    })
+    // if (listType == 'a' || listType == 'b' || listType == 'all') {
+    //   // 获取分组数据列表
+    //   this.getGroupingList()
+    // } else {
+    //   // 从服务器获取数据
+    this.getFlieList()
+    this.setData({
+      flieList: []
+    })
+    // }
   },
   // 获取分组数据列表
   getGroupingList(deviceData) {
@@ -889,7 +1045,7 @@ Page({
     this.setGroupNum()
   },
   // 通过分组ID获取分组下数据包列表
-  getFlieList(id) {
+  getFlieList() {
     wx.showToast({
       title: "数据加载中...",
       icon: 'loading',
@@ -899,7 +1055,7 @@ Page({
       url: `${app.globalData.requestUrl}/FileGroup/queryData`,
       method: 'POST',
       data: {
-        gid: id
+        gid: this.data.gid
       },
       success: data => {
         wx.hideToast()

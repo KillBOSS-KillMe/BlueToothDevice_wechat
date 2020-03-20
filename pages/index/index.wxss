@@ -167,6 +167,13 @@ display: block;
   font-weight:800;
   margin-bottom:5rpx;
   color:#424242;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.dataDel{
+  font-size: 30rpx;
+  color: #E64340;
 }
 .aihua01-left image{
 width:66rpx;

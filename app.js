@@ -57,6 +57,7 @@ App({
     sysinfo: null,
     groupList: [],
     articleDetail: {},
+    // requestUrl: 'http://192.168.1.168',
     requestUrl: 'http://47.104.91.26',
     // 图片地址
     imgUrl: 'http://47.104.91.26',
