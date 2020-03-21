@@ -80,6 +80,7 @@ Page({
   },
   pay() {
     let userInfo = this.data.userInfo
+    console.log(userInfo)
     let data = {
       openid: userInfo.openid,
       uid: userInfo.id,
@@ -107,6 +108,7 @@ Page({
         data = app.null2str(data)
         if (data.data.code == 1) {
           data = data.data.data
+          console.log(data)
           wx.showToast({
             title: "数据提交中...",
             icon: 'loading',
