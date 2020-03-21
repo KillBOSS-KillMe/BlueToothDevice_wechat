@@ -1128,13 +1128,14 @@ Page({
     // 初始化拖动控件数据
     var movableViewInfo = this.data.movableViewInfo
     let thisShowList = []
-    if (this.data.listType == 'a') {
-      thisShowList = this.data.deviceData.listA
-    } else if (this.data.listType == 'b') {
-      thisShowList = this.data.deviceData.listB
-    } else if (this.data.listType == 'all') {
-      thisShowList = this.data.deviceData.listAll
-    }
+    thisShowList = this.data.flieList
+    // if (this.data.listType == 'a') {
+    //   thisShowList = this.data.deviceData.listA
+    // } else if (this.data.listType == 'b') {
+    //   thisShowList = this.data.deviceData.listB
+    // } else if (this.data.listType == 'all') {
+    //   thisShowList = this.data.deviceData.listAll
+    // }
     movableViewInfo.data = thisShowList[startIndex]
     movableViewInfo.showClass = "inline"
 
@@ -1145,7 +1146,8 @@ Page({
   },
 
   dragMove: function (event) {
-    var seqListNode = this.data.deviceData.seqListNode
+    var seqListNode = this.data.flieList
+    console.log(seqListNode,'999')
     var pageInfo = this.data.pageInfo
     // 计算拖拽距离
     var movableViewInfo = this.data.movableViewInfo
@@ -1173,11 +1175,12 @@ Page({
     // 移动movableView
     pageInfo.readyPlaceIndex = readyPlaceIndex
     // console.log('移动到了索引', readyPlaceIndex, '选项为', flieList[readyPlaceIndex])
-    let deviceData = this.data.deviceData
+    let deviceData = this.data.flieList
+    console.log('123', deviceData)
     deviceData['seqListNode'] = seqListNode
     this.setData({
       movableViewInfo: movableViewInfo,
-      deviceData: deviceData,
+      flieList: deviceData,
       pageInfo: pageInfo
     })
   },
@@ -1203,46 +1206,58 @@ Page({
   },
   // 排序部分生成
   setGroupNum() {
-    if (this.data.listType == 'a') {
-      let listA = this.data.deviceData.listA
-      let orderA = this.data.orderA
-      let deviceData = this.data.deviceData
-      let i = 0
-      for (i in listA) {
-        listA[i]['groupA'] = orderA[i]
-        listA[i]['groupANum'] = parseInt(orderA[i], 2)
-      }
-      deviceData['listA'] = listA
-      this.setData({
-        deviceData: deviceData
-      })
-    } else if (this.data.listType == 'b') {
-      let listB = this.data.deviceData.listB
-      let orderB = this.data.orderB
-      let deviceData = this.data.deviceData
-      let i = 0
-      for (i in listB) {
-        listB[i]['groupB'] = orderB[i]
-        listB[i]['groupBNum'] = parseInt(orderB[i], 2)
-      }
-      deviceData['listB'] = listB
-      this.setData({
-        deviceData: deviceData
-      })
-    } else if (this.data.listType == 'all') {
-      let listAll = this.data.deviceData.listAll
-      let orderAll = this.data.orderAll
-      let deviceData = this.data.deviceData
-      let i = 0
-      for (i in listAll) {
-        listAll[i]['groupAll'] = orderAll[i]
-        listAll[i]['groupAllNum'] = parseInt(orderAll[i], 2)
-      }
-      deviceData['listAll'] = listAll
-      this.setData({
-        deviceData: deviceData
-      })
-    }
+    // let listA = this.data.flieList
+    //   let orderA = this.data.orderA
+    //   let deviceData = this.data.deviceData
+    //   let i = 0
+    //   for (i in listA) {
+    //     listA[i]['groupA'] = orderA[i]
+    //     listA[i]['groupANum'] = parseInt(orderA[i], 2)
+    //   }
+    //   deviceData['listA'] = listA
+    //   this.setData({
+    //     deviceData: deviceData
+    //   })
+    // if (this.data.listType == 'a') {
+    //   let listA = this.data.deviceData.listA
+    //   let orderA = this.data.orderA
+    //   let deviceData = this.data.deviceData
+    //   let i = 0
+    //   for (i in listA) {
+    //     listA[i]['groupA'] = orderA[i]
+    //     listA[i]['groupANum'] = parseInt(orderA[i], 2)
+    //   }
+    //   deviceData['listA'] = listA
+    //   this.setData({
+    //     deviceData: deviceData
+    //   })
+    // } else if (this.data.listType == 'b') {
+    //   let listB = this.data.deviceData.listB
+    //   let orderB = this.data.orderB
+    //   let deviceData = this.data.deviceData
+    //   let i = 0
+    //   for (i in listB) {
+    //     listB[i]['groupB'] = orderB[i]
+    //     listB[i]['groupBNum'] = parseInt(orderB[i], 2)
+    //   }
+    //   deviceData['listB'] = listB
+    //   this.setData({
+    //     deviceData: deviceData
+    //   })
+    // } else if (this.data.listType == 'all') {
+    //   let listAll = this.data.deviceData.listAll
+    //   let orderAll = this.data.orderAll
+    //   let deviceData = this.data.deviceData
+    //   let i = 0
+    //   for (i in listAll) {
+    //     listAll[i]['groupAll'] = orderAll[i]
+    //     listAll[i]['groupAllNum'] = parseInt(orderAll[i], 2)
+    //   }
+    //   deviceData['listAll'] = listAll
+    //   this.setData({
+    //     deviceData: deviceData
+    //   })
+    // }
     this.matchGroup()
   },
   // 把拖拽后的数据写入seqListNode中

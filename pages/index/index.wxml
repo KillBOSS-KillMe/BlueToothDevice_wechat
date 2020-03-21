@@ -61,7 +61,11 @@
     <!-- <block class="item" wx:if="{{listType != 'a' && listType != 'b' && listType != 'all'}}" wx:for="{{flieList}}" wx:key="{{item}}"> -->
     <block class="item"  wx:for="{{flieList}}" wx:key="{{item}}">
       <view class="aiYou-li {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}"
-      bindlongtap='' data-index='{{index}}'>
+       hover-class="none"
+      bindlongtap='delDeviceData' data-index='{{index}}'  data-id="{{item.id}}"
+      bindtouchstart='dragStart' 
+      bindtouchmove='dragMove'
+      bindtouchend='dragEnd'>
         <view class='aihua01-left' data-id="{{item.id}}" data-groupid="{{item.group_id}}">
           <text class='in-count'>{{index + 1}}</text>
           <icon class='iconfont iconjiaoben wjj-icon'></icon>
